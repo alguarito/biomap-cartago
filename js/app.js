@@ -35,6 +35,14 @@
   const ATRIB_ESRI_CANVAS = 'Esri, HERE, Garmin, © OpenStreetMap y la comunidad de usuarios SIG';
   /* Satelital: se fija la versión de World Imagery del 2026-06-30 (Wayback, imagen vigente desde julio de 2025)
      porque el mosaico vigente de agosto de 2026 tiene nubes y sombras sobre el centro de Cartago. */
+  /* Capa de etiquetas transparente. Leaflet retira las teselas del zoom anterior con un temporizador que el
+     navegador frena en pestañas en segundo plano; como estas teselas son transparentes, la vieja ampliada
+     quedaría visible. Se limpia apenas termina la carga. */
+  const capaEtiquetas = (url, opciones) => {
+    const capa = L.tileLayer(url, { maxZoom: 19, pane: 'etiquetas', ...opciones });
+    capa.on('load', () => { if (typeof capa._pruneTiles === 'function') capa._pruneTiles(); });
+    return capa;
+  };
   const WAYBACK = 'https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/32246/{z}/{y}/{x}';
   const BASES = {
     calle: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -42,11 +50,11 @@
     }),
     satelite: L.layerGroup([
       L.tileLayer(WAYBACK, { maxZoom: 19, maxNativeZoom: 18, attribution: 'Imágenes © Esri, Maxar, Earthstar Geographics (World Imagery, versión 2026-06-30)' }),
-      L.tileLayer(`${ESRI}/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 19, maxNativeZoom: 18, pane: 'etiquetas', attribution: 'Etiquetas © Esri' }),
+      capaEtiquetas(`${ESRI}/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}`, { maxNativeZoom: 18, attribution: 'Etiquetas © Esri' }),
     ]),
     oscuro: L.layerGroup([
       L.tileLayer(`${ESRI}/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 19, maxNativeZoom: 16, attribution: ATRIB_ESRI_CANVAS }),
-      L.tileLayer(`${ESRI}/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 19, maxNativeZoom: 16, pane: 'etiquetas' }),
+      capaEtiquetas(`${ESRI}/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxNativeZoom: 16 }),
     ]),
   };
   let baseActual = BASES.calle.addTo(mapa);
