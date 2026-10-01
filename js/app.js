@@ -32,7 +32,6 @@
   mapa.getPane('etiquetas').style.pointerEvents = 'none';
 
   const ESRI = 'https://services.arcgisonline.com/ArcGIS/rest/services';
-  const ATRIB_ESRI_CANVAS = 'Esri, HERE, Garmin, © OpenStreetMap y la comunidad de usuarios SIG';
   /* Satelital: se fija la versión de World Imagery del 2026-06-30 (Wayback, imagen vigente desde julio de 2025)
      porque el mosaico vigente de agosto de 2026 tiene nubes y sombras sobre el centro de Cartago. */
   /* Capa de etiquetas transparente. Leaflet retira las teselas del zoom anterior con un temporizador que el
@@ -51,10 +50,6 @@
     satelite: L.layerGroup([
       L.tileLayer(WAYBACK, { maxZoom: 19, maxNativeZoom: 18, attribution: 'Imágenes © Esri, Maxar, Earthstar Geographics (World Imagery, versión 2026-06-30)' }),
       capaEtiquetas(`${ESRI}/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}`, { maxNativeZoom: 18, attribution: 'Etiquetas © Esri' }),
-    ]),
-    oscuro: L.layerGroup([
-      L.tileLayer(`${ESRI}/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 19, maxNativeZoom: 16, attribution: ATRIB_ESRI_CANVAS }),
-      capaEtiquetas(`${ESRI}/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxNativeZoom: 16 }),
     ]),
   };
   let baseActual = BASES.calle.addTo(mapa);
@@ -321,7 +316,7 @@
   const ICONOS_EQ = { educacion: { color: '#1d4ed8', letra: 'E' }, salud: { color: '#dc2626', letra: 'S' }, cuidado: { color: '#7c3aed', letra: 'C' }, emergencia_gobierno: { color: '#0f766e', letra: 'G' } };
   BM.ICONOS_EQ = ICONOS_EQ;
 
-  // Borde de las comunas legible sobre cada mapa base: verde oscuro en el callejero, blanco sobre imagen o fondo oscuro
+  // Borde de las comunas legible sobre cada mapa base: verde oscuro en el callejero, blanco sobre la imagen satelital
   const colorBordeZonas = () => (BM.baseActual === 'calle' ? '#064e3b' : '#f8fafc');
   function estilarZonas() {
     const c = CAPA.zonas;

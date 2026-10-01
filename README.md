@@ -91,5 +91,5 @@ Cada usuario pega su clave de Google AI Studio en la pestaña Copiloto; la clave
 - Código y contenido propio: CC BY-NC-SA 4.0 (ver `LICENSE`).
 - Datos derivados: cada archivo conserva la licencia de su fuente (tabla anterior). Los productos que incluyen geometría de OpenStreetMap se publican bajo ODbL.
 - Librerías y tipografía incluidas en `vendor/`: Leaflet (BSD-2), Chart.js y marked (MIT), DOMPurify (Apache-2.0 o MPL-2.0) y Plus Jakarta Sans (OFL 1.1). Sus avisos están en `vendor/LEEME.md` y `vendor/licencias/`.
-- Mapas base: OpenStreetMap (callejero), Esri World Imagery en su versión del 2026-06-30 (satelital, elegida porque la vigente tiene nubes sobre Cartago) y Esri Dark Gray Canvas (oscuro), con sus propias condiciones de uso.
+- Mapas base: OpenStreetMap (callejero), Esri World Imagery en su versión del 2026-06-30 (satelital, elegida porque la vigente tiene nubes sobre Cartago), con sus propias condiciones de uso.
 - El mapa muestra la atribución de cada fuente mientras su capa está activa.
