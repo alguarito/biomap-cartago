@@ -5,4 +5,4 @@ dist/
 .venv/
 __pycache__/
 # descargas crudas y rejillas intermedias: se regeneran con scripts/
-fuentes/
+/fuentes/
