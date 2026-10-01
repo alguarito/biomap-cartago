@@ -27,24 +27,39 @@
   L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(mapa);
   mapa.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
 
+  // Etiquetas de los mapas base por encima de las capas de datos, sin capturar clics
+  mapa.createPane('etiquetas').style.zIndex = 460;
+  mapa.getPane('etiquetas').style.pointerEvents = 'none';
+
+  const ESRI = 'https://services.arcgisonline.com/ArcGIS/rest/services';
+  const ATRIB_ESRI_CANVAS = 'Esri, HERE, Garmin, © OpenStreetMap y la comunidad de usuarios SIG';
+  /* Satelital: se fija la versión de World Imagery del 2026-06-30 (Wayback, imagen vigente desde julio de 2025)
+     porque el mosaico vigente de agosto de 2026 tiene nubes y sombras sobre el centro de Cartago. */
+  const WAYBACK = 'https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/32246/{z}/{y}/{x}';
   const BASES = {
     calle: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',
     }),
-    satelite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 19, maxNativeZoom: 18, attribution: 'Imágenes © Esri, Maxar, Earthstar Geographics',
-    }),
-    oscuro: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19, subdomains: 'abcd', attribution: '© OpenStreetMap · © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
-    }),
+    satelite: L.layerGroup([
+      L.tileLayer(WAYBACK, { maxZoom: 19, maxNativeZoom: 18, attribution: 'Imágenes © Esri, Maxar, Earthstar Geographics (World Imagery, versión 2026-06-30)' }),
+      L.tileLayer(`${ESRI}/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 19, maxNativeZoom: 18, pane: 'etiquetas', attribution: 'Etiquetas © Esri' }),
+    ]),
+    oscuro: L.layerGroup([
+      L.tileLayer(`${ESRI}/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 19, maxNativeZoom: 16, attribution: ATRIB_ESRI_CANVAS }),
+      L.tileLayer(`${ESRI}/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 19, maxNativeZoom: 16, pane: 'etiquetas' }),
+    ]),
   };
   let baseActual = BASES.calle.addTo(mapa);
+  BM.baseActual = 'calle';
   $$('[data-base]').forEach((b) => b.addEventListener('click', () => {
     const nueva = BASES[b.dataset.base];
     if (nueva === baseActual) return;
     mapa.removeLayer(baseActual);
     baseActual = nueva.addTo(mapa);
+    BM.baseActual = b.dataset.base;
     $$('[data-base]').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+    $('#mapa').dataset.base = b.dataset.base;
+    estilarZonas();
   }));
 
   mapa.createPane('rasters').style.zIndex = 350;
@@ -298,6 +313,13 @@
   const ICONOS_EQ = { educacion: { color: '#1d4ed8', letra: 'E' }, salud: { color: '#dc2626', letra: 'S' }, cuidado: { color: '#7c3aed', letra: 'C' }, emergencia_gobierno: { color: '#0f766e', letra: 'G' } };
   BM.ICONOS_EQ = ICONOS_EQ;
 
+  // Borde de las comunas legible sobre cada mapa base: verde oscuro en el callejero, blanco sobre imagen o fondo oscuro
+  const colorBordeZonas = () => (BM.baseActual === 'calle' ? '#064e3b' : '#f8fafc');
+  function estilarZonas() {
+    const c = CAPA.zonas;
+    if (c && c.capa) c.capa.setStyle({ color: colorBordeZonas(), weight: BM.baseActual === 'calle' ? 1.6 : 2 });
+  }
+
   function prepararZonas() {
     const c = CAPA.zonas;
     const colorZona = (z) => {
@@ -305,7 +327,7 @@
       return lst && BM.DATOS.lst ? BM.colorPaleta(BM.DATOS.lst.meta.paleta, BM.DATOS.lst.meta.rango_visual, lst) : '#10b981';
     };
     const capas = BM.ZONAS.map((z) => {
-      const pol = L.polygon(z.anillos, { color: '#064e3b', weight: 1.6, opacity: 0.9, fillColor: colorZona(z), fillOpacity: 0.08 });
+      const pol = L.polygon(z.anillos, { color: colorBordeZonas(), weight: 1.6, opacity: 0.9, fillColor: colorZona(z), fillOpacity: 0.08 });
       const p = z.props || {};
       const det = [
         p.lst_media !== undefined ? `LST ${fmt(p.lst_media)} °C` : '',
@@ -314,13 +336,14 @@
       ].filter(Boolean).join(' · ');
       pol.bindTooltip(`<b>${esc(z.nombre)}</b>${det ? '<br>' + det : ''}`, { sticky: true, className: 'tip-zona' });
       pol.on('mouseover', () => pol.setStyle({ weight: 3 }));
-      pol.on('mouseout', () => pol.setStyle({ weight: 1.6 }));
+      pol.on('mouseout', () => pol.setStyle({ weight: BM.baseActual === 'calle' ? 1.6 : 2 }));
       return pol;
     });
     c.capa = L.featureGroup(capas);
     c.capa.getAttribution = () => 'Comunas: © OpenStreetMap (ODbL)';
     c.opacidad = (o) => c.capa.setStyle({ opacity: o, fillOpacity: 0.1 * o });
     $('.capa-muestra', c.el).style.background = 'linear-gradient(135deg,#d1fae5,#064e3b)';
+    estilarZonas();
     $('input[type=checkbox]', c.el).disabled = false;
     if (c.activa) activarCapa(c, true);
   }
