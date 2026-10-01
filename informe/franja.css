@@ -1,0 +1,27 @@
+/* GENERADO por build-tokens.mjs — no editar a mano.
+   Origen: tokens.json · versión 1.0.0 · 2026-09-07 */
+
+:root{
+  --papel: oklch(0.970 0.013 85);
+  --papel2: oklch(0.936 0.020 80);
+  --papel3: oklch(0.898 0.028 76);
+  --tinta: oklch(0.233 0.070 265.03);
+  --tinta2: oklch(0.470 0.024 262);
+  --tinta3: oklch(0.615 0.018 262);
+  --vino-profundo: oklch(0.357 0.114 13.82);
+  --vino: oklch(0.470 0.140 16);
+  --vino-claro: oklch(0.680 0.140 18);
+  --vino-suave: oklch(0.930 0.040 20);
+  --teal: oklch(0.600 0.140 212);
+  --teal-suave: oklch(0.926 0.038 210);
+  --dorado: oklch(0.743 0.117 89.51);
+  --filete: oklch(0.848 0.018 82);
+  --filete2: oklch(0.735 0.026 80);
+
+  --sans: "Bricolage Grotesque", Helvetica Neue, Arial, sans-serif;
+  --serif: "Newsreader", Times New Roman, Georgia, serif;
+
+  --pagina-ancho: 794px;
+  --pagina-alto: 1123px;
+  --riel-ancho: 142px;
+}

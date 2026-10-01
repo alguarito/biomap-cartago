@@ -1,0 +1,1776 @@
+{
+ "meta": {
+  "titulo": "Clima urbano y riesgo en Cartago",
+  "subtitulo": "Hallazgos y recomendaciones para la Alcaldía de Cartago y la CVC a partir de los datos abiertos de BioMap",
+  "fecha": "Octubre de 2026",
+  "autor": "Álvaro Cárdenas Orozco, PhD",
+  "proyecto": "BioMap Cartago",
+  "sitio": "https://alguarito.github.io/biomap-cartago/",
+  "destinatarios": [
+   "Despacho del Alcalde de Cartago",
+   "Secretaría de Planeación, Medio Ambiente y Desarrollo Económico",
+   "Subsecretaría de Medio Ambiente, Desarrollo Sustentable y Agropecuario",
+   "Unidad Municipal para la Gestión del Riesgo de Desastres (UMGRD) y Consejo Municipal de Gestión del Riesgo de Desastres (CMGRD) de Cartago",
+   "Secretaría de Salud y Protección Social",
+   "Secretaría de Educación",
+   "Secretaría de Movilidad y Transporte",
+   "Secretaría de Infraestructura",
+   "Corporación Autónoma Regional del Valle del Cauca (CVC) – Dirección Ambiental Regional (DAR) Norte"
+  ],
+  "alcance": "Cabecera de Cartago: Comunas 1 a 7 y Zaragoza, con 139.554 habitantes estimados para 2026. Trata el calor de superficie, el clima del aire, la vegetación y el espacio verde público. También la inundación, los colegios y sedes de salud expuestos, la calidad del aire y el tráfico. Las cifras vienen de los datos abiertos de BioMap con corte al 1 de octubre de 2026. Las normas se verificaron en su fuente oficial en la misma fecha.",
+  "cifras_portada": [
+   {
+    "valor": "25.768",
+    "etiqueta": "habitantes viven en el 10 % más caliente de la superficie urbana"
+   },
+   {
+    "valor": "65,3",
+    "etiqueta": "% de la población vive a más de 300 m de un parque de 0,5 ha o más"
+   },
+   {
+    "valor": "16.553",
+    "etiqueta": "habitantes en áreas con registro oficial de inundación del IDEAM"
+   },
+   {
+    "valor": "1,67",
+    "etiqueta": "m² de verde público por habitante; el mínimo nacional de espacio público efectivo es 15"
+   }
+  ]
+ },
+ "aviso_alcance": "Este informe no reemplaza los estudios oficiales de amenaza, el Plan de Ordenamiento Territorial (POT) ni las mediciones de las autoridades ambientales. Sus cifras son estimaciones hechas con imágenes de satélite, censos, registros climáticos reconstruidos y mapas colaborativos. Sirven para comparar zonas y decidir por dónde empezar. Antes de ejecutar obras, deben verificarse en campo y con el Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM), la CVC y el POT.",
+ "resumen": {
+  "frase": "El calor, la falta de verde y las inundaciones afectan sobre todo a comunas distintas de Cartago. La ley ya dice qué le toca a cada dependencia.",
+  "parrafos": [
+   "Los datos abiertos de BioMap muestran que los problemas ambientales de Cartago no se reparten por igual. El calor de la superficie (suelos, calles y techos) se concentra en las Comunas 4, 5 y 6. Falta verde público en toda la ciudad: hay 1,67 m² por habitante. Los registros oficiales de inundación se concentran en la Comuna 7, la Comuna 1 y Zaragoza. Vienen del Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM). El aire también se calienta, entre +0,18 y +0,29 °C por década desde 1950. Y los días cálidos se multiplicaron por más de tres: de 37,0 por año en 1961–1990 a 129,7 en 2016–2025. Son los días que habrían estado entre el 10 % más caluroso de 1961–1990.",
+   "Varias acciones no son opcionales. La revisión del Plan de Ordenamiento Territorial (POT) debe incluir el riesgo de desastres (Ley 1523 de 2012, art. 39). También debe incluir el cambio climático (Ley 1931 de 2018, art. 9). El POT debe fijar la meta de 15 m² de espacio público efectivo por habitante (Decreto 1077 de 2015, art. 2.2.3.2.7). Y la CVC debe medir los contaminantes del aire que fija la norma (Resolución 2254 de 2017, art. 2). Esa norma pone al ozono un máximo de 100 microgramos por metro cúbico (µg/m³), en promedios de 8 horas. El ozono que estima un modelo mundial de calidad del aire supera ese nivel algunos días al año. No hay una medición local que lo confirme. Las cifras de este informe son estimaciones para decidir por dónde empezar. Deben verificarse en campo antes de ejecutar obras."
+  ],
+  "prioridades": [
+   "Incluir la inundación y el calor en la revisión del POT. Hoy 16.553 personas viven en áreas con registro de inundación del IDEAM. Y 25.768 viven en el 10 % de la ciudad con la superficie más caliente.",
+   "Verificar en campo el área urbana inundada en La Niña 2011 antes de invertir. Hay 6.009 habitantes que solo aparecen en esa área, y el área no coincide con el relieve.",
+   "Sembrar árboles en las manzanas habitadas de las Comunas 4, 5 y 6. Allí más de 1 de cada 3 personas (más del 33 %) vive en calor extremo de superficie, y menos del 5 % de su entorno tiene árboles.",
+   "Crear espacio verde público. Hoy hay 1,67 m² por habitante, frente a la meta mínima de 15 m² de espacio público efectivo. En las Comunas 2 y 3, más del 99 % de la gente vive lejos de un parque.",
+   "Medir el aire en Cartago. Las partículas finas (PM2,5) están entre 1,7 y 2,9 veces la guía de la Organización Mundial de la Salud (OMS). Así lo estima un modelo mundial de calidad del aire. No hay una estación local verificada."
+  ]
+ },
+ "metodo": {
+  "parrafos": [
+   "Las cifras salen de la plataforma BioMap Cartago (Mosquera Cadavid et al., 2026). BioMap procesa datos abiertos con programas que cualquiera puede repetir. Divide la ciudad en un mapa de cuadros de unos 28 m de lado y resume los resultados por zona. Las zonas son las Comunas 1 a 7, según los polígonos de OpenStreetMap, y Zaragoza, delimitada por su área construida (Colaboradores de OpenStreetMap, 2026; Zanaga et al., 2022). Cada indicador se calcula de dos maneras: sobre toda el área y según dónde vive la gente (ponderado por población).",
+   "La temperatura de superficie viene de las imágenes Landsat de la NASA y el USGS (Earth Resources Observation and Science Center [EROS Center], 2020c). La población viene del censo y de las proyecciones del DANE (Departamento Administrativo Nacional de Estadística [DANE], 2018, 2025). Los registros oficiales de inundación son del IDEAM (Instituto de Hidrología, Meteorología y Estudios Ambientales [IDEAM], s. f.). El clima del aire viene de registros climáticos reconstruidos, los reanálisis ERA5 y ERA5-Land (Hersbach et al., 2020; Muñoz-Sabater et al., 2021). La calidad del aire viene del modelo mundial CAMS (Copernicus Atmosphere Monitoring Service [CAMS], s. f.). Para techos verdes y pavimentos no hay datos de Cartago. Sus cifras son estimaciones de BioMap a partir de un metaanálisis (Das et al., 2025).",
+   "Las normas se leyeron en su fuente oficial el 1 de octubre de 2026, y sus citas son textuales. Cada recomendación dice si cumple un deber legal de la entidad, si ejerce una competencia o si es una orientación técnica que ninguna norma impone."
+  ],
+  "fuentes": [
+   {
+    "dato": "Temperatura de superficie (LST)",
+    "fuente": "USGS Landsat 8/9, Colección 2, Nivel 2 (EROS Center, 2020c); serie con Landsat 5 y 7 (EROS Center, 2020a, 2020b)",
+    "periodo": "2022–2025 (78 escenas); serie 2000–2025",
+    "resolucion": "30 m (térmica 100 m)",
+    "licencia": "Dominio público (USGS)"
+   },
+   {
+    "dato": "Verdor (NDVI)",
+    "fuente": "Copernicus Sentinel-2 L2A (European Space Agency [ESA], 2022), vía Element 84 Earth Search",
+    "periodo": "2024–2025",
+    "resolucion": "10 m",
+    "licencia": "Copernicus, libre con atribución"
+   },
+   {
+    "dato": "Arbolado, área construida y agua",
+    "fuente": "ESA WorldCover v200 (Zanaga et al., 2022)",
+    "periodo": "2021",
+    "resolucion": "10 m",
+    "licencia": "CC BY 4.0"
+   },
+   {
+    "dato": "Población",
+    "fuente": "DANE: CNPV 2018 por manzana y proyección municipal por área (DANE, 2018, 2025); HRSL (Meta y Center for International Earth Science Information Network [CIESIN], 2022)",
+    "periodo": "2026",
+    "resolucion": "Manzana, repartida en la rejilla de 28 m",
+    "licencia": "DANE con atribución; CC BY 4.0"
+   },
+   {
+    "dato": "Altitud y susceptibilidad topográfica (HAND)",
+    "fuente": "Copernicus DEM GLO-30 (ESA y Airbus, 2022); altura de dosel (Tolan et al., 2024); ríos de OpenStreetMap",
+    "periodo": "Modelo estático",
+    "resolucion": "30 m",
+    "licencia": "Libre con atribución; CC BY 4.0; ODbL"
+   },
+   {
+    "dato": "Agua en superficie",
+    "fuente": "JRC Global Surface Water (Pekel et al., 2016)",
+    "periodo": "1984–2021",
+    "resolucion": "30 m",
+    "licencia": "Libre con atribución"
+   },
+   {
+    "dato": "Inundación: registros oficiales",
+    "fuente": "IDEAM: amenaza por creciente súbita TR 50 años y áreas afectadas en eventos La Niña (IDEAM, s. f., 2025)",
+    "periodo": "1988–2022",
+    "resolucion": "Escala no declarada",
+    "licencia": "Servicio sin licencia declarada; La Niña 1988–2012: CC BY-SA 4.0"
+   },
+   {
+    "dato": "Índice de tráfico",
+    "fuente": "Red vial de OpenStreetMap (Colaboradores de OpenStreetMap, 2026)",
+    "periodo": "Instantánea del 1-10-2026",
+    "resolucion": "Rejilla de 28 m",
+    "licencia": "ODbL 1.0"
+   },
+   {
+    "dato": "Parques, verde público y equipamientos",
+    "fuente": "OpenStreetMap (Colaboradores de OpenStreetMap, 2026)",
+    "periodo": "Instantánea del 1-10-2026",
+    "resolucion": "Vectorial",
+    "licencia": "ODbL 1.0"
+   },
+   {
+    "dato": "Clima del aire",
+    "fuente": "ERA5 y ERA5-Land (Hersbach et al., 2020; Muñoz-Sabater et al., 2021), vía Open-Meteo (s. f.-b); lluvia CHIRPS v3 (Funk et al., 2026)",
+    "periodo": "1950–2025",
+    "resolucion": "0,1° y 0,25° (≈ 9–28 km)",
+    "licencia": "CC BY 4.0"
+   },
+   {
+    "dato": "Validación del clima",
+    "fuente": "IDEAM: normales climatológicas y estación Zaragoza (IDEAM, 2026)",
+    "periodo": "Normales sucesivas; estación 2005–2023",
+    "resolucion": "Puntual",
+    "licencia": "CC BY-SA 4.0"
+   },
+   {
+    "dato": "Calidad del aire",
+    "fuente": "CAMS global (CAMS, s. f.), vía Open-Meteo (s. f.-a)",
+    "periodo": "Ago. 2022 – sep. 2026",
+    "resolucion": "≈ 40 km",
+    "licencia": "CC BY 4.0"
+   },
+   {
+    "dato": "Efecto de techos verdes y pavimentos",
+    "fuente": "Metaanálisis de Das et al. (2025)",
+    "periodo": "Estudios publicados",
+    "resolucion": "Superficie del elemento",
+    "licencia": "Artículo científico"
+   }
+  ]
+ },
+ "hallazgos": [
+  {
+   "id": "h1",
+   "titulo": "Calor urbano: la gente vive en las zonas más calientes",
+   "tesis": "Casi 1 de cada 5 habitantes de la cabecera (18,5 %) vive en el 10 % de la ciudad con la superficie más caliente. Son 25.768 personas.",
+   "cifras": [
+    {
+     "valor": "25.768",
+     "unidad": "hab",
+     "etiqueta": "viven en el 10 % de la ciudad con la superficie más caliente",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.poblacion_calor_extremo"
+     }
+    },
+    {
+     "valor": "8.860",
+     "unidad": "hab",
+     "etiqueta": "en calor extremo en la Comuna 6, la que más suma",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "zonas[c6].poblacion_calor_extremo"
+     }
+    },
+    {
+     "valor": "41,10",
+     "unidad": "°C",
+     "etiqueta": "temperatura media de la superficie donde vive la gente; en toda el área, 38,73 °C",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.lst_media_pob"
+     }
+    }
+   ],
+   "parrafos": [
+    "Donde vive la gente, la superficie está más caliente que el promedio de la ciudad. En promedio, la superficie donde vive cada habitante está a 41,10 °C a media mañana. El promedio de toda el área es 38,73 °C. Los datos vienen de imágenes de satélite de la NASA y el USGS (EROS Center, 2020c).",
+    "Este informe llama «calor extremo» al 10 % de la ciudad con la superficie más caliente. Es una medida relativa a Cartago: siempre habrá un 10 % del área por encima. Lo que importa es quién vive allí: el 18,5 % de la población.",
+    "Las Comunas 5, 4 y 6 tienen la mayor proporción de habitantes en calor extremo: 34,4 %, 34,2 % y 33,9 %. Es más de 1 de cada 3 personas. Por número de personas destacan la Comuna 6 (8.860) y la Comuna 4 (7.500). La Comuna 7 tiene poca área en calor extremo, solo el 2,1 %. Pero allí vive el 11,8 % de su población: 3.759 personas. Zaragoza no tiene ninguna zona en calor extremo.",
+    "La diferencia de temperatura de superficie entre la ciudad y el campo vecino se llama isla de calor. En 2013–2025 fue entre 0,9 y 1,3 °C mayor que en 2000–2012. No creció poco a poco: dio un salto entre 2012 y 2013, y no se sabe qué lo causó (EROS Center, 2020a, 2020b, 2020c). Junto al río La Vieja la superficie es más fresca. A menos de 100 m del cauce promedia 36,33 °C; a más de 500 m, 38,53 °C. En esa franja de 100 m junto al río no hay ninguna zona en calor extremo."
+   ],
+   "implicacion": "Las acciones contra el calor deben empezar en las Comunas 4, 5 y 6. Allí coinciden más calor, menos árboles y más personas expuestas.",
+   "incertidumbre": "Es la temperatura de suelos, calles y techos a las 10:19 de la mañana, en días despejados. No es la temperatura del aire ni la máxima de la tarde. El umbral de calor extremo es relativo a la ciudad y no indica un riesgo para la salud.",
+   "nota_tecnica": "Temperatura de superficie (LST): mediana de 78 escenas Landsat 8/9 de 2022–2025, con paso a las 10:19 hora local. Calor extremo: celdas de unos 28 m con LST ≥ 42,85 °C (percentil 90 de las celdas de la cabecera), ponderadas con la capa de población 2026; la media ponderada por población es 41,10 °C y la media por área, 38,73 °C. Isla de calor: diferencia entre la cabecera y el campo a la misma altitud con Landsat 5, 7 y 8/9 (series/landsat.json).",
+   "figura": {
+    "tipo": "mapa_zonas",
+    "titulo": "Porcentaje de la población que vive en el 10 % de la ciudad con la superficie más caliente, por zona",
+    "variable": "pct_poblacion_calor_extremo",
+    "archivo": "indicadores.json",
+    "decimales": 1,
+    "unidad": " %"
+   }
+  },
+  {
+   "id": "h2",
+   "titulo": "El aire de Cartago se calienta y los días cálidos se multiplican",
+   "tesis": "Desde 1950, la temperatura media del aire en Cartago sube entre +0,18 y +0,29 °C por década. En 2016–2025 hubo más del triple de días cálidos que en 1961–1990.",
+   "cifras": [
+    {
+     "valor": "+0,18",
+     "unidad": "°C/década",
+     "etiqueta": "por década de calentamiento del aire en 1950–2025, según una fuente; según la otra, +0,29",
+     "fuente": {
+      "archivo": "datos/series/clima.json",
+      "clave": "tendencias.rango_entre_reanalisis_tmedia_c_por_decada.1950-2025.era5land"
+     }
+    },
+    {
+     "valor": "+0,55",
+     "unidad": "°C",
+     "etiqueta": "más cálido el decenio 2016–2025 que el promedio de 1991–2020",
+     "fuente": {
+      "archivo": "datos/series/clima.json",
+      "clave": "climatologia_mensual.anomalia_2016_2025_vs_1991_2020.tmedia_anual"
+     }
+    },
+    {
+     "valor": "129,7",
+     "unidad": "días/año",
+     "etiqueta": "cálidos en 2016–2025, frente a 37,0 en 1961–1990",
+     "fuente": {
+      "archivo": "datos/series/clima.json",
+      "clave": "control_calidad.sensibilidad_filtro_picos[\"curvatura_2.5_con_HR (producto)\"].dias_tx90p_media_2016_2025"
+     }
+    }
+   ],
+   "parrafos": [
+    "El aire de Cartago es hoy más cálido que a mediados del siglo pasado. Desde 1950, la temperatura media sube entre +0,18 y +0,29 °C por década. Si se mira solo el periodo 1981–2025, el ritmo es mayor: entre +0,24 y +0,44 °C por década.",
+    "Estas cifras vienen de registros climáticos reconstruidos, que combinan un modelo del tiempo con observaciones (Hersbach et al., 2020; Muñoz-Sabater et al., 2021). Describen bien los cambios a lo largo de los años. Hay dos registros, y la diferencia entre ellos es mayor que el margen de error de cada uno. Por eso se informa el rango. El IDEAM tiene cuatro estaciones cercanas con promedios de 30 años sucesivos (normales climatológicas). La comparación con ellas sugiere un calentamiento de entre +0,00 y +0,30 °C por década, pero es solo indicativa (IDEAM, 2026).",
+    "El decenio 2016–2025 fue 0,55 °C más cálido que el promedio de 1991–2020. El año 2024 fue el más cálido de la serie: 1,37 °C por encima de ese promedio. Un día cálido es aquel con una temperatura máxima muy alta para su época del año. El límite es la máxima que, en 1961–1990, solo superaba el 10 % de los días de esa época. Hubo 37,0 en 1961–1990, 71,8 en 1991–2020 y 129,7 en 2016–2025. Desde 1981 aumentan 23,9 días por década.",
+    "El municipio ya analizó las olas de calor entre sus riesgos climáticos (Municipio de Cartago, s. f.). Y el Valle del Cauca formuló en 2023 un plan integral de gestión del cambio climático (Ministerio de Ambiente y Desarrollo Sostenible, s. f.)."
+   ],
+   "implicacion": "El calor dejó de ser excepcional. La planeación urbana y la salud pública deben tratarlo como una condición permanente y en aumento.",
+   "incertidumbre": "Estos registros describen cuadros de entre 9 y 28 km de lado, así que no ven la isla de calor ni las diferencias entre barrios. Marcan varios grados menos que las estaciones. Y el ritmo de calentamiento cambia según el registro que se use.",
+   "nota_tecnica": "Reanálisis ERA5-Land (0,1°) y ERA5 (0,25°) vía Open-Meteo; la figura muestra la anomalía de ERA5-Land frente a 1991–2020. Tendencias por mínimos cuadrados en 1950–2025: ERA5-Land +0,18 °C/década (IC 95 % +0,14 a +0,21) y ERA5 +0,29 (IC 95 % +0,24 a +0,34), significativas también con Mann-Kendall y con el ajuste por autocorrelación. Días cálidos: índice TX90p (ETCCDI), base 1961–1990; sirve para comparar frecuencias entre periodos largos, no para alertas diarias.",
+   "figura": {
+    "tipo": "serie_anual",
+    "titulo": "Diferencia de la temperatura media del aire de cada año frente al promedio de 1991–2020",
+    "variable": "anomalia_tmedia_vs_1991_2020",
+    "archivo": "series/clima.json",
+    "unidad": "°C"
+   }
+  },
+  {
+   "id": "h3",
+   "titulo": "Menos verdor en la ciudad construida y pocos árboles donde vive la gente",
+   "tesis": "Entre 2013 y 2025, el verdor de la vegetación bajó en la cabecera y no en el campo vecino. La caída aparece con las cinco formas de calcularla, pero sin 2024 y 2025 ya no es segura.",
+   "cifras": [
+    {
+     "valor": "5 de 5",
+     "unidad": "",
+     "etiqueta": "formas de cálculo muestran una caída clara del verdor urbano en 2013–2025; sin 2024 y 2025, 4 de 5",
+     "fuente": {
+      "archivo": "datos/series/landsat.json",
+      "clave": "lectura_de_tendencias.ndvi_urbano.2013_2025_landsat_8_9"
+     }
+    },
+    {
+     "valor": "5,4",
+     "unidad": "%",
+     "etiqueta": "del entorno donde vive la gente tiene árboles, aunque el 21,5 % del área sí los tiene",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.arbolado_pct_pob"
+     }
+    },
+    {
+     "valor": "2,5",
+     "unidad": "%",
+     "etiqueta": "de árboles donde vive la gente en la Comuna 4",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "zonas[c4].arbolado_pct_pob"
+     }
+    }
+   ],
+   "parrafos": [
+    "La vegetación de la cabecera se ve menos verde desde 2013 en las imágenes de satélite de la NASA y el USGS (EROS Center, 2020c). En el índice de verdor, donde los valores cercanos a 1 indican vegetación densa, la caída va de 0,044 a 0,111 por década. El campo vecino, a la misma altitud, sirve de comparación y no cambia. La caída también aparece en las zonas que ya estaban construidas en 2000. Por eso no se explica solo por la construcción de barrios nuevos.",
+    "Pero hay una duda importante. En 2024 y 2025, el Servicio Geológico de Estados Unidos (USGS) cambió parte del procesamiento de las imágenes. Sin esos dos años, cuatro de las cinco formas de cálculo siguen mostrando la caída. La quinta, el promedio de toda la cabecera que muestra la figura, ya no la confirma.",
+    "Además, hay pocos árboles donde vive la gente. Según un mapa satelital de coberturas de 2021, el 21,5 % del área de la cabecera tiene árboles (Zanaga et al., 2022). Pero en el entorno donde vive la gente, la proporción baja a 5,4 %. Las comunas con menos árboles junto a las viviendas son la 4 (2,5 %), la 5 (3,4 %) y la 6 (4,6 %). Son las mismas con más calor. Por habitante, la Comuna 1 tiene 9,1 m² de área con árboles, y la Comuna 7, 50,2 m².",
+    "Hay imágenes europeas más detalladas, de 10 m, pero en la plataforma solo cubren 2024 y 2025 (ESA, 2022). El valor típico del verdor en la cabecera fue 0,334 en 2024 y 0,363 en 2025. Dos años no bastan para medir una tendencia, y las fechas de esas imágenes se reparten de forma desigual entre los meses. Por eso la diferencia entre ambos años es solo indicativa. Antes de usar la caída para decidir dónde se perdió vegetación, hay que contrastarla. Sirven las imágenes europeas desde 2017 o la revisión visual de fotos aéreas o de satélite."
+   ],
+   "implicacion": "La siembra debe llegar a las manzanas habitadas de las Comunas 4, 5 y 6, donde hoy casi no hay árboles.",
+   "incertidumbre": "Sin 2024 y 2025, la caída del verdor ya no es segura, y nadie la ha confirmado con otra fuente. Su tamaño depende de cómo se calcule. El mapa de árboles es de 2021 y cuenta menos árboles de calle de los que hay.",
+   "nota_tecnica": "NDVI Landsat 8/9 2013–2025: pendiente de Sen con Mann-Kendall y MCO en cinco variantes (mediana y media del polígono, núcleo construido, mediana por escena y celdas construidas en 2000: −0,044/década, IC 95 % −0,058 a −0,026); el campo de control da −0,013 a −0,001/década, sin tendencia. Sin 2024–2025, la media del polígono, que muestra la figura, deja de ser significativa (p = 0,06); la mediana exagera la caída porque la cabecera es bimodal. Arbolado: clase árboles de ESA WorldCover 2021 v200; NDVI Sentinel-2 L2A, mediana por fecha de la cabecera en 2024 (67 fechas) y 2025 (63 fechas).",
+   "figura": {
+    "tipo": "serie_anual",
+    "titulo": "Verdor medio de la vegetación cada año en la cabecera y en el campo vecino a la misma altitud",
+    "variable": "ndvi_media_urbana",
+    "variables": [
+     "ndvi_media_urbana",
+     "ndvi_media_rural"
+    ],
+    "etiquetas": [
+     "Cabecera (media)",
+     "Campo a la misma altitud (media)"
+    ],
+    "archivo": "series/landsat.json",
+    "unidad": "NDVI"
+   }
+  },
+  {
+   "id": "h4",
+   "titulo": "Poco espacio verde público, y lejos de casa",
+   "tesis": "La cabecera tiene 1,67 m² de verde público por habitante. Casi 2 de cada 3 personas (65,3 %) viven a más de 300 m de un parque de al menos 0,5 ha.",
+   "cifras": [
+    {
+     "valor": "1,67",
+     "unidad": "m²/hab",
+     "etiqueta": "de verde público mapeado; la meta mínima de espacio público efectivo es 15",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.m2_verde_publico_por_hab"
+     }
+    },
+    {
+     "valor": "65,3",
+     "unidad": "%",
+     "etiqueta": "de la población a más de 300 m de un verde público de 0,5 ha o más",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.pct_poblacion_sin_verde_300m"
+     }
+    },
+    {
+     "valor": "91.084",
+     "unidad": "hab",
+     "etiqueta": "viven a más de 300 m de un parque en la cabecera",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.poblacion_sin_verde_300m"
+     }
+    }
+   ],
+   "parrafos": [
+    "La ley obliga al POT a fijar una meta mínima de 15 m² de espacio público efectivo por habitante (Decreto 1077 de 2015, art. 2.2.3.2.7). La meta debe alcanzarse durante la vigencia del plan, y viene del Decreto 1504 de 1998. El verde público que BioMap mide en OpenStreetMap, el mapa colaborativo, es apenas el 11,1 % de ese mínimo.",
+    "Los dos conceptos no son iguales: el espacio público efectivo también incluye plazas y plazoletas. Pero el orden de magnitud coincide con el diagnóstico del POT que cita la Financiera de Desarrollo Territorial (2022): 1,68 m² por habitante en 2021. En 2010, el promedio nacional estimado era 3,3 m² (Consejo Nacional de Política Económica y Social, 2012).",
+    "El criterio de 300 m no está en el decreto. Es la propuesta de la Organización Mundial de la Salud (OMS) para medir el acceso (WHO Regional Office for Europe, 2016). Equivale a unos cinco minutos a pie hasta un verde de al menos 0,5 ha. Con ese criterio, casi toda la población de la Comuna 2 (99,7 %) y de la Comuna 3 (99,3 %) queda lejos de un parque. La Comuna 3 no tiene ningún verde público en el mapa. Por número de personas, el mayor déficit está en la Comuna 7 (21.794) y la Comuna 1 (16.600). La Comuna 5, en el centro, es la única con acceso casi general: solo el 10,0 % de su población está lejos."
+   ],
+   "implicacion": "Para llegar a 15 m² por habitante hay que crear espacio público nuevo, no solo cuidar el que existe. Conviene empezar por las Comunas 2 y 3.",
+   "incertidumbre": "OpenStreetMap no está completo. Además, el cálculo cuenta como público todo verde que el mapa no marca como de acceso restringido. La población con un parque a menos de 300 m va del 13,4 % al 70,9 %. Depende del tamaño mínimo de parque que se exija y del verde que falte en el mapa. Con el criterio de este informe, es poco más de 1 de cada 3 personas.",
+   "nota_tecnica": "Distancia en línea recta desde cada celda poblada de unos 28 m hasta el borde de los 53 polígonos de verde público de OpenStreetMap; solo cuentan los componentes de 0,5 ha o más. El orden de las comunas por acceso no es robusto al cambiar el umbral de tamaño (series/verdes.json → sensibilidad).",
+   "figura": {
+    "tipo": "barras_zonas",
+    "titulo": "Población que vive a más de 300 m de un verde público de 0,5 ha o más, por zona",
+    "variable": "pct_poblacion_sin_verde_300m",
+    "archivo": "indicadores.json",
+    "decimales": 1,
+    "unidad": " %"
+   }
+  },
+  {
+   "id": "h5",
+   "titulo": "Inundación: lo que dicen los registros oficiales del IDEAM",
+   "tesis": "16.553 personas, el 11,9 % de la cabecera, viven donde el IDEAM registra amenaza alta de creciente súbita o inundaciones pasadas. Sin el área urbana dudosa de La Niña 2011, serían 10.545 (7,6 %).",
+   "cifras": [
+    {
+     "valor": "16.553",
+     "unidad": "hab",
+     "etiqueta": "en áreas con registro oficial de inundación del IDEAM",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.poblacion_evidencia_inundacion_ideam"
+     }
+    },
+    {
+     "valor": "3.932",
+     "unidad": "hab",
+     "etiqueta": "en amenaza alta por una creciente súbita que se espera, en promedio, una vez cada 50 años",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.contraste_ideam_creciente_subita_tr50.poblacion_amenaza_alta"
+     }
+    },
+    {
+     "valor": "30,1",
+     "unidad": "%",
+     "etiqueta": "de la Comuna 7 con registro; 19,3 % sin La Niña 2011",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "zonas[c7].pct_poblacion_evidencia_inundacion_ideam"
+     }
+    }
+   ],
+   "parrafos": [
+    "El IDEAM publica dos registros oficiales útiles para Cartago (IDEAM, s. f.). El primero marca la amenaza alta por una creciente súbita que se espera, en promedio, una vez cada 50 años. En Cartago cubre las corrientes de la cuenca directa del río La Vieja, es decir, las que drenan directamente a ese río. El segundo marca las áreas que se inundaron en los eventos La Niña de 1988 a 2022.",
+    "En amenaza alta viven 3.932 personas. La mayoría, 3.199, está en la Comuna 1, junto al La Vieja, a una distancia típica de 80 m del eje del río. Otras 577 viven en Zaragoza, junto a corrientes menores a 6 km del río. En las áreas inundadas en eventos La Niña viven hoy 12.782 personas; 9.567 de ellas, en la Comuna 7. Son habitantes de 2026, no las personas afectadas en cada evento.",
+    "El área urbana inundada en La Niña 2011 exige cautela. Una zona inundable suele estar más baja que su entorno, y esta no lo está. Su altura típica sobre el cauce es 9,6 m, y la de la ciudad no inundada, 9,3 m. El área de 1988, en cambio, sí está más baja. Además, el IDEAM advierte que estas capas no han sido validadas (IDEAM, 2025).",
+    "De esa área de 2011 depende el 36 % de la cifra total. Hay 6.009 personas que solo aparecen en ella: 3.439 en la Comuna 7, 1.559 en la Comuna 6 y 1.011 en la Comuna 4. Sin ella, la Comuna 7 baja de 30,1 % a 19,3 %. La Unidad Municipal para la Gestión del Riesgo de Desastres de Cartago (2025) ya advierte que el La Vieja y el Cauca pueden desbordarse.",
+    "BioMap también calcula con el relieve qué zonas podrían inundarse con más facilidad. Ese cálculo no es la amenaza oficial y no coincide con los registros del IDEAM: solo 172 habitantes quedan en su clase alta. Por eso la priorización usa los registros del IDEAM. La amenaza oficial del municipio está en los planos del POT, que este informe no sustituye (Acuerdo 023 de 2013)."
+   ],
+   "implicacion": "Antes de invertir en obras en las Comunas 7, 6 y 4, hay que verificar con registros municipales qué barrios se inundaron en 2010–2011.",
+   "incertidumbre": "El IDEAM no dice con qué nivel de detalle dibujó las áreas de La Niña, y sus bordes son imprecisos. Si esos bordes se corren unos 55 m hacia adentro o hacia afuera, la población con registro va de 11.624 a 24.098 habitantes.",
+   "nota_tecnica": "Registro oficial = amenaza ALTA por creciente súbita TR 50 años ∪ áreas afectadas por La Niña 1988, 2000, 2011, 2012, 2016 y 2020–2022 (IDEAM), asignado por centro de celda. Coherencia con el relieve (HAND, altura sobre el drenaje): probabilidad de que una celda de la mancha esté más baja que una de fuera (2011 urbana: 0,51; 1988 urbana: 0,65; 0,5 = sin diferencia). La susceptibilidad topográfica de BioMap es la clase HAND alta; la sensibilidad de bordes reduce y amplía las manchas unos 55 m.",
+   "figura": {
+    "tipo": "tabla",
+    "titulo": "Población con registro oficial de inundación del IDEAM, con y sin el área urbana inundada en La Niña 2011",
+    "variable": "pct_poblacion_evidencia_inundacion_ideam",
+    "archivo": "indicadores.json",
+    "columnas": [
+     "Zona",
+     "Habitantes con registro",
+     "Con La Niña 2011",
+     "Sin La Niña 2011"
+    ],
+    "anchos": [
+     "31%",
+     "25%",
+     "22%",
+     "22%"
+    ],
+    "filas": [
+     [
+      "Comuna 7",
+      "9.567",
+      "30,1 %",
+      "19,3 %"
+     ],
+     [
+      "Comuna 1",
+      "3.199",
+      "14,5 %",
+      "14,5 %"
+     ],
+     [
+      "Zaragoza",
+      "577",
+      "13,6 %",
+      "13,6 %"
+     ],
+     [
+      "Comuna 6",
+      "1.901",
+      "7,3 %",
+      "1,3 %"
+     ],
+     [
+      "Comuna 4",
+      "1.299",
+      "5,9 %",
+      "1,3 %"
+     ],
+     [
+      "Comuna 3",
+      "8",
+      "0,1 %",
+      "0,1 %"
+     ],
+     [
+      "Comuna 5",
+      "2",
+      "0,0 %",
+      "0,0 %"
+     ],
+     [
+      "Comuna 2",
+      "0",
+      "0,0 %",
+      "0,0 %"
+     ],
+     [
+      "Cabecera",
+      "16.553",
+      "11,9 %",
+      "7,6 %"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "h6",
+   "titulo": "Colegios, sedes de salud y otros servicios expuestos",
+   "tesis": "En la cabecera hay 34 colegios, sedes de salud y otros servicios mapeados en OpenStreetMap. De ellos, 4 están en calor extremo de superficie; 3 de esos 4 superan el límite por menos de 0,5 °C. Uno está en amenaza alta por creciente súbita, y 3 en áreas inundadas en eventos La Niña.",
+   "cifras": [
+    {
+     "valor": "4",
+     "unidad": "de 34",
+     "etiqueta": "servicios mapeados en calor extremo de superficie",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.equipamientos.expuestos.calor_extremo.total"
+     }
+    },
+    {
+     "valor": "15",
+     "unidad": "de 34",
+     "etiqueta": "a más de 300 m de un verde público de 0,5 ha",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.equipamientos.expuestos.a_mas_de_300m_de_verde.total"
+     }
+    },
+    {
+     "valor": "26",
+     "unidad": "%",
+     "etiqueta": "de las sedes educativas del registro del Ministerio de Educación (oficiales y privadas) aparece en OpenStreetMap",
+     "fuente": {
+      "archivo": "datos/series/verdes.json",
+      "clave": "equipamientos.cobertura_frente_a_registros_oficiales.educacion_men.cobertura_osm_pct"
+     }
+    }
+   ],
+   "parrafos": [
+    "Los 34 servicios son colegios, universidades, sedes de salud, un hogar geriátrico, bomberos, policía y la alcaldía. Cuatro están en calor extremo de superficie. Son la Universidad Remington (43,40 °C) y el Hospital Sagrado Corazón de Jesús (43,21 °C). También el colegio Sor María Anastasia (43,04 °C) y Respirar Unidad Pediátrica (42,99 °C). Los tres últimos superan el límite por menos de 0,5 °C, así que su clasificación es frágil.",
+    "Otros seis están justo por debajo del límite, a menos de 0,5 °C. Son la IPS Municipal de Cartago y la Estación de Policía El Berlín. Están además las sedes educativas I.E. Alfonso López Pumarejo, Escuela Caldas, Manuel Quintero Penilla y Lastenia Durán Vernaza (de la I.E. Sor María Juliana).",
+    "El puesto de policía CAI Puente Bolívar está en la zona de amenaza alta por creciente súbita del IDEAM. Tres sedes están en áreas inundadas en eventos La Niña: la I.E. Indalecio Penilla (2011), Oncólogos de Occidente (2011) y The flying cockpits (1988). Las dos que dependen solo del registro de 2011 deben verificarse en campo. Ningún servicio mapeado está en la clase alta del cálculo por relieve de BioMap. Tres están en zonas de tráfico alto.",
+    "OpenStreetMap tiene cerca del 26 % de las sedes educativas, oficiales y privadas, del registro del Ministerio de Educación (Ministerio de Educación Nacional, 2026). También tiene el 11 % de las sedes de instituciones prestadoras de salud del registro oficial (Ministerio de Salud y Protección Social, 2026). Son comparaciones gruesas, no un cruce sede por sede. Pero indican que la lista real de sedes expuestas puede ser bastante mayor que la de este informe."
+   ],
+   "implicacion": "Las Secretarías de Educación y de Salud deben cruzar sus registros oficiales de sedes con los mapas de BioMap. Así sabrán cuáles de todas sus sedes están expuestas.",
+   "incertidumbre": "Cada servicio es un punto en un cuadro del mapa de unos 28 m, y la temperatura se mide en cuadros de 100 m. Por eso el dato describe el entorno, no el edificio. Además, el inventario de OpenStreetMap está incompleto.",
+   "figura": {
+    "tipo": "tabla",
+    "titulo": "Colegios, sedes de salud y otros servicios mapeados que están en calor extremo de superficie o en áreas con registro de inundación del IDEAM",
+    "variable": "calor_extremo",
+    "archivo": "vectores/equipamientos_exposicion.geojson",
+    "columnas": [
+     "Equipamiento (OSM)",
+     "Zona",
+     "Exposición"
+    ],
+    "anchos": [
+     "34%",
+     "18%",
+     "48%"
+    ],
+    "filas": [
+     [
+      "Universidad Remington",
+      "Comuna 6",
+      "Calor extremo (43,40 °C)"
+     ],
+     [
+      "Hospital Sagrado Corazón de Jesús",
+      "Comuna 1",
+      "Calor extremo (43,21 °C), en el umbral; a más de 300 m de un parque"
+     ],
+     [
+      "Sor María Anastasia (colegio)",
+      "Comuna 6",
+      "Calor extremo (43,04 °C), en el umbral"
+     ],
+     [
+      "Respirar Unidad Pediátrica",
+      "Comuna 5",
+      "Calor extremo (42,99 °C), en el umbral"
+     ],
+     [
+      "CAI Puente Bolívar",
+      "Comuna 1",
+      "Amenaza alta por creciente súbita (IDEAM); tráfico alto"
+     ],
+     [
+      "I.E. Indalecio Penilla",
+      "Comuna 7",
+      "Área afectada en La Niña 2011 (verificar)"
+     ],
+     [
+      "Oncólogos de Occidente",
+      "Comuna 6",
+      "Área afectada en La Niña 2011 (verificar)"
+     ],
+     [
+      "The flying cockpits",
+      "Comuna 7",
+      "Área afectada en La Niña 1988"
+     ]
+    ]
+   },
+   "nota_tecnica": "Equipamientos de OpenStreetMap deduplicados (en la cabecera, etiquetas amenity: 17 school, 2 college, 3 university, 5 clinic, 2 hospital, 1 nursing_home, 1 fire_station, 2 police y 1 townhall), un punto por equipamiento asignado a su celda de unos 28 m. Calor extremo: LST 2022–2025 de la celda ≥ 42,85 °C (percentil 90 de la cabecera), con resolución térmica nativa de 100 m; «en el umbral» = a menos de 0,5 °C del corte; tráfico alto = índice ≥ 60. Cobertura en el municipio: 17 colegios y jardines de OSM frente a 65 sedes del MEN (26 %) y 7 sedes de salud frente a 63 sedes de IPS del REPS (11 %)."
+  },
+  {
+   "id": "h7",
+   "titulo": "Aire regional sobre la guía de la OMS y tráfico concentrado en el centro",
+   "tesis": "Las partículas finas (PM2,5) del aire de la región están entre 1,7 y 2,9 veces la guía anual de la OMS. Así lo estima un modelo mundial de calidad del aire. El ozono que estima el modelo supera algunos días al año el nivel de 8 horas de la norma colombiana. El dióxido de nitrógeno no permite una conclusión.",
+   "cifras": [
+    {
+     "valor": "1,7",
+     "unidad": "veces",
+     "etiqueta": "la guía de la OMS para partículas finas (PM2,5), en la versión más baja del modelo; en la más alta, 2,9",
+     "fuente": {
+      "archivo": "datos/series/aire.json",
+      "clave": "comparacion_anual.por_ciclo_modelo.*.pm2_5.veces_guia_oms"
+     }
+    },
+    {
+     "valor": "8.374",
+     "unidad": "hab",
+     "etiqueta": "(6,0 %) viven donde el índice de cercanía al tráfico es de 60 o más, sobre 100",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "cabecera.poblacion_trafico_alto"
+     }
+    },
+    {
+     "valor": "17,7",
+     "unidad": "%",
+     "etiqueta": "de la Comuna 1 en tráfico alto, la mayor proporción",
+     "fuente": {
+      "archivo": "datos/indicadores.json",
+      "clave": "zonas[c1].pct_poblacion_trafico_alto"
+     }
+    }
+   ],
+   "parrafos": [
+    "Las cifras de contaminación de este hallazgo vienen de un modelo mundial de calidad del aire, del programa europeo Copernicus. El modelo estima el aire de fondo del valle en cuadros de unos 40 km, no el de una calle. Cambió de versión tres veces desde 2022; por eso los resultados se dan por versión. Ninguna de estas cifras se ha validado con mediciones en Cartago.",
+    "Según el modelo, el aire de la región tiene más partículas finas (PM2,5) de las que recomienda la OMS. Su promedio va de 8,5 a 14,7 microgramos por metro cúbico (µg/m³), según la versión del modelo. En las cuatro versiones supera la guía anual de la OMS, de 5 µg/m³ (World Health Organization, 2021). Pero queda por debajo del máximo anual de la norma colombiana, de 25 µg/m³ (Resolución 2254 de 2017, art. 2). Los días con más de 15 µg/m³ van de unos 20 a unos 160 por año. La guía de la OMS solo admite 3 o 4.",
+    "El ozono modelado, en cambio, sí pasa algunos días al año el nivel de la norma colombiana. La Resolución 2254 de 2017 fija un máximo de 100 µg/m³ en 8 horas. Según la versión del modelo, lo supera entre 9 y 31 días por año. Esto no prueba un incumplimiento, porque la norma se verifica con estaciones de medición. La OMS usa el mismo nivel y solo admite 3 o 4 días por año. El dióxido de nitrógeno (NO₂) promedia entre 6,7 y 10,9 µg/m³ en la región. Solo una versión supera la guía de la OMS, de 10 µg/m³, así que no se puede afirmar que la exceda.",
+    "La CVC reporta el aire de 9 municipios del Valle con monitoreo (Corporación Autónoma Regional del Valle del Cauca [CVC], 2024, p. 107). En 7 de ellos, las partículas de hasta 10 micras (PM10) están por debajo de la norma anual vigente. Pero tienden a superar el nivel de 30 µg/m³ que regirá desde 2030. Su Plan de Acción no dice si Cartago tiene estación.",
+    "La exposición al tráfico se mide con un índice de cercanía a vías, de 0 a 100, y no con mediciones de contaminación. En zonas con índice de 60 o más viven 8.374 personas (6,0 %). Están sobre todo en la Comuna 1 (3.901; 17,7 %) y en la Comuna 5 (15,8 %). La gente vive más cerca de las vías que el promedio del territorio. El índice es 32,9 donde vive la gente, frente a 25,7 en toda el área."
+   ],
+   "implicacion": "Sin medición local no se puede saber si Cartago cumple la norma. Medir el aire es el primer paso para cualquier medida de salud o de tránsito.",
+   "incertidumbre": "Un modelo que ve cuadros de unos 40 km no sirve para declarar si se cumple la Resolución 2254 de 2017. Esa norma se verifica en cada punto de medición. Por eso ni el ozono modelado ni las demás cifras prueban un incumplimiento. El índice de tráfico depende solo del mapa de vías.",
+   "nota_tecnica": "CAMS global (CAMS, s. f.) vía Open-Meteo, 2022-08-03 a 2026-09-30, resumido por ciclo del modelo (47r3, 48r1, 49r1, 50r1) sin el día de cambio; desde el 12-11-2024 cambió la fórmula del PM2,5, así que las diferencias entre versiones no son tendencias. Ozono: días con máximo diario de la media móvil de 8 h > 100 µg/m³ por cada 365 días válidos (31,3; 8,7; 24,8; 10,4), a condiciones locales; corregidos a condiciones de referencia (25 °C y 760 mm Hg, factor supuesto de 1,116) serían más. Índice de tráfico: cercanía a vías de OpenStreetMap ponderada por su categoría, de 0 a 100.",
+   "figura": {
+    "tipo": "tabla",
+    "titulo": "Partículas finas (PM2,5) y dióxido de nitrógeno (NO₂) en el aire regional, por versión del modelo (µg/m³)",
+    "variable": "pm2_5",
+    "archivo": "series/aire.json",
+    "columnas": [
+     "Versión",
+     "Periodo",
+     "PM2,5",
+     "Veces la guía OMS (5)",
+     "NO₂ (guía: 10)"
+    ],
+    "anchos": [
+     "14%",
+     "30%",
+     "16%",
+     "20%",
+     "20%"
+    ],
+    "filas": [
+     [
+      "47r3",
+      "ago. 2022 – jun. 2023",
+      "14,7",
+      "2,9",
+      "9,1"
+     ],
+     [
+      "48r1",
+      "jun. 2023 – nov. 2024",
+      "9,2",
+      "1,8",
+      "7,5"
+     ],
+     [
+      "49r1",
+      "nov. 2024 – may. 2026",
+      "12,6",
+      "2,5",
+      "10,9"
+     ],
+     [
+      "50r1",
+      "may. 2026 – sep. 2026",
+      "8,5",
+      "1,7",
+      "6,7"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "h8",
+   "titulo": "Qué intervenciones se asocian con menor temperatura de superficie",
+   "tesis": "En Cartago, más árboles se asocian con superficies más frescas. La comparación se hace por cada 10 puntos porcentuales más de área con árboles (por ejemplo, de 20 % a 30 %). Si ocupan el lugar de superficie construida (techos y pavimentos), se asocian con una superficie 0,81 °C más fresca. Si ocupan el lugar de pasto, con una 0,21 °C más fresca.",
+   "cifras": [
+    {
+     "valor": "−0,81",
+     "unidad": "°C",
+     "etiqueta": "por 10 puntos porcentuales de árboles en lugar de superficie construida (techos y pavimentos)",
+     "fuente": {
+      "archivo": "datos/calibracion.json",
+      "clave": "intervenciones.arbolado.variantes.sustituye_construido.delta_lst_c_por_10pp"
+     }
+    },
+    {
+     "valor": "−0,21",
+     "unidad": "°C",
+     "etiqueta": "por 10 puntos porcentuales de árboles en lugar de pasto o lote",
+     "fuente": {
+      "archivo": "datos/calibracion.json",
+      "clave": "intervenciones.arbolado.variantes.sustituye_pasto.delta_lst_c_por_10pp"
+     }
+    },
+    {
+     "valor": "79 %",
+     "unidad": "",
+     "etiqueta": "de las diferencias de temperatura entre zonas que explica el modelo local, con 1.245 cuadros de unos 111 m",
+     "fuente": {
+      "archivo": "datos/calibracion.json",
+      "clave": "modelos.lst.r2"
+     }
+    }
+   ],
+   "parrafos": [
+    "Las zonas de Cartago con más árboles tienen superficies más frescas. La relación es más fuerte cuando los árboles ocupan el lugar de superficie construida, es decir, de techos y pavimentos. Entonces se asocian con 0,81 °C menos por cada 10 puntos porcentuales del área (por ejemplo, de 20 % a 30 %). Cuando ocupan el lugar de pasto, la diferencia es de 0,21 °C. Para medirlo, BioMap comparó 1.245 cuadros de unos 111 m de lado en la cabecera. Su modelo explica el 79 % de las diferencias de temperatura de superficie entre ellos. Es una comparación entre lugares distintos de la ciudad, no el efecto medido de una obra.",
+    "Para techos verdes y pavimentos no hay datos de Cartago. Sus cifras son estimaciones de BioMap a partir del metaanálisis de Das et al. (2025). Ese metaanálisis reúne estudios que midieron cuánto cambia la temperatura del propio techo o pavimento. BioMap escaló esa diferencia según el área cubierta, con el supuesto de que el efecto crece en proporción al área. Así estima −1,09 °C por cada 10 puntos para los techos verdes, con un rango probable de −1,53 a −0,65 °C. Los resultados de los estudios varían mucho entre sí. Para el pavimento frío sobre asfalto, la estimación es −0,55 °C, con un rango probable de −0,68 a −0,41 °C.",
+    "Los pavimentos permeables estuvieron en promedio más calientes. La estimación de BioMap a partir del mismo metaanálisis es +0,17 °C. Por eso no deben presentarse como medida contra el calor. Sobre el dióxido de nitrógeno no hay base para calcular efectos. En calles estrechas, los árboles de copa alta pueden empeorar la calidad del aire (Abhijith et al., 2017).",
+    "El espacio disponible limita lo posible. La Comuna 4 tiene el 20,8 % de su área en pasto y lotes donde sembrar. La Comuna 5 solo tiene el 0,3 %, así que allí los árboles tendrán que ganarle espacio a la superficie construida. BioMap fija además un piso para el simulador: ninguna zona debería bajar de 35,05 °C. Esa es la temperatura de superficie del bosque urbano observado."
+   ],
+   "implicacion": "Donde haya que elegir, poner árboles en lugar de superficie construida se asocia con una superficie más fresca que sembrar sobre pasto. Son −0,81 frente a −0,21 °C de temperatura de superficie por cada 10 puntos porcentuales del área.",
+   "incertidumbre": "Las cifras de Cartago son asociaciones entre lugares, no efectos medidos de obras. Las de techos verdes y pavimentos son estimaciones de BioMap con datos de otros climas y materiales. El rango probable de los techos verdes no recoge la gran diferencia entre estudios: en un sitio concreto podrían no enfriar.",
+   "nota_tecnica": "Modelo local: LST = b0 + b1·arbolado + b2·construido + b3·agua + b4·altitud del terreno; N = 1.245, R² = 0,79, RMSE 1,41 °C; IC 95 % por bootstrap de bloques espaciales de 500 m: árboles en lugar de pasto −0,21 (−0,28 a −0,14) y árboles en lugar de superficie construida, b1 − b2, −0,81 (−0,86 a −0,76); categoría de referencia: pasto, cultivo y suelo desnudo. Techos verdes y pavimentos: diferencias de temperatura de superficie del elemento según el metaanálisis de Das et al. (2025) [techo verde −10,88 °C, IC 95 % −15,26 a −6,50, I² 92 %; pavimento modificado frente a asfalto −5,45 °C, IC 95 % −6,75 a −4,15; permeable +1,74 °C, IC 95 % +0,81 a +2,68], escaladas por BioMap por área con un supuesto de mezcla lineal (ΔLST ≈ X/100 · ΔT del elemento). Intervalo de predicción aproximado de BioMap para techos verdes en un sitio nuevo: −3,03 a +0,85 °C por 10 puntos porcentuales.",
+   "figura": {
+    "tipo": "tabla",
+    "titulo": "Cambio de la temperatura de superficie por cada 10 puntos porcentuales del área intervenida (°C). Origen «Cartago»: calibración local; «Literatura»: estimación de BioMap a partir de Das et al. (2025)",
+    "variable": "delta_lst_c_por_10pp",
+    "archivo": "calibracion.json",
+    "columnas": [
+     "Intervención",
+     "Origen",
+     "°C por 10 pp",
+     "Intervalo"
+    ],
+    "anchos": [
+     "36%",
+     "14%",
+     "14%",
+     "36%"
+    ],
+    "filas": [
+     [
+      "Arbolado en lugar de superficie construida",
+      "Cartago",
+      "−0,81",
+      "−0,86 a −0,76 (IC 95 %)"
+     ],
+     [
+      "Arbolado en lugar de pasto o lote",
+      "Cartago",
+      "−0,21",
+      "−0,28 a −0,14 (IC 95 %)"
+     ],
+     [
+      "Techo verde en lugar de techo convencional",
+      "Literatura",
+      "−1,09",
+      "−1,53 a −0,65 (IC 95 %); sitio nuevo: −3,03 a +0,85"
+     ],
+     [
+      "Pavimento frío sobre asfalto",
+      "Literatura",
+      "−0,55",
+      "−0,68 a −0,41 (IC 95 %)"
+     ],
+     [
+      "Pavimento permeable",
+      "Literatura",
+      "+0,17",
+      "Más caliente en promedio"
+     ]
+    ]
+   }
+  }
+ ],
+ "intervenciones": {
+  "titulo": "Cómo leer las cifras del simulador",
+  "parrafos": [
+   "Cada fila muestra el cambio de temperatura de superficie que el simulador asigna a una intervención. Se calcula por cada 10 puntos porcentuales más del área de la zona (por ejemplo, de 20 % a 30 %). Las barras verdes muestran el rango probable de la relación calculada con datos de Cartago. Esa relación compara zonas de la ciudad; no es el efecto medido de una obra. Las grises son estimaciones de BioMap a partir del metaanálisis de Das et al. (2025). Para techos verdes y pavimento frío, muestran el rango en que caería el efecto en un sitio nuevo. En los techos verdes ese rango va de −3,03 a +0,85 °C: en un sitio concreto podrían no enfriar.",
+   "Los efectos solo se suman si actúan sobre superficies distintas. Cada intervención tiene además un tope. Los árboles no pueden pasar del pasto o de la superficie construida disponible. El pavimento frío no puede pasar de las calzadas, ni los techos verdes de los techos. Una cifra del simulador es un orden de magnitud para comparar opciones. No es una promesa de enfriamiento."
+  ]
+ },
+ "priorizacion": {
+  "parrafos": [
+   "El índice de prioridad ordena las ocho zonas con cinco criterios del mismo peso. Son calor extremo, falta de verde, inundación según el IDEAM, tráfico y densidad de población. Cada criterio se pasa a una escala de 0 a 1. En casi todos, el 1 corresponde a la zona en peor situación de las ocho, y el 0, a la menos afectada. La falta de verde es la excepción: promedia dos medidas y va de 0,25 a 0,90, así que con pesos iguales influye algo menos. Luego se promedian. El índice sirve para ordenar la discusión. Los pesos los decide quien usa la plataforma, y un valor bajo no significa que el problema no exista.",
+   "Con pesos iguales, la Comuna 1 es la primera, con 0,672 sobre 1. Se mantiene en los dos primeros puestos en los 17 escenarios de prueba con otros supuestos. Las Comunas 2 (0,503), 4 (0,497) y 5 (0,492) están prácticamente empatadas. La 4 es la más estable: siempre queda entre el 2.º y el 4.º puesto. La Comuna 7 es la que más cambia según los supuestos. Si se cuentan personas en vez de porcentajes, sube al segundo lugar; sin el criterio de inundación, baja al séptimo. La Comuna 3 y Zaragoza quedan entre los tres últimos puestos en todos los escenarios."
+  ],
+  "ranking": [
+   {
+    "zona": "Comuna 1",
+    "indice": "0,672",
+    "motivo": "Mayor densidad (17.050 habitantes por km²) y mayor proporción en tráfico alto (17,7 %). Además, 3.199 habitantes viven en amenaza alta por creciente súbita.",
+    "rango_sensibilidad": "1.º–2.º"
+   },
+   {
+    "zona": "Comuna 2",
+    "indice": "0,503",
+    "motivo": "Mayor falta de verde (índice 0,90 sobre 1): el 99,7 % vive a más de 300 m de un parque. Su densidad es de 14.542 habitantes por km².",
+    "rango_sensibilidad": "1.º–6.º"
+   },
+   {
+    "zona": "Comuna 4",
+    "indice": "0,497",
+    "motivo": "El 34,2 % de la población vive en calor extremo, y es la comuna con menos árboles donde vive la gente (2,5 %).",
+    "rango_sensibilidad": "2.º–4.º"
+   },
+   {
+    "zona": "Comuna 5",
+    "indice": "0,492",
+    "motivo": "Mayor proporción en calor extremo (34,4 %) y segunda en tráfico alto (15,8 %).",
+    "rango_sensibilidad": "2.º–7.º"
+   },
+   {
+    "zona": "Comuna 6",
+    "indice": "0,453",
+    "motivo": "Más personas en calor extremo (8.860; 33,9 %).",
+    "rango_sensibilidad": "3.º–7.º"
+   },
+   {
+    "zona": "Comuna 7",
+    "indice": "0,410",
+    "motivo": "Mayor proporción con registro de inundación del IDEAM (30,1 %; 19,3 % sin La Niña 2011). También es la que más personas tiene lejos de un parque (21.794).",
+    "rango_sensibilidad": "2.º–8.º"
+   },
+   {
+    "zona": "Comuna 3",
+    "indice": "0,292",
+    "motivo": "No tiene verde público mapeado y el 99,3 % vive lejos de un parque. Pero tiene poco calor extremo (3,0 %) y casi ningún registro de inundación.",
+    "rango_sensibilidad": "6.º–8.º"
+   },
+   {
+    "zona": "Zaragoza",
+    "indice": "0,208",
+    "motivo": "El 13,6 % vive en amenaza alta por creciente súbita de corrientes menores. No tiene calor extremo y es la zona con más árboles donde vive la gente (14,9 %).",
+    "rango_sensibilidad": "6.º–8.º"
+   }
+  ]
+ },
+ "recomendaciones": [
+  {
+   "dependencia": "Secretaría de Planeación, Medio Ambiente y Desarrollo Económico",
+   "nombre_verificado": true,
+   "nota": "El POT vigente es el Acuerdo 015 de 2000, ajustado por última vez con el Acuerdo 023 de 2013. El Plan de Desarrollo 2024–2027 (Acuerdo 007 de 2024) anuncia su actualización con zonificaciones ambientales y de riesgo (Municipio de Cartago, 2024, p. 228).",
+   "acciones": [
+    {
+     "accion": "Incluir en la revisión del POT los registros de inundación del IDEAM como insumo de los estudios básicos de amenaza. Priorizar los estudios detallados donde más gente vive en áreas con registro.",
+     "sustento": [
+      "h5"
+     ],
+     "dato": "16.553 habitantes (11,9 %) viven en áreas con registro oficial de inundación. De ellos, 3.932 están en amenaza alta por creciente súbita.",
+     "zonas": "Comuna 7, Comuna 1 y Zaragoza",
+     "prioridad": "alta",
+     "plazo": "mediano (1–3 años)",
+     "indicador": "Porcentaje de las 353,05 ha de la cabecera con registro del IDEAM que ya tienen estudios básicos o detallados adoptados en el POT.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Decreto 1077 de 2015",
+      "articulo": "art. 2.2.2.1.3.1.3 (antes Decreto 1807 de 2014, art. 3)",
+      "cita": "se deben elaborar estudios en los suelos urbanos, de expansión urbana y rural para los fenómenos de inundación, avenidas torrenciales y movimientos en masa",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77216"
+     }
+    },
+    {
+     "accion": "Incluir en el diagnóstico y en las normas del POT el calor urbano y el aumento de los días cálidos. Definir medidas de adaptación para las comunas más calientes, en consulta con el plan de cambio climático del Valle del Cauca.",
+     "sustento": [
+      "h1",
+      "h2"
+     ],
+     "dato": "25.768 habitantes viven en el 10 % de la ciudad con la superficie más caliente. Los días cálidos del aire pasaron de 37,0 por año en 1961–1990 a 129,7 en 2016–2025.",
+     "zonas": "Comunas 4, 5 y 6",
+     "prioridad": "alta",
+     "plazo": "mediano (1–3 años)",
+     "indicador": "Población que vive donde la superficie llega a 42,85 °C o más. Se recalcula cada año con ese mismo umbral fijo y nuevas imágenes de satélite.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 1931 de 2018",
+      "articulo": "art. 9",
+      "cita": "Las autoridades municipales y distritales deberán incorporar dentro de sus planes de desarrollo y, planes de ordenamiento territorial, la gestión del cambio climático",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=87765"
+     }
+    },
+    {
+     "accion": "Calcular el índice de espacio público efectivo por comuna. Fijar en el POT metas y suelo para llegar a 15 m² por habitante, empezando por las comunas sin parques a 300 m.",
+     "sustento": [
+      "h4"
+     ],
+     "dato": "La cabecera tiene 1,67 m² de verde público por habitante; el diagnóstico del POT da 1,68 m² de espacio público efectivo. El 99,7 % de la Comuna 2 y el 99,3 % de la Comuna 3 viven a más de 300 m de un parque.",
+     "zonas": "Comunas 2 y 3; después, 1 y 7",
+     "prioridad": "alta",
+     "plazo": "mediano (1–3 años)",
+     "indicador": "Verde público por habitante y porcentaje de la población a menos de 300 m de un verde de 0,5 ha, por comuna. Se mide con el mapa de distancia al verde de BioMap (capa distancia_verde).",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Decreto 1077 de 2015",
+      "articulo": "art. 2.2.3.2.7 (antes Decreto 1504 de 1998, art. 14)",
+      "cita": "un mínimo de quince (15m2) metros cuadrados y por habitante, para ser alcanzado durante la vigencia del plan respectivo.",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77216"
+     }
+    },
+    {
+     "accion": "Establecer, con concepto técnico de la CVC, las zonas de siembra del municipio. Incluir en ellas la franja del río La Vieja junto a la cabecera y los lotes con pasto de las comunas más calientes.",
+     "sustento": [
+      "h1",
+      "h3",
+      "h8"
+     ],
+     "dato": "A menos de 100 m del La Vieja, la superficie promedia 36,33 °C; a más de 500 m, 38,53 °C. La Comuna 4 tiene el 20,8 % de su área en pasto y lotes donde sembrar.",
+     "zonas": "Ribera del La Vieja (Comunas 1, 5 y 6) y Comuna 4",
+     "prioridad": "media",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Árboles sembrados y vivos en las zonas de siembra, según registro de campo. También el verdor de la vegetación antes y después, en imágenes de satélite de 10 m. El mapa de árboles de 2021 solo sirve como punto de partida, porque no registra siembras nuevas.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 2173 de 2021",
+      "articulo": "art. 3, parágrafo 3",
+      "cita": "Las Secretarías de Planeación, o quien haga sus veces, acogiéndose a los conceptos técnicos expedidos por la autoridad ambiental competente según su jurisdicción, establecerán las zonas de siembras",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2173_2021.html"
+     }
+    },
+    {
+     "accion": "Incluir en las normas urbanísticas exigencias de árboles y sombra en andenes, parqueaderos y nuevas urbanizaciones. Hacerlo dentro del programa de elementos naturales del espacio público (ENEP).",
+     "sustento": [
+      "h3",
+      "h8"
+     ],
+     "dato": "Solo el 5,4 % del entorno donde vive la gente tiene árboles. Los árboles en lugar de superficie construida se asocian con 0,81 °C menos de temperatura de superficie. La cifra es por cada 10 puntos porcentuales del área con árboles (por ejemplo, de 20 % a 30 %).",
+     "zonas": "Comunas 4, 5 y 6",
+     "prioridad": "media",
+     "plazo": "mediano (1–3 años)",
+     "indicador": "Cobertura de copa de los árboles por comuna, según el censo forestal o una medición de copa. También el verdor de la vegetación en las manzanas intervenidas, en imágenes de satélite de 10 m. El 5,4 % del mapa de árboles de 2021 solo sirve como punto de partida.",
+     "fundamento": {
+      "tipo": "orientacion",
+      "norma": "Plan de Desarrollo 2024–2027, Anexo 5. Componente estratégico (Municipio de Cartago, 2024)",
+      "articulo": "p. 233",
+      "cita": "Desarrollar acciones contempladas en el Programa para el manejo de los elementos naturales del espacio público ENEP y el arbolado urbano, desarrollado a través del Convenio Interadministrativo CVC No 141 de 2020",
+      "url": "https://www.cartago.gov.co/documentos_acordeon_anidado/3.%20Componente%20estrategico%20PDM%202024-2027.%20Def..pdf"
+     }
+    }
+   ]
+  },
+  {
+   "dependencia": "Subsecretaría de Medio Ambiente, Desarrollo Sustentable y Agropecuario",
+   "nombre_verificado": true,
+   "nota": "Depende de la Secretaría de Planeación, Medio Ambiente y Desarrollo Económico. No se encontró una ley nacional de arbolado urbano; la Ley 2173 de 2021 obliga a levantar censos forestales.",
+   "acciones": [
+    {
+     "accion": "Levantar con la CVC el censo forestal del área urbana, con especie, altura y copa de cada árbol. Repetirlo cada cinco años.",
+     "sustento": [
+      "h3"
+     ],
+     "dato": "El mapa satelital cuenta menos árboles de calle de los que hay. Aun así, muestra que solo el 5,4 % del entorno de los habitantes tiene árboles; en la Comuna 4, el 2,5 %.",
+     "zonas": "Toda la cabecera, empezando por las Comunas 4, 5 y 6",
+     "prioridad": "alta",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Porcentaje de manzanas con censo levantado y comparación con el mapa de árboles de BioMap.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 2173 de 2021",
+      "articulo": "art. 3, parágrafo 1",
+      "cita": "deberán articular las Áreas de Vida a lo establecido en los instrumentos de planificación del territorio y con ello, levantar censos forestales con el fin de conocer la cobertura vegetal del territorio",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2173_2021.html"
+     }
+    },
+    {
+     "accion": "Hacer la siembra masiva del Plan de Desarrollo donde coinciden calor, población y espacio disponible. Medir su resultado con los mismos datos.",
+     "sustento": [
+      "h1",
+      "h3",
+      "h8"
+     ],
+     "dato": "La Comuna 4 tiene el 34,2 % de su población en calor extremo y el 20,8 % de su área en pasto disponible. La Comuna 6 suma 8.860 personas en calor extremo y tiene el 13,6 % de su área en pasto.",
+     "zonas": "Comunas 4 y 6; en la Comuna 5, sobre superficie construida",
+     "prioridad": "alta",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Verdor de la vegetación y temperatura de superficie de las manzanas intervenidas, antes y después. Compararlos con manzanas parecidas sin intervenir.",
+     "fundamento": {
+      "tipo": "orientacion",
+      "norma": "Plan de Desarrollo 2024–2027, Anexo 5. Componente estratégico (Municipio de Cartago, 2024)",
+      "articulo": "p. 229",
+      "cita": "Se promoverá la siembra masiva de árboles en espacios urbanos y rurales, con el objetivo de aumentar la cobertura arbórea y contribuir a la mitigación del cambio climático.",
+      "url": "https://www.cartago.gov.co/documentos_acordeon_anidado/3.%20Componente%20estrategico%20PDM%202024-2027.%20Def..pdf"
+     }
+    },
+    {
+     "accion": "Verificar con imágenes de satélite más detalladas la caída del verdor urbano desde 2013. Ubicar dónde se perdió vegetación.",
+     "sustento": [
+      "h3"
+     ],
+     "dato": "El índice de verdor de la cabecera baja entre 0,044 y 0,111 por década en 2013–2025, mientras el campo vecino no cambia. Pero sin 2024 y 2025, la caída ya no es segura.",
+     "zonas": "Toda la cabecera",
+     "prioridad": "media",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Hectáreas con pérdida de vegetación confirmada, por comuna.",
+     "fundamento": {
+      "tipo": "competencia",
+      "norma": "Ley 99 de 1993",
+      "articulo": "art. 65, num. 6",
+      "cita": "Ejercer, a través del alcalde como primera autoridad de policía [...] funciones de control y vigilancia del medio ambiente y los recursos naturales renovables",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=297"
+     }
+    }
+   ]
+  },
+  {
+   "dependencia": "Corporación Autónoma Regional del Valle del Cauca (CVC) – Dirección Ambiental Regional (DAR) Norte",
+   "nombre_verificado": true,
+   "nota": "Máxima autoridad ambiental en Cartago (Ley 99 de 1993, art. 31). No se pudo verificar si tiene una estación de calidad del aire en el municipio.",
+   "acciones": [
+    {
+     "accion": "Medir en Cartago las partículas finas (PM2,5), las partículas de hasta 10 micras (PM10) y el ozono según el protocolo nacional. Si ya existe una estación del sistema de vigilancia, publicar sus datos en formato abierto.",
+     "sustento": [
+      "h7"
+     ],
+     "dato": "Según el modelo mundial de calidad del aire, las partículas finas están entre 1,7 y 2,9 veces la guía anual de la OMS. Pasa en las cuatro versiones del modelo. Su ozono supera entre 9 y 31 días al año el nivel de 8 horas de la Resolución 2254 de 2017 (100 µg/m³). Nada de esto se ha validado en Cartago.",
+     "zonas": "Centro (Comunas 1 y 5), donde el tráfico es mayor",
+     "prioridad": "alta",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Estación con al menos el 75 % de días válidos al año. Comparación anual de sus datos con el modelo mundial de calidad del aire, versión por versión.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Resolución 2254 de 2017",
+      "articulo": "art. 2, parágrafo 3",
+      "cita": "Las autoridades ambientales competentes deben realizar las mediciones de los contaminantes criterio establecidos en el presente artículo",
+      "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-2254-de-2017.pdf"
+     }
+    },
+    {
+     "accion": "Adelantar con el municipio un programa para reforestar la orilla del río La Vieja (bosque de galería). Hacerlo en la franja de amenaza alta por creciente súbita.",
+     "sustento": [
+      "h5",
+      "h1"
+     ],
+     "dato": "La amenaza alta del IDEAM junto al La Vieja cubre 25,8 ha dentro de la cabecera. A menos de 100 m del río no hay ninguna zona en calor extremo.",
+     "zonas": "Ribera del La Vieja en las Comunas 1, 5 y 6",
+     "prioridad": "alta",
+     "plazo": "mediano (1–3 años)",
+     "indicador": "Árboles sembrados y vivos en la franja de amenaza alta del La Vieja, según registro de campo. También el verdor de la vegetación de la franja, en imágenes de satélite de 10 m. El mapa de árboles de 2021 solo sirve como punto de partida.",
+     "fundamento": {
+      "tipo": "competencia",
+      "norma": "Ley 99 de 1993",
+      "articulo": "art. 31, num. 23",
+      "cita": "adelantar con las administraciones municipales o distritales programas de adecuación de áreas urbanas en zonas de alto riesgo, tales como control de erosión, manejo de cauces y reforestación",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=297"
+     }
+    },
+    {
+     "accion": "La CVC y el municipio deben acordar los temas ambientales de la revisión del POT (concertación ambiental). En ese acuerdo, verificar que el plan incluya el riesgo de desastres y el cambio climático. La ley los pone entre las normas de mayor jerarquía que el POT debe respetar (determinantes ambientales de nivel 1). Usar para ello los registros del IDEAM y las cifras de calor de este informe.",
+     "sustento": [
+      "h1",
+      "h2",
+      "h5"
+     ],
+     "dato": "El último ajuste del POT (2013) es anterior al Decreto 1807 de 2014 y a la Ley 1931 de 2018. Hoy, 16.553 habitantes viven con registro de inundación y 25.768 en calor extremo.",
+     "zonas": "Toda la cabecera",
+     "prioridad": "alta",
+     "plazo": "mediano (1–3 años)",
+     "indicador": "Acta de concertación del POT con el riesgo de desastres y el cambio climático incluidos como determinantes ambientales.",
+     "fundamento": {
+      "tipo": "competencia",
+      "norma": "Ley 388 de 1997",
+      "articulo": "art. 24, num. 1, y art. 10, num. 1 (textos vigentes)",
+      "cita": "El proyecto de Plan se someterá a consideración de la Corporación Autónoma Regional o autoridad ambiental correspondiente, a efectos de que conjuntamente con el municipio y/o distrito concerten los asuntos exclusivamente ambientales",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=339"
+     }
+    }
+   ]
+  },
+  {
+   "dependencia": "Unidad Municipal para la Gestión del Riesgo de Desastres (UMGRD) y Consejo Municipal de Gestión del Riesgo de Desastres (CMGRD) de Cartago",
+   "nombre_verificado": true,
+   "nota": "No se encontró publicado el decreto que creó el Consejo Municipal de Gestión del Riesgo ni el plan municipal de gestión del riesgo vigente. El Plan de Desarrollo 2024–2027 anuncia su revisión (Municipio de Cartago, 2024, p. 255).",
+   "acciones": [
+    {
+     "accion": "Verificar qué barrios se inundaron en 2010–2011 con los registros municipales y de la Unidad Nacional para la Gestión del Riesgo de Desastres. Corregir el área urbana de La Niña 2011 antes de priorizar obras.",
+     "sustento": [
+      "h5"
+     ],
+     "dato": "6.009 personas solo aparecen en el área urbana de 2011, que no coincide con el relieve. Son 3.439 en la Comuna 7, 1.559 en la Comuna 6 y 1.011 en la Comuna 4.",
+     "zonas": "Comunas 7, 6 y 4",
+     "prioridad": "alta",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Porcentaje de las 178,4 ha urbanas del área de 2011 ya verificadas en campo o con registros.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 1523 de 2012",
+      "articulo": "art. 46",
+      "cita": "Las autoridades departamentales, distritales y municipales crearán sistemas de información para la gestión del riesgo de desastres en el ámbito de su jurisdicción en armonía con el sistema nacional",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=47141"
+     }
+    },
+    {
+     "accion": "Actualizar el plan municipal de gestión del riesgo. Debe incluir las crecientes súbitas de las corrientes menores de Zaragoza y del sur de la Comuna 3. También la franja del La Vieja en la Comuna 1.",
+     "sustento": [
+      "h5"
+     ],
+     "dato": "En amenaza alta por creciente súbita viven 3.199 personas en la Comuna 1 y 577 en Zaragoza. En esas corrientes menores, el cálculo por relieve de BioMap no detecta la amenaza.",
+     "zonas": "Comuna 1, Zaragoza y sur de la Comuna 3",
+     "prioridad": "alta",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Población en amenaza alta por creciente súbita cubierta por planes de contingencia por barrio.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 1931 de 2018",
+      "articulo": "art. 24",
+      "cita": "Los planes de gestión del riesgo de los niveles de gobierno nacional y territorial [...] incorporarán acciones orientadas al conocimiento y reducción del riesgo disminuyendo la vulnerabilidad ante eventos de tipo hidrometeorológicos e hidroclimáticos",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=87765"
+     }
+    },
+    {
+     "accion": "Verificar en campo la exposición del CAI Puente Bolívar y de los servicios en áreas inundadas en eventos La Niña. Incluirlos en la estrategia municipal de respuesta a emergencias.",
+     "sustento": [
+      "h6",
+      "h5"
+     ],
+     "dato": "Un servicio mapeado está en amenaza alta por creciente súbita y 3 en áreas inundadas en eventos La Niña. OpenStreetMap solo tiene una parte de las sedes reales.",
+     "zonas": "Comunas 1, 6 y 7",
+     "prioridad": "media",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Servicios públicos con exposición verificada y con protocolo en la estrategia de respuesta.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 1523 de 2012",
+      "articulo": "art. 37",
+      "cita": "Las autoridades departamentales, distritales y municipales formularán y concertarán con sus respectivos consejos de gestión del riesgo, un plan de gestión del riesgo de desastres y una estrategia para la respuesta a emergencias [...]",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=47141"
+     }
+    }
+   ]
+  },
+  {
+   "dependencia": "Secretaría de Salud y Protección Social",
+   "nombre_verificado": true,
+   "acciones": [
+    {
+     "accion": "Formular acciones de adaptación en salud frente al calor. Incluir vigilancia de consultas asociadas al calor, avisos a la población y protocolos para sedes de salud y hogares de cuidado.",
+     "sustento": [
+      "h1",
+      "h2",
+      "h6"
+     ],
+     "dato": "Los días cálidos del aire pasaron de 37,0 por año en 1961–1990 a 129,7 en 2016–2025. Para elegir dónde actuar primero: 25.768 personas viven en calor extremo de superficie. El Hospital Sagrado Corazón de Jesús y Respirar Unidad Pediátrica superan ese límite por apenas 0,36 y 0,15 °C.",
+     "zonas": "Comunas 4, 5 y 6; sedes de salud de las Comunas 1 y 5",
+     "prioridad": "alta",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Acciones de adaptación al calor adoptadas, con seguimiento anual de la vigilancia epidemiológica y de los días cálidos del aire. Sedes de salud priorizadas, con verificación de su temperatura en campo. La temperatura de superficie solo sirve para elegir dónde actuar, no para medir el riesgo para la salud.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 2169 de 2021",
+      "articulo": "art. 6, sector Salud y Protección Social, num. 1",
+      "cita": "Formular a 2030 acciones de adaptación en prevención de la enfermedad y promoción de la salud, que aporten a reducir los casos de enfermedades sensibles al clima",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2169_2021.html"
+     }
+    },
+    {
+     "accion": "Acordar con la CVC un protocolo de medidas de salud para cuando la CVC informe que una medición superó la norma de calidad del aire. Informar es un deber de la CVC (Resolución 2254 de 2017, art. 6, par. 2). Dar prioridad a la población junto a vías de tráfico alto.",
+     "sustento": [
+      "h7"
+     ],
+     "dato": "Hoy no hay una medición local que pruebe que se supera la norma. El modelo mundial de calidad del aire da partículas finas (PM2,5) por encima de la guía de la OMS. Pero quedan por debajo del máximo anual de la norma colombiana. Su ozono sí pasa algunos días al año el nivel de 8 horas de la norma (100 µg/m³). 8.374 personas viven donde el índice de tráfico es de 60 o más; 3.901 de ellas, en la Comuna 1.",
+     "zonas": "Comunas 1 y 5",
+     "prioridad": "media",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Protocolo acordado con la CVC y número de avisos atendidos por año.",
+     "fundamento": {
+      "tipo": "obligacion_condicionada",
+      "norma": "Resolución 2254 de 2017",
+      "articulo": "art. 6, parágrafo 2",
+      "cita": "las autoridades ambientales competentes informarán a las autoridades de salud y demás organismos responsables de la gestión de riesgo para que adopten las medidas a que haya lugar",
+      "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-2254-de-2017.pdf"
+     }
+    }
+   ]
+  },
+  {
+   "dependencia": "Secretaría de Educación",
+   "nombre_verificado": true,
+   "acciones": [
+    {
+     "accion": "Verificar en campo la temperatura de las sedes en calor extremo o cerca del límite. Dar prioridad en ellas a la sombra, la arborización de patios y la ventilación.",
+     "sustento": [
+      "h1",
+      "h6"
+     ],
+     "dato": "El colegio Sor María Anastasia está en calor extremo de superficie, justo en el límite: 43,04 °C, 0,19 °C por encima. Otras cuatro sedes están a menos de 0,5 °C por debajo. Son la I.E. Alfonso López Pumarejo, la Escuela Caldas, Manuel Quintero Penilla y la sede Lastenia Durán Vernaza de la I.E. Sor María Juliana.",
+     "zonas": "Comunas 4, 5 y 6",
+     "prioridad": "alta",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Sedes con verificación de temperatura y con sombra o árboles nuevos en sus patios. Temperatura de superficie de su entorno en los años siguientes.",
+     "fundamento": {
+      "tipo": "orientacion",
+      "norma": "No se encontró una norma que imponga esta acción",
+      "articulo": "",
+      "cita": "",
+      "url": ""
+     }
+    },
+    {
+     "accion": "Cruzar el registro de sedes del Ministerio de Educación con los mapas de BioMap. Publicar en datos abiertos la ubicación y la exposición de todas las sedes educativas.",
+     "sustento": [
+      "h6"
+     ],
+     "dato": "OpenStreetMap tiene cerca del 26 % de las sedes educativas del registro del Ministerio de Educación, oficiales y privadas. La mayoría de las sedes no tiene hoy una evaluación de su exposición.",
+     "zonas": "Todo el municipio",
+     "prioridad": "media",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Porcentaje de las sedes del registro del Ministerio de Educación con exposición calculada. Punto de partida: cerca del 26 %.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 1712 de 2014",
+      "articulo": "art. 11, lit. k",
+      "cita": "Los sujetos obligados deberán publicar datos abiertos, para lo cual deberán contemplar las excepciones establecidas en el título 3 de la presente ley.",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=56882"
+     }
+    },
+    {
+     "accion": "Verificar con la Unidad Municipal para la Gestión del Riesgo de Desastres si la I.E. Indalecio Penilla está expuesta a inundación. Si se confirma, incluirla en el plan escolar de gestión del riesgo.",
+     "sustento": [
+      "h5",
+      "h6"
+     ],
+     "dato": "La sede está dentro del área inundada en La Niña 2011 según el IDEAM. La parte urbana de esa área no coincide con el relieve y debe contrastarse con registros municipales.",
+     "zonas": "Comuna 7",
+     "prioridad": "media",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Verificación hecha y plan escolar de gestión del riesgo actualizado.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 1523 de 2012",
+      "articulo": "art. 2",
+      "cita": "La gestión del riesgo es responsabilidad de todas las autoridades y de los habitantes del territorio colombiano.",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=47141"
+     }
+    }
+   ]
+  },
+  {
+   "dependencia": "Secretaría de Movilidad y Transporte",
+   "nombre_verificado": true,
+   "acciones": [
+    {
+     "accion": "Reducir la exposición al tráfico en las vías con índice de 60 o más. Calmar el tránsito junto a colegios y sedes de salud, y revisar rutas y horarios del transporte de carga.",
+     "sustento": [
+      "h7",
+      "h6"
+     ],
+     "dato": "8.374 personas viven donde el índice de tráfico es de 60 o más. En esa franja está el 17,7 % de la población de la Comuna 1 y el 15,8 % de la Comuna 5.",
+     "zonas": "Comunas 1 y 5",
+     "prioridad": "media",
+     "plazo": "mediano (1–3 años)",
+     "indicador": "Conteos de vehículos y, cuando exista, dióxido de nitrógeno medido en esas vías. El índice de BioMap solo cambia si cambia la red vial.",
+     "fundamento": {
+      "tipo": "orientacion",
+      "norma": "No se encontró una norma que imponga esta acción",
+      "articulo": "",
+      "cita": "",
+      "url": ""
+     }
+    },
+    {
+     "accion": "Publicar en datos abiertos los conteos de vehículos (aforos) de la Secretaría. Ampliarlos a las vías principales del centro, para que la CVC ubique la medición de dióxido de nitrógeno.",
+     "sustento": [
+      "h7"
+     ],
+     "dato": "El índice de tráfico mide cercanía a vías, no contaminación. El dióxido de nitrógeno del modelo mundial de calidad del aire va de 6,7 a 10,9 µg/m³. Con esas cifras no se puede saber si supera la guía de la OMS (10 µg/m³).",
+     "zonas": "Comunas 1 y 5",
+     "prioridad": "media",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Puntos de conteo publicados en datos abiertos y fecha de su última actualización.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 1712 de 2014",
+      "articulo": "art. 11, lit. k",
+      "cita": "Los sujetos obligados deberán publicar datos abiertos, para lo cual deberán contemplar las excepciones establecidas en el título 3 de la presente ley.",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=56882"
+     }
+    }
+   ]
+  },
+  {
+   "dependencia": "Secretaría de Infraestructura",
+   "nombre_verificado": true,
+   "acciones": [
+    {
+     "accion": "Incluir un análisis de riesgo desde la formulación de cada obra pública. Ese análisis debe usar los registros de inundación del IDEAM y la exposición al calor de BioMap.",
+     "sustento": [
+      "h5",
+      "h1"
+     ],
+     "dato": "353,05 ha de la cabecera tienen registro oficial de inundación. Y el 10 % de la ciudad con la superficie más caliente concentra al 18,5 % de la población.",
+     "zonas": "Toda la cabecera",
+     "prioridad": "alta",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Porcentaje de proyectos del banco de proyectos con un análisis de riesgo que use estos mapas.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 1523 de 2012",
+      "articulo": "art. 38",
+      "cita": "Todos los proyectos de inversión pública que tengan incidencia en el territorio [...] deben incorporar apropiadamente un análisis de riesgo de desastres",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=47141"
+     }
+    },
+    {
+     "accion": "Usar pavimentos que reflejen más el sol (pavimento frío) al repavimentar el asfalto de las comunas más calientes. No presentar los pavimentos permeables como medida contra el calor.",
+     "sustento": [
+      "h8"
+     ],
+     "dato": "El pavimento frío sobre asfalto se asocia con 0,55 °C menos de temperatura de superficie. El permeable, en cambio, con 0,17 °C más. Las cifras son por cada 10 puntos porcentuales del área cubierta (por ejemplo, de 20 % a 30 %). Son estimaciones de BioMap a partir del metaanálisis de Das et al. (2025).",
+     "zonas": "Comunas 5, 4 y 1",
+     "prioridad": "media",
+     "plazo": "mediano (1–3 años)",
+     "indicador": "Metros cuadrados repavimentados con material reflectivo y temperatura de superficie de las vías intervenidas.",
+     "fundamento": {
+      "tipo": "orientacion",
+      "norma": "No se encontró una norma que imponga esta acción",
+      "articulo": "",
+      "cita": "",
+      "url": ""
+     }
+    },
+    {
+     "accion": "Diseñar las obras conservando los árboles existentes. Si la tala es inevitable, tramitar la autorización de la CVC y reponer los árboles en la misma comuna.",
+     "sustento": [
+      "h3",
+      "h8"
+     ],
+     "dato": "Solo el 5,4 % del entorno donde vive la gente tiene árboles. Los árboles en lugar de superficie construida se asocian con 0,81 °C menos de temperatura de superficie. La cifra es por cada 10 puntos porcentuales del área con árboles (por ejemplo, de 20 % a 30 %).",
+     "zonas": "Toda la cabecera",
+     "prioridad": "media",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Registro público de árboles talados y repuestos por obra y por comuna.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Decreto 1076 de 2015",
+      "articulo": "art. 2.2.1.1.9.4",
+      "cita": "Cuando se requiera talar, transplantar o reubicar árboles aislados localizados en centros urbanos, para la realización, remodelación o ampliación de obras públicas o privadas [...] se solicitará autorización ante la Corporación respectiva",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=78153"
+     }
+    }
+   ]
+  },
+  {
+   "dependencia": "Despacho del Alcalde y todas las dependencias (acción transversal)",
+   "nombre_verificado": true,
+   "acciones": [
+    {
+     "accion": "Publicar en datos abiertos, con actualización anual, el inventario de espacio público y el censo forestal. Publicar también el registro de emergencias con su ubicación y el directorio de sedes con su exposición.",
+     "sustento": [
+      "h4",
+      "h5",
+      "h6"
+     ],
+     "dato": "Hoy estas cifras dependen de OpenStreetMap y de áreas del IDEAM dibujadas con un nivel de detalle que no se conoce. OpenStreetMap solo tiene cerca del 26 % de las sedes educativas del registro del Ministerio de Educación, oficiales y privadas.",
+     "zonas": "Todo el municipio",
+     "prioridad": "alta",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Conjuntos publicados en datos.gov.co y fecha de su última actualización.",
+     "fundamento": {
+      "tipo": "obligacion",
+      "norma": "Ley 1712 de 2014",
+      "articulo": "art. 11, lit. k",
+      "cita": "Los sujetos obligados deberán publicar datos abiertos, para lo cual deberán contemplar las excepciones establecidas en el título 3 de la presente ley.",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=56882"
+     }
+    },
+    {
+     "accion": "Hacer seguimiento anual de este informe con los mismos indicadores de BioMap. Presentar el avance al Consejo Municipal de Gestión del Riesgo y al Concejo Municipal.",
+     "sustento": [
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "h7",
+      "h8"
+     ],
+     "dato": "Puntos de partida: 25.768 habitantes en calor extremo, 1,67 m² de verde público por habitante y 16.553 habitantes con registro de inundación.",
+     "zonas": "Toda la cabecera",
+     "prioridad": "media",
+     "plazo": "corto (≤ 1 año)",
+     "indicador": "Informe anual publicado con la variación de cada indicador frente a este punto de partida.",
+     "fundamento": {
+      "tipo": "orientacion",
+      "norma": "No se encontró una norma que imponga esta acción",
+      "articulo": "",
+      "cita": "",
+      "url": ""
+     }
+    }
+   ]
+  }
+ ],
+ "limitaciones": [
+  "La temperatura de superficie no es la del aire. Es la de techos, calles y suelo a las 10:19 de la mañana, en días despejados.",
+  "El umbral de calor extremo (42,85 °C) es relativo a la cabecera, no un límite para la salud. Por construcción, siempre hay un 10 % del área por encima.",
+  "El clima del aire viene de registros climáticos reconstruidos, con cuadros de 9 a 28 km. No ven la isla de calor, marcan menos temperatura que las estaciones del IDEAM y su ritmo de calentamiento depende del registro.",
+  "Los árboles son los que un mapa satelital de 2021 clasificó como tales, no la copa medida en campo. La caída del verdor ya no es segura sin 2024 y 2025, y no se ha confirmado con otra fuente.",
+  "El índice de tráfico mide cercanía a vías, no contaminación. Las cifras de partículas finas (PM2,5), dióxido de nitrógeno y ozono vienen de un modelo mundial de calidad del aire, con cuadros de unos 40 km. No se han validado en Cartago y no sirven para declarar si se cumple la Resolución 2254 de 2017.",
+  "El cálculo de BioMap basado en el relieve no es la amenaza oficial de inundación. La oficial está en los estudios del POT, del IDEAM y de la CVC.",
+  "La amenaza por creciente súbita del IDEAM solo cubre la cuenca directa del La Vieja, no la inundación lenta del Cauca. El IDEAM no dice con qué nivel de detalle dibujó las áreas de La Niña, y no las ha validado.",
+  "El área urbana de La Niña 2011 no coincide con el relieve y podría exagerar la cifra. De ella depende el 36 % de la población con registro (6.009 habitantes).",
+  "La población es la proyección del DANE para 2026, repartida según el censo de 2018. Faltan las urbanizaciones posteriores. Y quienes viven hoy en áreas inundadas en el pasado no son los afectados en cada evento.",
+  "El verde público y los servicios vienen de OpenStreetMap, que está incompleto. Por ejemplo, solo tiene cerca del 26 % de las sedes educativas, oficiales y privadas, del registro del Ministerio de Educación. Su verde no equivale al espacio público efectivo.",
+  "Asociación no es causalidad. El simulador compara lugares distintos de la ciudad. Las cifras de techos verdes y pavimentos son estimaciones de BioMap con datos de otros climas (Das et al., 2025).",
+  "El índice de prioridad depende de los pesos elegidos. Por eso se da el rango de puestos de cada zona en 17 escenarios.",
+  "Las comunas son polígonos de OpenStreetMap, y Zaragoza es el área construida que marca un mapa satelital. No son límites oficiales.",
+  "No se pudo verificar el decreto que creó el Consejo Municipal de Gestión del Riesgo ni el plan municipal de gestión del riesgo vigente. Tampoco el estado de la revisión del POT ni si la CVC tiene una estación de aire en Cartago."
+ ],
+ "referencias": [
+  {
+   "apa": "Abhijith, K. V., Kumar, P., Gallagher, J., McNabola, A., Baldauf, R., Pilla, F., Broderick, B., Di Sabatino, S. y Pulvirenti, B. (2017). Air pollution abatement performances of green infrastructure in open road and built-up street canyon environments – A review. *Atmospheric Environment, 162*, 71–86. https://doi.org/10.1016/j.atmosenv.2017.05.014",
+   "url": "https://doi.org/10.1016/j.atmosenv.2017.05.014",
+   "tipo": "articulo"
+  },
+  {
+   "apa": "Colaboradores de OpenStreetMap. (2026). *OpenStreetMap* [Base de datos geográfica; instantánea del 1 de octubre de 2026]. OpenStreetMap Foundation. https://www.openstreetmap.org/copyright",
+   "url": "https://www.openstreetmap.org/copyright",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Concejo Municipal de Cartago. (2013, 27 de diciembre). *Acuerdo 023 de 2013, por medio del cual se ajusta el Plan de Ordenamiento Territorial del municipio de Cartago Valle, adoptado mediante Acuerdo 015 de mayo de 2000 y modificado por los Acuerdos 005 de mayo de 2006 y 003 de marzo de 2010*. https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/ACUERDO-MUNICIPAL-023-DE-2.013-AJUSTE-P.O.T.pdf",
+   "url": "https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/ACUERDO-MUNICIPAL-023-DE-2.013-AJUSTE-P.O.T.pdf",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Concejo Municipal de Cartago. (2024, 13 de junio). *Acuerdo 007 de 2024, por medio del cual se adopta el Plan de Desarrollo del municipio de Cartago – Valle del Cauca 2024-2027 «Más Progreso, Mejor Futuro»*. https://www.2025.cartago.gov.co/documentos_acordeon_anidado/Acuerdo-No-007-2024-adopta-plan-de-desarrollo-2024-2027.pdf",
+   "url": "https://www.2025.cartago.gov.co/documentos_acordeon_anidado/Acuerdo-No-007-2024-adopta-plan-de-desarrollo-2024-2027.pdf",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Congreso de la República de Colombia. (1993, 22 de diciembre). *Ley 99 de 1993, por la cual se crea el Ministerio del Medio Ambiente, se reordena el Sector Público encargado de la gestión y conservación del medio ambiente y los recursos naturales renovables, se organiza el Sistema Nacional Ambiental, SINA, y se dictan otras disposiciones*. Diario Oficial No. 41.146. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=297",
+   "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=297",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Congreso de la República de Colombia. (1997, 18 de julio). *Ley 388 de 1997, por la cual se modifica la Ley 9 de 1989, y la Ley 2 de 1991 y se dictan otras disposiciones*. Diario Oficial No. 43.091. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=339",
+   "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=339",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Congreso de la República de Colombia. (2012, 24 de abril). *Ley 1523 de 2012, por la cual se adopta la política nacional de gestión del riesgo de desastres y se establece el Sistema Nacional de Gestión del Riesgo de Desastres y se dictan otras disposiciones*. Diario Oficial No. 48.411. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=47141",
+   "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=47141",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Congreso de la República de Colombia. (2014, 6 de marzo). *Ley 1712 de 2014, por medio de la cual se crea la Ley de Transparencia y del Derecho de Acceso a la Información Pública Nacional y se dictan otras disposiciones*. Diario Oficial No. 49.084. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=56882",
+   "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=56882",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Congreso de la República de Colombia. (2018, 27 de julio). *Ley 1931 de 2018, por la cual se establecen directrices para la gestión del cambio climático*. Diario Oficial No. 50.667. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=87765",
+   "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=87765",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Congreso de la República de Colombia. (2021, 22 de diciembre). *Ley 2169 de 2021, por medio de la cual se impulsa el desarrollo bajo en carbono del país mediante el establecimiento de metas y medidas mínimas en materia de carbono neutralidad y resiliencia climática y se dictan otras disposiciones*. Diario Oficial No. 51.896. http://www.secretariasenado.gov.co/senado/basedoc/ley_2169_2021.html",
+   "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2169_2021.html",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Congreso de la República de Colombia. (2021, 30 de diciembre). *Ley 2173 de 2021, por medio de la cual se promueve la restauración ecológica a través de la siembra de árboles y creación de bosques en el territorio nacional, estimulando conciencia ambiental al ciudadano, responsabilidad civil ambiental a las empresas y compromiso ambiental a los entes territoriales; se crean las áreas de vida y se establecen otras disposiciones*. Diario Oficial No. 51.903. http://www.secretariasenado.gov.co/senado/basedoc/ley_2173_2021.html",
+   "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2173_2021.html",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Consejo Nacional de Política Económica y Social. (2012). *Política Nacional de Espacio Público* (Documento CONPES 3718). Departamento Nacional de Planeación. https://colaboracion.dnp.gov.co/CDT/Conpes/Econ%C3%B3micos/3718.pdf",
+   "url": "https://colaboracion.dnp.gov.co/CDT/Conpes/Econ%C3%B3micos/3718.pdf",
+   "tipo": "guia"
+  },
+  {
+   "apa": "Copernicus Atmosphere Monitoring Service. (s. f.). *CAMS global atmospheric composition forecasts* [Conjunto de datos]. Atmosphere Data Store. Recuperado el 30 de septiembre de 2026, de https://ads.atmosphere.copernicus.eu/datasets/cams-global-atmospheric-composition-forecasts",
+   "url": "https://ads.atmosphere.copernicus.eu/datasets/cams-global-atmospheric-composition-forecasts",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Corporación Autónoma Regional del Valle del Cauca. (2024). *Plan de acción 2024-2027: Más cerca de la gente*. https://www.cvc.gov.co/sites/default/files/2024-04/Acuerdo%20CD%20No.%20007%20de%202024%20-%20Aprueba%20plan%20de%20accion%20de%20la%20CVC%20-%202024-2027.pdf",
+   "url": "https://www.cvc.gov.co/sites/default/files/2024-04/Acuerdo%20CD%20No.%20007%20de%202024%20-%20Aprueba%20plan%20de%20accion%20de%20la%20CVC%20-%202024-2027.pdf",
+   "tipo": "guia"
+  },
+  {
+   "apa": "Das, J. K., Kumari, B., Rahman, A. R., Azhar, M., Khan, S., Masood, U., Karan, D., Yasin, R., Burman, C., Augustin, J. L., Bonell, A. y Bhutta, Z. A. (2025). Evaluation of community-based heat adaptation interventions: A systematic review. *BMJ Public Health, 3*(2), Artículo e002332. https://doi.org/10.1136/bmjph-2024-002332",
+   "url": "https://doi.org/10.1136/bmjph-2024-002332",
+   "tipo": "articulo"
+  },
+  {
+   "apa": "Departamento Administrativo Nacional de Estadística. (2018). *Marco Geoestadístico Nacional 2018 integrado con el Censo Nacional de Población y Vivienda 2018: manzana censal* [Servicio de mapas]. Geoportal DANE. https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0",
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Departamento Administrativo Nacional de Estadística. (2025). *Serie municipal de población por área 2018-2042* [Conjunto de datos; actualizado el 30 de julio de 2025]. https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx",
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Earth Resources Observation and Science Center. (2020a). *Landsat 4-5 Thematic Mapper Level-2, Collection 2* [Conjunto de datos]. U.S. Geological Survey. https://doi.org/10.5066/P9IAXOVV",
+   "url": "https://doi.org/10.5066/P9IAXOVV",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Earth Resources Observation and Science Center. (2020b). *Landsat 7 Enhanced Thematic Mapper Plus Level-2, Collection 2* [Conjunto de datos]. U.S. Geological Survey. https://doi.org/10.5066/P9C7I13B",
+   "url": "https://doi.org/10.5066/P9C7I13B",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Earth Resources Observation and Science Center. (2020c). *Landsat 8-9 Operational Land Imager / Thermal Infrared Sensor Level-2, Collection 2* [Conjunto de datos]. U.S. Geological Survey. https://doi.org/10.5066/P9OGBGM6",
+   "url": "https://doi.org/10.5066/P9OGBGM6",
+   "tipo": "dato"
+  },
+  {
+   "apa": "European Space Agency. (2022). *Sentinel-2 MSI Level-2A BOA reflectance* [Conjunto de datos; consultado vía Element 84 Earth Search]. https://doi.org/10.5270/S2_-znk9xsj",
+   "url": "https://doi.org/10.5270/S2_-znk9xsj",
+   "tipo": "dato"
+  },
+  {
+   "apa": "European Space Agency y Airbus. (2022). *Copernicus DEM* [Conjunto de datos]. European Space Agency. https://doi.org/10.5270/ESA-c5d3d65",
+   "url": "https://doi.org/10.5270/ESA-c5d3d65",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Financiera de Desarrollo Territorial. (2022). *Cartago: Documento de diagnóstico* (Versión final, diciembre de 2022). Programa Ciudades Emblemáticas. https://www.findeter.gov.co/system/files/internas/Diagnostico-PDA-Cartago.pdf",
+   "url": "https://www.findeter.gov.co/system/files/internas/Diagnostico-PDA-Cartago.pdf",
+   "tipo": "guia"
+  },
+  {
+   "apa": "Funk, C., Peterson, P., Harrison, L., Saldivar, R., Landsfeld, M., Pedreros, D., Shukla, S., Fink, A. H., Davenport, F., Peterson, S., Turner, W., Sonnier, A., Budde, M., Tabor, K., Verdin, J., Hauzaree, D., Naim, M., Alaso, D. y Husak, G. (2026). The Climate Hazards Center Infrared Precipitation with Stations, Version 3. *Scientific Data, 13*, Artículo 718. https://doi.org/10.1038/s41597-026-07096-4",
+   "url": "https://doi.org/10.1038/s41597-026-07096-4",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Hersbach, H., Bell, B., Berrisford, P., Hirahara, S., Horányi, A., Muñoz-Sabater, J., Nicolas, J., Peubey, C., Radu, R., Schepers, D., Simmons, A., Soci, C., Abdalla, S., Abellan, X., Balsamo, G., Bechtold, P., Biavati, G., Bidlot, J., Bonavita, M., . . . Thépaut, J.-N. (2020). The ERA5 global reanalysis. *Quarterly Journal of the Royal Meteorological Society, 146*(730), 1999–2049. https://doi.org/10.1002/qj.3803",
+   "url": "https://doi.org/10.1002/qj.3803",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Instituto de Hidrología, Meteorología y Estudios Ambientales. (s. f.). *Amenaza_Ambiental: amenaza por creciente súbita TR 50 años y áreas afectadas por inundación en eventos La Niña* [Servicio de mapas ArcGIS]. Recuperado el 30 de septiembre de 2026, de https://visualizador.ideam.gov.co/gisserver/rest/services/Amenaza_Ambiental/MapServer",
+   "url": "https://visualizador.ideam.gov.co/gisserver/rest/services/Amenaza_Ambiental/MapServer",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Instituto de Hidrología, Meteorología y Estudios Ambientales. (2025). *Áreas afectadas inundación Niña 2011* [Conjunto de datos]. Datos Abiertos Colombia. https://www.datos.gov.co/d/6eu7-pzc5",
+   "url": "https://www.datos.gov.co/d/6eu7-pzc5",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Instituto de Hidrología, Meteorología y Estudios Ambientales. (2026). *Normales climatológicas de Colombia* [Conjunto de datos; actualizado el 27 de julio de 2026]. Datos Abiertos Colombia. https://www.datos.gov.co/d/nsz2-kzcq",
+   "url": "https://www.datos.gov.co/d/nsz2-kzcq",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Meta y Center for International Earth Science Information Network, Columbia University. (2022). *High Resolution Settlement Layer (HRSL)* [Conjunto de datos; imágenes fuente © 2016 Maxar]. https://registry.opendata.aws/dataforgood-fb-hrsl",
+   "url": "https://registry.opendata.aws/dataforgood-fb-hrsl",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Ministerio de Ambiente y Desarrollo Sostenible. (s. f.). *Planes integrales de gestión del cambio climático territorial (PIGCCT)*. Recuperado el 1 de octubre de 2026, de https://www.minambiente.gov.co/cambio-climatico-y-gestion-del-riesgo/planes-integrales-de-gestion-del-cambio-climatico-territorial/",
+   "url": "https://www.minambiente.gov.co/cambio-climatico-y-gestion-del-riesgo/planes-integrales-de-gestion-del-cambio-climatico-territorial/",
+   "tipo": "guia"
+  },
+  {
+   "apa": "Ministerio de Ambiente y Desarrollo Sostenible. (2017, 1 de noviembre). *Resolución 2254 de 2017, por la cual se adopta la norma de calidad del aire ambiente y se dictan otras disposiciones*. https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-2254-de-2017.pdf",
+   "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-2254-de-2017.pdf",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Ministerio de Educación Nacional. (2026). *MEN_ESTABLECIMIENTOS_EDUCATIVOS_PREESCOLAR_BÁSICA_Y_MEDIA* [Conjunto de datos; actualizado el 3 de septiembre de 2026]. Datos Abiertos Colombia. https://www.datos.gov.co/d/cfw5-qzt5",
+   "url": "https://www.datos.gov.co/d/cfw5-qzt5",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Ministerio de Salud y Protección Social. (2026). *Registro Especial de Prestadores y Sedes de Servicios de Salud* [Conjunto de datos; corte del 12 de marzo de 2026]. Datos Abiertos Colombia. https://www.datos.gov.co/d/c36g-9fc2",
+   "url": "https://www.datos.gov.co/d/c36g-9fc2",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Mosquera Cadavid, J. S., Mejia Ortiz, J. E. y Cárdenas Orozco, A. (2026). *BioMap Cartago: Plataforma geoambiental de datos abiertos para la toma de decisiones* [Plataforma web y conjunto de datos]. I.E. Sor María Juliana. https://alguarito.github.io/biomap-cartago/",
+   "url": "https://alguarito.github.io/biomap-cartago/",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Municipio de Cartago. (s. f.). *Cartilla: Análisis del riesgo asociado al cambio climático del municipio de Cartago*. https://www.municipio.cartago.gov.co/wp-content/uploads/2022/05/Cartilla-ARVC-Cartago.pdf",
+   "url": "https://www.municipio.cartago.gov.co/wp-content/uploads/2022/05/Cartilla-ARVC-Cartago.pdf",
+   "tipo": "guia"
+  },
+  {
+   "apa": "Municipio de Cartago. (2024). *Anexo 5. Componente estratégico: Plan de Desarrollo Municipal PDM 2024-2027 «Más progreso, mejor futuro»*. https://www.cartago.gov.co/documentos_acordeon_anidado/3.%20Componente%20estrategico%20PDM%202024-2027.%20Def..pdf",
+   "url": "https://www.cartago.gov.co/documentos_acordeon_anidado/3.%20Componente%20estrategico%20PDM%202024-2027.%20Def..pdf",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Muñoz-Sabater, J., Dutra, E., Agustí-Panareda, A., Albergel, C., Arduini, G., Balsamo, G., Boussetta, S., Choulga, M., Harrigan, S., Hersbach, H., Martens, B., Miralles, D. G., Piles, M., Rodríguez-Fernández, N. J., Zsoter, E., Buontempo, C. y Thépaut, J.-N. (2021). ERA5-Land: A state-of-the-art global reanalysis dataset for land applications. *Earth System Science Data, 13*(9), 4349–4383. https://doi.org/10.5194/essd-13-4349-2021",
+   "url": "https://doi.org/10.5194/essd-13-4349-2021",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Open-Meteo. (s. f.-a). *Air Quality API* [Interfaz de datos]. Recuperado el 30 de septiembre de 2026, de https://open-meteo.com/en/docs/air-quality-api",
+   "url": "https://open-meteo.com/en/docs/air-quality-api",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Open-Meteo. (s. f.-b). *Historical Weather API* [Interfaz de datos]. Recuperado el 30 de septiembre de 2026, de https://open-meteo.com/en/docs/historical-weather-api",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Pekel, J.-F., Cottam, A., Gorelick, N. y Belward, A. S. (2016). High-resolution mapping of global surface water and its long-term changes. *Nature, 540*(7633), 418–422. https://doi.org/10.1038/nature20584",
+   "url": "https://doi.org/10.1038/nature20584",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Presidencia de la República de Colombia. (1998, 4 de agosto). *Decreto 1504 de 1998, por el cual se reglamenta el manejo del espacio público en los planes de ordenamiento territorial*. Diario Oficial No. 43.357. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=1259",
+   "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=1259",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Presidencia de la República de Colombia. (2015, 26 de mayo). *Decreto 1076 de 2015, por medio del cual se expide el Decreto Único Reglamentario del Sector Ambiente y Desarrollo Sostenible*. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=78153",
+   "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=78153",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Presidencia de la República de Colombia. (2015, 26 de mayo). *Decreto 1077 de 2015, por medio del cual se expide el Decreto Único Reglamentario del Sector Vivienda, Ciudad y Territorio*. Diario Oficial No. 49.523. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77216",
+   "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77216",
+   "tipo": "norma"
+  },
+  {
+   "apa": "Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., Moutakanni, T., Bojanowski, P., Johns, T., White, B., Tiecke, T. y Couprie, C. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. *Remote Sensing of Environment, 300*, Artículo 113888. https://doi.org/10.1016/j.rse.2023.113888",
+   "url": "https://doi.org/10.1016/j.rse.2023.113888",
+   "tipo": "dato"
+  },
+  {
+   "apa": "Unidad Municipal para la Gestión del Riesgo de Desastres de Cartago. (2025). *Plan de contingencia segunda temporada de lluvias 2025*. Alcaldía de Cartago. https://cartago.gov.co/wp-content/uploads/2026/06/PLAN-DE-CONTINGENCIA-SEGUNDA-TEMPORADA-DE-LLUVIAS-2025.pdf",
+   "url": "https://cartago.gov.co/wp-content/uploads/2026/06/PLAN-DE-CONTINGENCIA-SEGUNDA-TEMPORADA-DE-LLUVIAS-2025.pdf",
+   "tipo": "guia"
+  },
+  {
+   "apa": "WHO Regional Office for Europe. (2016). *Urban green spaces and health: A review of evidence*. https://iris.who.int/handle/10665/345751",
+   "url": "https://iris.who.int/handle/10665/345751",
+   "tipo": "guia"
+  },
+  {
+   "apa": "World Health Organization. (2021). *WHO global air quality guidelines: Particulate matter (PM2.5 and PM10), ozone, nitrogen dioxide, sulfur dioxide and carbon monoxide*. https://iris.who.int/handle/10665/345329",
+   "url": "https://iris.who.int/handle/10665/345329",
+   "tipo": "guia"
+  },
+  {
+   "apa": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.-E., Xu, P., Ramoino, F. y Arino, O. (2022). *ESA WorldCover 10 m 2021 v200* (Versión v200) [Conjunto de datos]. Zenodo. https://doi.org/10.5281/zenodo.7254221",
+   "url": "https://doi.org/10.5281/zenodo.7254221",
+   "tipo": "dato"
+  }
+ ],
+ "tarjetas": [
+  {
+   "titulo": "Calor donde vive la gente",
+   "cifra": "25.768",
+   "unidad": "hab",
+   "frase": "Casi 1 de cada 5 habitantes (18,5 %) vive en el 10 % de la ciudad con la superficie más caliente.",
+   "tipo": "hallazgo",
+   "dependencia": "",
+   "fuente": "Imágenes de satélite de la NASA y el USGS, 2022–2025; DANE 2026"
+  },
+  {
+   "titulo": "Comunas 4, 5 y 6",
+   "cifra": "33,9–34,4",
+   "unidad": "% de la población",
+   "frase": "Más de 1 de cada 3 habitantes vive en calor extremo de superficie. La Comuna 6 suma 8.860 personas.",
+   "tipo": "hallazgo",
+   "dependencia": "",
+   "fuente": "BioMap, indicadores por zona"
+  },
+  {
+   "titulo": "El aire se calienta",
+   "cifra": "+0,18 a +0,29",
+   "unidad": "°C por década",
+   "frase": "Calentamiento del aire por década en 1950–2025, según dos registros climáticos reconstruidos. 2024 fue el año más cálido de la serie.",
+   "tipo": "dato",
+   "dependencia": "",
+   "fuente": "Registros climáticos reconstruidos de Copernicus"
+  },
+  {
+   "titulo": "Más días cálidos",
+   "cifra": "129,7",
+   "unidad": "días por año",
+   "frase": "Días con temperatura máxima inusualmente alta para la época: 129,7 al año en 2016–2025, frente a 37,0 en 1961–1990.",
+   "tipo": "dato",
+   "dependencia": "",
+   "fuente": "Registros climáticos reconstruidos de Copernicus"
+  },
+  {
+   "titulo": "Pocos árboles junto a casa",
+   "cifra": "5,4",
+   "unidad": "%",
+   "frase": "Del entorno donde vive la gente tiene árboles, aunque el 21,5 % del área urbana sí los tiene.",
+   "tipo": "hallazgo",
+   "dependencia": "",
+   "fuente": "Mapa de coberturas de la Agencia Espacial Europea, 2021"
+  },
+  {
+   "titulo": "Menos verdor desde 2013",
+   "cifra": "−0,111 a −0,044",
+   "unidad": "índice de verdor por década",
+   "frase": "El verdor urbano baja con las cinco formas de cálculo; el del campo, no. Sin 2024 y 2025, años con otro procesamiento de las imágenes, la caída ya no es segura.",
+   "tipo": "hallazgo",
+   "dependencia": "",
+   "fuente": "Imágenes de satélite de la NASA y el USGS, 2013–2025"
+  },
+  {
+   "titulo": "Verde público por habitante",
+   "cifra": "1,67",
+   "unidad": "m²/hab",
+   "frase": "Verde público mapeado, frente a una meta mínima legal de 15 m² de espacio público efectivo por habitante.",
+   "tipo": "hallazgo",
+   "dependencia": "",
+   "fuente": "OpenStreetMap; Decreto 1077 de 2015"
+  },
+  {
+   "titulo": "Lejos de un parque",
+   "cifra": "65,3",
+   "unidad": "%",
+   "frase": "De la población vive a más de 300 m de un parque de 0,5 ha o más: casi 2 de cada 3 personas.",
+   "tipo": "hallazgo",
+   "dependencia": "",
+   "fuente": "OpenStreetMap; criterio OMS 2016"
+  },
+  {
+   "titulo": "Registro oficial de inundación",
+   "cifra": "16.553",
+   "unidad": "hab",
+   "frase": "Viven en áreas con amenaza alta o inundaciones registradas por el IDEAM. Sin el área urbana dudosa de 2011, serían 10.545.",
+   "tipo": "hallazgo",
+   "dependencia": "",
+   "fuente": "IDEAM; DANE 2026"
+  },
+  {
+   "titulo": "Comuna 7 y La Niña",
+   "cifra": "30,1",
+   "unidad": "%",
+   "frase": "De su población vive en áreas inundadas en eventos La Niña. Baja a 19,3 % sin el área dudosa de 2011.",
+   "tipo": "hallazgo",
+   "dependencia": "",
+   "fuente": "IDEAM, eventos La Niña 1988–2022"
+  },
+  {
+   "titulo": "Sedes en calor extremo de superficie",
+   "cifra": "4",
+   "unidad": "servicios mapeados",
+   "frase": "Una universidad, un hospital, un colegio y una unidad pediátrica están en calor extremo de superficie. Tres de ellos superan el límite por menos de 0,5 °C.",
+   "tipo": "hallazgo",
+   "dependencia": "",
+   "fuente": "OpenStreetMap; imágenes de satélite de la NASA y el USGS"
+  },
+  {
+   "titulo": "Aire regional sobre la guía",
+   "cifra": "1,7–2,9",
+   "unidad": "veces la guía OMS",
+   "frase": "Partículas finas (PM2,5) en el aire de la región, según las cuatro versiones de un modelo mundial de calidad del aire. Cartago no tiene una medición local verificada.",
+   "tipo": "dato",
+   "dependencia": "",
+   "fuente": "Modelo mundial de calidad del aire de Copernicus, 2022–2026"
+  },
+  {
+   "titulo": "Árboles asociados a superficies más frescas",
+   "cifra": "−0,81",
+   "unidad": "°C por 10 puntos porcentuales",
+   "frase": "Cada 10 puntos porcentuales más de área con árboles (por ejemplo, de 20 % a 30 %) se asocian con una superficie más fresca. Si reemplazan superficie construida, es 0,81 °C más fresca; si reemplazan pasto, 0,21 °C. Es una asociación, no una causa.",
+   "tipo": "dato",
+   "dependencia": "",
+   "fuente": "Calibración local de BioMap"
+  },
+  {
+   "titulo": "Verificar el área inundada de 2011",
+   "cifra": "6.009",
+   "unidad": "hab",
+   "frase": "Solo aparecen en el área urbana de La Niña 2011, que no coincide con el relieve. Hay que verificarla antes de invertir.",
+   "tipo": "recomendacion",
+   "dependencia": "Unidad Municipal para la Gestión del Riesgo de Desastres (UMGRD)",
+   "fuente": "IDEAM; modelo de terreno"
+  }
+ ],
+ "cierre": "Los datos para decidir ya son públicos. Lo que sigue es verificarlos en campo y convertirlos en obras que se puedan medir con los mismos datos."
+}

@@ -2,6 +2,10 @@
 
 **Sitio:** <https://alguarito.github.io/biomap-cartago/>
 
+Proyecto de la **I.E. Sor María Juliana** (Cartago, Valle del Cauca).
+Estudiantes responsables: Jhoan Sebastián Mosquera Cadavid y Jhoan Esneider Mejia Ortiz (grado 11-3, jornada de la tarde).
+Docente mentor: Álvaro Cárdenas Orozco, PhD.
+
 Plataforma geoambiental de **datos abiertos** para la toma de decisiones en Cartago, Valle del Cauca. Muestra calor urbano, vegetación, arbolado, exposición al tráfico, riesgo hidrológico, población y acceso a parques; prioriza las comunas según criterios ajustables; simula intervenciones con coeficientes calibrados en la propia ciudad; y responde preguntas con un copiloto IA que solo usa estos datos.
 
 Es una página estática sin paso de compilación: HTML, CSS y JavaScript con las librerías incluidas en `vendor/`. Los datos se generan con scripts de Python reproducibles en `scripts/`.

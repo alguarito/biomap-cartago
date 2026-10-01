@@ -6,3 +6,9 @@ dist/
 __pycache__/
 # descargas crudas y rejillas intermedias: se regeneran con scripts/
 /fuentes/
+
+# informe: archivos generados por generar.mjs
+informe/*.dc.html
+informe/canvas.json
+informe/revisar.html
+informe/_print.html

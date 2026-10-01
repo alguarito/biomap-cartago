@@ -1,0 +1,1405 @@
+{
+  "titulo": "Marco normativo e institucional para el informe de recomendaciones de BioMap Cartago",
+  "fecha_verificacion": "2026-10-01",
+  "metodo": "Cada norma se leyó en su fuente oficial (Gestor Normativo de Función Pública, Secretaría del Senado, MinAmbiente, DNP, OMS/IRIS) y cada cita se copió del texto de la fuente. Los nombres de dependencias se tomaron del sitio oficial de la Alcaldía (cartago.gov.co y municipio.cartago.gov.co) y de la CVC.",
+  "criterio_naturaleza": {
+    "obligacion": "La norma impone un deber a la entidad; la recomendación se plantea como cumplimiento de ese deber.",
+    "obligacion_condicionada": "El deber existe, pero depende de una condición (lineamientos de otra entidad o una excedencia medida).",
+    "competencia": "La norma asigna la función a la entidad; la recomendación se plantea como ejercicio de esa competencia.",
+    "orientacion": "No hay deber legal; la recomendación es orientación técnica y así debe decirse."
+  },
+  "claves_especiales": {
+    "todas": "En destinatarios_en_cartago, «todas» significa todas las dependencias de la Alcaldía."
+  },
+  "formato_apa": "APA 7.ª ed. El manual remite a las convenciones jurídicas de cada país para normas no estadounidenses; aquí se usa la adaptación habitual en Colombia: Entidad emisora. (Año, día de mes). *Identificador, título oficial*. Medio de publicación. URL. Cita en texto: (Ley 1523 de 2012, art. 14). Los asteriscos marcan la cursiva.",
+  "normas": [
+    {
+      "id": "ley-1523-2012",
+      "identificador": "Ley 1523 de 2012",
+      "tipo": "ley",
+      "emisor": "Congreso de la República de Colombia",
+      "titulo": "Por la cual se adopta la política nacional de gestión del riesgo de desastres y se establece el Sistema Nacional de Gestión del Riesgo de Desastres y se dictan otras disposiciones",
+      "fecha_expedicion": "2012-04-24",
+      "publicacion": "Diario Oficial No. 48.411 del 24 de abril de 2012",
+      "url_oficial": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=47141",
+      "vigencia": "Vigente. El Gestor Normativo anota modificaciones de la Ley 2474 de 2025 en algunos artículos (p. ej., arts. 1, 3, 4, 46 y 54). Los artículos citados aquí no tienen anotación de modificación, salvo el 46, cuyo primer inciso se cita tal como aparece hoy.",
+      "temas": [
+        "riesgo_hidrologico",
+        "planificacion",
+        "datos_abiertos"
+      ],
+      "articulos": [
+        {
+          "articulo": "art. 2",
+          "que_establece": "La gestión del riesgo es responsabilidad de todas las autoridades; las entidades públicas ejecutan conocimiento, reducción y manejo del riesgo dentro de sus competencias.",
+          "cita_textual": "La gestión del riesgo es responsabilidad de todas las autoridades y de los habitantes del territorio colombiano.",
+          "obliga_a": "Todas las autoridades y los habitantes",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "todas"
+          ]
+        },
+        {
+          "articulo": "art. 14",
+          "que_establece": "El alcalde es el responsable directo de implementar los procesos de gestión del riesgo en el municipio.",
+          "cita_textual": "El alcalde, como conductor del desarrollo local, es el responsable directo de la implementación de los procesos de gestión del riesgo en el distrito o municipio",
+          "obliga_a": "Alcalde municipal",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde",
+            "umgrd"
+          ]
+        },
+        {
+          "articulo": "art. 14, parágrafo",
+          "que_establece": "El alcalde y la administración deben integrar acciones de gestión del riesgo en el POT, el plan de desarrollo y demás instrumentos.",
+          "cita_textual": "Los alcaldes y la administración municipal o distrital, deberán integrar en la planificación del desarrollo local, acciones estratégicas y prioritarias en materia de gestión del riesgo de desastres [...]",
+          "obliga_a": "Alcalde y administración municipal",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde",
+            "planeacion",
+            "umgrd"
+          ]
+        },
+        {
+          "articulo": "art. 27",
+          "que_establece": "Crea los consejos municipales de gestión del riesgo como instancias de coordinación, asesoría, planeación y seguimiento.",
+          "cita_textual": "Créanse los Consejos departamentales, distritales y municipales de Gestión del Riesgo de Desastres, como instancias de coordinación, asesoría, planeación y seguimiento",
+          "obliga_a": "Municipios (crear y hacer funcionar el consejo)",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "cmgrd"
+          ]
+        },
+        {
+          "articulo": "art. 28, num. 4",
+          "que_establece": "La CAR con jurisdicción en el municipio tiene asiento en el consejo municipal de gestión del riesgo.",
+          "cita_textual": "Un representante de cada una de las corporaciones autónomas regionales y de desarrollo sostenible dentro de la respectiva jurisdicción territorial.",
+          "obliga_a": "Composición del consejo municipal (incluye a la CVC)",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "cmgrd",
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 29",
+          "que_establece": "El consejo territorial tiene un coordinador designado por el alcalde, con nivel igual o superior a jefe de oficina asesora.",
+          "cita_textual": "Los consejos territoriales tendrán un coordinador designado por el gobernador o alcalde, cuyo nivel jerárquico deberá ser igual o superior a jefe de oficina asesora.",
+          "obliga_a": "Alcalde",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde",
+            "cmgrd"
+          ]
+        },
+        {
+          "articulo": "art. 32",
+          "que_establece": "Los tres niveles de gobierno formulan e implementan planes de gestión del riesgo, como parte del ordenamiento territorial y del desarrollo.",
+          "cita_textual": "Los tres niveles de gobierno formularán e implementarán planes de gestión del riesgo para priorizar, programar y ejecutar acciones por parte de las entidades del sistema nacional",
+          "obliga_a": "Nación, departamentos y municipios",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "umgrd",
+            "cmgrd"
+          ]
+        },
+        {
+          "articulo": "art. 37",
+          "que_establece": "El municipio formula y concerta con su consejo un plan municipal de gestión del riesgo y una estrategia de respuesta, adoptados por decreto del alcalde.",
+          "cita_textual": "Las autoridades departamentales, distritales y municipales formularán y concertarán con sus respectivos consejos de gestión del riesgo, un plan de gestión del riesgo de desastres y una estrategia para la respuesta a emergencias [...]",
+          "obliga_a": "Autoridades municipales",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde",
+            "umgrd",
+            "cmgrd"
+          ]
+        },
+        {
+          "articulo": "art. 37, parágrafo 2",
+          "que_establece": "Los programas y proyectos del plan de gestión del riesgo se integran al POT y al plan de desarrollo.",
+          "cita_textual": "Los programas y proyectos de estos planes se integrarán en los planes de ordenamiento territorial, de manejo de cuencas y de desarrollo departamental, distrital o municipal",
+          "obliga_a": "Municipio",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "umgrd"
+          ]
+        },
+        {
+          "articulo": "art. 38",
+          "que_establece": "Todo proyecto de inversión pública con incidencia territorial debe incorporar un análisis de riesgo de desastres desde su formulación.",
+          "cita_textual": "Todos los proyectos de inversión pública que tengan incidencia en el territorio [...] deben incorporar apropiadamente un análisis de riesgo de desastres",
+          "obliga_a": "Entidades que formulan proyectos de inversión pública",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "infraestructura"
+          ]
+        },
+        {
+          "articulo": "art. 39",
+          "que_establece": "El POT y el plan de desarrollo deben integrar el análisis del riesgo y tratarlo como condicionante del uso y la ocupación del territorio.",
+          "cita_textual": "Los planes de ordenamiento territorial [...] deberán integrar el análisis del riesgo en el diagnóstico biofísico, económico y socioambiental y, considerar, el riesgo de desastres, como un condicionante para el uso y la ocupación del territorio",
+          "obliga_a": "Entidades territoriales (POT y planes de desarrollo)",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion"
+          ]
+        },
+        {
+          "articulo": "art. 40",
+          "que_establece": "Los municipios incorporan en el plan de desarrollo y el POT las consideraciones de desarrollo seguro derivadas de la gestión del riesgo, incluidos el inventario y tratamiento de asentamientos en zonas de amenaza.",
+          "cita_textual": "Los distritos, áreas metropolitanas y municipios [...] deberán incorporar en sus respectivos planes de desarrollo y de ordenamiento territorial las consideraciones sobre desarrollo seguro y sostenible derivadas de la gestión del riesgo",
+          "obliga_a": "Municipios",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "umgrd"
+          ]
+        },
+        {
+          "articulo": "art. 46",
+          "que_establece": "Las autoridades municipales crean sistemas de información para la gestión del riesgo, interoperables con el sistema nacional de la UNGRD.",
+          "cita_textual": "Las autoridades departamentales, distritales y municipales crearán sistemas de información para la gestión del riesgo de desastres en el ámbito de su jurisdicción en armonía con el sistema nacional",
+          "obliga_a": "Autoridades municipales",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "umgrd",
+            "planeacion"
+          ]
+        },
+        {
+          "articulo": "art. 54",
+          "que_establece": "Los municipios constituyen fondos propios de gestión del riesgo como cuentas especiales.",
+          "cita_textual": "Las administraciones departamentales, distritales y municipales [...] constituirán sus propios fondos de gestión del riesgo bajo el esquema del Fondo Nacional",
+          "obliga_a": "Administraciones municipales",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde",
+            "hacienda"
+          ]
+        }
+      ],
+      "apa": "Congreso de la República de Colombia. (2012, 24 de abril). *Ley 1523 de 2012, por la cual se adopta la política nacional de gestión del riesgo de desastres y se establece el Sistema Nacional de Gestión del Riesgo de Desastres y se dictan otras disposiciones*. Diario Oficial No. 48.411. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=47141",
+      "cita_en_texto": "(Ley 1523 de 2012, art. 14)"
+    },
+    {
+      "id": "ley-388-1997",
+      "identificador": "Ley 388 de 1997",
+      "tipo": "ley",
+      "emisor": "Congreso de la República de Colombia",
+      "titulo": "Por la cual se modifica la Ley 9 de 1989, y la Ley 2 de 1991 y se dictan otras disposiciones",
+      "fecha_expedicion": "1997-07-18",
+      "publicacion": "Diario Oficial No. 43.091",
+      "url_oficial": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=339",
+      "vigencia": "Vigente. El art. 10 fue modificado por el art. 32 de la Ley 2294 de 2023 (texto citado es el modificado). El art. 28 fue modificado por la Ley 902 de 2004 y el Decreto 2106 de 2019. El num. 1 del art. 24 fue modificado por el art. 26 de la Ley 2079 de 2021 (texto citado es el modificado).",
+      "temas": [
+        "planificacion",
+        "riesgo_hidrologico",
+        "parques_espacio_publico",
+        "cambio_climatico"
+      ],
+      "articulos": [
+        {
+          "articulo": "art. 9, lit. a",
+          "que_establece": "Los municipios de más de 100.000 habitantes adoptan un Plan de Ordenamiento Territorial (POT). Cartago lo denomina POT.",
+          "cita_textual": "Planes de ordenamiento territorial: elaborados y adoptados por las autoridades de los distritos y municipios con población superior a los 100.000 habitantes",
+          "obliga_a": "Municipios",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "concejo"
+          ]
+        },
+        {
+          "articulo": "art. 10, num. 1 (mod. Ley 2294 de 2023, art. 32)",
+          "que_establece": "Las determinantes ambientales, de riesgo de desastres y de cambio climático son normas de superior jerarquía (nivel 1) que el POT debe acatar.",
+          "cita_textual": "Las determinantes relacionadas con la conservación, la protección del ambiente y los ecosistemas, el ciclo del agua, los recursos naturales, la prevención de amenazas y riesgos de desastres, la gestión del cambio climático",
+          "obliga_a": "Municipios al formular y revisar el POT",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 12, num. 2.3",
+          "que_establece": "El componente general del POT debe determinar y ubicar en planos las zonas de alto riesgo para asentamientos.",
+          "cita_textual": "La determinación y ubicación en planos de las zonas que presenten alto riesgo para la localización de asentamientos humanos, por amenazas o riesgos naturales o por condiciones de insalubridad.",
+          "obliga_a": "Municipio (contenido obligatorio del POT)",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion"
+          ]
+        },
+        {
+          "articulo": "art. 13, num. 2 y 3",
+          "que_establece": "El componente urbano localiza parques y zonas verdes públicas, y delimita las áreas expuestas a amenazas.",
+          "cita_textual": "la localización prevista para los equipamientos colectivos y espacios libres para parques y zonas verdes públicas de escala urbana o zonal",
+          "obliga_a": "Municipio (contenido obligatorio del POT)",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion"
+          ]
+        },
+        {
+          "articulo": "art. 28",
+          "que_establece": "Fija la vigencia de los contenidos del POT y cómo se revisan; si vence sin nuevo plan, sigue vigente el adoptado.",
+          "cita_textual": "si al finalizar el plazo de vigencia establecido no se ha adoptado un nuevo plan de ordenamiento territorial, seguirá vigente el ya adoptado.",
+          "obliga_a": "Municipio",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "concejo"
+          ]
+        },
+        {
+          "articulo": "art. 24, num. 1 (mod. Ley 2079 de 2021, art. 26)",
+          "que_establece": "El proyecto de POT se somete a la CAR para que, con el municipio, concerte los asuntos exclusivamente ambientales; dispone de 45 días y solo puede objetarlo por razones técnicas sustentadas en estudios.",
+          "cita_textual": "El proyecto de Plan se someterá a consideración de la Corporación Autónoma Regional o autoridad ambiental correspondiente, a efectos de que conjuntamente con el municipio y/o distrito concerten los asuntos exclusivamente ambientales, dentro del ámbito de su competencia de acuerdo con lo dispuesto en la Ley 99 de 1993",
+          "obliga_a": "CVC y municipio (concertación ambiental del POT)",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "cvc",
+            "planeacion"
+          ],
+          "ubicacion": "Gestor Normativo (norma.php?i=339), texto vigente; numeral modificado por el art. 26 de la Ley 2079 de 2021. Consultado el 2026-10-01."
+        }
+      ],
+      "apa": "Congreso de la República de Colombia. (1997, 18 de julio). *Ley 388 de 1997, por la cual se modifica la Ley 9 de 1989, y la Ley 2 de 1991 y se dictan otras disposiciones*. Diario Oficial No. 43.091. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=339",
+      "cita_en_texto": "(Ley 388 de 1997, art. 12)"
+    },
+    {
+      "id": "decreto-1077-2015",
+      "identificador": "Decreto 1077 de 2015",
+      "tipo": "decreto",
+      "emisor": "Presidencia de la República de Colombia",
+      "titulo": "Por medio del cual se expide el Decreto Único Reglamentario del Sector Vivienda, Ciudad y Territorio",
+      "fecha_expedicion": "2015-05-26",
+      "publicacion": "Diario Oficial No. 49.523 del 26 de mayo de 2015",
+      "url_oficial": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77216",
+      "vigencia": "Vigente (versión integrada en el Gestor Normativo, actualizada al 1 de septiembre de 2025). Compila el Decreto 1807 de 2014 (sección 2.2.2.1.3) y el Decreto 1504 de 1998 (capítulo 2.2.3). Su art. 3.1.1 deroga las normas reglamentarias del sector que versan sobre las mismas materias.",
+      "temas": [
+        "riesgo_hidrologico",
+        "planificacion",
+        "parques_espacio_publico"
+      ],
+      "articulos": [
+        {
+          "articulo": "art. 2.2.2.1.3.1.1, parágrafo (antes Decreto 1807 de 2014, art. 1)",
+          "que_establece": "Los estudios básicos de riesgo son requisito para revisar el POT; sin ellos el alcalde no puede presentar la revisión a la CAR.",
+          "cita_textual": "El Alcalde municipal o Distrital no podrá someter a consideración de la Corporación Autónoma Regional o autoridad ambiental correspondiente, los proyectos de revisión referidos sin el cumplimiento de este requisito.",
+          "obliga_a": "Alcalde municipal",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde",
+            "planeacion",
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 2.2.2.1.3.1.3 (antes Decreto 1807 de 2014, art. 3)",
+          "que_establece": "Los estudios básicos cubren inundación, avenidas torrenciales y movimientos en masa en suelo urbano, de expansión y rural, con zonificación de amenaza y de áreas con condición de riesgo.",
+          "cita_textual": "se deben elaborar estudios en los suelos urbanos, de expansión urbana y rural para los fenómenos de inundación, avenidas torrenciales y movimientos en masa",
+          "obliga_a": "Municipio (revisión de mediano y largo plazo del POT)",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "umgrd"
+          ]
+        },
+        {
+          "articulo": "art. 2.2.2.1.3.1.4 (antes Decreto 1807 de 2014, art. 4)",
+          "que_establece": "La revisión del POT prioriza los estudios detallados y programa su ejecución, responsables y recursos.",
+          "cita_textual": "[...] se debe establecer la priorización de los estudios detallados identificados en los estudios básicos",
+          "obliga_a": "Municipio",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "umgrd"
+          ]
+        },
+        {
+          "articulo": "art. 2.2.3.2.5 (antes Decreto 1504 de 1998, art. 12)",
+          "que_establece": "El déficit cuantitativo de espacio público se mide con el índice de espacio público efectivo: zonas verdes, parques, plazas y plazoletas permanentes.",
+          "cita_textual": "el espacio público de carácter permanente, conformado por zonas verdes, parques, plazas y plazoletas.",
+          "obliga_a": "Municipio (diagnóstico del POT)",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "espacio_publico"
+          ]
+        },
+        {
+          "articulo": "art. 2.2.3.2.7 (antes Decreto 1504 de 1998, art. 14)",
+          "que_establece": "Índice mínimo de espacio público efectivo de 15 m² por habitante, a alcanzar durante la vigencia del POT.",
+          "cita_textual": "un mínimo de quince (15m2) metros cuadrados y por habitante, para ser alcanzado durante la vigencia del plan respectivo.",
+          "obliga_a": "Municipio (metas de largo plazo del POT)",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "espacio_publico"
+          ]
+        }
+      ],
+      "apa": "Presidencia de la República de Colombia. (2015, 26 de mayo). *Decreto 1077 de 2015, por medio del cual se expide el Decreto Único Reglamentario del Sector Vivienda, Ciudad y Territorio*. Diario Oficial No. 49.523. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77216",
+      "cita_en_texto": "(Decreto 1077 de 2015, art. 2.2.3.2.7)",
+      "notas": [
+        "El índice de 15 m²/hab se refiere a espacio público efectivo (zonas verdes, parques, plazas y plazoletas). No equivale al verde público de OpenStreetMap que mide BioMap; cualquier comparación debe decirlo."
+      ]
+    },
+    {
+      "id": "decreto-1504-1998",
+      "identificador": "Decreto 1504 de 1998",
+      "tipo": "decreto",
+      "emisor": "Presidencia de la República de Colombia",
+      "titulo": "Por el cual se reglamenta el manejo del espacio público en los planes de ordenamiento territorial",
+      "fecha_expedicion": "1998-08-04",
+      "publicacion": "Diario Oficial No. 43.357 del 6 de agosto de 1998",
+      "url_oficial": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=1259",
+      "vigencia": "Compilado en el Decreto 1077 de 2015 (capítulo 2.2.3). Para citar la norma vigente se recomienda el Decreto 1077 de 2015 y mencionar el 1504 como origen.",
+      "temas": [
+        "parques_espacio_publico",
+        "planificacion"
+      ],
+      "articulos": [
+        {
+          "articulo": "art. 1",
+          "que_establece": "Los municipios deben dar prelación al espacio público sobre los demás usos del suelo.",
+          "cita_textual": "Los municipios y distritos deberán dar prelación a la planeación, construcción, mantenimiento y protección del espacio público sobre los demás usos del suelo.",
+          "obliga_a": "Municipios",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "espacio_publico"
+          ]
+        },
+        {
+          "articulo": "art. 14",
+          "que_establece": "Índice mínimo de espacio público efectivo: 15 m² por habitante (hoy art. 2.2.3.2.7 del Decreto 1077 de 2015).",
+          "cita_textual": "un mínimo de quince (15m2) metros cuadrados y por habitante, para ser alcanzado durante la vigencia del plan respectivo.",
+          "obliga_a": "Municipios",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion"
+          ]
+        }
+      ],
+      "apa": "Presidencia de la República de Colombia. (1998, 4 de agosto). *Decreto 1504 de 1998, por el cual se reglamenta el manejo del espacio público en los planes de ordenamiento territorial*. Diario Oficial No. 43.357. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=1259",
+      "cita_en_texto": "(Decreto 1504 de 1998, art. 14)",
+      "notas": [
+        "El índice de 15 m²/hab está en el art. 14, no en el 12 (el 12 define el déficit cuantitativo)."
+      ]
+    },
+    {
+      "id": "ley-1931-2018",
+      "identificador": "Ley 1931 de 2018",
+      "tipo": "ley",
+      "emisor": "Congreso de la República de Colombia",
+      "titulo": "Por la cual se establecen directrices para la gestión del cambio climático",
+      "fecha_expedicion": "2018-07-27",
+      "publicacion": "Diario Oficial No. 50.667 del 27 de julio de 2018",
+      "url_oficial": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=87765",
+      "vigencia": "Vigente. El art. 26 fue modificado por el art. 18 de la Ley 2169 de 2021 (no se cita aquí).",
+      "temas": [
+        "cambio_climatico",
+        "calor",
+        "riesgo_hidrologico",
+        "planificacion"
+      ],
+      "articulos": [
+        {
+          "articulo": "art. 6",
+          "que_establece": "Municipios y CAR son responsables, dentro de sus competencias, de las metas de adaptación al cambio climático.",
+          "cita_textual": "Los ministerios que hacen parte del SISCLIMA, los Departamentos, Municipios, Distritos, las Corporaciones Autónomas Regionales [...] son las entidades responsables [...] del cumplimiento de las metas de país de adaptación del territorio al cambio climático.",
+          "obliga_a": "Municipios y CAR",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde",
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 9",
+          "que_establece": "El municipio debe incorporar la gestión del cambio climático en su plan de desarrollo y su POT, con referencia al PIGCCT departamental.",
+          "cita_textual": "Las autoridades municipales y distritales deberán incorporar dentro de sus planes de desarrollo y, planes de ordenamiento territorial, la gestión del cambio climático",
+          "obliga_a": "Autoridades municipales",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion",
+            "ambiente"
+          ]
+        },
+        {
+          "articulo": "art. 10, num. 1",
+          "que_establece": "Las CAR elaboran e implementan los PIGCCT junto con las entidades territoriales.",
+          "cita_textual": "Elaborar e implementar de manera conjunta con las Entidades Territoriales los Planes Integrales de Gestión del Cambio Climático Territoriales",
+          "obliga_a": "Corporaciones Autónomas Regionales (CVC)",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 13",
+          "que_establece": "La incorporación del cambio climático es exigible en los instrumentos elaborados, revisados o actualizados desde el 1 de enero de 2020.",
+          "cita_textual": "deberá incorporarse en aquellos que sean elaborados, adoptados, revisados y actualizados según corresponda, a partir del 1 de enero de 2020.",
+          "obliga_a": "Entidades que adoptan o revisan instrumentos de planificación",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion"
+          ]
+        },
+        {
+          "articulo": "art. 18, parágrafo 1",
+          "que_establece": "Si la CICC expide lineamientos, los alcaldes formulan planes municipales de cambio climático con apoyo técnico de la CAR. El PIGCCT lo formulan la gobernación y la CAR, no el municipio.",
+          "cita_textual": "Será responsabilidad de los alcaldes, con el apoyo técnico de las autoridades ambientales regionales, la formulación, implementación y seguimiento de dichos planes",
+          "obliga_a": "Alcaldes (condicionado a lineamientos de la CICC)",
+          "naturaleza": "obligacion_condicionada",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde",
+            "ambiente",
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 19",
+          "que_establece": "El municipio debe consultar el PIGCCT para priorizar e incorporar medidas en el POT.",
+          "cita_textual": "Es responsabilidad de los Municipios y Distritos consultar los PIGCCT para priorizar e incorporar dentro los Planes de Ordenamiento Territorial las medidas que consideren pertinentes",
+          "obliga_a": "Municipios",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion"
+          ]
+        },
+        {
+          "articulo": "art. 24",
+          "que_establece": "Los planes de gestión del riesgo incorporan acciones de reducción de vulnerabilidad ante eventos hidrometeorológicos y su cambio por el clima.",
+          "cita_textual": "Los planes de gestión del riesgo de los niveles de gobierno nacional y territorial [...] incorporarán acciones orientadas al conocimiento y reducción del riesgo disminuyendo la vulnerabilidad ante eventos de tipo hidrometeorológicos e hidroclimáticos",
+          "obliga_a": "Entidades territoriales (plan municipal de gestión del riesgo)",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "umgrd",
+            "cmgrd"
+          ]
+        }
+      ],
+      "apa": "Congreso de la República de Colombia. (2018, 27 de julio). *Ley 1931 de 2018, por la cual se establecen directrices para la gestión del cambio climático*. Diario Oficial No. 50.667. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=87765",
+      "cita_en_texto": "(Ley 1931 de 2018, art. 9)"
+    },
+    {
+      "id": "ley-2169-2021",
+      "identificador": "Ley 2169 de 2021",
+      "tipo": "ley",
+      "emisor": "Congreso de la República de Colombia",
+      "titulo": "Por medio de la cual se impulsa el desarrollo bajo en carbono del país mediante el establecimiento de metas y medidas mínimas en materia de carbono neutralidad y resiliencia climática y se dictan otras disposiciones",
+      "fecha_expedicion": "2021-12-22",
+      "publicacion": "Diario Oficial No. 51.896 del 22 de diciembre de 2021",
+      "url_oficial": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2169_2021.html",
+      "vigencia": "Vigente (texto de la Secretaría del Senado, actualizado al 15 de septiembre de 2026). El art. 33 fue modificado por la Ley 2294 de 2023 (no se cita aquí).",
+      "temas": [
+        "cambio_climatico",
+        "calor",
+        "salud"
+      ],
+      "articulos": [
+        {
+          "articulo": "art. 2",
+          "que_establece": "Aplica a las entidades territoriales, que son corresponsables de las metas de la ley dentro de sus competencias.",
+          "cita_textual": "Todas las entidades, organismos y entes corporativos públicos del orden nacional, así como las entidades territoriales, darán cumplimiento al objeto de la presente ley y son corresponsables en la ejecución de las metas",
+          "obliga_a": "Entidades territoriales",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde"
+          ]
+        },
+        {
+          "articulo": "art. 6, sector Salud y Protección Social, num. 1",
+          "que_establece": "Meta a 2030: acciones de adaptación en salud frente a enfermedades sensibles al clima en el 100 % de las entidades del sector salud, incluido el nivel municipal.",
+          "cita_textual": "Formular a 2030 acciones de adaptación en prevención de la enfermedad y promoción de la salud, que aporten a reducir los casos de enfermedades sensibles al clima",
+          "obliga_a": "Entidades del sector salud departamental, distrital y municipal",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "salud"
+          ]
+        },
+        {
+          "articulo": "art. 25",
+          "que_establece": "Los municipios incluyen en su plan de desarrollo acciones ligadas a las metas de la ley.",
+          "cita_textual": "Las autoridades nacionales, departamentales, municipales y distritales incluirán en los planes de desarrollo [...] acciones relacionadas con las metas y medidas contempladas en la presente ley",
+          "obliga_a": "Autoridades municipales",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion"
+          ]
+        }
+      ],
+      "apa": "Congreso de la República de Colombia. (2021, 22 de diciembre). *Ley 2169 de 2021, por medio de la cual se impulsa el desarrollo bajo en carbono del país mediante el establecimiento de metas y medidas mínimas en materia de carbono neutralidad y resiliencia climática y se dictan otras disposiciones*. Diario Oficial No. 51.896. http://www.secretariasenado.gov.co/senado/basedoc/ley_2169_2021.html",
+      "cita_en_texto": "(Ley 2169 de 2021, art. 25)"
+    },
+    {
+      "id": "resolucion-2254-2017",
+      "identificador": "Resolución 2254 de 2017",
+      "tipo": "resolucion",
+      "emisor": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "titulo": "Por la cual se adopta la norma de calidad del aire ambiente y se dictan otras disposiciones",
+      "fecha_expedicion": "2017-11-01",
+      "publicacion": "Documento oficial publicado por MinAmbiente (PDF escaneado, 11 páginas)",
+      "url_oficial": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-2254-de-2017.pdf",
+      "url_ficha": "https://www.minambiente.gov.co/documento-entidad/resolucion-2254-de-2017/",
+      "vigencia": "No se encontró norma que la sustituya. El Plan de Acción 2024–2027 de la CVC la cita como norma vigente (p. 35).",
+      "temas": [
+        "aire_trafico",
+        "salud",
+        "riesgo"
+      ],
+      "valores_clave_ug_m3": {
+        "PM2_5": {
+          "anual": 25,
+          "24_horas": 37,
+          "anual_desde_2030": 15,
+          "nota": "24 h: 50 en la Tabla 1; 37 desde el 1 de julio de 2018 (parágrafo 1 del art. 2)."
+        },
+        "PM10": {
+          "anual": 50,
+          "24_horas": 75,
+          "anual_desde_2030": 30,
+          "nota": "24 h: 100 en la Tabla 1; 75 desde el 1 de julio de 2018."
+        },
+        "NO2": {
+          "anual": 60,
+          "1_hora": 200,
+          "anual_desde_2030": 40
+        },
+        "O3": {
+          "8_horas": 100
+        }
+      },
+      "articulos": [
+        {
+          "articulo": "art. 2, parágrafo 3",
+          "que_establece": "Las autoridades ambientales competentes (en Cartago, la CVC) deben medir los contaminantes criterio según el protocolo nacional.",
+          "cita_textual": "Las autoridades ambientales competentes deben realizar las mediciones de los contaminantes criterio establecidos en el presente artículo",
+          "obliga_a": "Autoridad ambiental competente (CVC en Cartago)",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "cvc"
+          ],
+          "ubicacion": "Hoja 3"
+        },
+        {
+          "articulo": "art. 3",
+          "que_establece": "Niveles máximos más estrictos desde el 1 de enero de 2030 (PM2,5 anual 15; PM10 anual 30; NO₂ anual 40 µg/m³).",
+          "cita_textual": "En la Tabla No. 2 se establecen los niveles máximos permisibles a condiciones de referencia para contaminantes criterio que regirán a partir del 1 de enero del año 2030",
+          "obliga_a": "Todo el territorio nacional",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "cvc"
+          ],
+          "ubicacion": "Hoja 3"
+        },
+        {
+          "articulo": "art. 6, parágrafo 2",
+          "que_establece": "Cuando haya excedencias medidas de los niveles máximos permisibles, la autoridad ambiental (la CVC) informa a salud y a gestión del riesgo para que adopten medidas. El deber de informar es de la CVC y depende de que haya una excedencia medida.",
+          "cita_textual": "las autoridades ambientales competentes informarán a las autoridades de salud y demás organismos responsables de la gestión de riesgo para que adopten las medidas a que haya lugar",
+          "obliga_a": "Autoridad ambiental competente (CVC), cuando haya excedencias medidas; receptores: Salud y gestión del riesgo municipales",
+          "naturaleza": "obligacion_condicionada",
+          "destinatarios_en_cartago": [
+            "cvc",
+            "salud",
+            "umgrd"
+          ],
+          "ubicacion": "Hoja 4"
+        },
+        {
+          "articulo": "art. 9",
+          "que_establece": "La declaratoria de prevención, alerta o emergencia corresponde a la autoridad ambiental, coordinada con gestión del riesgo municipal. Solo aplica cuando se declara uno de esos niveles.",
+          "cita_textual": "La declaratoria de los niveles de prevención, alerta o emergencia que corresponde a las autoridades ambientales competentes [...] deberá hacerse de manera coordinada con los organismos responsables de la gestión de riesgo [...]",
+          "obliga_a": "Autoridad ambiental competente y organismos de gestión del riesgo",
+          "naturaleza": "obligacion_condicionada",
+          "destinatarios_en_cartago": [
+            "cvc",
+            "umgrd"
+          ],
+          "ubicacion": "Hoja 5"
+        },
+        {
+          "articulo": "art. 15",
+          "que_establece": "Donde se exceda la norma, la autoridad ambiental elabora un programa de reducción con participación de las autoridades territoriales; entre las medidas posibles figura la ampliación de áreas verdes.",
+          "cita_textual": "las autoridades ambientales competentes deberán garantizar la participación de representantes de la sociedad civil, autoridades territoriales, sector empresarial",
+          "obliga_a": "Autoridad ambiental competente; participan las autoridades territoriales",
+          "naturaleza": "obligacion_condicionada",
+          "destinatarios_en_cartago": [
+            "cvc",
+            "planeacion",
+            "movilidad"
+          ],
+          "ubicacion": "Hoja 7"
+        }
+      ],
+      "apa": "Ministerio de Ambiente y Desarrollo Sostenible. (2017, 1 de noviembre). *Resolución 2254 de 2017, por la cual se adopta la norma de calidad del aire ambiente y se dictan otras disposiciones*. https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-2254-de-2017.pdf",
+      "cita_en_texto": "(Resolución 2254 de 2017, art. 2)",
+      "notas": [
+        "Quién vigila: la autoridad ambiental competente. En Cartago es la CVC, porque la Ley 99 de 1993 (art. 66) solo da funciones de autoridad ambiental urbana a municipios con un millón o más de habitantes urbanos.",
+        "El índice de tráfico de BioMap no es una medición de NO₂ y no puede compararse con estos valores. El PM2,5 y el NO₂ de CAMS son regionales (~40 km) y tampoco equivalen a una medición en estación.",
+        "Las citas se transcribieron leyendo las páginas escaneadas del PDF oficial (sin capa de texto)."
+      ]
+    },
+    {
+      "id": "ley-99-1993",
+      "identificador": "Ley 99 de 1993",
+      "tipo": "ley",
+      "emisor": "Congreso de la República de Colombia",
+      "titulo": "Por la cual se crea el Ministerio del Medio Ambiente, se reordena el Sector Público encargado de la gestión y conservación del medio ambiente y los recursos naturales renovables, se organiza el Sistema Nacional Ambiental, SINA, y se dictan otras disposiciones",
+      "fecha_expedicion": "1993-12-22",
+      "publicacion": "Diario Oficial No. 41.146 del 22 de diciembre de 1993",
+      "url_oficial": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=297",
+      "vigencia": "Vigente. Las adiciones del Decreto 141 de 2011 a los arts. 31, 65 y 66 fueron declaradas inexequibles (Sentencia C-276 de 2011), según nota del Gestor Normativo.",
+      "temas": [
+        "institucional",
+        "aire_trafico",
+        "riesgo_hidrologico",
+        "vegetacion_arbolado"
+      ],
+      "articulos": [
+        {
+          "articulo": "art. 31, num. 2",
+          "que_establece": "La CAR es la máxima autoridad ambiental en su jurisdicción.",
+          "cita_textual": "Ejercer la función de máxima autoridad ambiental en el área de su jurisdicción",
+          "obliga_a": "Corporaciones Autónomas Regionales (CVC)",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 31, num. 5",
+          "que_establece": "La CAR participa en la planificación y el ordenamiento territorial para que se considere el factor ambiental.",
+          "cita_textual": "Participar con los demás organismos y entes competentes en el ámbito de su jurisdicción, en los procesos de planificación y ordenamiento territorial a fin de que el factor ambiental sea tenido en cuenta",
+          "obliga_a": "CVC",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 31, num. 12",
+          "que_establece": "La CAR evalúa, controla y hace seguimiento a los usos del aire, el agua y el suelo, incluidas las emisiones.",
+          "cita_textual": "Ejercer las funciones de evaluación, control y seguimiento ambiental de los usos del agua, el suelo, el aire y los demás recursos naturales renovables",
+          "obliga_a": "CVC",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 31, num. 23",
+          "que_establece": "La CAR adelanta con los municipios programas de adecuación de áreas urbanas en zonas de alto riesgo (manejo de cauces, reforestación).",
+          "cita_textual": "adelantar con las administraciones municipales o distritales programas de adecuación de áreas urbanas en zonas de alto riesgo, tales como control de erosión, manejo de cauces y reforestación",
+          "obliga_a": "CVC con la administración municipal",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "cvc",
+            "umgrd",
+            "infraestructura"
+          ]
+        },
+        {
+          "articulo": "art. 65, num. 6",
+          "que_establece": "El alcalde, como primera autoridad de policía, ejerce control y vigilancia ambiental en coordinación con el SINA.",
+          "cita_textual": "Ejercer, a través del alcalde como primera autoridad de policía [...] funciones de control y vigilancia del medio ambiente y los recursos naturales renovables",
+          "obliga_a": "Municipio (alcalde)",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde",
+            "ambiente"
+          ]
+        },
+        {
+          "articulo": "art. 65, num. 10",
+          "que_establece": "El municipio promueve, cofinancia o ejecuta, con la CAR, obras de drenaje, defensa contra inundaciones y regulación de cauces.",
+          "cita_textual": "Promover, cofinanciar o ejecutar, en coordinación con [...] y con las Corporaciones Autónomas Regionales, obras y proyectos de irrigación, drenaje, recuperación de tierras, defensa contra las inundaciones y regulación de cauces o corrientes de agua",
+          "obliga_a": "Municipio",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "infraestructura",
+            "umgrd",
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 66",
+          "que_establece": "Solo los municipios con un millón o más de habitantes urbanos asumen funciones de autoridad ambiental urbana. No aplica a Cartago: allí la autoridad sigue siendo la CVC.",
+          "cita_textual": "Los municipios, distritos o áreas metropolitanas cuya población urbana fuere igual o superior a un millón de habitantes (1.000.000) ejercerán dentro del perímetro urbano las mismas funciones atribuidas a las Corporaciones Autónomas Regionales",
+          "obliga_a": "Grandes centros urbanos (no aplica a Cartago)",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "cvc"
+          ]
+        }
+      ],
+      "apa": "Congreso de la República de Colombia. (1993, 22 de diciembre). *Ley 99 de 1993, por la cual se crea el Ministerio del Medio Ambiente, se reordena el Sector Público encargado de la gestión y conservación del medio ambiente y los recursos naturales renovables, se organiza el Sistema Nacional Ambiental, SINA, y se dictan otras disposiciones*. Diario Oficial No. 41.146. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=297",
+      "cita_en_texto": "(Ley 99 de 1993, art. 31)"
+    },
+    {
+      "id": "ley-2173-2021",
+      "identificador": "Ley 2173 de 2021",
+      "tipo": "ley",
+      "emisor": "Congreso de la República de Colombia",
+      "titulo": "Por medio de la cual se promueve la restauración ecológica a través de la siembra de árboles y creación de bosques en el territorio nacional, estimulando conciencia ambiental al ciudadano, responsabilidad civil ambiental a las empresas y compromiso ambiental a los entes territoriales; se crean las áreas de vida y se establecen otras disposiciones",
+      "fecha_expedicion": "2021-12-30",
+      "publicacion": "Diario Oficial No. 51.903 del 30 de diciembre de 2021",
+      "url_oficial": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2173_2021.html",
+      "vigencia": "Vigente según la Secretaría del Senado (texto actualizado al 15 de septiembre de 2026). No se verificó su reglamentación (art. 19).",
+      "temas": [
+        "vegetacion_arbolado"
+      ],
+      "articulos": [
+        {
+          "articulo": "art. 1, parágrafo 1",
+          "que_establece": "Las autoridades municipales garantizan la creación de las Áreas de Vida (zonas para restauración con siembra de árboles nativos).",
+          "cita_textual": "Las autoridades municipales serán garantes de la creación de estas áreas.",
+          "obliga_a": "Autoridades municipales",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "despacho_alcalde",
+            "ambiente"
+          ]
+        },
+        {
+          "articulo": "art. 3, parágrafo 1",
+          "que_establece": "La autoridad ambiental y la alcaldía articulan las Áreas de Vida con la planificación y levantan censos forestales, que se repiten cada cinco años.",
+          "cita_textual": "deberán articular las Áreas de Vida a lo establecido en los instrumentos de planificación del territorio y con ello, levantar censos forestales con el fin de conocer la cobertura vegetal del territorio",
+          "obliga_a": "Autoridad ambiental (CVC) en conjunto con la alcaldía",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "cvc",
+            "ambiente",
+            "planeacion"
+          ]
+        },
+        {
+          "articulo": "art. 3, parágrafo 3",
+          "que_establece": "Planeación establece las zonas de siembra con concepto de la autoridad ambiental y puede incluirlas en la estructura ecológica principal del POT.",
+          "cita_textual": "Las Secretarías de Planeación, o quien haga sus veces, acogiéndose a los conceptos técnicos expedidos por la autoridad ambiental competente según su jurisdicción, establecerán las zonas de siembras",
+          "obliga_a": "Secretaría de Planeación",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "planeacion"
+          ]
+        }
+      ],
+      "apa": "Congreso de la República de Colombia. (2021, 30 de diciembre). *Ley 2173 de 2021, por medio de la cual se promueve la restauración ecológica a través de la siembra de árboles y creación de bosques en el territorio nacional, estimulando conciencia ambiental al ciudadano, responsabilidad civil ambiental a las empresas y compromiso ambiental a los entes territoriales; se crean las áreas de vida y se establecen otras disposiciones*. Diario Oficial No. 51.903. http://www.secretariasenado.gov.co/senado/basedoc/ley_2173_2021.html",
+      "cita_en_texto": "(Ley 2173 de 2021, art. 3)",
+      "notas": [
+        "No es una norma de arbolado urbano: las Áreas de Vida comprenden preferiblemente nacimientos, rondas hídricas, humedales y la estructura ecológica principal. Sirve como base indirecta para el inventario de cobertura vegetal (censos forestales)."
+      ]
+    },
+    {
+      "id": "decreto-1076-2015",
+      "identificador": "Decreto 1076 de 2015",
+      "tipo": "decreto",
+      "emisor": "Presidencia de la República de Colombia",
+      "titulo": "Por medio del cual se expide el Decreto Único Reglamentario del Sector Ambiente y Desarrollo Sostenible",
+      "fecha_expedicion": "2015-05-26",
+      "publicacion": "No verificada en la fuente consultada",
+      "url_oficial": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=78153",
+      "vigencia": "Vigente (versión integrada en el Gestor Normativo, actualizada al 2 de noviembre de 2025).",
+      "temas": [
+        "vegetacion_arbolado"
+      ],
+      "articulos": [
+        {
+          "articulo": "art. 2.2.1.1.9.3",
+          "que_establece": "La tala o poda de emergencia de árboles aislados en centros urbanos requiere autorización escrita de la autoridad competente, previa visita técnica.",
+          "cita_textual": "Cuando se requiera talar o podar árboles aislados localizados en centros urbanos que por razones de su ubicación, estado sanitario o daños mecánicos estén causando perjuicio",
+          "obliga_a": "Quien solicite la tala; decide la autoridad ambiental competente",
+          "naturaleza": "competencia",
+          "destinatarios_en_cartago": [
+            "cvc"
+          ]
+        },
+        {
+          "articulo": "art. 2.2.1.1.9.4",
+          "que_establece": "Talar o reubicar árboles aislados urbanos por obras públicas o privadas requiere autorización de la CAR (o autoridad competente), que puede exigir reposición.",
+          "cita_textual": "Cuando se requiera talar, transplantar o reubicar árboles aislados localizados en centros urbanos, para la realización, remodelación o ampliación de obras públicas o privadas [...] se solicitará autorización ante la Corporación respectiva",
+          "obliga_a": "Quien ejecuta la obra, incluida la alcaldía; autoriza la CVC",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "infraestructura",
+            "cvc"
+          ]
+        }
+      ],
+      "apa": "Presidencia de la República de Colombia. (2015, 26 de mayo). *Decreto 1076 de 2015, por medio del cual se expide el Decreto Único Reglamentario del Sector Ambiente y Desarrollo Sostenible*. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=78153",
+      "cita_en_texto": "(Decreto 1076 de 2015, art. 2.2.1.1.9.4)",
+      "notas": [
+        "Es la norma nacional más cercana al arbolado urbano que se encontró: regula la tala y reubicación, no la planificación del arbolado. No se encontró una ley nacional de silvicultura urbana."
+      ]
+    },
+    {
+      "id": "ley-1712-2014",
+      "identificador": "Ley 1712 de 2014",
+      "tipo": "ley",
+      "emisor": "Congreso de la República de Colombia",
+      "titulo": "Por medio de la cual se crea la Ley de Transparencia y del Derecho de Acceso a la Información Pública Nacional y se dictan otras disposiciones",
+      "fecha_expedicion": "2014-03-06",
+      "publicacion": "Diario Oficial No. 49.084 del 6 de marzo de 2014",
+      "url_oficial": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=56882",
+      "vigencia": "Vigente (el Gestor Normativo remite a la Ley 2199 de 2022, no revisada aquí).",
+      "temas": [
+        "datos_abiertos"
+      ],
+      "articulos": [
+        {
+          "articulo": "art. 5, lit. a",
+          "que_establece": "Las entidades públicas municipales son sujetos obligados.",
+          "cita_textual": "Toda entidad pública, incluyendo las pertenecientes a todas las Ramas del Poder Público, en todos los niveles de la estructura estatal",
+          "obliga_a": "Alcaldía y sus dependencias",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "todas"
+          ]
+        },
+        {
+          "articulo": "art. 6, lit. j",
+          "que_establece": "Define datos abiertos: datos en formatos estándar e interoperables, disponibles libremente para reutilización.",
+          "cita_textual": "Son todos aquellos datos primarios o sin procesar, que se encuentran en formatos estándar e interoperables que facilitan su acceso y reutilización",
+          "obliga_a": "Definición",
+          "naturaleza": "orientacion",
+          "destinatarios_en_cartago": [
+            "todas"
+          ]
+        },
+        {
+          "articulo": "art. 11, lit. k",
+          "que_establece": "Los sujetos obligados deben publicar datos abiertos.",
+          "cita_textual": "Los sujetos obligados deberán publicar datos abiertos, para lo cual deberán contemplar las excepciones establecidas en el título 3 de la presente ley.",
+          "obliga_a": "Alcaldía y sus dependencias; CVC",
+          "naturaleza": "obligacion",
+          "destinatarios_en_cartago": [
+            "todas",
+            "cvc"
+          ]
+        }
+      ],
+      "apa": "Congreso de la República de Colombia. (2014, 6 de marzo). *Ley 1712 de 2014, por medio de la cual se crea la Ley de Transparencia y del Derecho de Acceso a la Información Pública Nacional y se dictan otras disposiciones*. Diario Oficial No. 49.084. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=56882",
+      "cita_en_texto": "(Ley 1712 de 2014, art. 11)"
+    },
+    {
+      "id": "conpes-3718-2012",
+      "identificador": "Documento CONPES 3718 de 2012",
+      "tipo": "documento_conpes",
+      "emisor": "Consejo Nacional de Política Económica y Social (CONPES), Departamento Nacional de Planeación",
+      "titulo": "Política Nacional de Espacio Público",
+      "fecha_expedicion": "2012-01-31",
+      "publicacion": "Versión aprobada, Bogotá D.C., 31 de enero de 2012",
+      "url_oficial": "https://colaboracion.dnp.gov.co/CDT/Conpes/Econ%C3%B3micos/3718.pdf",
+      "vigencia": "Documento de política; no es ley ni decreto y no impone deberes directos al municipio.",
+      "temas": [
+        "parques_espacio_publico",
+        "planificacion"
+      ],
+      "articulos": [
+        {
+          "articulo": "diagnóstico, déficit cuantitativo",
+          "que_establece": "Estimó que el promedio nacional de espacio público efectivo en las ciudades era 3,3 m²/hab en 2010, frente a la meta de 15 m²/hab.",
+          "cita_textual": "el indicador promedio ajustado a 2010 corresponde a 3,3 m²/hab.",
+          "obliga_a": "No obliga; orienta a entidades territoriales",
+          "naturaleza": "orientacion",
+          "destinatarios_en_cartago": [
+            "planeacion"
+          ],
+          "ubicacion": "PDF, p. 8"
+        }
+      ],
+      "apa": "Consejo Nacional de Política Económica y Social. (2012). *Política Nacional de Espacio Público* (Documento CONPES 3718). Departamento Nacional de Planeación. https://colaboracion.dnp.gov.co/CDT/Conpes/Econ%C3%B3micos/3718.pdf",
+      "cita_en_texto": "(Consejo Nacional de Política Económica y Social [CONPES], 2012)",
+      "notas": [
+        "El CONPES atribuye a la OMS un «indicador óptimo entre 10 m2 y 15 m2 de zonas verdes por habitante» (PDF, p. 7). No se encontró un documento de la OMS que lo respalde; no debe citarse como recomendación de la OMS."
+      ]
+    }
+  ],
+  "dependencias": [
+    {
+      "clave": "despacho_alcalde",
+      "nombre_oficial": "Despacho del Alcalde (Despacho Municipal)",
+      "nivel": "municipal",
+      "adscripcion": "Alcaldía de Cartago",
+      "relevancia": "Responsable directo de la gestión del riesgo (Ley 1523, art. 14), adopta por decreto el plan municipal de gestión del riesgo (art. 37) y preside el CMGRD.",
+      "evidencia": [
+        "https://cartago.gov.co/secretarias_depedencias/",
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf"
+      ],
+      "verificado": true,
+      "correo_institucional": "despacho@cartago.gov.co"
+    },
+    {
+      "clave": "planeacion",
+      "nombre_oficial": "Secretaría de Planeación, Medio Ambiente y Desarrollo Económico",
+      "nivel": "municipal",
+      "adscripcion": "Alcaldía de Cartago",
+      "relevancia": "Formula y revisa el POT y el plan de desarrollo; en la estructura de 2023 incluye la Oficina de Ordenamiento Territorial, la Oficina de Control Urbano y la Oficina Banco de Proyectos.",
+      "evidencia": [
+        "https://cartago.gov.co/secretarias_depedencias/",
+        "https://cartago.gov.co/secretaria-de-planeacion-medio-ambiente-y-desarrollo-economico/",
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf"
+      ],
+      "verificado": true,
+      "correo_institucional": "planeacion@cartago.gov.co",
+      "nota": "En el directorio vigente aparece escrita «DESAROLLO ECONOMICO»; se usa la grafía correcta."
+    },
+    {
+      "clave": "ambiente",
+      "nombre_oficial": "Subsecretaría de Medio Ambiente, Desarrollo Sustentable y Agropecuario",
+      "nivel": "municipal",
+      "adscripcion": "Secretaría de Planeación, Medio Ambiente y Desarrollo Económico",
+      "relevancia": "Dependencia ambiental municipal: educación ambiental, residuos, control de especies; en la estructura de 2023 tiene una Dirección de Medio Ambiente.",
+      "evidencia": [
+        "https://cartago.gov.co/subsecretaria-de-medio-ambiente-desarrollo-sustentable-y-agropecuario/",
+        "https://cartago.gov.co/secretaria-de-planeacion-medio-ambiente-y-desarrollo-economico/",
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf"
+      ],
+      "verificado": true,
+      "correo_institucional": "medioambiente@cartago.gov.co",
+      "nota": "En el sitio anterior (municipio.cartago.gov.co) figuraba una «Oficina Gestión de Desarrollo Ambiental y Territorial»; el sitio vigente usa el nombre de la subsecretaría."
+    },
+    {
+      "clave": "umgrd",
+      "nombre_oficial": "Unidad Municipal para la Gestión del Riesgo de Desastres (UMGRD)",
+      "nivel": "municipal",
+      "adscripcion": "Despacho del Alcalde (estructura organizacional de 2023)",
+      "relevancia": "Coordina la gestión del riesgo y los planes de contingencia del municipio.",
+      "evidencia": [
+        "https://cartago.gov.co/unidad-municipal-para-la-gestion-del-riesgo/",
+        "https://cartago.gov.co/wp-content/uploads/2026/06/PLAN-DE-CONTINGENCIA-SEGUNDA-TEMPORADA-DE-LLUVIAS-2025.pdf",
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf",
+        "https://municipio.cartago.gov.co/oficina-de-gestion-del-riesgo-y-atencion-de-desastres/"
+      ],
+      "verificado": true,
+      "correo_institucional": "gestiondelriesgo@cartago.gov.co",
+      "nota": "El sitio vigente titula la página «Unidad municipal para la gestión del riesgo»; el plan de contingencia 2025 usa el nombre completo. El correo figura en el sitio anterior."
+    },
+    {
+      "clave": "cmgrd",
+      "nombre_oficial": "Consejo Municipal de Gestión del Riesgo de Desastres (CMGRD) de Cartago",
+      "nivel": "municipal",
+      "adscripcion": "Instancia presidida por el alcalde (Ley 1523, arts. 27–28)",
+      "relevancia": "Instancia de coordinación, asesoría, planeación y seguimiento; la CVC tiene asiento en él.",
+      "evidencia": [
+        "https://cartago.gov.co/wp-content/uploads/2026/06/PLAN-DE-CONTINGENCIA-SEGUNDA-TEMPORADA-DE-LLUVIAS-2025.pdf",
+        "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=47141"
+      ],
+      "verificado": true,
+      "nota": "Su existencia se verifica por la mención en el plan de contingencia 2025; no se encontró el decreto de creación."
+    },
+    {
+      "clave": "salud",
+      "nombre_oficial": "Secretaría de Salud y Protección Social",
+      "nivel": "municipal",
+      "adscripcion": "Alcaldía de Cartago",
+      "relevancia": "Receptora de los avisos por excedencias de calidad del aire (Resolución 2254, art. 6) y responsable de las metas de adaptación en salud (Ley 2169, art. 6). Tiene Oficina de Salud Pública.",
+      "evidencia": [
+        "https://cartago.gov.co/secretarias_depedencias/",
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf",
+        "https://municipio.cartago.gov.co/secretaria-de-salud-y-proteccion-social/"
+      ],
+      "verificado": true,
+      "correo_institucional": "salud@cartago.gov.co"
+    },
+    {
+      "clave": "educacion",
+      "nombre_oficial": "Secretaría de Educación",
+      "nivel": "municipal",
+      "adscripcion": "Alcaldía de Cartago",
+      "relevancia": "Relevante para sedes educativas expuestas a calor o inundación y para la educación ambiental.",
+      "evidencia": [
+        "https://cartago.gov.co/secretarias_depedencias/",
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf",
+        "https://cartago.gov.co/secretaria-de-educacion/"
+      ],
+      "verificado": true,
+      "correo_institucional": "educacion@cartago.gov.co"
+    },
+    {
+      "clave": "movilidad",
+      "nombre_oficial": "Secretaría de Movilidad y Transporte",
+      "nivel": "municipal",
+      "adscripcion": "Alcaldía de Cartago",
+      "relevancia": "Tránsito y transporte: exposición al tráfico. En la estructura de 2023 tiene Unidad de Tránsito y Unidad de Transporte.",
+      "evidencia": [
+        "https://cartago.gov.co/secretarias_depedencias/",
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf"
+      ],
+      "verificado": true,
+      "correo_institucional": "transito@cartago.gov.co",
+      "nota": "Antes se llamaba «Secretaría de Tránsito y Transporte» (sitio anterior)."
+    },
+    {
+      "clave": "infraestructura",
+      "nombre_oficial": "Secretaría de Infraestructura",
+      "nivel": "municipal",
+      "adscripcion": "Alcaldía de Cartago",
+      "relevancia": "Obras públicas, mantenimiento vial y equipamiento; apoya la respuesta a emergencias por lluvias (plan de contingencia 2025).",
+      "evidencia": [
+        "https://cartago.gov.co/secretarias_depedencias/",
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf",
+        "https://cartago.gov.co/wp-content/uploads/2026/06/PLAN-DE-CONTINGENCIA-SEGUNDA-TEMPORADA-DE-LLUVIAS-2025.pdf"
+      ],
+      "verificado": true,
+      "correo_institucional": "secretariainfraestructura@cartago.gov.co"
+    },
+    {
+      "clave": "gobierno",
+      "nombre_oficial": "Secretaría de Gobierno, Seguridad y Convivencia",
+      "nivel": "municipal",
+      "adscripcion": "Alcaldía de Cartago",
+      "relevancia": "Contiene la Oficina de Espacio Público (estructura de 2023).",
+      "evidencia": [
+        "https://cartago.gov.co/secretarias_depedencias/",
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf"
+      ],
+      "verificado": true,
+      "correo_institucional": "gobierno@cartago.gov.co"
+    },
+    {
+      "clave": "espacio_publico",
+      "nombre_oficial": "Oficina de Espacio Público",
+      "nivel": "municipal",
+      "adscripcion": "Secretaría de Gobierno, Seguridad y Convivencia",
+      "relevancia": "Gestión del espacio público; relevante para parques y zonas verdes.",
+      "evidencia": [
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf"
+      ],
+      "verificado": true,
+      "nota": "Solo se verificó en la estructura organizacional publicada en diciembre de 2023."
+    },
+    {
+      "clave": "hacienda",
+      "nombre_oficial": "Secretaría de Hacienda y Gestión Financiera",
+      "nivel": "municipal",
+      "adscripcion": "Alcaldía de Cartago",
+      "relevancia": "Relevante para el fondo municipal de gestión del riesgo (Ley 1523, art. 54).",
+      "evidencia": [
+        "https://cartago.gov.co/secretarias_depedencias/",
+        "https://municipio.cartago.gov.co/wp-content/uploads/2023/12/ESTRUCTURA-ALCALDIA-MUNICIPAL-DE-CARTAGO-ECC.pdf"
+      ],
+      "verificado": true,
+      "correo_institucional": "hacienda@cartago.gov.co"
+    },
+    {
+      "clave": "concejo",
+      "nombre_oficial": "Concejo Municipal de Cartago",
+      "nivel": "municipal",
+      "adscripcion": "Corporación pública municipal",
+      "relevancia": "Adopta el POT y el plan de desarrollo por acuerdo.",
+      "evidencia": [
+        "https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/ACUERDO-MUNICIPAL-023-DE-2.013-AJUSTE-P.O.T.pdf",
+        "https://www.2025.cartago.gov.co/documentos_acordeon_anidado/Acuerdo-No-007-2024-adopta-plan-de-desarrollo-2024-2027.pdf"
+      ],
+      "verificado": true
+    },
+    {
+      "clave": "cvc",
+      "nombre_oficial": "Corporación Autónoma Regional del Valle del Cauca (CVC) – Dirección Ambiental Regional (DAR) Norte",
+      "nivel": "regional",
+      "adscripcion": "Sistema Nacional Ambiental (SINA)",
+      "relevancia": "Máxima autoridad ambiental en Cartago (Ley 99, art. 31); vigila la calidad del aire (Resolución 2254); concerta los asuntos ambientales del POT; autoriza talas de árboles aislados. Su jurisdicción es el Valle del Cauca con sus 42 municipios; Cartago está en la DAR Norte, con sede en Cartago.",
+      "evidencia": [
+        "https://cvc.gov.co/servicio-al-ciudadano/preguntas-y-respuestas",
+        "https://www.cvc.gov.co/atencion-norte-valle",
+        "https://www.cvc.gov.co/sites/default/files/2024-04/Acuerdo%20CD%20No.%20007%20de%202024%20-%20Aprueba%20plan%20de%20accion%20de%20la%20CVC%20-%202024-2027.pdf"
+      ],
+      "verificado": true
+    },
+    {
+      "clave": "gobernacion_valle_ambiente",
+      "nombre_oficial": "Secretaría de Ambiente y Desarrollo Sostenible – Gobernación del Valle del Cauca",
+      "nivel": "departamental",
+      "adscripcion": "Gobernación del Valle del Cauca",
+      "relevancia": "Con la CVC, responsable del PIGCCT departamental (Ley 1931, art. 8).",
+      "evidencia": [
+        "https://www.valledelcauca.gov.co/documentos/13961/documentos-de-interes-de-la-secretaria-de-ambiente-y-desarrollo-sostenible/",
+        "https://www.minambiente.gov.co/cambio-climatico-y-gestion-del-riesgo/planes-integrales-de-gestion-del-cambio-climatico-territorial/"
+      ],
+      "verificado": true,
+      "nota": "El nombre se tomó del título de la página de documentos de la secretaría; no se revisó su decreto de estructura."
+    }
+  ],
+  "pot": {
+    "tipo": "Plan de Ordenamiento Territorial (POT); el municipio usa esta denominación (Ley 388 de 1997, art. 9, lit. a).",
+    "adopcion": {
+      "acto": "Acuerdo 015 de 2000",
+      "fecha": "mayo de 2000",
+      "emisor": "Concejo Municipal de Cartago"
+    },
+    "modificaciones": [
+      {
+        "acto": "Acuerdo 005 de 2006",
+        "fecha": "mayo de 2006"
+      },
+      {
+        "acto": "Acuerdo 003 de 2010",
+        "fecha": "marzo de 2010"
+      },
+      {
+        "acto": "Acuerdo 023 de 2013",
+        "fecha": "2013-12-27",
+        "objeto": "Por medio del cual se ajusta el Plan de Ordenamiento Territorial del municipio de Cartago Valle, adoptado mediante Acuerdo 015 de mayo de 2000 y modificado por los Acuerdos 005 de mayo de 2006 y 003 de marzo de 2010",
+        "fundamento_invocado": "Considerandos: art. 47 de la Ley 1537 de 2012 (incorporación de suelo para vivienda VIS/VIP) y art. 12 de la Ley 810 de 2003 (ajustes excepcionales).",
+        "url": "https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/ACUERDO-MUNICIPAL-023-DE-2.013-AJUSTE-P.O.T.pdf"
+      }
+    ],
+    "estado": "Vigente según la página «POT VIGENTE» del sitio municipal, con cartografía rotulada «POT DICIEMBRE 2013».",
+    "revision": {
+      "compromiso_pdm_2024_2027": "El PDM anuncia la actualización del POT con zonificaciones ambientales y medidas de gestión del riesgo (p. 228).",
+      "pagina_revision_2022_2035": "El enlace «REVISIÓN POT 2022 – 2035» del sitio municipal lleva a https://www.cartago.gov.co/revision-pot-2022/, que respondía «Page not found» el 2026-10-01.",
+      "estado_verificado": false
+    },
+    "cartografia_oficial_relevante": [
+      {
+        "plano": "07 Zonas de amenaza general",
+        "url": "https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/07-ZONAS-DE-AMENAZA-GENERAL.pdf"
+      },
+      {
+        "plano": "12 Zonas de protección urbana y expansión",
+        "url": "https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/12-ZONAS-DE-PROTECCION-URBANA-Y-EXPANCION.pdf"
+      },
+      {
+        "plano": "17 Zonas de amenaza urbana",
+        "url": "https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/17-ZONAS-DE-AMENAZA-URBANA.pdf"
+      },
+      {
+        "plano": "21 Espacio público urbano",
+        "url": "https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/21-ESPACIO-PUBLICO-URBANO.pdf"
+      }
+    ],
+    "observaciones": [
+      "El último ajuste (27-12-2013) es anterior al Decreto 1807 de 2014, hoy compilado en el Decreto 1077 de 2015. Esto no prueba que el POT carezca de estudios de riesgo; solo indica que el ajuste no se hizo bajo ese decreto.",
+      "La Ley 1931 de 2018 (art. 13) exige incorporar el cambio climático en los instrumentos revisados desde el 1 de enero de 2020. No se encontró una revisión del POT adoptada después de esa fecha.",
+      "Los planos 07 y 17 son la amenaza oficial municipal. La susceptibilidad topográfica (HAND) de BioMap no los sustituye."
+    ],
+    "evidencia": [
+      "https://municipio.cartago.gov.co/pot-vigente/",
+      "https://cartago.gov.co/plan-de-ordenamiento-territorial-pot/",
+      "https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/ACUERDO-MUNICIPAL-023-DE-2.013-AJUSTE-P.O.T.pdf",
+      "https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/ACUERDOS-023-2013-003_2010-005_2006-015_2000.pdf",
+      "https://municipio.cartago.gov.co/pot-plan-de-ordenamiento-territorial/"
+    ],
+    "apa": "Concejo Municipal de Cartago. (2013, 27 de diciembre). *Acuerdo 023 de 2013, por medio del cual se ajusta el Plan de Ordenamiento Territorial del municipio de Cartago Valle, adoptado mediante Acuerdo 015 de mayo de 2000 y modificado por los Acuerdos 005 de mayo de 2006 y 003 de marzo de 2010*. https://www.municipio.cartago.gov.co/wp-content/uploads/2019/09/ACUERDO-MUNICIPAL-023-DE-2.013-AJUSTE-P.O.T.pdf",
+    "cita_en_texto": "(Acuerdo 023 de 2013)"
+  },
+  "plan_desarrollo": {
+    "nombre": "Plan de Desarrollo del Municipio de Cartago – Valle del Cauca 2024-2027 «Más Progreso, Mejor Futuro»",
+    "acto": "Acuerdo 007 del 13 de junio de 2024, Concejo Municipal de Cartago",
+    "fecha_aprobacion_concejo": "2024-05-21 (según el encabezado del acuerdo; debates el 25 y el 30 de mayo de 2024 según la constancia del Concejo)",
+    "url_acuerdo": "https://www.2025.cartago.gov.co/documentos_acordeon_anidado/Acuerdo-No-007-2024-adopta-plan-de-desarrollo-2024-2027.pdf",
+    "url_componente_estrategico": "https://www.cartago.gov.co/documentos_acordeon_anidado/3.%20Componente%20estrategico%20PDM%202024-2027.%20Def..pdf",
+    "url_pagina": "https://cartago.gov.co/planes-y-proyectos-2/",
+    "nota_fuente": "Las citas vienen del «Componente estratégico PDM 2024-2027. Def.», publicado junto al acuerdo como documento técnico del plan. Las páginas son las impresas en el documento.",
+    "compromisos_relevantes": [
+      {
+        "tema": "POT",
+        "pagina": 228,
+        "cita_textual": "Se procederá a la actualización del POT, incorporando zonificaciones ambientales y medidas de gestión del riesgo, con el fin de prevenir invasiones y mitigar problemas ambientales."
+      },
+      {
+        "tema": "arbolado",
+        "pagina": 229,
+        "cita_textual": "Se promoverá la siembra masiva de árboles en espacios urbanos y rurales, con el objetivo de aumentar la cobertura arbórea y contribuir a la mitigación del cambio climático."
+      },
+      {
+        "tema": "monitoreo_aire_clima",
+        "pagina": 229,
+        "cita_textual": "Se establecerá una red de monitoreo climático y ambiental con estaciones meteorológicas y equipos de medición, para recopilar información relevante sobre la calidad del aire, el agua y otros parámetros ambientales."
+      },
+      {
+        "tema": "arbolado_espacio_publico",
+        "pagina": 233,
+        "cita_textual": "Desarrollar acciones contempladas en el Programa para el manejo de los elementos naturales del espacio público ENEP y el arbolado urbano, desarrollado a través del Convenio Interadministrativo CVC No 141 de 2020"
+      },
+      {
+        "tema": "cambio_climatico",
+        "pagina": 233,
+        "cita_textual": "Implementación del plan municipal de adaptación y mitigación al cambio climático"
+      },
+      {
+        "tema": "gestion_riesgo",
+        "pagina": 255,
+        "cita_textual": "Revisión y actualización del Plan Municipal de Gestión del Riesgo. Fortalecer y operativizar el Plan Municipal para la Gestión del Riesgo (PMGR) y Estrategia Municipales de Respuesta a Emergencia EMRE"
+      },
+      {
+        "tema": "gestion_riesgo",
+        "pagina": 255,
+        "cita_textual": "Realizar estudio de evaluación y zonificación del riesgo de desastre."
+      }
+    ],
+    "apa": "Concejo Municipal de Cartago. (2024, 13 de junio). *Acuerdo 007 de 2024, por medio del cual se adopta el Plan de Desarrollo del municipio de Cartago – Valle del Cauca 2024-2027 «Más Progreso, Mejor Futuro»*. https://www.2025.cartago.gov.co/documentos_acordeon_anidado/Acuerdo-No-007-2024-adopta-plan-de-desarrollo-2024-2027.pdf",
+    "cita_en_texto": "(Acuerdo 007 de 2024)",
+    "apa_componente_estrategico": "Municipio de Cartago. (2024). *Anexo 5. Componente estratégico: Plan de Desarrollo Municipal PDM 2024-2027 «Más progreso, mejor futuro»*. https://www.cartago.gov.co/documentos_acordeon_anidado/3.%20Componente%20estrategico%20PDM%202024-2027.%20Def..pdf",
+    "cita_en_texto_componente_estrategico": "(Municipio de Cartago, 2024, p. 233)"
+  },
+  "otras_referencias": [
+    {
+      "id": "oms-2021-aqg",
+      "tipo": "guia_internacional",
+      "autor": "World Health Organization",
+      "anio": 2021,
+      "titulo": "WHO global air quality guidelines: Particulate matter (PM2.5 and PM10), ozone, nitrogen dioxide, sulfur dioxide and carbon monoxide",
+      "isbn": "9789240034228 (versión electrónica)",
+      "url_oficial": "https://iris.who.int/handle/10665/345329",
+      "naturaleza": "orientacion",
+      "que_establece": "Niveles guía recomendados (AQG): PM2,5 anual 5 µg/m³ y 24 h 15; PM10 anual 15 y 24 h 45; NO₂ anual 10 y 24 h 25; O₃ 8 h 100 (tabla 0.1, p. xvii). No son vinculantes en Colombia.",
+      "valores_aqg_ug_m3": {
+        "PM2_5": {
+          "anual": 5,
+          "24_horas": 15
+        },
+        "PM10": {
+          "anual": 15,
+          "24_horas": 45
+        },
+        "NO2": {
+          "anual": 10,
+          "24_horas": 25
+        },
+        "O3": {
+          "8_horas": 100,
+          "temporada_pico": 60
+        }
+      },
+      "cita_textual": "These guidelines are not legally binding standards; however, they do provide WHO Member States with an evidence-informed tool that they can use to inform legislation and policy.",
+      "ubicacion": "p. xv; valores en tabla 0.1, p. xvii",
+      "apa": "World Health Organization. (2021). *WHO global air quality guidelines: Particulate matter (PM2.5 and PM10), ozone, nitrogen dioxide, sulfur dioxide and carbon monoxide*. https://iris.who.int/handle/10665/345329",
+      "cita_en_texto": "(World Health Organization [WHO], 2021)"
+    },
+    {
+      "id": "oms-europa-2016-verde",
+      "tipo": "informe_internacional",
+      "autor": "WHO Regional Office for Europe",
+      "anio": 2016,
+      "titulo": "Urban green spaces and health: A review of evidence",
+      "referencia_oms": "WHO/EURO:2016-3352-43111-60341",
+      "url_oficial": "https://iris.who.int/handle/10665/345751",
+      "naturaleza": "orientacion",
+      "que_establece": "Propone un indicador de accesibilidad: proporción de población que vive a 300 m en línea recta (unos 5 minutos a pie) de un espacio verde de al menos 0,5 ha (o 1 ha). Es una propuesta metodológica, no una norma.",
+      "cita_textual": "A linear distance of 300 m is reasonable as it corresponds to approximately 5 min walking distance along walkable roads or pathways.",
+      "ubicacion": "p. 31 (PDF p. 41)",
+      "salvedad_textual": "currently there is no consensus on the residential proximity to green space that is linked with physical activity and relaxation‐related health benefits",
+      "salvedad_ubicacion": "p. 32 (PDF p. 42)",
+      "apa": "WHO Regional Office for Europe. (2016). *Urban green spaces and health: A review of evidence*. https://iris.who.int/handle/10665/345751",
+      "cita_en_texto": "(WHO Regional Office for Europe, 2016)",
+      "notas": [
+        "BioMap mide distancia al borde del verde público de OSM sin filtrar por área mínima; si el informe usa el umbral de 300 m debe decir que no aplica el tamaño mínimo de 0,5 ha."
+      ]
+    },
+    {
+      "id": "cvc-plan-accion-2024-2027",
+      "tipo": "instrumento_regional",
+      "autor": "Corporación Autónoma Regional del Valle del Cauca (CVC)",
+      "anio": 2024,
+      "titulo": "Plan de Acción 2024-2027 «Más cerca de la gente» (aprobado por Acuerdo CD 007 de 2024)",
+      "url_oficial": "https://www.cvc.gov.co/sites/default/files/2024-04/Acuerdo%20CD%20No.%20007%20de%202024%20-%20Aprueba%20plan%20de%20accion%20de%20la%20CVC%20-%202024-2027.pdf",
+      "naturaleza": "orientacion",
+      "que_establece": "Ubica a Cartago en la Dirección Ambiental Regional (DAR) Norte, con sede en Cartago (tabla 1, p. 21). Reporta que en 7 de 9 municipios con monitoreo el PM10 tiende a superar el nivel de 2030 (p. 107); el texto no indica si Cartago tiene estación.",
+      "cita_textual": "calidad del aire en 7 de los 9 municipios donde se cuenta con monitoreo, así como en el área rural de Cali, tienden a sobrepasar los niveles máximos permisibles",
+      "ubicacion": "p. 107 (PDF p. 111); tabla 1 en p. 21 (PDF p. 25)",
+      "apa": "Corporación Autónoma Regional del Valle del Cauca. (2024). *Plan de acción 2024-2027: Más cerca de la gente*. https://www.cvc.gov.co/sites/default/files/2024-04/Acuerdo%20CD%20No.%20007%20de%202024%20-%20Aprueba%20plan%20de%20accion%20de%20la%20CVC%20-%202024-2027.pdf",
+      "cita_en_texto": "(Corporación Autónoma Regional del Valle del Cauca [CVC], 2024)"
+    },
+    {
+      "id": "cartago-arvc",
+      "tipo": "documento_municipal",
+      "autor": "Municipio de Cartago",
+      "anio": null,
+      "titulo": "Cartilla: Análisis del riesgo asociado al cambio climático del municipio de Cartago",
+      "url_oficial": "https://www.municipio.cartago.gov.co/wp-content/uploads/2022/05/Cartilla-ARVC-Cartago.pdf",
+      "url_documento_completo": "https://www.cartago.gov.co/wp-content/uploads/2022/05/ARVC-Completo-Cartago.pdf",
+      "naturaleza": "orientacion",
+      "que_establece": "Análisis de riesgo climático hecho en la fase II (2017–2021) del proyecto Urban-LEDS (ONU-Hábitat e ICLEI) para inundaciones, movimientos en masa, olas de calor y vectores, con proyección a 2050.",
+      "cita_textual": "En la fase II (2017-2021) el municipio actualizó este inventario y elaboró un Análisis del Riesgo Asociado al Cambio Climático.",
+      "apa": "Municipio de Cartago. (s. f.). *Cartilla: Análisis del riesgo asociado al cambio climático del municipio de Cartago*. https://www.municipio.cartago.gov.co/wp-content/uploads/2022/05/Cartilla-ARVC-Cartago.pdf",
+      "cita_en_texto": "(Municipio de Cartago, s. f.)",
+      "notas": [
+        "Publicado en la carpeta de cargas de mayo de 2022 del sitio municipal; la cartilla no trae fecha visible en las páginas leídas, por eso «s. f.»."
+      ]
+    },
+    {
+      "id": "cartago-plan-contingencia-2025",
+      "tipo": "documento_municipal",
+      "autor": "Unidad Municipal para la Gestión del Riesgo de Desastres de Cartago",
+      "anio": 2025,
+      "titulo": "Plan de contingencia segunda temporada de lluvias 2025",
+      "url_oficial": "https://cartago.gov.co/wp-content/uploads/2026/06/PLAN-DE-CONTINGENCIA-SEGUNDA-TEMPORADA-DE-LLUVIAS-2025.pdf",
+      "naturaleza": "orientacion",
+      "que_establece": "Muestra que la UMGRD coordina la respuesta y que el CMGRD se activa en emergencias de nivel 3. Nombra los ríos La Vieja y Cauca como fuentes de desbordamiento.",
+      "cita_textual": "Evento de gran magnitud con múltiples afectados. Se activa todo el CMGRD (Consejo Municipal de Gestión del Riesgo de Desastres).",
+      "ubicacion": "PDF p. 8",
+      "apa": "Unidad Municipal para la Gestión del Riesgo de Desastres de Cartago. (2025). *Plan de contingencia segunda temporada de lluvias 2025*. Alcaldía de Cartago. https://cartago.gov.co/wp-content/uploads/2026/06/PLAN-DE-CONTINGENCIA-SEGUNDA-TEMPORADA-DE-LLUVIAS-2025.pdf",
+      "cita_en_texto": "(Unidad Municipal para la Gestión del Riesgo de Desastres de Cartago, 2025)"
+    },
+    {
+      "id": "minambiente-pigcct",
+      "tipo": "pagina_oficial",
+      "autor": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "anio": null,
+      "titulo": "Planes Integrales de Gestión del Cambio Climático Territorial (PIGCCT)",
+      "url_oficial": "https://www.minambiente.gov.co/cambio-climatico-y-gestion-del-riesgo/planes-integrales-de-gestion-del-cambio-climatico-territorial/",
+      "naturaleza": "orientacion",
+      "que_establece": "Registra al Valle del Cauca con PIGCCT integral formulado en 2023 y adoptado por acto administrativo (columna «Sí»). No identifica el número del acto.",
+      "cita_textual": "Valle del Cauca Formulado en 2023 PIGCCT INTEGRAL VALLE DEL CAUCA Si",
+      "ubicacion": "Fila de la tabla de departamentos; la última columna es «Adopción por acto administrativo».",
+      "apa": "Ministerio de Ambiente y Desarrollo Sostenible. (s. f.). *Planes integrales de gestión del cambio climático territorial (PIGCCT)*. Recuperado el 1 de octubre de 2026, de https://www.minambiente.gov.co/cambio-climatico-y-gestion-del-riesgo/planes-integrales-de-gestion-del-cambio-climatico-territorial/",
+      "cita_en_texto": "(Ministerio de Ambiente y Desarrollo Sostenible, s. f.)"
+    }
+  ],
+  "no_verificado": [
+    {
+      "asunto": "Decreto de creación del CMGRD de Cartago y decreto de adopción del plan municipal de gestión del riesgo vigente",
+      "razon": "No aparecen en los sitios municipales consultados. El repositorio de la UNGRD lista un «Plan local de gestión del riesgo del municipio de Cartago», pero el servidor rechazó la conexión (puerto 8443). El PDM 2024–2027 solo anuncia su revisión y actualización (p. 255)."
+    },
+    {
+      "asunto": "Estado actual de la revisión general del POT",
+      "razon": "La página «Revisión POT 2022–2035» devuelve «Page not found»; no se encontró acto de adopción posterior al Acuerdo 023 de 2013."
+    },
+    {
+      "asunto": "Estación de calidad del aire de la CVC en Cartago",
+      "razon": "El Plan de Acción de la CVC habla de 9 municipios con monitoreo sin listarlos en texto (las figuras son imágenes); el portal calidadaire.cvc.gov.co no mostró la lista de estaciones."
+    },
+    {
+      "asunto": "Número y fecha del acto que adoptó el PIGCCT del Valle del Cauca",
+      "razon": "MinAmbiente lo marca como adoptado por acto administrativo y formulado en 2023, pero no da el número; la página de la Gobernación consultada no lo muestra."
+    },
+    {
+      "asunto": "Lineamientos de la CICC que obliguen a Cartago a formular un plan municipal de cambio climático (Ley 1931, art. 18, par. 1)",
+      "razon": "No se buscó ni encontró el acto de la CICC; por eso la obligación se marca como condicionada."
+    },
+    {
+      "asunto": "Ley o decreto nacional específico de arbolado urbano o silvicultura urbana",
+      "razon": "No se encontró. Existen planes distritales (Bogotá, Medellín), que no aplican a Cartago. Para arbolado solo se citan el Decreto 1076 de 2015 (tala de árboles aislados) y la Ley 2173 de 2021 (Áreas de Vida)."
+    },
+    {
+      "asunto": "Indicador de la OMS de 9 m² o de 10–15 m² de zonas verdes por habitante",
+      "razon": "Aparece en el CONPES 3718 atribuido a la OMS, pero no se halló documento de la OMS que lo respalde. No usarlo como recomendación de la OMS."
+    },
+    {
+      "asunto": "Reglamentación de la Ley 2173 de 2021 (art. 19)",
+      "razon": "No se verificó si MinAmbiente la expidió."
+    },
+    {
+      "asunto": "Texto del Decreto 1807 de 2014 en su página propia del Gestor Normativo",
+      "razon": "La página no respondió; su contenido se verificó en la compilación del Decreto 1077 de 2015, que cita cada artículo de origen."
+    },
+    {
+      "asunto": "Diario Oficial del Decreto 1076 de 2015 y de la Resolución 2254 de 2017",
+      "razon": "No figuran en las fuentes consultadas; las referencias APA se dan sin ese dato."
+    },
+    {
+      "asunto": "Decreto o acuerdo de estructura vigente de la Alcaldía y funciones de cada dependencia",
+      "razon": "Los nombres se verificaron en el directorio vigente del sitio oficial y en la estructura publicada en diciembre de 2023; no se encontró el acto administrativo que la adopta ni el manual de funciones."
+    }
+  ]
+}

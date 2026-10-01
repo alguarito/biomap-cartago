@@ -10,7 +10,7 @@
 
   <link rel="stylesheet" href="vendor/fuentes/fuentes.css">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="css/app.css?v=6">
+  <link rel="stylesheet" href="css/app.css?v=8">
 </head>
 <body>
   <div id="app" class="app">
@@ -21,7 +21,7 @@
         <div class="flex items-start justify-between gap-3">
           <div>
             <h1 class="marca">BioMap <span>Cartago</span></h1>
-            <p class="submarca">Observatorio geoambiental · datos abiertos · Valle del Cauca</p>
+            <p class="submarca">Observatorio geoambiental · datos abiertos · I.E. Sor María Juliana</p>
           </div>
           <button type="button" class="insignia insignia-ok" data-ir="tab-datos" data-ancla="metodologia" title="Fuentes, método y limitaciones">
             Datos abiertos
@@ -30,6 +30,7 @@
         <nav class="pestanas" role="tablist" aria-label="Secciones">
           <button role="tab" id="t-capas" aria-controls="tab-capas" aria-selected="true"><span aria-hidden="true">🗺️</span>Capas y Telemetría</button>
           <button role="tab" id="t-sim" aria-controls="tab-sim" aria-selected="false" tabindex="-1"><span aria-hidden="true">🧪</span>Simulador</button>
+          <button role="tab" id="t-res" aria-controls="tab-res" aria-selected="false" tabindex="-1"><span aria-hidden="true">📑</span>Resultados</button>
           <button role="tab" id="t-ia" aria-controls="tab-ia" aria-selected="false" tabindex="-1"><span aria-hidden="true">🤖</span>Copiloto IA</button>
           <button role="tab" id="t-datos" aria-controls="tab-datos" aria-selected="false" tabindex="-1"><span aria-hidden="true">📊</span>Datos Abiertos</button>
         </nav>
@@ -113,7 +114,29 @@
           </div>
         </section>
 
-        <!-- ===== 3. Copiloto IA ===== -->
+        <!-- ===== 3. Resultados ===== -->
+        <section id="tab-res" role="tabpanel" aria-labelledby="t-res" class="seccion" hidden>
+          <div class="bloque" id="res-cabecera">
+            <p class="intro">Cargando los resultados…</p>
+          </div>
+          <div class="bloque">
+            <h2 class="rotulo">Conclusiones</h2>
+            <div class="tarjetas" id="res-tarjetas"></div>
+          </div>
+          <div class="bloque">
+            <h2 class="rotulo">Las cinco prioridades</h2>
+            <ol class="prioridades-lista" id="res-prioridades"></ol>
+          </div>
+          <div class="bloque">
+            <h2 class="rotulo">Recomendaciones por dependencia</h2>
+            <div id="res-recomendaciones" class="grid gap-2"></div>
+          </div>
+          <div class="bloque">
+            <p class="nota" id="res-nota"></p>
+          </div>
+        </section>
+
+        <!-- ===== 4. Copiloto IA ===== -->
         <section id="tab-ia" role="tabpanel" aria-labelledby="t-ia" class="seccion seccion-chat" hidden>
           <details class="plegable" id="ia-config">
             <summary>Conexión con Gemini <span id="ia-estado" class="insignia">Sin clave</span></summary>
@@ -152,7 +175,7 @@
           </form>
         </section>
 
-        <!-- ===== 4. Datos abiertos ===== -->
+        <!-- ===== 5. Datos abiertos ===== -->
         <section id="tab-datos" role="tabpanel" aria-labelledby="t-datos" class="seccion" hidden>
           <div class="bloque">
             <div class="flex items-baseline justify-between gap-2">
@@ -169,6 +192,21 @@
             <h2 class="rotulo">Descargas</h2>
             <div class="descargas" id="descargas"></div>
             <p class="nota mt-2" id="descargas-nota"></p>
+          </div>
+
+          <div class="bloque" id="creditos">
+            <h2 class="rotulo">Créditos</h2>
+            <div class="tarjeta creditos">
+              <p class="cr-inst">Proyecto de la I.E. Sor María Juliana · Cartago, Valle del Cauca</p>
+              <dl>
+                <dt>Estudiantes responsables</dt>
+                <dd>Jhoan Sebastián Mosquera Cadavid<br>Jhoan Esneider Mejia Ortiz</dd>
+                <dt>Grado y jornada</dt>
+                <dd>11-3 · Jornada de la tarde</dd>
+                <dt>Docente mentor</dt>
+                <dd>Álvaro Cárdenas Orozco, PhD</dd>
+              </dl>
+            </div>
           </div>
 
           <div class="bloque" id="metodologia">
@@ -209,8 +247,9 @@
   <script src="js/solar.js?v=1"></script>
   <script src="js/app.js?v=8"></script>
   <script src="js/graficos.js?v=3"></script>
-  <script src="js/decision.js?v=5"></script>
-  <script src="js/abiertos.js?v=3"></script>
+  <script src="js/decision.js?v=6"></script>
+  <script src="js/abiertos.js?v=4"></script>
+  <script src="js/resultados.js?v=2"></script>
   <script src="js/copiloto.js?v=3"></script>
 </body>
 </html>

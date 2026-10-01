@@ -141,7 +141,7 @@
       ndvi: arb.sustituye_pasto.delta_ndvi_por_10pp, base: 'pasto', disponible: (z) => D[z].max_pp_arbolado_sustituyendo_pasto,
     });
     if (arb && arb.sustituye_construido) lista.push({
-      id: 'arbolado_duro', nombre: 'Arbolado en la superficie vial', sub: 'Sembrar árboles en calzadas y separadores retirando pavimento (superficie vial estimada desde OpenStreetMap).',
+      id: 'arbolado_duro', nombre: 'Arbolado en la superficie vial', sub: 'Sembrar árboles retirando pavimento en calzadas y separadores. El efecto se midió comparando árboles con superficie construida; el área disponible se limita a las vías de OpenStreetMap.',
       origen: 'local', lst: arb.sustituye_construido.delta_lst_c_por_10pp, intervalo: arb.sustituye_construido.ic95_lst, tipoIntervalo: 'coeficiente',
       ndvi: arb.sustituye_construido.delta_ndvi_por_10pp, base: 'calzadas', disponible: (z) => D[z].calzadas_osm_pct ?? D[z].max_pp_pavimento_frio,
     });
@@ -209,7 +209,7 @@
     const z = zonaInd(zonaId), r = calcular(t, zonaId, I);
     $('#sim-int-ayuda').textContent = `Porcentaje de la superficie disponible que se interviene. Disponible en esta zona: ${fmt(r.disp, 1)} % del área (${BASE[t.base]}). Equivale a ${fmt(r.pp, 1)} puntos porcentuales, unas ${fmt(r.ha, 1)} ha.`;
 
-    const etiqueta = `<span class="etiqueta-origen ${t.origen}">${t.origen === 'local' ? 'medido en Cartago' : 'literatura'}</span>`;
+    const etiqueta = `<span class="etiqueta-origen ${t.origen}">${t.origen === 'local' ? 'medido en Cartago' : 'estimado con literatura'}</span>`;
     const cruza = r.intervalo && r.intervalo[0] < 0 && r.intervalo[1] > 0;
     $('#sim-kpis').innerHTML = `
       <dl class="kpi"><dt>Temp. superficial</dt><dd><div class="delta">${signo(r.dLST, 2)} °C</div><div class="de-a">${r.intervalo ? `${NOMBRE_INTERVALO[t.tipoIntervalo]}: ${signo(r.intervalo[0], 2)} a ${signo(r.intervalo[1], 2)}${cruza ? ' (puede no enfriar)' : ''}` : ''}</div><div class="de-a">${fmt(z.lst_media)} → ${fmt((z.lst_media || 0) + r.dLST)} °C</div></dd></dl>
@@ -254,7 +254,7 @@
     $('#sim-supuestos').innerHTML = `
       <p><b>${esc(C.advertencia_principal || '')}</b></p>
       ${m ? `<p><span class="etiqueta-origen local">medido en Cartago</span> Modelo de regresión con ${fmt(m.n, 0)} unidades de ~111 m de la cabecera: temperatura superficial (Landsat 2022–2025) según arbolado, área construida, agua y altitud (ESA WorldCover, Copernicus DEM). R² = ${fmt(m.r2, 2)}; error típico ${fmt(m.rmse_c, 1)} °C. Intervalos del coeficiente por remuestreo de bloques espaciales de 500 m (1.000 réplicas); no incluyen el error del modelo.${mn ? ` El NDVI se modela igual con ${fmt(mn.n, 0)} celdas (R² = ${fmt(mn.r2, 2)}).` : ''}</p>` : ''}
-      <ul>${tipos.map((t) => `<li><b>${esc(t.nombre)}:</b> ${signo(t.lst, 2)} °C por cada 10 puntos porcentuales del área${t.intervalo ? ` (${NOMBRE_INTERVALO[t.tipoIntervalo]}: ${signo(t.intervalo[0], 2)} a ${signo(t.intervalo[1], 2)}${t.icMedia && t.tipoIntervalo === 'prediccion' ? `; IC de la media: ${signo(t.icMedia[0], 2)} a ${signo(t.icMedia[1], 2)}` : ''})` : ''} <span class="etiqueta-origen ${t.origen}">${t.origen === 'local' ? 'medido en Cartago' : 'literatura'}</span>${t.cita ? `<br><small>${ref(t)}${t.local ? `. Contraste con el modelo local: ${signo(t.local.delta_lst_c_por_10pp, 2)} °C` : ''}</small>` : ''}</li>`).join('')}</ul>
+      <ul>${tipos.map((t) => `<li><b>${esc(t.nombre)}:</b> ${signo(t.lst, 2)} °C por cada 10 puntos porcentuales del área${t.intervalo ? ` (${NOMBRE_INTERVALO[t.tipoIntervalo]}: ${signo(t.intervalo[0], 2)} a ${signo(t.intervalo[1], 2)}${t.icMedia && t.tipoIntervalo === 'prediccion' ? `; IC de la media: ${signo(t.icMedia[0], 2)} a ${signo(t.icMedia[1], 2)}` : ''})` : ''} <span class="etiqueta-origen ${t.origen}">${t.origen === 'local' ? 'medido en Cartago' : 'estimado con literatura'}</span>${t.cita ? `<br><small>${ref(t)}${t.local ? `. Contraste con el modelo local: ${signo(t.local.delta_lst_c_por_10pp, 2)} °C` : ''}</small>` : ''}</li>`).join('')}</ul>
       <p><span class="etiqueta-origen cualitativo">cualitativo</span> ${esc((C.efecto_no2_trafico && (C.efecto_no2_trafico.cualitativo || C.efecto_no2_trafico.texto)) || '')}</p>
       ${C.limitaciones ? `<h4>Limitaciones</h4><ul>${C.limitaciones.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>` : ''}`;
   }
@@ -274,7 +274,7 @@
     intervenciones().forEach((t, i) => {
       const l = document.createElement('label');
       l.className = 'opcion';
-      l.innerHTML = `<input type="radio" name="sim-tipo" value="${t.id}" ${i === 0 ? 'checked' : ''}><div><b>${esc(t.nombre)}</b><span>${esc(t.sub)} <span class="etiqueta-origen ${t.origen}">${t.origen === 'local' ? 'medido en Cartago' : 'literatura'}</span></span></div>`;
+      l.innerHTML = `<input type="radio" name="sim-tipo" value="${t.id}" ${i === 0 ? 'checked' : ''}><div><b>${esc(t.nombre)}</b><span>${esc(t.sub)} <span class="etiqueta-origen ${t.origen}">${t.origen === 'local' ? 'medido en Cartago' : 'estimado con literatura'}</span></span></div>`;
       cont.appendChild(l);
     });
     sel.addEventListener('change', recalcular);

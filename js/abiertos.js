@@ -187,6 +187,14 @@
           <p><small>Procesado el ${esc(meta.fecha_proceso || '')} · cobertura ${fmt(meta.cobertura_pct, 1)} % · script <code>scripts/</code></small></p>
         </div></details>`);
     });
+    const I = BM.INDICADORES;
+    if (I && I.hallazgos) {
+      html.push(`<details class="ficha-capa" id="ficha-indicadores"><summary>${esc(I.titulo || 'Indicadores por zona')}<small>detalle técnico</small></summary><div class="prosa">
+        ${I.descripcion ? `<p>${esc(I.descripcion)}</p>` : ''}
+        <h4>Hallazgos técnicos</h4>${lista(I.hallazgos)}
+        ${I.limitaciones ? `<h4>Limitaciones</h4>${lista(I.limitaciones)}` : ''}
+      </div></details>`);
+    }
     const S = BM.SERIES || {};
     [['clima', S.clima], ['landsat', S.landsat], ['aire', S.aire]].forEach(([id, s]) => {
       if (!s) return;
@@ -223,9 +231,9 @@
         return [a === b ? `+${fmt(a, 2)} °C` : `+${fmt(a, 1)} a +${fmt(b, 1)} °C`, 'por década sube la temperatura del aire desde 1991 (según reanálisis)'];
       })(),
     ].filter(Boolean);
-    const h = (BM.INDICADORES && BM.INDICADORES.hallazgos) || [];
+    // los hallazgos en lenguaje claro los pinta resultados.js en #resumen-hallazgos; el detalle técnico va en Datos Abiertos
     $('#resumen-ciudad').innerHTML = `<div class="resumen-ciudad">${kpis.map(([v, e]) => `<div class="kpi-c"><b>${v}</b><span>${esc(e)}</span></div>`).join('')}</div>
-      ${h.length ? `<details class="plegable mt-2"><summary>Hallazgos clave del análisis (${h.length})</summary><ul class="prosa hallazgos">${h.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></details>` : ''}`;
+      <div id="resumen-hallazgos"></div>`;
   }
 
   BM.alIniciar(async () => {
