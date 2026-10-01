@@ -12,5 +12,8 @@
 - Python: `.venv/bin/python` (3.12). `fuentes/` es caché local y no se publica.
 - Probar con `python3 -m http.server 8765` y revisar la consola: no debe haber errores propios.
 
+## Despliegue
+Repositorio público github.com/alguarito/biomap-cartago; cada push a `main` publica en https://alguarito.github.io/biomap-cartago/ con `.github/workflows/deploy.yml` (copia index.html, css, js, vendor y datos; sin compilación). `fuentes/` y `.venv/` no se versionan (`/fuentes/` solo en la raíz: `vendor/fuentes/` sí va).
+
 ## Versiones
 Los recursos locales se enlazan con `?v=N` en `index.html`. Al cambiar CSS o JS, subir N. Los datos usan `VERSION_DATOS` en `js/datos.js`: subirlo al regenerar `datos/`.

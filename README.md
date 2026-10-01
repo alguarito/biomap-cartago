@@ -1,5 +1,7 @@
 # BioMap Cartago
 
+**Sitio:** <https://alguarito.github.io/biomap-cartago/>
+
 Plataforma geoambiental de **datos abiertos** para la toma de decisiones en Cartago, Valle del Cauca. Muestra calor urbano, vegetación, arbolado, exposición al tráfico, riesgo hidrológico, población y acceso a parques; prioriza las comunas según criterios ajustables; simula intervenciones con coeficientes calibrados en la propia ciudad; y responde preguntas con un copiloto IA que solo usa estos datos.
 
 Es una página estática sin paso de compilación: HTML, CSS y JavaScript con las librerías incluidas en `vendor/`. Los datos se generan con scripts de Python reproducibles en `scripts/`.
@@ -33,7 +35,7 @@ Cada capa trae su ficha en `datos/capas/<capa>.json`: fuente, periodo, resoluci�
 - **La susceptibilidad topográfica no es la amenaza oficial.** La referencia oficial disponible es la capa del IDEAM, que la plataforma muestra en vivo.
 - **El simulador mide asociaciones**, no causalidad: compara lugares distintos de la ciudad. Los coeficientes de arbolado salen de Cartago; los de techos verdes y pavimentos, de una revisión sistemática (Das et al., 2025). El efecto sobre el NO₂ no se cuantifica porque no hay base.
 
-## Ejecutar
+## Ejecutar en local
 
 ```bash
 python3 -m http.server 8765
@@ -86,7 +88,7 @@ Cada usuario pega su clave de Google AI Studio en la pestaña Copiloto; la clave
 
 ## Licencias
 
-- Código: a definir por el autor.
+- Código y contenido propio: CC BY-NC-SA 4.0 (ver `LICENSE`).
 - Datos derivados: cada archivo conserva la licencia de su fuente (tabla anterior). Los productos que incluyen geometría de OpenStreetMap se publican bajo ODbL.
 - Librerías y tipografía incluidas en `vendor/`: Leaflet (BSD-2), Chart.js y marked (MIT), DOMPurify (Apache-2.0 o MPL-2.0) y Plus Jakarta Sans (OFL 1.1). Sus avisos están en `vendor/LEEME.md` y `vendor/licencias/`.
 - Teselas de los mapas base: OpenStreetMap, Esri World Imagery y CARTO, con sus propias condiciones de uso.
