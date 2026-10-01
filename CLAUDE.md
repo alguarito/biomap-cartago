@@ -12,6 +12,11 @@
 - Python: `.venv/bin/python` (3.12). `fuentes/` es caché local y no se publica.
 - Probar con `python3 -m http.server 8765` y revisar la consola: no debe haber errores propios.
 
+## Mapas base
+- Satelital: Esri World Imagery fijado en la versión Wayback 32246 (2026-06-30). El mosaico vigente de agosto de 2026 tiene nubes sobre el centro de Cartago; antes de cambiar de versión, comparar visualmente a zoom 16–17.
+- Oscuro: Esri Dark Gray Canvas. CARTO `dark_all` exige clave de API desde 2026 (teselas con «API KEY REQUIRED»).
+- Las etiquetas van en el panel `etiquetas`, por encima de los datos, con `capaEtiquetas()` (limpia las teselas del zoom anterior al cargar).
+
 ## Despliegue
 Repositorio público github.com/alguarito/biomap-cartago; cada push a `main` publica en https://alguarito.github.io/biomap-cartago/ con `.github/workflows/deploy.yml` (copia index.html, css, js, vendor y datos; sin compilación). `fuentes/` y `.venv/` no se versionan (`/fuentes/` solo en la raíz: `vendor/fuentes/` sí va).
 
