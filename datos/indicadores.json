@@ -1,0 +1,6402 @@
+{
+ "titulo": "Indicadores ambientales y de exposición por zona de Cartago",
+ "descripcion": "Cifras por comuna, Zaragoza y la cabecera sobre calor de superficie, vegetación, acceso a verde, inundación, tráfico y equipamientos, calculadas con datos abiertos reales. Se presentan por área (cómo es el territorio) y ponderadas por población (a qué está expuesta la gente).",
+ "unidades": {
+  "area_km2": "km² (suma de áreas de celda)",
+  "area_poligono_km2": "km² (polígono en UTM 18N)",
+  "poblacion": "hab (2026)",
+  "densidad_hab_km2": "hab/km² de la zona",
+  "densidad_sobre_area_construida_hab_km2": "hab por km² de superficie clasificada como construida",
+  "lst_*": "°C (temperatura de SUPERFICIE, 10:19 hora local, días despejados 2022–2025)",
+  "lst_anomalia": "°C (media de la zona − media de la cabecera)",
+  "pct_*": "%",
+  "ndvi_*": "adimensional (−1 a 1)",
+  "arbolado_pct, construido_pct, agua_pct": "% del área (WorldCover 2021)",
+  "m2_*_por_hab": "m²/hab",
+  "trafico_*": "índice relativo 0–100",
+  "poblacion_*": "hab",
+  "tendencia_lst_c_decada": "°C/década",
+  "sufijo _pob": "ponderado por población (promedio de las celdas pesado por sus habitantes)",
+  "ideam_nina_observada.poblacion_por_periodo": "hab de 2026 que viven hoy dentro de la mancha de cada evento La Niña; NO son las personas afectadas en ese evento (la ciudad de 1988 o de 2011 era distinta)",
+  "distancia_mediana_*_km": "km, mediana de la distancia en línea recta (UTM 18N) de los centros de celda al eje OSM del río"
+ },
+ "periodo": {
+  "poblacion": "proyección DANE 2026 repartida con el CNPV 2018",
+  "lst": "Landsat 8/9, 2022–2025 (78 escenas, 10:19 hora local)",
+  "ndvi": "Sentinel-2, 2024–2025",
+  "coberturas": "ESA WorldCover 2021",
+  "osm": "instantánea 2026-10-01T01:50:59Z (fuentes/osm-vias.json)",
+  "serie": "Landsat 2000–2025 (solo años confiables)"
+ },
+ "definiciones": {
+  "cabecera": "Unión de las 8 zonas: Comunas 1–7 (OpenStreetMap) y Zaragoza (huella WorldCover 2021, zona de trabajo, no límite oficial).",
+  "calor_extremo": "Celdas con LST ≥ percentil 90 de las celdas de la cabecera (umbral 42,85 °C). Es un umbral relativo de la ciudad, no sanitario.",
+  "umbral_calor_extremo_c": 42.85,
+  "sin_verde_300m": "Población en celdas a más de 300 m (línea recta) del borde del verde público OSM de ≥ 0,5 ha (capa distancia_verde, criterio OMS 2016).",
+  "susceptibilidad": "Clases de la capa susceptibilidad_inundacion (HAND): 3 alta, 2 media. Es susceptibilidad topográfica, no la amenaza oficial.",
+  "ideam_nina_observada": "Población de 2026 y área dentro de la unión de las áreas afectadas por inundación que el IDEAM registró en los eventos La Niña 1988, 2000, 2011, 2012, 2016 y 2020–2022 (escala no declarada; versiones v1 y v2 de un mismo año unidas). Es un registro histórico de áreas afectadas, no una zonificación de amenaza, y la población es la actual, no la afectada en cada evento. Rasterizado por centro de celda; 'sensibilidad_borde_55m' reduce o amplía la mancha 2 celdas (≈ 55 m) porque los bordes son gruesos. 'poblacion_solo_en_la_mancha_2011': hab dentro de la mancha de 2011 y fuera de las demás y de la amenaza ALTA TR 50.",
+  "ideam_evidencia_oficial": "Unión de la amenaza ALTA por creciente súbita TR 50 años del IDEAM (corrientes de la cuenca directa del río La Vieja, según sus atributos) y de las áreas afectadas por La Niña (IDEAM): componente de inundación por defecto de prioridades.json. Se copia en el primer nivel de cada zona como poblacion_evidencia_inundacion_ideam y pct_poblacion_evidencia_inundacion_ideam. 'sin_2011' (y los campos *_sin_2011): la misma unión sin las capas La Niña 2011 (8 y 22), cuya parte urbana no es coherente con el relieve.",
+  "coherencia_topografica_nina": "Por periodo La Niña, HAND dentro de la mancha frente a fuera de toda mancha, en la ciudad y en el campo (ver coherencia_topografica_nina.metodo).",
+  "trafico_alto": "Índice de tráfico ≥ 60 (definición de la tarea). Documentación: ver 'documentacion_umbral_trafico'.",
+  "tendencia_lst_c_decada": "Pendiente de Sen de la mediana anual de LST de la zona, tramo 2013–2025 (Landsat 8/9), solo años confiables; ver tendencia_lst para los demás tramos.",
+  "equipamientos_expuestos": "Puntos OSM (centroide) en celda con calor extremo, con clase de susceptibilidad alta, a más de 300 m de verde ≥ 0,5 ha (distancia vectorial del producto verdes), con tráfico ≥ 60, en la mancha de amenaza alta del IDEAM o en un área afectada por La Niña según el IDEAM. 'calor_extremo_en_umbral': en calor extremo pero a menos de 0,5 °C del umbral."
+ },
+ "inundacion_hand_frente_a_ideam": {
+  "rejilla_completa": {
+   "celdas_amenaza_alta_ideam": 1719,
+   "pct_area_amenaza_alta_ideam_por_clase_hand": {
+    "3": 39.1,
+    "2": 34.7,
+    "1": 22.5,
+    "0": 3.7
+   },
+   "pct_area_amenaza_alta_ideam_en_clases_hand_0_o_1": 26.2,
+   "por_tipo_de_corriente": {
+    "junto_al_la_vieja": {
+     "celdas": 1238,
+     "area_ha": 94.9,
+     "pct_area_por_clase_hand": {
+      "3": 54.4,
+      "2": 43.7,
+      "1": 1.9,
+      "0": 0.0
+     },
+     "pct_area_en_clases_hand_0_o_1": 1.9
+    },
+    "corrientes_menores_de_la_cuenca_directa": {
+     "celdas": 481,
+     "area_ha": 36.9,
+     "pct_area_por_clase_hand": {
+      "3": 0.0,
+      "2": 11.4,
+      "1": 75.3,
+      "0": 13.3
+     },
+     "pct_area_en_clases_hand_0_o_1": 88.6
+    },
+    "criterio": "Polígono ALTA a ≤ 500 m del eje OSM del La Vieja = junto al La Vieja; si no, corriente menor (supuesto)."
+   },
+   "pct_area_nina_observada_por_clase_hand": {
+    "3": 25.5,
+    "2": 55.1,
+    "1": 16.0,
+    "0": 3.3
+   },
+   "pct_poblacion_nina_observada_por_clase_hand": {
+    "3": 1.9,
+    "2": 20.5,
+    "1": 63.9,
+    "0": 13.7
+   }
+  },
+  "cabecera": {
+   "celdas_amenaza_alta_ideam": 512,
+   "pct_area_amenaza_alta_ideam_por_clase_hand": {
+    "3": 5.1,
+    "2": 66.8,
+    "1": 22.7,
+    "0": 5.5
+   },
+   "pct_area_amenaza_alta_ideam_en_clases_hand_0_o_1": 28.1,
+   "por_tipo_de_corriente": {
+    "junto_al_la_vieja": {
+     "celdas": 336,
+     "area_ha": 25.8,
+     "pct_area_por_clase_hand": {
+      "3": 7.7,
+      "2": 86.3,
+      "1": 6.0,
+      "0": 0.0
+     },
+     "pct_area_en_clases_hand_0_o_1": 6.0
+    },
+    "corrientes_menores_de_la_cuenca_directa": {
+     "celdas": 176,
+     "area_ha": 13.5,
+     "pct_area_por_clase_hand": {
+      "3": 0.0,
+      "2": 29.5,
+      "1": 54.5,
+      "0": 15.9
+     },
+     "pct_area_en_clases_hand_0_o_1": 70.5
+    },
+    "criterio": "Polígono ALTA a ≤ 500 m del eje OSM del La Vieja = junto al La Vieja; si no, corriente menor (supuesto)."
+   },
+   "pct_area_nina_observada_por_clase_hand": {
+    "3": 0.2,
+    "2": 34.0,
+    "1": 52.9,
+    "0": 12.9
+   },
+   "pct_poblacion_nina_observada_por_clase_hand": {
+    "3": 0.5,
+    "2": 18.7,
+    "1": 66.5,
+    "0": 14.3
+   }
+  }
+ },
+ "coherencia_topografica_nina": {
+  "cabecera": {
+   "todas_las_celdas": {
+    "referencia_fuera_de_toda_mancha": {
+     "celdas": 16678,
+     "hand_mediana_m": 9.34,
+     "hand_rio_mayor_mediana_m": 14.96,
+     "pct_celdas_hand_le_6m": 23.9
+    },
+    "periodos": {
+     "1988": {
+      "celdas": 2195,
+      "area_ha": 168.3,
+      "poblacion": 6675.0,
+      "hand_mediana_m": 6.74,
+      "hand_p25_p75_m": [
+       5.24,
+       9.41
+      ],
+      "hand_rio_mayor_mediana_m": 7.77,
+      "pct_celdas_hand_le_6m": 40.5,
+      "diferencia_mediana_con_referencia_m": -2.61,
+      "prob_hand_menor_que_referencia": 0.646,
+      "coherente_con_el_relieve": true
+     },
+     "2000": {
+      "celdas": 117,
+      "area_ha": 9.0,
+      "poblacion": 309.0,
+      "hand_mediana_m": 5.62,
+      "hand_p25_p75_m": [
+       4.12,
+       8.06
+      ],
+      "hand_rio_mayor_mediana_m": 7.66,
+      "pct_celdas_hand_le_6m": 53.0,
+      "diferencia_mediana_con_referencia_m": -3.73,
+      "prob_hand_menor_que_referencia": 0.693,
+      "coherente_con_el_relieve": true
+     },
+     "2011": {
+      "celdas": 2327,
+      "area_ha": 178.4,
+      "poblacion": 6488.0,
+      "hand_mediana_m": 9.59,
+      "hand_p25_p75_m": [
+       5.01,
+       14.02
+      ],
+      "hand_rio_mayor_mediana_m": 14.11,
+      "pct_celdas_hand_le_6m": 30.3,
+      "diferencia_mediana_con_referencia_m": 0.25,
+      "prob_hand_menor_que_referencia": 0.512,
+      "coherente_con_el_relieve": false
+     },
+     "2012": {
+      "celdas": 68,
+      "area_ha": 5.2,
+      "poblacion": 269.0,
+      "hand_mediana_m": 5.05,
+      "hand_p25_p75_m": [
+       4.19,
+       6.9
+      ],
+      "hand_rio_mayor_mediana_m": 5.05,
+      "pct_celdas_hand_le_6m": 61.8,
+      "diferencia_mediana_con_referencia_m": -4.3,
+      "prob_hand_menor_que_referencia": 0.782,
+      "coherente_con_el_relieve": true
+     },
+     "2016": {
+      "celdas": 0,
+      "area_ha": 0.0,
+      "poblacion": 0.0,
+      "nota": "menos de 30 celdas: no se evalúa"
+     },
+     "2020–2022": {
+      "celdas": 24,
+      "area_ha": 1.8,
+      "poblacion": 109.0,
+      "nota": "menos de 30 celdas: no se evalúa"
+     }
+    }
+   },
+   "celdas_abiertas": {
+    "referencia_fuera_de_toda_mancha": {
+     "celdas": 2713,
+     "hand_mediana_m": 7.05,
+     "hand_rio_mayor_mediana_m": 7.42,
+     "pct_celdas_hand_le_6m": 28.4
+    },
+    "periodos": {
+     "1988": {
+      "celdas": 891,
+      "area_ha": 68.3,
+      "poblacion": 55.0,
+      "hand_mediana_m": 5.7,
+      "hand_p25_p75_m": [
+       4.98,
+       7.1
+      ],
+      "hand_rio_mayor_mediana_m": 6.35,
+      "pct_celdas_hand_le_6m": 58.2,
+      "diferencia_mediana_con_referencia_m": -1.34,
+      "prob_hand_menor_que_referencia": 0.682,
+      "coherente_con_el_relieve": true
+     },
+     "2000": {
+      "celdas": 37,
+      "area_ha": 2.8,
+      "poblacion": 14.0,
+      "hand_mediana_m": 10.83,
+      "hand_p25_p75_m": [
+       4.53,
+       15.01
+      ],
+      "hand_rio_mayor_mediana_m": 19.88,
+      "pct_celdas_hand_le_6m": 35.1,
+      "diferencia_mediana_con_referencia_m": 3.79,
+      "prob_hand_menor_que_referencia": 0.468,
+      "coherente_con_el_relieve": false
+     },
+     "2011": {
+      "celdas": 883,
+      "area_ha": 67.7,
+      "poblacion": 113.0,
+      "hand_mediana_m": 10.57,
+      "hand_p25_p75_m": [
+       6.54,
+       14.91
+      ],
+      "hand_rio_mayor_mediana_m": 15.42,
+      "pct_celdas_hand_le_6m": 23.7,
+      "diferencia_mediana_con_referencia_m": 3.52,
+      "prob_hand_menor_que_referencia": 0.411,
+      "coherente_con_el_relieve": false
+     },
+     "2012": {
+      "celdas": 0,
+      "area_ha": 0.0,
+      "poblacion": 0.0,
+      "nota": "menos de 30 celdas: no se evalúa"
+     },
+     "2016": {
+      "celdas": 0,
+      "area_ha": 0.0,
+      "poblacion": 0.0,
+      "nota": "menos de 30 celdas: no se evalúa"
+     },
+     "2020–2022": {
+      "celdas": 0,
+      "area_ha": 0.0,
+      "poblacion": 0.0,
+      "nota": "menos de 30 celdas: no se evalúa"
+     }
+    }
+   }
+  },
+  "fuera_de_la_cabecera": {
+   "todas_las_celdas": {
+    "referencia_fuera_de_toda_mancha": {
+     "celdas": 161285,
+     "hand_mediana_m": 18.67,
+     "hand_rio_mayor_mediana_m": 33.62,
+     "pct_celdas_hand_le_6m": 33.5
+    },
+    "periodos": {
+     "1988": {
+      "celdas": 16625,
+      "area_ha": 1274.6,
+      "poblacion": 229.0,
+      "hand_mediana_m": 1.22,
+      "hand_p25_p75_m": [
+       0.29,
+       3.63
+      ],
+      "hand_rio_mayor_mediana_m": 3.76,
+      "pct_celdas_hand_le_6m": 90.1,
+      "diferencia_mediana_con_referencia_m": -17.44,
+      "prob_hand_menor_que_referencia": 0.852,
+      "coherente_con_el_relieve": true
+     },
+     "2000": {
+      "celdas": 12057,
+      "area_ha": 924.4,
+      "poblacion": 313.0,
+      "hand_mediana_m": 1.85,
+      "hand_p25_p75_m": [
+       0.78,
+       3.94
+      ],
+      "hand_rio_mayor_mediana_m": 2.76,
+      "pct_celdas_hand_le_6m": 85.3,
+      "diferencia_mediana_con_referencia_m": -16.82,
+      "prob_hand_menor_que_referencia": 0.823,
+      "coherente_con_el_relieve": true
+     },
+     "2011": {
+      "celdas": 23553,
+      "area_ha": 1805.8,
+      "poblacion": 547.0,
+      "hand_mediana_m": 2.06,
+      "hand_p25_p75_m": [
+       0.87,
+       4.39
+      ],
+      "hand_rio_mayor_mediana_m": 3.11,
+      "pct_celdas_hand_le_6m": 81.7,
+      "diferencia_mediana_con_referencia_m": -16.6,
+      "prob_hand_menor_que_referencia": 0.809,
+      "coherente_con_el_relieve": true
+     },
+     "2012": {
+      "celdas": 3361,
+      "area_ha": 257.7,
+      "poblacion": 205.0,
+      "hand_mediana_m": 0.8,
+      "hand_p25_p75_m": [
+       0.16,
+       2.0
+      ],
+      "hand_rio_mayor_mediana_m": 0.8,
+      "pct_celdas_hand_le_6m": 95.3,
+      "diferencia_mediana_con_referencia_m": -17.87,
+      "prob_hand_menor_que_referencia": 0.887,
+      "coherente_con_el_relieve": true
+     },
+     "2016": {
+      "celdas": 619,
+      "area_ha": 47.5,
+      "poblacion": 0.0,
+      "hand_mediana_m": 0.2,
+      "hand_p25_p75_m": [
+       0.01,
+       1.16
+      ],
+      "hand_rio_mayor_mediana_m": 0.2,
+      "pct_celdas_hand_le_6m": 96.3,
+      "diferencia_mediana_con_referencia_m": -18.47,
+      "prob_hand_menor_que_referencia": 0.918,
+      "coherente_con_el_relieve": true
+     },
+     "2020–2022": {
+      "celdas": 4141,
+      "area_ha": 317.5,
+      "poblacion": 39.0,
+      "hand_mediana_m": 1.02,
+      "hand_p25_p75_m": [
+       0.25,
+       2.3
+      ],
+      "hand_rio_mayor_mediana_m": 1.18,
+      "pct_celdas_hand_le_6m": 94.3,
+      "diferencia_mediana_con_referencia_m": -17.65,
+      "prob_hand_menor_que_referencia": 0.877,
+      "coherente_con_el_relieve": true
+     }
+    }
+   },
+   "celdas_abiertas": {
+    "referencia_fuera_de_toda_mancha": {
+     "celdas": 104755,
+     "hand_mediana_m": 15.43,
+     "hand_rio_mayor_mediana_m": 25.81,
+     "pct_celdas_hand_le_6m": 37.2
+    },
+    "periodos": {
+     "1988": {
+      "celdas": 12421,
+      "area_ha": 952.3,
+      "poblacion": 32.0,
+      "hand_mediana_m": 1.1,
+      "hand_p25_p75_m": [
+       0.21,
+       3.86
+      ],
+      "hand_rio_mayor_mediana_m": 3.93,
+      "pct_celdas_hand_le_6m": 89.9,
+      "diferencia_mediana_con_referencia_m": -14.33,
+      "prob_hand_menor_que_referencia": 0.834,
+      "coherente_con_el_relieve": true
+     },
+     "2000": {
+      "celdas": 7493,
+      "area_ha": 574.5,
+      "poblacion": 24.0,
+      "hand_mediana_m": 1.73,
+      "hand_p25_p75_m": [
+       0.65,
+       3.54
+      ],
+      "hand_rio_mayor_mediana_m": 2.69,
+      "pct_celdas_hand_le_6m": 85.7,
+      "diferencia_mediana_con_referencia_m": -13.7,
+      "prob_hand_menor_que_referencia": 0.808,
+      "coherente_con_el_relieve": true
+     },
+     "2011": {
+      "celdas": 16193,
+      "area_ha": 1241.5,
+      "poblacion": 30.0,
+      "hand_mediana_m": 1.94,
+      "hand_p25_p75_m": [
+       0.73,
+       4.35
+      ],
+      "hand_rio_mayor_mediana_m": 3.08,
+      "pct_celdas_hand_le_6m": 80.8,
+      "diferencia_mediana_con_referencia_m": -13.49,
+      "prob_hand_menor_que_referencia": 0.789,
+      "coherente_con_el_relieve": true
+     },
+     "2012": {
+      "celdas": 1533,
+      "area_ha": 117.5,
+      "poblacion": 18.0,
+      "hand_mediana_m": 0.26,
+      "hand_p25_p75_m": [
+       0.02,
+       0.86
+      ],
+      "hand_rio_mayor_mediana_m": 0.26,
+      "pct_celdas_hand_le_6m": 95.0,
+      "diferencia_mediana_con_referencia_m": -15.17,
+      "prob_hand_menor_que_referencia": 0.907,
+      "coherente_con_el_relieve": true
+     },
+     "2016": {
+      "celdas": 449,
+      "area_ha": 34.4,
+      "poblacion": 0.0,
+      "hand_mediana_m": 0.07,
+      "hand_p25_p75_m": [
+       0.0,
+       0.4
+      ],
+      "hand_rio_mayor_mediana_m": 0.07,
+      "pct_celdas_hand_le_6m": 99.8,
+      "diferencia_mediana_con_referencia_m": -15.36,
+      "prob_hand_menor_que_referencia": 0.945,
+      "coherente_con_el_relieve": true
+     },
+     "2020–2022": {
+      "celdas": 2154,
+      "area_ha": 165.1,
+      "poblacion": 10.0,
+      "hand_mediana_m": 0.47,
+      "hand_p25_p75_m": [
+       0.06,
+       1.27
+      ],
+      "hand_rio_mayor_mediana_m": 0.59,
+      "pct_celdas_hand_le_6m": 98.2,
+      "diferencia_mediana_con_referencia_m": -14.96,
+      "prob_hand_menor_que_referencia": 0.905,
+      "coherente_con_el_relieve": true
+     }
+    }
+   }
+  },
+  "estado_por_periodo": {
+   "1988": {
+    "parte_urbana": "coherente",
+    "parte_rural_coherente": true,
+    "poblacion_cabecera_en_la_mancha": 6675.0,
+    "poblacion_cabecera_solo_en_esta_mancha": 6205.0
+   },
+   "2000": {
+    "parte_urbana": "dudosa",
+    "parte_rural_coherente": true,
+    "poblacion_cabecera_en_la_mancha": 309.0,
+    "poblacion_cabecera_solo_en_esta_mancha": 0.0
+   },
+   "2011": {
+    "parte_urbana": "no_coherente",
+    "parte_rural_coherente": true,
+    "poblacion_cabecera_en_la_mancha": 6488.0,
+    "poblacion_cabecera_solo_en_esta_mancha": 6009.0
+   },
+   "2012": {
+    "parte_urbana": "coherente",
+    "parte_rural_coherente": true,
+    "poblacion_cabecera_en_la_mancha": 269.0,
+    "poblacion_cabecera_solo_en_esta_mancha": 0.0
+   },
+   "2016": {
+    "parte_urbana": "sin_evaluar",
+    "parte_rural_coherente": true,
+    "poblacion_cabecera_en_la_mancha": 0.0,
+    "poblacion_cabecera_solo_en_esta_mancha": 0.0
+   },
+   "2020–2022": {
+    "parte_urbana": "sin_evaluar",
+    "parte_rural_coherente": true,
+    "poblacion_cabecera_en_la_mancha": 109.0,
+    "poblacion_cabecera_solo_en_esta_mancha": 42.0
+   }
+  },
+  "periodos_con_parte_urbana_no_coherente": [
+   {
+    "periodo": "2000",
+    "parte_urbana": "dudosa",
+    "parte_rural_coherente": true,
+    "incoherente_en": [
+     "celdas_abiertas"
+    ],
+    "poblacion_cabecera_solo_en_esta_mancha": 0.0
+   },
+   {
+    "periodo": "2011",
+    "parte_urbana": "no_coherente",
+    "parte_rural_coherente": true,
+    "incoherente_en": [
+     "todas_las_celdas",
+     "celdas_abiertas"
+    ],
+    "poblacion_cabecera_solo_en_esta_mancha": 6009.0
+   }
+  ],
+  "metodo": "HAND = altura sobre el cauce más cercano (capa hand del producto inundacion, DSM Copernicus con corrección parcial del dosel); hand_rio_mayor = altura sobre La Vieja o Cauca. Referencia: celdas del mismo ámbito fuera de toda mancha La Niña. Celdas abiertas: construido < 10 % y arbolado < 20 % (WorldCover 2021; supuesto: ahí el DSM se acerca al terreno). prob_hand_menor_que_referencia = P(HAND de una celda de la mancha < HAND de una celda de referencia), de la U de Mann-Whitney; 0,5 = sin diferencia. Coherente con el relieve si es ≥ 0,60 (supuesto). Sin valor p: las celdas vecinas no son independientes. Rasterizado por centro de celda.",
+  "interpretacion": "Una mancha de inundación fluvial debería estar más baja sobre el drenaje que el terreno no inundado del mismo ámbito. Si no lo está, puede ser un error de comisión o de generalización de la mancha, un encharcamiento no fluvial (lluvia o alcantarillado) o un error del HAND (edificios en el DSM, cauces no representados); estos datos no permiten distinguirlos. Un periodo no coherente no se descarta: se publica la cifra con y sin él."
+ },
+ "creciente_subita_tr50_poligonos_alta": {
+  "poligonos": [
+   {
+    "objectid": 29,
+    "corriente_ideam": "Río La Vieja",
+    "cuenca_ideam": "Directos Río La Vieja",
+    "area_ha": 94.8,
+    "distancia_minima_al_eje_la_vieja_km": 0.0,
+    "distancia_centroide_al_eje_la_vieja_km": 0.29
+   },
+   {
+    "objectid": 30,
+    "corriente_ideam": "Río La Vieja",
+    "cuenca_ideam": "Directos Río La Vieja",
+    "area_ha": 1.71,
+    "distancia_minima_al_eje_la_vieja_km": 2.53,
+    "distancia_centroide_al_eje_la_vieja_km": 2.63
+   },
+   {
+    "objectid": 5,
+    "corriente_ideam": "Río La Vieja",
+    "cuenca_ideam": "Directos Río La Vieja",
+    "area_ha": 15.77,
+    "distancia_minima_al_eje_la_vieja_km": 2.74,
+    "distancia_centroide_al_eje_la_vieja_km": 3.15
+   },
+   {
+    "objectid": 11,
+    "corriente_ideam": "Río La Vieja",
+    "cuenca_ideam": "Directos Río La Vieja",
+    "area_ha": 18.95,
+    "distancia_minima_al_eje_la_vieja_km": 5.39,
+    "distancia_centroide_al_eje_la_vieja_km": 5.93
+   }
+  ],
+  "lectura": "La capa del IDEAM atribuye sus 4 polígonos de amenaza ALTA a la corriente «Río La Vieja» (cuenca «Directos Río La Vieja»), pero 3 de ellos están a 2,5–5,4 km del eje del río: corresponden a corrientes menores de su cuenca directa.",
+  "nota": "Distancias al eje OSM del La Vieja (comun.lineas_rio) en UTM 18N; atributos copiados del IDEAM."
+ },
+ "registros_ideam_usados": {
+  "creciente_subita_tr50": "capa 0",
+  "nina": {
+   "capas": [
+    {
+     "capa": 6,
+     "periodo": "1988",
+     "nombre_archivo": "ideam_6_nina_1988.geojson",
+     "poligonos": 17,
+     "generalizacion_grados": null
+    },
+    {
+     "capa": 7,
+     "periodo": "2000",
+     "nombre_archivo": "ideam_7_nina_2000.geojson",
+     "poligonos": 9,
+     "generalizacion_grados": null
+    },
+    {
+     "capa": 8,
+     "periodo": "2011",
+     "nombre_archivo": "ideam_8_nina_2011.geojson",
+     "poligonos": 5,
+     "generalizacion_grados": null
+    },
+    {
+     "capa": 9,
+     "periodo": "2012",
+     "nombre_archivo": "ideam_9_nina_2012.geojson",
+     "poligonos": 1,
+     "generalizacion_grados": null
+    },
+    {
+     "capa": 22,
+     "periodo": "2011",
+     "nombre_archivo": "ideam_22_nina_2011_v2.geojson",
+     "poligonos": 5,
+     "generalizacion_grados": null
+    },
+    {
+     "capa": 23,
+     "periodo": "2016",
+     "nombre_archivo": "ideam_23_nina_2016.geojson",
+     "poligonos": 2,
+     "generalizacion_grados": null
+    },
+    {
+     "capa": 24,
+     "periodo": "2020–2022",
+     "nombre_archivo": "ideam_24_nina_2020_2022.geojson",
+     "poligonos": 4,
+     "generalizacion_grados": 5e-05
+    },
+    {
+     "capa": 26,
+     "periodo": "2000",
+     "nombre_archivo": "ideam_26_nina_2000_v2.geojson",
+     "poligonos": 8,
+     "generalizacion_grados": null
+    },
+    {
+     "capa": 27,
+     "periodo": "2012",
+     "nombre_archivo": "ideam_27_nina_2012_v2.geojson",
+     "poligonos": 1,
+     "generalizacion_grados": null
+    }
+   ],
+   "capas_vacias": [
+    25
+   ],
+   "capas_faltantes": []
+  },
+  "licencia": "El servicio ArcGIS Amenaza_Ambiental no declara licencia (copyrightText vacío en el servicio y en sus capas). Las áreas afectadas por La Niña 1988, 2000, 2011 y 2012 las publica también el IDEAM en datos.gov.co con licencia CC BY-SA 4.0 (conjuntos khg6-9h39, 5p6w-58v3, 6eu7-pzc5 y nufr-59j5; licencia verificada en el catálogo de datos.gov.co el 2026-10-01) y la advertencia, verificada en 6eu7-pzc5 (La Niña 2011), de que «no han sido validados por el IDEAM». La amenaza por creciente súbita TR 50 y La Niña 2016 y 2020–2022 no aparecieron en la búsqueda del catálogo de datos.gov.co (2026-10-01). No se copian polígonos del IDEAM: solo se publican estadísticas derivadas, con atribución al IDEAM; las que derivan de las capas CC BY-SA (ideam_nina_observada, ideam_evidencia_oficial y sus variantes) se comparten con la misma licencia CC BY-SA 4.0 (criterio prudente del proyecto)."
+ },
+ "ndvi_sentinel2_cabecera_por_anio": {
+  "valores": {
+   "2024": {
+    "mediana_de_las_fechas": 0.334,
+    "fechas": 67
+   },
+   "2025": {
+    "mediana_de_las_fechas": 0.363,
+    "fechas": 63
+   }
+  },
+  "fuente": "datos/series/sentinel2.json → serie (ndvi_mediana_cabecera por adquisición; cabecera según el producto sentinel2)",
+  "nota": "Mediana de las medianas por fecha de cada año; las fechas no se reparten igual entre meses, así que es indicativo."
+ },
+ "cabecera": {
+  "id": "cabecera",
+  "nombre": "Cabecera (Comunas 1–7 + Zaragoza)",
+  "fuente_geometria": "unión de las 8 zonas",
+  "celdas": 20816,
+  "area_km2": 15.959,
+  "poblacion": 139554.0,
+  "densidad_hab_km2": 8744.0,
+  "densidad_sobre_area_construida_hab_km2": 16974.0,
+  "lst_media": 38.73,
+  "lst_p90": 42.85,
+  "lst_media_pob": 41.1,
+  "pct_area_calor_extremo": 10.0,
+  "poblacion_calor_extremo": 25768.0,
+  "pct_poblacion_calor_extremo": 18.5,
+  "ndvi_medio": 0.401,
+  "ndvi_medio_pob": 0.195,
+  "arbolado_pct": 21.5,
+  "arbolado_pct_pob": 5.4,
+  "construido_pct": 51.5,
+  "construido_pct_pob": 92.6,
+  "agua_pct": 0.06,
+  "m2_arbolado_por_hab": 24.6,
+  "pct_poblacion_sin_verde_300m": 65.3,
+  "poblacion_sin_verde_300m": 91084.0,
+  "pct_poblacion_sin_verde_300m_umbral_025ha": 57.6,
+  "distancia_verde_mediana_pob_m": 407.0,
+  "poblacion_susceptibilidad_alta": 172.0,
+  "poblacion_susceptibilidad_media": 34679.0,
+  "pct_poblacion_susceptibilidad_alta": 0.12,
+  "pct_poblacion_susceptibilidad_media": 24.8,
+  "pct_area_susceptibilidad_alta": 0.23,
+  "pct_area_susceptibilidad_media": 26.8,
+  "trafico_medio": 25.7,
+  "trafico_medio_pob": 32.9,
+  "poblacion_trafico_alto": 8374.0,
+  "pct_poblacion_trafico_alto": 6.0,
+  "pct_poblacion_trafico_ge_50": 12.7,
+  "contraste_ideam_creciente_subita_tr50": {
+   "poblacion_amenaza_alta": 3932.0,
+   "poblacion_amenaza_media": 5614.0,
+   "pct_poblacion_amenaza_alta": 2.82,
+   "area_amenaza_alta_ha": 39.25,
+   "poblacion_amenaza_alta_en_clase_hand_0_o_1": 853.0,
+   "distancia_mediana_amenaza_alta_al_eje_la_vieja_km": 0.14
+  },
+  "ideam_nina_observada": {
+   "poblacion": 12782.0,
+   "pct_poblacion": 9.16,
+   "area_ha": 317.25,
+   "pct_area": 19.88,
+   "poblacion_por_periodo": {
+    "1988": 6675.0,
+    "2000": 309.0,
+    "2011": 6488.0,
+    "2012": 269.0,
+    "2016": 0.0,
+    "2020–2022": 109.0
+   },
+   "poblacion_afectada_en_2_o_mas_periodos": 480.0,
+   "poblacion_solo_en_la_mancha_2011": 6009.0,
+   "sensibilidad_borde_55m": {
+    "mancha_reducida": 7712.0,
+    "mancha_ampliada": 21412.0
+   },
+   "poblacion_por_clase_hand": {
+    "3": 59.0,
+    "2": 2394.0,
+    "1": 8498.0,
+    "0": 1830.0
+   },
+   "distancia_mediana_a_los_rios_km": {
+    "la_vieja": {
+     "por_celda": 1.75,
+     "ponderada_por_poblacion": 1.41
+    },
+    "cauca": {
+     "por_celda": 3.17,
+     "ponderada_por_poblacion": 2.9
+    }
+   }
+  },
+  "ideam_evidencia_oficial": {
+   "definicion": "amenaza ALTA por creciente súbita TR 50 (IDEAM; corrientes de la cuenca directa del río La Vieja) ∪ área afectada por La Niña 1988–2022 (IDEAM)",
+   "poblacion": 16553.0,
+   "pct_poblacion": 11.86,
+   "area_ha": 353.05,
+   "sensibilidad_borde_55m": {
+    "con_nina_reducida": 11624.0,
+    "con_nina_ampliada": 24098.0
+   },
+   "sin_2011": {
+    "definicion": "igual, pero sin las capas La Niña 2011 (8 y 22), cuya parte urbana no es coherente con el relieve (ver indicadores.json → coherencia_topografica_nina)",
+    "poblacion": 10545.0,
+    "pct_poblacion": 7.56,
+    "area_ha": 207.0
+   }
+  },
+  "poblacion_evidencia_inundacion_ideam": 16553.0,
+  "pct_poblacion_evidencia_inundacion_ideam": 11.86,
+  "poblacion_evidencia_inundacion_ideam_sin_2011": 10545.0,
+  "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 7.56,
+  "lst_anomalia": 0.0,
+  "lst_anomalia_pob": 0.0,
+  "area_poligono_km2": 15.959,
+  "verde_publico_osm_m2": 232371.0,
+  "m2_verde_publico_por_hab": 1.67,
+  "equipamientos": {
+   "por_categoria": {
+    "educacion": 22,
+    "salud": 7,
+    "cuidado": 1,
+    "emergencia_gobierno": 4,
+    "total": 34
+   },
+   "expuestos": {
+    "calor_extremo": {
+     "educacion": 2,
+     "salud": 2,
+     "cuidado": 0,
+     "emergencia_gobierno": 0,
+     "total": 4
+    },
+    "susceptibilidad_alta": {
+     "educacion": 0,
+     "salud": 0,
+     "cuidado": 0,
+     "emergencia_gobierno": 0,
+     "total": 0
+    },
+    "a_mas_de_300m_de_verde": {
+     "educacion": 9,
+     "salud": 3,
+     "cuidado": 1,
+     "emergencia_gobierno": 2,
+     "total": 15
+    },
+    "trafico_alto": {
+     "educacion": 1,
+     "salud": 0,
+     "cuidado": 0,
+     "emergencia_gobierno": 2,
+     "total": 3
+    },
+    "amenaza_alta_ideam_contraste": {
+     "educacion": 0,
+     "salud": 0,
+     "cuidado": 0,
+     "emergencia_gobierno": 1,
+     "total": 1
+    },
+    "area_afectada_nina_ideam": {
+     "educacion": 2,
+     "salud": 1,
+     "cuidado": 0,
+     "emergencia_gobierno": 0,
+     "total": 3
+    },
+    "calor_extremo_en_umbral": {
+     "educacion": 1,
+     "salud": 2,
+     "cuidado": 0,
+     "emergencia_gobierno": 0,
+     "total": 3
+    }
+   }
+  },
+  "tendencia_lst_c_decada": 0.67,
+  "tendencia_lst_significativa": false,
+  "tendencia_lst_ic95": [
+   -3.01,
+   4.45
+  ],
+  "tendencia_lst": {
+   "tramo_principal": "2013_2025_landsat_8_9",
+   "por_tramo": {
+    "2013_2025_landsat_8_9": {
+     "sen_por_decada": 0.67,
+     "ic95_sen": [
+      -3.01,
+      4.45
+     ],
+     "mann_kendall_p": 0.8577,
+     "n_anios": 13,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": false
+    },
+    "2013_2023_sin_cambio_geos_it": {
+     "sen_por_decada": -0.95,
+     "ic95_sen": [
+      -4.477,
+      4.45
+     ],
+     "mann_kendall_p": 0.7612,
+     "n_anios": 11,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+     ],
+     "significativa": false
+    },
+    "2000_2012_landsat_5_7": {
+     "sen_por_decada": 1.565,
+     "ic95_sen": [
+      -1.71,
+      4.565
+     ],
+     "mann_kendall_p": 0.2496,
+     "n_anios": 12,
+     "anios": [
+      2000,
+      2001,
+      2002,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012
+     ],
+     "significativa": false
+    },
+    "2000_2025_sin_armonizar": {
+     "sen_por_decada": 1.451,
+     "ic95_sen": [
+      0.441,
+      2.551
+     ],
+     "mann_kendall_p": 0.0114,
+     "n_anios": 25,
+     "anios": [
+      2000,
+      2001,
+      2002,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": true
+    }
+   },
+   "isla_por_tramo": {
+    "2013_2025_landsat_8_9": {
+     "sen_por_decada": 0.623,
+     "ic95_sen": [
+      -0.394,
+      1.565
+     ],
+     "mann_kendall_p": 0.1635,
+     "n_anios": 13,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": false
+    },
+    "2013_2023_sin_cambio_geos_it": {
+     "sen_por_decada": 0.057,
+     "ic95_sen": [
+      -1.24,
+      1.565
+     ],
+     "mann_kendall_p": 1.0,
+     "n_anios": 11,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+     ],
+     "significativa": false
+    },
+    "2000_2012_landsat_5_7": {
+     "sen_por_decada": 0.457,
+     "ic95_sen": [
+      -0.416,
+      1.169
+     ],
+     "mann_kendall_p": 0.1526,
+     "n_anios": 12,
+     "anios": [
+      2000,
+      2001,
+      2002,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012
+     ],
+     "significativa": false
+    },
+    "2000_2025_sin_armonizar": {
+     "sen_por_decada": 0.908,
+     "ic95_sen": [
+      0.641,
+      1.172
+     ],
+     "mann_kendall_p": 0.0,
+     "n_anios": 25,
+     "anios": [
+      2000,
+      2001,
+      2002,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": true
+    }
+   },
+   "variantes_2013_2025": {
+    "variantes": {
+     "mediana": {
+      "sen_por_decada": 0.67,
+      "ic95_sen": [
+       -3.01,
+       4.45
+      ],
+      "mann_kendall_p": 0.8577,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "media": {
+      "sen_por_decada": 0.552,
+      "ic95_sen": [
+       -3.1,
+       4.002
+      ],
+      "mann_kendall_p": 0.8577,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "nucleo_construido": {
+      "sen_por_decada": 0.489,
+      "ic95_sen": [
+       -2.79,
+       3.63
+      ],
+      "mann_kendall_p": 0.6754,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     }
+    },
+    "resumen": {
+     "sen_min": 0.489,
+     "sen_max": 0.67,
+     "variantes_significativas": [],
+     "n_variantes": 3,
+     "robusta": true,
+     "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,49 y +0,67 °C/década)."
+    }
+   }
+  },
+  "lectura_tendencia_lst": "LST 2013-2025 (Landsat 8/9): Sen +0,67 °C/década (IC 95 % -3,01 a +4,45; Mann-Kendall p = 0,86): sin tendencia detectable. Diferencia con el campo: +0,62 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,45 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,49 y +0,67 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,101 y -0,051 NDVI/década).",
+  "tendencia_ndvi_landsat_por_decada": -0.101,
+  "tendencia_ndvi_landsat": {
+   "sen_por_decada": -0.101,
+   "ic95_sen": [
+    -0.138,
+    -0.062
+   ],
+   "mann_kendall_p": 0.0001,
+   "n_anios": 13,
+   "anios": [
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "significativa": true
+  },
+  "tendencia_ndvi_landsat_variantes_2013_2025": {
+   "variantes": {
+    "mediana": {
+     "sen_por_decada": -0.101,
+     "ic95_sen": [
+      -0.138,
+      -0.062
+     ],
+     "mann_kendall_p": 0.0001,
+     "n_anios": 13,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": true
+    },
+    "media": {
+     "sen_por_decada": -0.051,
+     "ic95_sen": [
+      -0.086,
+      -0.015
+     ],
+     "mann_kendall_p": 0.0027,
+     "n_anios": 13,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": true
+    },
+    "nucleo_construido": {
+     "sen_por_decada": -0.055,
+     "ic95_sen": [
+      -0.07,
+      -0.035
+     ],
+     "mann_kendall_p": 0.0001,
+     "n_anios": 13,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": true
+    }
+   },
+   "resumen": {
+    "sen_min": -0.101,
+    "sen_max": -0.051,
+    "variantes_significativas": [
+     "mediana",
+     "media",
+     "nucleo_construido"
+    ],
+    "n_variantes": 3,
+    "robusta": true,
+    "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,101 y -0,051 NDVI/década)."
+   }
+  }
+ },
+ "zonas": [
+  {
+   "id": "c1",
+   "nombre": "Comuna 1",
+   "fuente_geometria": "OpenStreetMap",
+   "celdas": 1686,
+   "area_km2": 1.293,
+   "poblacion": 22039.0,
+   "densidad_hab_km2": 17050.0,
+   "densidad_sobre_area_construida_hab_km2": 22219.0,
+   "lst_media": 40.02,
+   "lst_p90": 42.61,
+   "lst_media_pob": 40.89,
+   "pct_area_calor_extremo": 5.5,
+   "poblacion_calor_extremo": 1111.0,
+   "pct_poblacion_calor_extremo": 5.0,
+   "ndvi_medio": 0.259,
+   "ndvi_medio_pob": 0.179,
+   "arbolado_pct": 15.5,
+   "arbolado_pct_pob": 5.7,
+   "construido_pct": 76.7,
+   "construido_pct_pob": 93.8,
+   "agua_pct": 0.28,
+   "m2_arbolado_por_hab": 9.1,
+   "pct_poblacion_sin_verde_300m": 75.3,
+   "poblacion_sin_verde_300m": 16600.0,
+   "pct_poblacion_sin_verde_300m_umbral_025ha": 75.3,
+   "distancia_verde_mediana_pob_m": 453.0,
+   "poblacion_susceptibilidad_alta": 163.0,
+   "poblacion_susceptibilidad_media": 3282.0,
+   "pct_poblacion_susceptibilidad_alta": 0.74,
+   "pct_poblacion_susceptibilidad_media": 14.9,
+   "pct_area_susceptibilidad_alta": 1.07,
+   "pct_area_susceptibilidad_media": 13.6,
+   "trafico_medio": 40.5,
+   "trafico_medio_pob": 36.5,
+   "poblacion_trafico_alto": 3901.0,
+   "pct_poblacion_trafico_alto": 17.7,
+   "pct_poblacion_trafico_ge_50": 22.2,
+   "contraste_ideam_creciente_subita_tr50": {
+    "poblacion_amenaza_alta": 3199.0,
+    "poblacion_amenaza_media": 2253.0,
+    "pct_poblacion_amenaza_alta": 14.51,
+    "area_amenaza_alta_ha": 15.79,
+    "poblacion_amenaza_alta_en_clase_hand_0_o_1": 388.0,
+    "distancia_mediana_amenaza_alta_al_eje_la_vieja_km": 0.08
+   },
+   "ideam_nina_observada": {
+    "poblacion": 113.0,
+    "pct_poblacion": 0.51,
+    "area_ha": 1.23,
+    "pct_area": 0.95,
+    "poblacion_por_periodo": {
+     "1988": 67.0,
+     "2000": 67.0,
+     "2011": 67.0,
+     "2012": 67.0,
+     "2016": 0.0,
+     "2020–2022": 45.0
+    },
+    "poblacion_afectada_en_2_o_mas_periodos": 67.0,
+    "poblacion_solo_en_la_mancha_2011": 0.0,
+    "sensibilidad_borde_55m": {
+     "mancha_reducida": 0.0,
+     "mancha_ampliada": 1251.0
+    },
+    "poblacion_por_clase_hand": {
+     "3": 59.0,
+     "2": 54.0,
+     "1": 0.0,
+     "0": 0.0
+    },
+    "distancia_mediana_a_los_rios_km": {
+     "la_vieja": {
+      "por_celda": 0.03,
+      "ponderada_por_poblacion": 0.03
+     },
+     "cauca": {
+      "por_celda": 6.37,
+      "ponderada_por_poblacion": 6.38
+     }
+    }
+   },
+   "ideam_evidencia_oficial": {
+    "definicion": "amenaza ALTA por creciente súbita TR 50 (IDEAM; corrientes de la cuenca directa del río La Vieja) ∪ área afectada por La Niña 1988–2022 (IDEAM)",
+    "poblacion": 3199.0,
+    "pct_poblacion": 14.51,
+    "area_ha": 15.79,
+    "sensibilidad_borde_55m": {
+     "con_nina_reducida": 3199.0,
+     "con_nina_ampliada": 3291.0
+    },
+    "sin_2011": {
+     "definicion": "igual, pero sin las capas La Niña 2011 (8 y 22), cuya parte urbana no es coherente con el relieve (ver indicadores.json → coherencia_topografica_nina)",
+     "poblacion": 3199.0,
+     "pct_poblacion": 14.51,
+     "area_ha": 15.79
+    }
+   },
+   "poblacion_evidencia_inundacion_ideam": 3199.0,
+   "pct_poblacion_evidencia_inundacion_ideam": 14.51,
+   "poblacion_evidencia_inundacion_ideam_sin_2011": 3199.0,
+   "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 14.51,
+   "lst_anomalia": 1.29,
+   "lst_anomalia_pob": -0.21,
+   "area_poligono_km2": 1.293,
+   "verde_publico_osm_m2": 5214.0,
+   "m2_verde_publico_por_hab": 0.24,
+   "equipamientos": {
+    "por_categoria": {
+     "educacion": 2,
+     "salud": 2,
+     "cuidado": 0,
+     "emergencia_gobierno": 1,
+     "total": 5
+    },
+    "expuestos": {
+     "calor_extremo": {
+      "educacion": 0,
+      "salud": 1,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 1
+     },
+     "susceptibilidad_alta": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "a_mas_de_300m_de_verde": {
+      "educacion": 1,
+      "salud": 2,
+      "cuidado": 0,
+      "emergencia_gobierno": 1,
+      "total": 4
+     },
+     "trafico_alto": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 1,
+      "total": 1
+     },
+     "amenaza_alta_ideam_contraste": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 1,
+      "total": 1
+     },
+     "area_afectada_nina_ideam": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "calor_extremo_en_umbral": {
+      "educacion": 0,
+      "salud": 1,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 1
+     }
+    }
+   },
+   "tendencia_lst_c_decada": 0.004,
+   "tendencia_lst_significativa": false,
+   "tendencia_lst_ic95": [
+    -3.427,
+    2.977
+   ],
+   "tendencia_lst": {
+    "tramo_principal": "2013_2025_landsat_8_9",
+    "por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.004,
+      "ic95_sen": [
+       -3.427,
+       2.977
+      ],
+      "mann_kendall_p": 0.9524,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -1.803,
+      "ic95_sen": [
+       -6.08,
+       4.122
+      ],
+      "mann_kendall_p": 0.6481,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.639,
+      "ic95_sen": [
+       -1.087,
+       5.12
+      ],
+      "mann_kendall_p": 0.2496,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.542,
+      "ic95_sen": [
+       0.507,
+       2.678
+      ],
+      "mann_kendall_p": 0.0034,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla_por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.368,
+      "ic95_sen": [
+       -1.765,
+       1.85
+      ],
+      "mann_kendall_p": 0.5098,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.003,
+      "ic95_sen": [
+       -3.658,
+       2.175
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.868,
+      "ic95_sen": [
+       -1.143,
+       2.778
+      ],
+      "mann_kendall_p": 0.3108,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.949,
+      "ic95_sen": [
+       0.441,
+       1.47
+      ],
+      "mann_kendall_p": 0.0005,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "variantes_2013_2025": {
+     "variantes": {
+      "mediana": {
+       "sen_por_decada": 0.004,
+       "ic95_sen": [
+        -3.427,
+        2.977
+       ],
+       "mann_kendall_p": 0.9524,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "media": {
+       "sen_por_decada": -0.191,
+       "ic95_sen": [
+        -3.359,
+        2.805
+       ],
+       "mann_kendall_p": 0.8577,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "nucleo_construido": {
+       "sen_por_decada": -0.319,
+       "ic95_sen": [
+        -3.593,
+        2.555
+       ],
+       "mann_kendall_p": 0.765,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      }
+     },
+     "resumen": {
+      "sen_min": -0.319,
+      "sen_max": 0.004,
+      "variantes_significativas": [],
+      "n_variantes": 3,
+      "robusta": true,
+      "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,32 y 0,00 °C/década)."
+     }
+    }
+   },
+   "lectura_tendencia_lst": "LST 2013-2025 (Landsat 8/9): Sen 0,00 °C/década (IC 95 % -3,43 a +2,98; Mann-Kendall p = 0,95): sin tendencia detectable. Diferencia con el campo: +0,37 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,54 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,32 y 0,00 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,065 y -0,049 NDVI/década).",
+   "tendencia_ndvi_landsat_por_decada": -0.065,
+   "tendencia_ndvi_landsat": {
+    "sen_por_decada": -0.065,
+    "ic95_sen": [
+     -0.101,
+     -0.046
+    ],
+    "mann_kendall_p": 0.0001,
+    "n_anios": 13,
+    "anios": [
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "significativa": true
+   },
+   "tendencia_ndvi_landsat_variantes_2013_2025": {
+    "variantes": {
+     "mediana": {
+      "sen_por_decada": -0.065,
+      "ic95_sen": [
+       -0.101,
+       -0.046
+      ],
+      "mann_kendall_p": 0.0001,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "media": {
+      "sen_por_decada": -0.05,
+      "ic95_sen": [
+       -0.081,
+       -0.019
+      ],
+      "mann_kendall_p": 0.0027,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "nucleo_construido": {
+      "sen_por_decada": -0.049,
+      "ic95_sen": [
+       -0.069,
+       -0.025
+      ],
+      "mann_kendall_p": 0.0009,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "resumen": {
+     "sen_min": -0.065,
+     "sen_max": -0.049,
+     "variantes_significativas": [
+      "mediana",
+      "media",
+      "nucleo_construido"
+     ],
+     "n_variantes": 3,
+     "robusta": true,
+     "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,065 y -0,049 NDVI/década)."
+    }
+   }
+  },
+  {
+   "id": "c2",
+   "nombre": "Comuna 2",
+   "fuente_geometria": "OpenStreetMap",
+   "celdas": 1277,
+   "area_km2": 0.979,
+   "poblacion": 14237.0,
+   "densidad_hab_km2": 14542.0,
+   "densidad_sobre_area_construida_hab_km2": 20046.0,
+   "lst_media": 39.97,
+   "lst_p90": 42.84,
+   "lst_media_pob": 41.48,
+   "pct_area_calor_extremo": 9.9,
+   "poblacion_calor_extremo": 2423.0,
+   "pct_poblacion_calor_extremo": 17.0,
+   "ndvi_medio": 0.318,
+   "ndvi_medio_pob": 0.192,
+   "arbolado_pct": 14.9,
+   "arbolado_pct_pob": 4.9,
+   "construido_pct": 72.5,
+   "construido_pct_pob": 95.1,
+   "agua_pct": 0.0,
+   "m2_arbolado_por_hab": 10.3,
+   "pct_poblacion_sin_verde_300m": 99.7,
+   "poblacion_sin_verde_300m": 14193.0,
+   "pct_poblacion_sin_verde_300m_umbral_025ha": 57.6,
+   "distancia_verde_mediana_pob_m": 671.0,
+   "poblacion_susceptibilidad_alta": 0.0,
+   "poblacion_susceptibilidad_media": 5512.0,
+   "pct_poblacion_susceptibilidad_alta": 0.0,
+   "pct_poblacion_susceptibilidad_media": 38.7,
+   "pct_area_susceptibilidad_alta": 0.0,
+   "pct_area_susceptibilidad_media": 29.7,
+   "trafico_medio": 35.4,
+   "trafico_medio_pob": 31.9,
+   "poblacion_trafico_alto": 1012.0,
+   "pct_poblacion_trafico_alto": 7.1,
+   "pct_poblacion_trafico_ge_50": 11.3,
+   "contraste_ideam_creciente_subita_tr50": {
+    "poblacion_amenaza_alta": 0.0,
+    "poblacion_amenaza_media": 0.0,
+    "pct_poblacion_amenaza_alta": 0.0,
+    "area_amenaza_alta_ha": 0.0,
+    "poblacion_amenaza_alta_en_clase_hand_0_o_1": 0.0,
+    "distancia_mediana_amenaza_alta_al_eje_la_vieja_km": null
+   },
+   "ideam_nina_observada": {
+    "poblacion": 0.0,
+    "pct_poblacion": 0.0,
+    "area_ha": 0.0,
+    "pct_area": 0.0,
+    "poblacion_por_periodo": {
+     "1988": 0.0,
+     "2000": 0.0,
+     "2011": 0.0,
+     "2012": 0.0,
+     "2016": 0.0,
+     "2020–2022": 0.0
+    },
+    "poblacion_afectada_en_2_o_mas_periodos": 0.0,
+    "poblacion_solo_en_la_mancha_2011": 0.0,
+    "sensibilidad_borde_55m": {
+     "mancha_reducida": 0.0,
+     "mancha_ampliada": 0.0
+    },
+    "poblacion_por_clase_hand": {
+     "3": 0.0,
+     "2": 0.0,
+     "1": 0.0,
+     "0": 0.0
+    },
+    "distancia_mediana_a_los_rios_km": {
+     "la_vieja": {
+      "por_celda": null,
+      "ponderada_por_poblacion": null
+     },
+     "cauca": {
+      "por_celda": null,
+      "ponderada_por_poblacion": null
+     }
+    }
+   },
+   "ideam_evidencia_oficial": {
+    "definicion": "amenaza ALTA por creciente súbita TR 50 (IDEAM; corrientes de la cuenca directa del río La Vieja) ∪ área afectada por La Niña 1988–2022 (IDEAM)",
+    "poblacion": 0.0,
+    "pct_poblacion": 0.0,
+    "area_ha": 0.0,
+    "sensibilidad_borde_55m": {
+     "con_nina_reducida": 0.0,
+     "con_nina_ampliada": 0.0
+    },
+    "sin_2011": {
+     "definicion": "igual, pero sin las capas La Niña 2011 (8 y 22), cuya parte urbana no es coherente con el relieve (ver indicadores.json → coherencia_topografica_nina)",
+     "poblacion": 0.0,
+     "pct_poblacion": 0.0,
+     "area_ha": 0.0
+    }
+   },
+   "poblacion_evidencia_inundacion_ideam": 0.0,
+   "pct_poblacion_evidencia_inundacion_ideam": 0.0,
+   "poblacion_evidencia_inundacion_ideam_sin_2011": 0.0,
+   "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 0.0,
+   "lst_anomalia": 1.24,
+   "lst_anomalia_pob": 0.38,
+   "area_poligono_km2": 0.976,
+   "verde_publico_osm_m2": 2968.0,
+   "m2_verde_publico_por_hab": 0.21,
+   "equipamientos": {
+    "por_categoria": {
+     "educacion": 1,
+     "salud": 0,
+     "cuidado": 0,
+     "emergencia_gobierno": 1,
+     "total": 2
+    },
+    "expuestos": {
+     "calor_extremo": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "susceptibilidad_alta": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "a_mas_de_300m_de_verde": {
+      "educacion": 1,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 1,
+      "total": 2
+     },
+     "trafico_alto": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "amenaza_alta_ideam_contraste": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "area_afectada_nina_ideam": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "calor_extremo_en_umbral": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     }
+    }
+   },
+   "tendencia_lst_c_decada": -0.499,
+   "tendencia_lst_significativa": false,
+   "tendencia_lst_ic95": [
+    -3.473,
+    2.264
+   ],
+   "tendencia_lst": {
+    "tramo_principal": "2013_2025_landsat_8_9",
+    "por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.499,
+      "ic95_sen": [
+       -3.473,
+       2.264
+      ],
+      "mann_kendall_p": 0.6754,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -1.52,
+      "ic95_sen": [
+       -5.603,
+       1.633
+      ],
+      "mann_kendall_p": 0.3587,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.247,
+      "ic95_sen": [
+       -1.713,
+       4.027
+      ],
+      "mann_kendall_p": 0.3807,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.321,
+      "ic95_sen": [
+       0.258,
+       2.366
+      ],
+      "mann_kendall_p": 0.0196,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla_por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.071,
+      "ic95_sen": [
+       -1.943,
+       2.185
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.595,
+      "ic95_sen": [
+       -3.938,
+       2.016
+      ],
+      "mann_kendall_p": 0.5423,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.137,
+      "ic95_sen": [
+       -1.15,
+       1.85
+      ],
+      "mann_kendall_p": 0.9466,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.744,
+      "ic95_sen": [
+       0.168,
+       1.263
+      ],
+      "mann_kendall_p": 0.0131,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "variantes_2013_2025": {
+     "variantes": {
+      "mediana": {
+       "sen_por_decada": -0.499,
+       "ic95_sen": [
+        -3.473,
+        2.264
+       ],
+       "mann_kendall_p": 0.6754,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "media": {
+       "sen_por_decada": -0.538,
+       "ic95_sen": [
+        -3.264,
+        2.115
+       ],
+       "mann_kendall_p": 0.8577,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "nucleo_construido": {
+       "sen_por_decada": -0.494,
+       "ic95_sen": [
+        -3.095,
+        2.54
+       ],
+       "mann_kendall_p": 0.8577,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      }
+     },
+     "resumen": {
+      "sen_min": -0.538,
+      "sen_max": -0.494,
+      "variantes_significativas": [],
+      "n_variantes": 3,
+      "robusta": true,
+      "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,54 y -0,49 °C/década)."
+     }
+    }
+   },
+   "lectura_tendencia_lst": "LST 2013-2025 (Landsat 8/9): Sen -0,50 °C/década (IC 95 % -3,47 a +2,26; Mann-Kendall p = 0,68): sin tendencia detectable. Diferencia con el campo: +0,07 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,32 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,54 y -0,49 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,064 y -0,042 NDVI/década).",
+   "tendencia_ndvi_landsat_por_decada": -0.064,
+   "tendencia_ndvi_landsat": {
+    "sen_por_decada": -0.064,
+    "ic95_sen": [
+     -0.079,
+     -0.041
+    ],
+    "mann_kendall_p": 0.0001,
+    "n_anios": 13,
+    "anios": [
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "significativa": true
+   },
+   "tendencia_ndvi_landsat_variantes_2013_2025": {
+    "variantes": {
+     "mediana": {
+      "sen_por_decada": -0.064,
+      "ic95_sen": [
+       -0.079,
+       -0.041
+      ],
+      "mann_kendall_p": 0.0001,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "media": {
+      "sen_por_decada": -0.042,
+      "ic95_sen": [
+       -0.082,
+       -0.01
+      ],
+      "mann_kendall_p": 0.0216,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "nucleo_construido": {
+      "sen_por_decada": -0.051,
+      "ic95_sen": [
+       -0.064,
+       -0.029
+      ],
+      "mann_kendall_p": 0.0009,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "resumen": {
+     "sen_min": -0.064,
+     "sen_max": -0.042,
+     "variantes_significativas": [
+      "mediana",
+      "media",
+      "nucleo_construido"
+     ],
+     "n_variantes": 3,
+     "robusta": true,
+     "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,064 y -0,042 NDVI/década)."
+    }
+   }
+  },
+  {
+   "id": "c3",
+   "nombre": "Comuna 3",
+   "fuente_geometria": "OpenStreetMap",
+   "celdas": 1530,
+   "area_km2": 1.173,
+   "poblacion": 14308.0,
+   "densidad_hab_km2": 12197.0,
+   "densidad_sobre_area_construida_hab_km2": 20221.0,
+   "lst_media": 38.45,
+   "lst_p90": 41.34,
+   "lst_media_pob": 39.33,
+   "pct_area_calor_extremo": 2.0,
+   "poblacion_calor_extremo": 429.0,
+   "pct_poblacion_calor_extremo": 3.0,
+   "ndvi_medio": 0.354,
+   "ndvi_medio_pob": 0.217,
+   "arbolado_pct": 29.6,
+   "arbolado_pct_pob": 8.7,
+   "construido_pct": 60.3,
+   "construido_pct_pob": 90.2,
+   "agua_pct": 0.42,
+   "m2_arbolado_por_hab": 24.3,
+   "pct_poblacion_sin_verde_300m": 99.3,
+   "poblacion_sin_verde_300m": 14210.0,
+   "pct_poblacion_sin_verde_300m_umbral_025ha": 98.9,
+   "distancia_verde_mediana_pob_m": 1225.0,
+   "poblacion_susceptibilidad_alta": 0.0,
+   "poblacion_susceptibilidad_media": 641.0,
+   "pct_poblacion_susceptibilidad_alta": 0.0,
+   "pct_poblacion_susceptibilidad_media": 4.5,
+   "pct_area_susceptibilidad_alta": 0.0,
+   "pct_area_susceptibilidad_media": 6.5,
+   "trafico_medio": 27.9,
+   "trafico_medio_pob": 28.0,
+   "poblacion_trafico_alto": 345.0,
+   "pct_poblacion_trafico_alto": 2.4,
+   "pct_poblacion_trafico_ge_50": 5.5,
+   "contraste_ideam_creciente_subita_tr50": {
+    "poblacion_amenaza_alta": 8.0,
+    "poblacion_amenaza_media": 38.0,
+    "pct_poblacion_amenaza_alta": 0.06,
+    "area_amenaza_alta_ha": 0.84,
+    "poblacion_amenaza_alta_en_clase_hand_0_o_1": 8.0,
+    "distancia_mediana_amenaza_alta_al_eje_la_vieja_km": 2.57
+   },
+   "ideam_nina_observada": {
+    "poblacion": 0.0,
+    "pct_poblacion": 0.0,
+    "area_ha": 0.0,
+    "pct_area": 0.0,
+    "poblacion_por_periodo": {
+     "1988": 0.0,
+     "2000": 0.0,
+     "2011": 0.0,
+     "2012": 0.0,
+     "2016": 0.0,
+     "2020–2022": 0.0
+    },
+    "poblacion_afectada_en_2_o_mas_periodos": 0.0,
+    "poblacion_solo_en_la_mancha_2011": 0.0,
+    "sensibilidad_borde_55m": {
+     "mancha_reducida": 0.0,
+     "mancha_ampliada": 0.0
+    },
+    "poblacion_por_clase_hand": {
+     "3": 0.0,
+     "2": 0.0,
+     "1": 0.0,
+     "0": 0.0
+    },
+    "distancia_mediana_a_los_rios_km": {
+     "la_vieja": {
+      "por_celda": null,
+      "ponderada_por_poblacion": null
+     },
+     "cauca": {
+      "por_celda": null,
+      "ponderada_por_poblacion": null
+     }
+    }
+   },
+   "ideam_evidencia_oficial": {
+    "definicion": "amenaza ALTA por creciente súbita TR 50 (IDEAM; corrientes de la cuenca directa del río La Vieja) ∪ área afectada por La Niña 1988–2022 (IDEAM)",
+    "poblacion": 8.0,
+    "pct_poblacion": 0.06,
+    "area_ha": 0.84,
+    "sensibilidad_borde_55m": {
+     "con_nina_reducida": 8.0,
+     "con_nina_ampliada": 8.0
+    },
+    "sin_2011": {
+     "definicion": "igual, pero sin las capas La Niña 2011 (8 y 22), cuya parte urbana no es coherente con el relieve (ver indicadores.json → coherencia_topografica_nina)",
+     "poblacion": 8.0,
+     "pct_poblacion": 0.06,
+     "area_ha": 0.84
+    }
+   },
+   "poblacion_evidencia_inundacion_ideam": 8.0,
+   "pct_poblacion_evidencia_inundacion_ideam": 0.06,
+   "poblacion_evidencia_inundacion_ideam_sin_2011": 8.0,
+   "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 0.06,
+   "lst_anomalia": -0.28,
+   "lst_anomalia_pob": -1.77,
+   "area_poligono_km2": 1.173,
+   "verde_publico_osm_m2": 0.0,
+   "m2_verde_publico_por_hab": 0.0,
+   "equipamientos": {
+    "por_categoria": {
+     "educacion": 1,
+     "salud": 0,
+     "cuidado": 0,
+     "emergencia_gobierno": 0,
+     "total": 1
+    },
+    "expuestos": {
+     "calor_extremo": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "susceptibilidad_alta": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "a_mas_de_300m_de_verde": {
+      "educacion": 1,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 1
+     },
+     "trafico_alto": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "amenaza_alta_ideam_contraste": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "area_afectada_nina_ideam": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "calor_extremo_en_umbral": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     }
+    }
+   },
+   "tendencia_lst_c_decada": -0.476,
+   "tendencia_lst_significativa": false,
+   "tendencia_lst_ic95": [
+    -2.84,
+    2.653
+   ],
+   "tendencia_lst": {
+    "tramo_principal": "2013_2025_landsat_8_9",
+    "por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.476,
+      "ic95_sen": [
+       -2.84,
+       2.653
+      ],
+      "mann_kendall_p": 0.6754,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -1.815,
+      "ic95_sen": [
+       -4.736,
+       2.928
+      ],
+      "mann_kendall_p": 0.3587,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.202,
+      "ic95_sen": [
+       -2.138,
+       3.657
+      ],
+      "mann_kendall_p": 0.459,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.374,
+      "ic95_sen": [
+       0.344,
+       2.191
+      ],
+      "mann_kendall_p": 0.0099,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla_por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.341,
+      "ic95_sen": [
+       -2.32,
+       1.162
+      ],
+      "mann_kendall_p": 0.765,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -1.017,
+      "ic95_sen": [
+       -3.103,
+       1.365
+      ],
+      "mann_kendall_p": 0.5423,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.255,
+      "ic95_sen": [
+       -1.21,
+       0.562
+      ],
+      "mann_kendall_p": 0.459,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.601,
+      "ic95_sen": [
+       0.214,
+       1.026
+      ],
+      "mann_kendall_p": 0.0063,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "variantes_2013_2025": {
+     "variantes": {
+      "mediana": {
+       "sen_por_decada": -0.476,
+       "ic95_sen": [
+        -2.84,
+        2.653
+       ],
+       "mann_kendall_p": 0.6754,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "media": {
+       "sen_por_decada": -0.449,
+       "ic95_sen": [
+        -3.036,
+        2.453
+       ],
+       "mann_kendall_p": 0.765,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "nucleo_construido": {
+       "sen_por_decada": -0.76,
+       "ic95_sen": [
+        -3.58,
+        2.206
+       ],
+       "mann_kendall_p": 0.5098,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      }
+     },
+     "resumen": {
+      "sen_min": -0.76,
+      "sen_max": -0.449,
+      "variantes_significativas": [],
+      "n_variantes": 3,
+      "robusta": true,
+      "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,76 y -0,45 °C/década)."
+     }
+    }
+   },
+   "lectura_tendencia_lst": "LST 2013-2025 (Landsat 8/9): Sen -0,48 °C/década (IC 95 % -2,84 a +2,65; Mann-Kendall p = 0,68): sin tendencia detectable. Diferencia con el campo: -0,34 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,37 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,76 y -0,45 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,116 y -0,066 NDVI/década).",
+   "tendencia_ndvi_landsat_por_decada": -0.116,
+   "tendencia_ndvi_landsat": {
+    "sen_por_decada": -0.116,
+    "ic95_sen": [
+     -0.147,
+     -0.084
+    ],
+    "mann_kendall_p": 0.0,
+    "n_anios": 13,
+    "anios": [
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "significativa": true
+   },
+   "tendencia_ndvi_landsat_variantes_2013_2025": {
+    "variantes": {
+     "mediana": {
+      "sen_por_decada": -0.116,
+      "ic95_sen": [
+       -0.147,
+       -0.084
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "media": {
+      "sen_por_decada": -0.078,
+      "ic95_sen": [
+       -0.106,
+       -0.05
+      ],
+      "mann_kendall_p": 0.0003,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "nucleo_construido": {
+      "sen_por_decada": -0.066,
+      "ic95_sen": [
+       -0.09,
+       -0.046
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "resumen": {
+     "sen_min": -0.116,
+     "sen_max": -0.066,
+     "variantes_significativas": [
+      "mediana",
+      "media",
+      "nucleo_construido"
+     ],
+     "n_variantes": 3,
+     "robusta": true,
+     "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,116 y -0,066 NDVI/década)."
+    }
+   }
+  },
+  {
+   "id": "c4",
+   "nombre": "Comuna 4",
+   "fuente_geometria": "OpenStreetMap",
+   "celdas": 2788,
+   "area_km2": 2.138,
+   "poblacion": 21944.0,
+   "densidad_hab_km2": 10266.0,
+   "densidad_sobre_area_construida_hab_km2": 15611.0,
+   "lst_media": 40.3,
+   "lst_p90": 43.44,
+   "lst_media_pob": 41.91,
+   "pct_area_calor_extremo": 24.2,
+   "poblacion_calor_extremo": 7500.0,
+   "pct_poblacion_calor_extremo": 34.2,
+   "ndvi_medio": 0.298,
+   "ndvi_medio_pob": 0.178,
+   "arbolado_pct": 13.5,
+   "arbolado_pct_pob": 2.5,
+   "construido_pct": 65.8,
+   "construido_pct_pob": 95.9,
+   "agua_pct": 0.0,
+   "m2_arbolado_por_hab": 13.1,
+   "pct_poblacion_sin_verde_300m": 49.1,
+   "poblacion_sin_verde_300m": 10784.0,
+   "pct_poblacion_sin_verde_300m_umbral_025ha": 49.1,
+   "distancia_verde_mediana_pob_m": 298.0,
+   "poblacion_susceptibilidad_alta": 0.0,
+   "poblacion_susceptibilidad_media": 6169.0,
+   "pct_poblacion_susceptibilidad_alta": 0.0,
+   "pct_poblacion_susceptibilidad_media": 28.1,
+   "pct_area_susceptibilidad_alta": 0.0,
+   "pct_area_susceptibilidad_media": 32.1,
+   "trafico_medio": 26.4,
+   "trafico_medio_pob": 31.9,
+   "poblacion_trafico_alto": 913.0,
+   "pct_poblacion_trafico_alto": 4.2,
+   "pct_poblacion_trafico_ge_50": 13.6,
+   "contraste_ideam_creciente_subita_tr50": {
+    "poblacion_amenaza_alta": 0.0,
+    "poblacion_amenaza_media": 0.0,
+    "pct_poblacion_amenaza_alta": 0.0,
+    "area_amenaza_alta_ha": 0.0,
+    "poblacion_amenaza_alta_en_clase_hand_0_o_1": 0.0,
+    "distancia_mediana_amenaza_alta_al_eje_la_vieja_km": null
+   },
+   "ideam_nina_observada": {
+    "poblacion": 1299.0,
+    "pct_poblacion": 5.92,
+    "area_ha": 56.35,
+    "pct_area": 26.36,
+    "poblacion_por_periodo": {
+     "1988": 278.0,
+     "2000": 40.0,
+     "2011": 1157.0,
+     "2012": 0.0,
+     "2016": 0.0,
+     "2020–2022": 0.0
+    },
+    "poblacion_afectada_en_2_o_mas_periodos": 146.0,
+    "poblacion_solo_en_la_mancha_2011": 1011.0,
+    "sensibilidad_borde_55m": {
+     "mancha_reducida": 711.0,
+     "mancha_ampliada": 2509.0
+    },
+    "poblacion_por_clase_hand": {
+     "3": 0.0,
+     "2": 1174.0,
+     "1": 122.0,
+     "0": 3.0
+    },
+    "distancia_mediana_a_los_rios_km": {
+     "la_vieja": {
+      "por_celda": 1.99,
+      "ponderada_por_poblacion": 1.63
+     },
+     "cauca": {
+      "por_celda": 6.12,
+      "ponderada_por_poblacion": 6.28
+     }
+    }
+   },
+   "ideam_evidencia_oficial": {
+    "definicion": "amenaza ALTA por creciente súbita TR 50 (IDEAM; corrientes de la cuenca directa del río La Vieja) ∪ área afectada por La Niña 1988–2022 (IDEAM)",
+    "poblacion": 1299.0,
+    "pct_poblacion": 5.92,
+    "area_ha": 56.35,
+    "sensibilidad_borde_55m": {
+     "con_nina_reducida": 711.0,
+     "con_nina_ampliada": 2509.0
+    },
+    "sin_2011": {
+     "definicion": "igual, pero sin las capas La Niña 2011 (8 y 22), cuya parte urbana no es coherente con el relieve (ver indicadores.json → coherencia_topografica_nina)",
+     "poblacion": 288.0,
+     "pct_poblacion": 1.31,
+     "area_ha": 27.83
+    }
+   },
+   "poblacion_evidencia_inundacion_ideam": 1299.0,
+   "pct_poblacion_evidencia_inundacion_ideam": 5.92,
+   "poblacion_evidencia_inundacion_ideam_sin_2011": 288.0,
+   "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 1.31,
+   "lst_anomalia": 1.57,
+   "lst_anomalia_pob": 0.81,
+   "area_poligono_km2": 2.133,
+   "verde_publico_osm_m2": 58919.0,
+   "m2_verde_publico_por_hab": 2.68,
+   "equipamientos": {
+    "por_categoria": {
+     "educacion": 3,
+     "salud": 0,
+     "cuidado": 0,
+     "emergencia_gobierno": 1,
+     "total": 4
+    },
+    "expuestos": {
+     "calor_extremo": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "susceptibilidad_alta": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "a_mas_de_300m_de_verde": {
+      "educacion": 1,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 1
+     },
+     "trafico_alto": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "amenaza_alta_ideam_contraste": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "area_afectada_nina_ideam": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "calor_extremo_en_umbral": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     }
+    }
+   },
+   "tendencia_lst_c_decada": 0.537,
+   "tendencia_lst_significativa": false,
+   "tendencia_lst_ic95": [
+    -2.513,
+    4.307
+   ],
+   "tendencia_lst": {
+    "tramo_principal": "2013_2025_landsat_8_9",
+    "por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.537,
+      "ic95_sen": [
+       -2.513,
+       4.307
+      ],
+      "mann_kendall_p": 0.6754,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.916,
+      "ic95_sen": [
+       -4.635,
+       4.496
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.907,
+      "ic95_sen": [
+       -1.974,
+       4.396
+      ],
+      "mann_kendall_p": 0.3108,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.892,
+      "ic95_sen": [
+       0.808,
+       3.083
+      ],
+      "mann_kendall_p": 0.0017,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla_por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.649,
+      "ic95_sen": [
+       -0.99,
+       2.02
+      ],
+      "mann_kendall_p": 0.3674,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.054,
+      "ic95_sen": [
+       -2.034,
+       2.32
+      ],
+      "mann_kendall_p": 0.8793,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.078,
+      "ic95_sen": [
+       -1.262,
+       1.815
+      ],
+      "mann_kendall_p": 0.9466,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.317,
+      "ic95_sen": [
+       0.715,
+       1.882
+      ],
+      "mann_kendall_p": 0.0002,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "variantes_2013_2025": {
+     "variantes": {
+      "mediana": {
+       "sen_por_decada": 0.537,
+       "ic95_sen": [
+        -2.513,
+        4.307
+       ],
+       "mann_kendall_p": 0.6754,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "media": {
+       "sen_por_decada": 0.228,
+       "ic95_sen": [
+        -2.715,
+        3.732
+       ],
+       "mann_kendall_p": 0.9524,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "nucleo_construido": {
+       "sen_por_decada": 0.388,
+       "ic95_sen": [
+        -4.283,
+        4.428
+       ],
+       "mann_kendall_p": 0.6754,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      }
+     },
+     "resumen": {
+      "sen_min": 0.228,
+      "sen_max": 0.537,
+      "variantes_significativas": [],
+      "n_variantes": 3,
+      "robusta": true,
+      "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,23 y +0,54 °C/década)."
+     }
+    }
+   },
+   "lectura_tendencia_lst": "LST 2013-2025 (Landsat 8/9): Sen +0,54 °C/década (IC 95 % -2,51 a +4,31; Mann-Kendall p = 0,68): sin tendencia detectable. Diferencia con el campo: +0,65 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,89 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,23 y +0,54 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,086 y -0,049 NDVI/década).",
+   "tendencia_ndvi_landsat_por_decada": -0.086,
+   "tendencia_ndvi_landsat": {
+    "sen_por_decada": -0.086,
+    "ic95_sen": [
+     -0.103,
+     -0.066
+    ],
+    "mann_kendall_p": 0.0,
+    "n_anios": 13,
+    "anios": [
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "significativa": true
+   },
+   "tendencia_ndvi_landsat_variantes_2013_2025": {
+    "variantes": {
+     "mediana": {
+      "sen_por_decada": -0.086,
+      "ic95_sen": [
+       -0.103,
+       -0.066
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "media": {
+      "sen_por_decada": -0.08,
+      "ic95_sen": [
+       -0.108,
+       -0.053
+      ],
+      "mann_kendall_p": 0.0001,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "nucleo_construido": {
+      "sen_por_decada": -0.049,
+      "ic95_sen": [
+       -0.066,
+       -0.028
+      ],
+      "mann_kendall_p": 0.0003,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "resumen": {
+     "sen_min": -0.086,
+     "sen_max": -0.049,
+     "variantes_significativas": [
+      "mediana",
+      "media",
+      "nucleo_construido"
+     ],
+     "n_variantes": 3,
+     "robusta": true,
+     "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,086 y -0,049 NDVI/década)."
+    }
+   }
+  },
+  {
+   "id": "c5",
+   "nombre": "Comuna 5",
+   "fuente_geometria": "OpenStreetMap",
+   "celdas": 997,
+   "area_km2": 0.764,
+   "poblacion": 4897.0,
+   "densidad_hab_km2": 6407.0,
+   "densidad_sobre_area_construida_hab_km2": 7614.0,
+   "lst_media": 41.1,
+   "lst_p90": 43.7,
+   "lst_media_pob": 41.98,
+   "pct_area_calor_extremo": 35.9,
+   "poblacion_calor_extremo": 1686.0,
+   "pct_poblacion_calor_extremo": 34.4,
+   "ndvi_medio": 0.252,
+   "ndvi_medio_pob": 0.178,
+   "arbolado_pct": 15.6,
+   "arbolado_pct_pob": 3.4,
+   "construido_pct": 84.1,
+   "construido_pct_pob": 96.6,
+   "agua_pct": 0.03,
+   "m2_arbolado_por_hab": 24.3,
+   "pct_poblacion_sin_verde_300m": 10.0,
+   "poblacion_sin_verde_300m": 489.0,
+   "pct_poblacion_sin_verde_300m_umbral_025ha": 9.6,
+   "distancia_verde_mediana_pob_m": 173.0,
+   "poblacion_susceptibilidad_alta": 0.0,
+   "poblacion_susceptibilidad_media": 705.0,
+   "pct_poblacion_susceptibilidad_alta": 0.0,
+   "pct_poblacion_susceptibilidad_media": 14.4,
+   "pct_area_susceptibilidad_alta": 0.2,
+   "pct_area_susceptibilidad_media": 19.7,
+   "trafico_medio": 46.0,
+   "trafico_medio_pob": 42.3,
+   "poblacion_trafico_alto": 773.0,
+   "pct_poblacion_trafico_alto": 15.8,
+   "pct_poblacion_trafico_ge_50": 35.6,
+   "contraste_ideam_creciente_subita_tr50": {
+    "poblacion_amenaza_alta": 2.0,
+    "poblacion_amenaza_media": 47.0,
+    "pct_poblacion_amenaza_alta": 0.04,
+    "area_amenaza_alta_ha": 2.68,
+    "poblacion_amenaza_alta_en_clase_hand_0_o_1": 0.0,
+    "distancia_mediana_amenaza_alta_al_eje_la_vieja_km": 0.03
+   },
+   "ideam_nina_observada": {
+    "poblacion": 0.0,
+    "pct_poblacion": 0.0,
+    "area_ha": 1.07,
+    "pct_area": 1.4,
+    "poblacion_por_periodo": {
+     "1988": 0.0,
+     "2000": 0.0,
+     "2011": 0.0,
+     "2012": 0.0,
+     "2016": 0.0,
+     "2020–2022": 0.0
+    },
+    "poblacion_afectada_en_2_o_mas_periodos": 0.0,
+    "poblacion_solo_en_la_mancha_2011": 0.0,
+    "sensibilidad_borde_55m": {
+     "mancha_reducida": 0.0,
+     "mancha_ampliada": 133.0
+    },
+    "poblacion_por_clase_hand": {
+     "3": 0.0,
+     "2": 0.0,
+     "1": 0.0,
+     "0": 0.0
+    },
+    "distancia_mediana_a_los_rios_km": {
+     "la_vieja": {
+      "por_celda": 0.03,
+      "ponderada_por_poblacion": null
+     },
+     "cauca": {
+      "por_celda": 5.77,
+      "ponderada_por_poblacion": null
+     }
+    }
+   },
+   "ideam_evidencia_oficial": {
+    "definicion": "amenaza ALTA por creciente súbita TR 50 (IDEAM; corrientes de la cuenca directa del río La Vieja) ∪ área afectada por La Niña 1988–2022 (IDEAM)",
+    "poblacion": 2.0,
+    "pct_poblacion": 0.04,
+    "area_ha": 2.68,
+    "sensibilidad_borde_55m": {
+     "con_nina_reducida": 2.0,
+     "con_nina_ampliada": 133.0
+    },
+    "sin_2011": {
+     "definicion": "igual, pero sin las capas La Niña 2011 (8 y 22), cuya parte urbana no es coherente con el relieve (ver indicadores.json → coherencia_topografica_nina)",
+     "poblacion": 2.0,
+     "pct_poblacion": 0.04,
+     "area_ha": 2.68
+    }
+   },
+   "poblacion_evidencia_inundacion_ideam": 2.0,
+   "pct_poblacion_evidencia_inundacion_ideam": 0.04,
+   "poblacion_evidencia_inundacion_ideam_sin_2011": 2.0,
+   "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 0.04,
+   "lst_anomalia": 2.37,
+   "lst_anomalia_pob": 0.88,
+   "area_poligono_km2": 0.769,
+   "verde_publico_osm_m2": 89223.0,
+   "m2_verde_publico_por_hab": 18.22,
+   "equipamientos": {
+    "por_categoria": {
+     "educacion": 3,
+     "salud": 1,
+     "cuidado": 0,
+     "emergencia_gobierno": 1,
+     "total": 5
+    },
+    "expuestos": {
+     "calor_extremo": {
+      "educacion": 0,
+      "salud": 1,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 1
+     },
+     "susceptibilidad_alta": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "a_mas_de_300m_de_verde": {
+      "educacion": 1,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 1
+     },
+     "trafico_alto": {
+      "educacion": 1,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 1,
+      "total": 2
+     },
+     "amenaza_alta_ideam_contraste": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "area_afectada_nina_ideam": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "calor_extremo_en_umbral": {
+      "educacion": 0,
+      "salud": 1,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 1
+     }
+    }
+   },
+   "tendencia_lst_c_decada": 0.212,
+   "tendencia_lst_significativa": false,
+   "tendencia_lst_ic95": [
+    -2.738,
+    3.364
+   ],
+   "tendencia_lst": {
+    "tramo_principal": "2013_2025_landsat_8_9",
+    "por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.212,
+      "ic95_sen": [
+       -2.738,
+       3.364
+      ],
+      "mann_kendall_p": 0.9524,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.333,
+      "ic95_sen": [
+       -4.878,
+       3.988
+      ],
+      "mann_kendall_p": 0.7612,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 2.182,
+      "ic95_sen": [
+       -0.418,
+       5.31
+      ],
+      "mann_kendall_p": 0.116,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.43,
+      "ic95_sen": [
+       0.467,
+       2.601
+      ],
+      "mann_kendall_p": 0.0046,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla_por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.494,
+      "ic95_sen": [
+       -2.008,
+       2.165
+      ],
+      "mann_kendall_p": 0.59,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.99,
+      "ic95_sen": [
+       -2.517,
+       3.75
+      ],
+      "mann_kendall_p": 0.6481,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.466,
+      "ic95_sen": [
+       -1.49,
+       3.265
+      ],
+      "mann_kendall_p": 0.7373,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.658,
+      "ic95_sen": [
+       0.15,
+       1.268
+      ],
+      "mann_kendall_p": 0.0196,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "variantes_2013_2025": {
+     "variantes": {
+      "mediana": {
+       "sen_por_decada": 0.212,
+       "ic95_sen": [
+        -2.738,
+        3.364
+       ],
+       "mann_kendall_p": 0.9524,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "media": {
+       "sen_por_decada": -0.081,
+       "ic95_sen": [
+        -2.941,
+        2.902
+       ],
+       "mann_kendall_p": 0.9524,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "nucleo_construido": {
+       "sen_por_decada": 0.12,
+       "ic95_sen": [
+        -2.631,
+        3.434
+       ],
+       "mann_kendall_p": 0.9524,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      }
+     },
+     "resumen": {
+      "sen_min": -0.081,
+      "sen_max": 0.212,
+      "variantes_significativas": [],
+      "n_variantes": 3,
+      "robusta": true,
+      "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,08 y +0,21 °C/década)."
+     }
+    }
+   },
+   "lectura_tendencia_lst": "LST 2013-2025 (Landsat 8/9): Sen +0,21 °C/década (IC 95 % -2,74 a +3,36; Mann-Kendall p = 0,95): sin tendencia detectable. Diferencia con el campo: +0,49 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,43 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,08 y +0,21 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,050 y -0,041 NDVI/década).",
+   "tendencia_ndvi_landsat_por_decada": -0.048,
+   "tendencia_ndvi_landsat": {
+    "sen_por_decada": -0.048,
+    "ic95_sen": [
+     -0.064,
+     -0.031
+    ],
+    "mann_kendall_p": 0.0009,
+    "n_anios": 13,
+    "anios": [
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "significativa": true
+   },
+   "tendencia_ndvi_landsat_variantes_2013_2025": {
+    "variantes": {
+     "mediana": {
+      "sen_por_decada": -0.048,
+      "ic95_sen": [
+       -0.064,
+       -0.031
+      ],
+      "mann_kendall_p": 0.0009,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "media": {
+      "sen_por_decada": -0.041,
+      "ic95_sen": [
+       -0.057,
+       -0.023
+      ],
+      "mann_kendall_p": 0.0005,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "nucleo_construido": {
+      "sen_por_decada": -0.05,
+      "ic95_sen": [
+       -0.064,
+       -0.027
+      ],
+      "mann_kendall_p": 0.0009,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "resumen": {
+     "sen_min": -0.05,
+     "sen_max": -0.041,
+     "variantes_significativas": [
+      "mediana",
+      "media",
+      "nucleo_construido"
+     ],
+     "n_variantes": 3,
+     "robusta": true,
+     "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,050 y -0,041 NDVI/década)."
+    }
+   }
+  },
+  {
+   "id": "c6",
+   "nombre": "Comuna 6",
+   "fuente_geometria": "OpenStreetMap",
+   "celdas": 3277,
+   "area_km2": 2.512,
+   "poblacion": 26113.0,
+   "densidad_hab_km2": 10394.0,
+   "densidad_sobre_area_construida_hab_km2": 16130.0,
+   "lst_media": 39.99,
+   "lst_p90": 43.47,
+   "lst_media_pob": 41.77,
+   "pct_area_calor_extremo": 19.0,
+   "poblacion_calor_extremo": 8860.0,
+   "pct_poblacion_calor_extremo": 33.9,
+   "ndvi_medio": 0.33,
+   "ndvi_medio_pob": 0.191,
+   "arbolado_pct": 21.9,
+   "arbolado_pct_pob": 4.6,
+   "construido_pct": 64.4,
+   "construido_pct_pob": 93.8,
+   "agua_pct": 0.02,
+   "m2_arbolado_por_hab": 21.1,
+   "pct_poblacion_sin_verde_300m": 40.8,
+   "poblacion_sin_verde_300m": 10652.0,
+   "pct_poblacion_sin_verde_300m_umbral_025ha": 27.1,
+   "distancia_verde_mediana_pob_m": 253.0,
+   "poblacion_susceptibilidad_alta": 9.0,
+   "poblacion_susceptibilidad_media": 12013.0,
+   "pct_poblacion_susceptibilidad_alta": 0.03,
+   "pct_poblacion_susceptibilidad_media": 46.0,
+   "pct_area_susceptibilidad_alta": 0.73,
+   "pct_area_susceptibilidad_media": 46.3,
+   "trafico_medio": 27.2,
+   "trafico_medio_pob": 31.7,
+   "poblacion_trafico_alto": 519.0,
+   "pct_poblacion_trafico_alto": 2.0,
+   "pct_poblacion_trafico_ge_50": 8.4,
+   "contraste_ideam_creciente_subita_tr50": {
+    "poblacion_amenaza_alta": 146.0,
+    "poblacion_amenaza_media": 2906.0,
+    "pct_poblacion_amenaza_alta": 0.56,
+    "area_amenaza_alta_ha": 7.28,
+    "poblacion_amenaza_alta_en_clase_hand_0_o_1": 0.0,
+    "distancia_mediana_amenaza_alta_al_eje_la_vieja_km": 0.44
+   },
+   "ideam_nina_observada": {
+    "poblacion": 1803.0,
+    "pct_poblacion": 6.91,
+    "area_ha": 35.19,
+    "pct_area": 14.01,
+    "poblacion_por_periodo": {
+     "1988": 202.0,
+     "2000": 202.0,
+     "2011": 1761.0,
+     "2012": 202.0,
+     "2016": 0.0,
+     "2020–2022": 64.0
+    },
+    "poblacion_afectada_en_2_o_mas_periodos": 202.0,
+    "poblacion_solo_en_la_mancha_2011": 1559.0,
+    "sensibilidad_borde_55m": {
+     "mancha_reducida": 816.0,
+     "mancha_ampliada": 3664.0
+    },
+    "poblacion_por_clase_hand": {
+     "3": 1.0,
+     "2": 957.0,
+     "1": 617.0,
+     "0": 228.0
+    },
+    "distancia_mediana_a_los_rios_km": {
+     "la_vieja": {
+      "por_celda": 1.65,
+      "ponderada_por_poblacion": 0.8
+     },
+     "cauca": {
+      "por_celda": 5.27,
+      "ponderada_por_poblacion": 4.73
+     }
+    }
+   },
+   "ideam_evidencia_oficial": {
+    "definicion": "amenaza ALTA por creciente súbita TR 50 (IDEAM; corrientes de la cuenca directa del río La Vieja) ∪ área afectada por La Niña 1988–2022 (IDEAM)",
+    "poblacion": 1901.0,
+    "pct_poblacion": 7.28,
+    "area_ha": 41.32,
+    "sensibilidad_borde_55m": {
+     "con_nina_reducida": 943.0,
+     "con_nina_ampliada": 3724.0
+    },
+    "sin_2011": {
+     "definicion": "igual, pero sin las capas La Niña 2011 (8 y 22), cuya parte urbana no es coherente con el relieve (ver indicadores.json → coherencia_topografica_nina)",
+     "poblacion": 342.0,
+     "pct_poblacion": 1.31,
+     "area_ha": 10.2
+    }
+   },
+   "poblacion_evidencia_inundacion_ideam": 1901.0,
+   "pct_poblacion_evidencia_inundacion_ideam": 7.28,
+   "poblacion_evidencia_inundacion_ideam_sin_2011": 342.0,
+   "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 1.31,
+   "lst_anomalia": 1.26,
+   "lst_anomalia_pob": 0.67,
+   "area_poligono_km2": 2.516,
+   "verde_publico_osm_m2": 44965.0,
+   "m2_verde_publico_por_hab": 1.72,
+   "equipamientos": {
+    "por_categoria": {
+     "educacion": 8,
+     "salud": 3,
+     "cuidado": 0,
+     "emergencia_gobierno": 0,
+     "total": 11
+    },
+    "expuestos": {
+     "calor_extremo": {
+      "educacion": 2,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 2
+     },
+     "susceptibilidad_alta": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "a_mas_de_300m_de_verde": {
+      "educacion": 0,
+      "salud": 1,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 1
+     },
+     "trafico_alto": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "amenaza_alta_ideam_contraste": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "area_afectada_nina_ideam": {
+      "educacion": 0,
+      "salud": 1,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 1
+     },
+     "calor_extremo_en_umbral": {
+      "educacion": 1,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 1
+     }
+    }
+   },
+   "tendencia_lst_c_decada": 0.903,
+   "tendencia_lst_significativa": false,
+   "tendencia_lst_ic95": [
+    -2.55,
+    4.486
+   ],
+   "tendencia_lst": {
+    "tramo_principal": "2013_2025_landsat_8_9",
+    "por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.903,
+      "ic95_sen": [
+       -2.55,
+       4.486
+      ],
+      "mann_kendall_p": 0.5098,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.102,
+      "ic95_sen": [
+       -4.525,
+       4.955
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.539,
+      "ic95_sen": [
+       -1.47,
+       4.456
+      ],
+      "mann_kendall_p": 0.459,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.695,
+      "ic95_sen": [
+       0.549,
+       2.779
+      ],
+      "mann_kendall_p": 0.0024,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla_por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.603,
+      "ic95_sen": [
+       -0.837,
+       2.268
+      ],
+      "mann_kendall_p": 0.2519,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.608,
+      "ic95_sen": [
+       -2.183,
+       3.22
+      ],
+      "mann_kendall_p": 0.4454,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.175,
+      "ic95_sen": [
+       -1.89,
+       2.186
+      ],
+      "mann_kendall_p": 0.7373,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.046,
+      "ic95_sen": [
+       0.573,
+       1.746
+      ],
+      "mann_kendall_p": 0.0002,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "variantes_2013_2025": {
+     "variantes": {
+      "mediana": {
+       "sen_por_decada": 0.903,
+       "ic95_sen": [
+        -2.55,
+        4.486
+       ],
+       "mann_kendall_p": 0.5098,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "media": {
+       "sen_por_decada": 1.063,
+       "ic95_sen": [
+        -2.025,
+        4.582
+       ],
+       "mann_kendall_p": 0.4354,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "nucleo_construido": {
+       "sen_por_decada": 0.604,
+       "ic95_sen": [
+        -2.728,
+        4.08
+       ],
+       "mann_kendall_p": 0.4354,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      }
+     },
+     "resumen": {
+      "sen_min": 0.604,
+      "sen_max": 1.063,
+      "variantes_significativas": [],
+      "n_variantes": 3,
+      "robusta": true,
+      "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,60 y +1,06 °C/década)."
+     }
+    }
+   },
+   "lectura_tendencia_lst": "LST 2013-2025 (Landsat 8/9): Sen +0,90 °C/década (IC 95 % -2,55 a +4,49; Mann-Kendall p = 0,51): sin tendencia detectable. Diferencia con el campo: +0,60 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,70 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,60 y +1,06 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,087 y -0,055 NDVI/década).",
+   "tendencia_ndvi_landsat_por_decada": -0.087,
+   "tendencia_ndvi_landsat": {
+    "sen_por_decada": -0.087,
+    "ic95_sen": [
+     -0.103,
+     -0.07
+    ],
+    "mann_kendall_p": 0.0,
+    "n_anios": 13,
+    "anios": [
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "significativa": true
+   },
+   "tendencia_ndvi_landsat_variantes_2013_2025": {
+    "variantes": {
+     "mediana": {
+      "sen_por_decada": -0.087,
+      "ic95_sen": [
+       -0.103,
+       -0.07
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "media": {
+      "sen_por_decada": -0.072,
+      "ic95_sen": [
+       -0.1,
+       -0.042
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "nucleo_construido": {
+      "sen_por_decada": -0.055,
+      "ic95_sen": [
+       -0.068,
+       -0.043
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "resumen": {
+     "sen_min": -0.087,
+     "sen_max": -0.055,
+     "variantes_significativas": [
+      "mediana",
+      "media",
+      "nucleo_construido"
+     ],
+     "n_variantes": 3,
+     "robusta": true,
+     "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,087 y -0,055 NDVI/década)."
+    }
+   }
+  },
+  {
+   "id": "c7",
+   "nombre": "Comuna 7",
+   "fuente_geometria": "OpenStreetMap",
+   "celdas": 8321,
+   "area_km2": 6.379,
+   "poblacion": 31763.0,
+   "densidad_hab_km2": 4979.0,
+   "densidad_sobre_area_construida_hab_km2": 18222.0,
+   "lst_media": 37.14,
+   "lst_p90": 41.53,
+   "lst_media_pob": 40.98,
+   "pct_area_calor_extremo": 2.1,
+   "poblacion_calor_extremo": 3759.0,
+   "pct_poblacion_calor_extremo": 11.8,
+   "ndvi_medio": 0.533,
+   "ndvi_medio_pob": 0.202,
+   "arbolado_pct": 25.0,
+   "arbolado_pct_pob": 5.6,
+   "construido_pct": 27.3,
+   "construido_pct_pob": 89.9,
+   "agua_pct": 0.0,
+   "m2_arbolado_por_hab": 50.2,
+   "pct_poblacion_sin_verde_300m": 68.6,
+   "poblacion_sin_verde_300m": 21794.0,
+   "pct_poblacion_sin_verde_300m_umbral_025ha": 65.1,
+   "distancia_verde_mediana_pob_m": 444.0,
+   "poblacion_susceptibilidad_alta": 0.0,
+   "poblacion_susceptibilidad_media": 4894.0,
+   "pct_poblacion_susceptibilidad_alta": 0.0,
+   "pct_poblacion_susceptibilidad_media": 15.4,
+   "pct_area_susceptibilidad_alta": 0.04,
+   "pct_area_susceptibilidad_media": 23.1,
+   "trafico_medio": 16.7,
+   "trafico_medio_pob": 33.7,
+   "poblacion_trafico_alto": 653.0,
+   "pct_poblacion_trafico_alto": 2.1,
+   "pct_poblacion_trafico_ge_50": 10.0,
+   "contraste_ideam_creciente_subita_tr50": {
+    "poblacion_amenaza_alta": 0.0,
+    "poblacion_amenaza_media": 0.0,
+    "pct_poblacion_amenaza_alta": 0.0,
+    "area_amenaza_alta_ha": 0.0,
+    "poblacion_amenaza_alta_en_clase_hand_0_o_1": 0.0,
+    "distancia_mediana_amenaza_alta_al_eje_la_vieja_km": null
+   },
+   "ideam_nina_observada": {
+    "poblacion": 9567.0,
+    "pct_poblacion": 30.12,
+    "area_ha": 223.41,
+    "pct_area": 35.02,
+    "poblacion_por_periodo": {
+     "1988": 6128.0,
+     "2000": 0.0,
+     "2011": 3504.0,
+     "2012": 0.0,
+     "2016": 0.0,
+     "2020–2022": 0.0
+    },
+    "poblacion_afectada_en_2_o_mas_periodos": 65.0,
+    "poblacion_solo_en_la_mancha_2011": 3439.0,
+    "sensibilidad_borde_55m": {
+     "mancha_reducida": 6184.0,
+     "mancha_ampliada": 13856.0
+    },
+    "poblacion_por_clase_hand": {
+     "3": 0.0,
+     "2": 209.0,
+     "1": 7759.0,
+     "0": 1599.0
+    },
+    "distancia_mediana_a_los_rios_km": {
+     "la_vieja": {
+      "por_celda": 1.7,
+      "ponderada_por_poblacion": 1.36
+     },
+     "cauca": {
+      "por_celda": 2.64,
+      "ponderada_por_poblacion": 2.79
+     }
+    }
+   },
+   "ideam_evidencia_oficial": {
+    "definicion": "amenaza ALTA por creciente súbita TR 50 (IDEAM; corrientes de la cuenca directa del río La Vieja) ∪ área afectada por La Niña 1988–2022 (IDEAM)",
+    "poblacion": 9567.0,
+    "pct_poblacion": 30.12,
+    "area_ha": 223.41,
+    "sensibilidad_borde_55m": {
+     "con_nina_reducida": 6184.0,
+     "con_nina_ampliada": 13856.0
+    },
+    "sin_2011": {
+     "definicion": "igual, pero sin las capas La Niña 2011 (8 y 22), cuya parte urbana no es coherente con el relieve (ver indicadores.json → coherencia_topografica_nina)",
+     "poblacion": 6128.0,
+     "pct_poblacion": 19.29,
+     "area_ha": 137.0
+    }
+   },
+   "poblacion_evidencia_inundacion_ideam": 9567.0,
+   "pct_poblacion_evidencia_inundacion_ideam": 30.12,
+   "poblacion_evidencia_inundacion_ideam_sin_2011": 6128.0,
+   "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 19.29,
+   "lst_anomalia": -1.59,
+   "lst_anomalia_pob": -0.12,
+   "area_poligono_km2": 6.375,
+   "verde_publico_osm_m2": 24780.0,
+   "m2_verde_publico_por_hab": 0.78,
+   "equipamientos": {
+    "por_categoria": {
+     "educacion": 4,
+     "salud": 1,
+     "cuidado": 1,
+     "emergencia_gobierno": 0,
+     "total": 6
+    },
+    "expuestos": {
+     "calor_extremo": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "susceptibilidad_alta": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "a_mas_de_300m_de_verde": {
+      "educacion": 4,
+      "salud": 0,
+      "cuidado": 1,
+      "emergencia_gobierno": 0,
+      "total": 5
+     },
+     "trafico_alto": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "amenaza_alta_ideam_contraste": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "area_afectada_nina_ideam": {
+      "educacion": 2,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 2
+     },
+     "calor_extremo_en_umbral": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     }
+    }
+   },
+   "tendencia_lst_c_decada": 0.612,
+   "tendencia_lst_significativa": false,
+   "tendencia_lst_ic95": [
+    -4.567,
+    5.51
+   ],
+   "tendencia_lst": {
+    "tramo_principal": "2013_2025_landsat_8_9",
+    "por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.612,
+      "ic95_sen": [
+       -4.567,
+       5.51
+      ],
+      "mann_kendall_p": 0.8577,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.543,
+      "ic95_sen": [
+       -6.495,
+       5.51
+      ],
+      "mann_kendall_p": 0.8793,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.805,
+      "ic95_sen": [
+       -1.533,
+       5.085
+      ],
+      "mann_kendall_p": 0.3807,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.804,
+      "ic95_sen": [
+       -0.477,
+       2.157
+      ],
+      "mann_kendall_p": 0.2012,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     }
+    },
+    "isla_por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.304,
+      "ic95_sen": [
+       -1.397,
+       2.23
+      ],
+      "mann_kendall_p": 0.8577,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.447,
+      "ic95_sen": [
+       -2.046,
+       1.62
+      ],
+      "mann_kendall_p": 0.5423,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.064,
+      "ic95_sen": [
+       -0.85,
+       1.778
+      ],
+      "mann_kendall_p": 0.1969,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.338,
+      "ic95_sen": [
+       -0.236,
+       0.931
+      ],
+      "mann_kendall_p": 0.2182,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     }
+    },
+    "variantes_2013_2025": {
+     "variantes": {
+      "mediana": {
+       "sen_por_decada": 0.612,
+       "ic95_sen": [
+        -4.567,
+        5.51
+       ],
+       "mann_kendall_p": 0.8577,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "media": {
+       "sen_por_decada": 0.924,
+       "ic95_sen": [
+        -4.032,
+        5.413
+       ],
+       "mann_kendall_p": 0.6754,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "nucleo_construido": {
+       "sen_por_decada": 1.749,
+       "ic95_sen": [
+        -2.294,
+        6.088
+       ],
+       "mann_kendall_p": 0.4354,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      }
+     },
+     "resumen": {
+      "sen_min": 0.612,
+      "sen_max": 1.749,
+      "variantes_significativas": [],
+      "n_variantes": 3,
+      "robusta": true,
+      "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,61 y +1,75 °C/década)."
+     }
+    }
+   },
+   "lectura_tendencia_lst": "LST 2013-2025 (Landsat 8/9): Sen +0,61 °C/década (IC 95 % -4,57 a +5,51; Mann-Kendall p = 0,86): sin tendencia detectable. Diferencia con el campo: +0,30 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +0,80 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,61 y +1,75 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Depende del método: 1 de 3 variantes significativas (nucleo_construido); Sen entre -0,061 y -0,019 NDVI/década. No es una conclusión robusta.",
+   "tendencia_ndvi_landsat_por_decada": -0.019,
+   "tendencia_ndvi_landsat": {
+    "sen_por_decada": -0.019,
+    "ic95_sen": [
+     -0.082,
+     0.051
+    ],
+    "mann_kendall_p": 0.3674,
+    "n_anios": 13,
+    "anios": [
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "significativa": false
+   },
+   "tendencia_ndvi_landsat_variantes_2013_2025": {
+    "variantes": {
+     "mediana": {
+      "sen_por_decada": -0.019,
+      "ic95_sen": [
+       -0.082,
+       0.051
+      ],
+      "mann_kendall_p": 0.3674,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "media": {
+      "sen_por_decada": -0.027,
+      "ic95_sen": [
+       -0.081,
+       0.022
+      ],
+      "mann_kendall_p": 0.2044,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "nucleo_construido": {
+      "sen_por_decada": -0.061,
+      "ic95_sen": [
+       -0.078,
+       -0.035
+      ],
+      "mann_kendall_p": 0.0001,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "resumen": {
+     "sen_min": -0.061,
+     "sen_max": -0.019,
+     "variantes_significativas": [
+      "nucleo_construido"
+     ],
+     "n_variantes": 3,
+     "robusta": false,
+     "lectura": "Depende del método: 1 de 3 variantes significativas (nucleo_construido); Sen entre -0,061 y -0,019 NDVI/década. No es una conclusión robusta."
+    }
+   }
+  },
+  {
+   "id": "zaragoza",
+   "nombre": "Zaragoza (corregimiento)",
+   "fuente_geometria": "ESA WorldCover 2021: área construida conectada al centro poblado (nodo OSM)",
+   "celdas": 940,
+   "area_km2": 0.721,
+   "poblacion": 4252.0,
+   "densidad_hab_km2": 5899.0,
+   "densidad_sobre_area_construida_hab_km2": 10605.0,
+   "lst_media": 37.79,
+   "lst_p90": 39.76,
+   "lst_media_pob": 38.51,
+   "pct_area_calor_extremo": 0.0,
+   "poblacion_calor_extremo": 0.0,
+   "pct_poblacion_calor_extremo": 0.0,
+   "ndvi_medio": 0.387,
+   "ndvi_medio_pob": 0.278,
+   "arbolado_pct": 26.8,
+   "arbolado_pct_pob": 14.9,
+   "construido_pct": 55.6,
+   "construido_pct_pob": 76.5,
+   "agua_pct": 0.0,
+   "m2_arbolado_por_hab": 45.5,
+   "pct_poblacion_sin_verde_300m": 55.6,
+   "poblacion_sin_verde_300m": 2364.0,
+   "pct_poblacion_sin_verde_300m_umbral_025ha": 55.6,
+   "distancia_verde_mediana_pob_m": 323.0,
+   "poblacion_susceptibilidad_alta": 0.0,
+   "poblacion_susceptibilidad_media": 1462.0,
+   "pct_poblacion_susceptibilidad_alta": 0.0,
+   "pct_poblacion_susceptibilidad_media": 34.4,
+   "pct_area_susceptibilidad_alta": 0.0,
+   "pct_area_susceptibilidad_media": 35.7,
+   "trafico_medio": 34.2,
+   "trafico_medio_pob": 29.0,
+   "poblacion_trafico_alto": 259.0,
+   "pct_poblacion_trafico_alto": 6.1,
+   "pct_poblacion_trafico_ge_50": 8.2,
+   "contraste_ideam_creciente_subita_tr50": {
+    "poblacion_amenaza_alta": 577.0,
+    "poblacion_amenaza_media": 370.0,
+    "pct_poblacion_amenaza_alta": 13.57,
+    "area_amenaza_alta_ha": 12.65,
+    "poblacion_amenaza_alta_en_clase_hand_0_o_1": 457.0,
+    "distancia_mediana_amenaza_alta_al_eje_la_vieja_km": 6.07
+   },
+   "ideam_nina_observada": {
+    "poblacion": 0.0,
+    "pct_poblacion": 0.0,
+    "area_ha": 0.0,
+    "pct_area": 0.0,
+    "poblacion_por_periodo": {
+     "1988": 0.0,
+     "2000": 0.0,
+     "2011": 0.0,
+     "2012": 0.0,
+     "2016": 0.0,
+     "2020–2022": 0.0
+    },
+    "poblacion_afectada_en_2_o_mas_periodos": 0.0,
+    "poblacion_solo_en_la_mancha_2011": 0.0,
+    "sensibilidad_borde_55m": {
+     "mancha_reducida": 0.0,
+     "mancha_ampliada": 0.0
+    },
+    "poblacion_por_clase_hand": {
+     "3": 0.0,
+     "2": 0.0,
+     "1": 0.0,
+     "0": 0.0
+    },
+    "distancia_mediana_a_los_rios_km": {
+     "la_vieja": {
+      "por_celda": null,
+      "ponderada_por_poblacion": null
+     },
+     "cauca": {
+      "por_celda": null,
+      "ponderada_por_poblacion": null
+     }
+    }
+   },
+   "ideam_evidencia_oficial": {
+    "definicion": "amenaza ALTA por creciente súbita TR 50 (IDEAM; corrientes de la cuenca directa del río La Vieja) ∪ área afectada por La Niña 1988–2022 (IDEAM)",
+    "poblacion": 577.0,
+    "pct_poblacion": 13.57,
+    "area_ha": 12.65,
+    "sensibilidad_borde_55m": {
+     "con_nina_reducida": 577.0,
+     "con_nina_ampliada": 577.0
+    },
+    "sin_2011": {
+     "definicion": "igual, pero sin las capas La Niña 2011 (8 y 22), cuya parte urbana no es coherente con el relieve (ver indicadores.json → coherencia_topografica_nina)",
+     "poblacion": 577.0,
+     "pct_poblacion": 13.57,
+     "area_ha": 12.65
+    }
+   },
+   "poblacion_evidencia_inundacion_ideam": 577.0,
+   "pct_poblacion_evidencia_inundacion_ideam": 13.57,
+   "poblacion_evidencia_inundacion_ideam_sin_2011": 577.0,
+   "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 13.57,
+   "lst_anomalia": -0.94,
+   "lst_anomalia_pob": -2.59,
+   "area_poligono_km2": 0.726,
+   "verde_publico_osm_m2": 6302.0,
+   "m2_verde_publico_por_hab": 1.48,
+   "equipamientos": {
+    "por_categoria": {
+     "educacion": 0,
+     "salud": 0,
+     "cuidado": 0,
+     "emergencia_gobierno": 0,
+     "total": 0
+    },
+    "expuestos": {
+     "calor_extremo": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "susceptibilidad_alta": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "a_mas_de_300m_de_verde": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "trafico_alto": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "amenaza_alta_ideam_contraste": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "area_afectada_nina_ideam": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     },
+     "calor_extremo_en_umbral": {
+      "educacion": 0,
+      "salud": 0,
+      "cuidado": 0,
+      "emergencia_gobierno": 0,
+      "total": 0
+     }
+    }
+   },
+   "tendencia_lst_c_decada": 0.372,
+   "tendencia_lst_significativa": false,
+   "tendencia_lst_ic95": [
+    -3.795,
+    6.183
+   ],
+   "tendencia_lst": {
+    "tramo_principal": "2013_2025_landsat_8_9",
+    "por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.372,
+      "ic95_sen": [
+       -3.795,
+       6.183
+      ],
+      "mann_kendall_p": 0.8577,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.12,
+      "ic95_sen": [
+       -6.58,
+       8.023
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.333,
+      "ic95_sen": [
+       -2.096,
+       3.755
+      ],
+      "mann_kendall_p": 0.459,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.583,
+      "ic95_sen": [
+       0.211,
+       2.646
+      ],
+      "mann_kendall_p": 0.0223,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla_por_tramo": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.767,
+      "ic95_sen": [
+       -1.31,
+       3.438
+      ],
+      "mann_kendall_p": 0.4354,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.067,
+      "ic95_sen": [
+       -2.53,
+       3.829
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.216,
+      "ic95_sen": [
+       -1.14,
+       1.745
+      ],
+      "mann_kendall_p": 0.7373,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.824,
+      "ic95_sen": [
+       0.302,
+       1.455
+      ],
+      "mann_kendall_p": 0.0054,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "variantes_2013_2025": {
+     "variantes": {
+      "mediana": {
+       "sen_por_decada": 0.372,
+       "ic95_sen": [
+        -3.795,
+        6.183
+       ],
+       "mann_kendall_p": 0.8577,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "media": {
+       "sen_por_decada": 0.301,
+       "ic95_sen": [
+        -4.216,
+        5.8
+       ],
+       "mann_kendall_p": 0.9524,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      },
+      "nucleo_construido": {
+       "sen_por_decada": 0.197,
+       "ic95_sen": [
+        -3.949,
+        5.808
+       ],
+       "mann_kendall_p": 0.8577,
+       "n_anios": 13,
+       "anios": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+       ],
+       "significativa": false
+      }
+     },
+     "resumen": {
+      "sen_min": 0.197,
+      "sen_max": 0.372,
+      "variantes_significativas": [],
+      "n_variantes": 3,
+      "robusta": true,
+      "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,20 y +0,37 °C/década)."
+     }
+    }
+   },
+   "lectura_tendencia_lst": "LST 2013-2025 (Landsat 8/9): Sen +0,37 °C/década (IC 95 % -3,79 a +6,18; Mann-Kendall p = 0,86): sin tendencia detectable. Diferencia con el campo: +0,77 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,58 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,20 y +0,37 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,083 y -0,072 NDVI/década).",
+   "tendencia_ndvi_landsat_por_decada": -0.078,
+   "tendencia_ndvi_landsat": {
+    "sen_por_decada": -0.078,
+    "ic95_sen": [
+     -0.107,
+     -0.041
+    ],
+    "mann_kendall_p": 0.0003,
+    "n_anios": 13,
+    "anios": [
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "significativa": true
+   },
+   "tendencia_ndvi_landsat_variantes_2013_2025": {
+    "variantes": {
+     "mediana": {
+      "sen_por_decada": -0.078,
+      "ic95_sen": [
+       -0.107,
+       -0.041
+      ],
+      "mann_kendall_p": 0.0003,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "media": {
+      "sen_por_decada": -0.072,
+      "ic95_sen": [
+       -0.1,
+       -0.039
+      ],
+      "mann_kendall_p": 0.0003,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "nucleo_construido": {
+      "sen_por_decada": -0.083,
+      "ic95_sen": [
+       -0.109,
+       -0.046
+      ],
+      "mann_kendall_p": 0.0003,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "resumen": {
+     "sen_min": -0.083,
+     "sen_max": -0.072,
+     "variantes_significativas": [
+      "mediana",
+      "media",
+      "nucleo_construido"
+     ],
+     "n_variantes": 3,
+     "robusta": true,
+     "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,083 y -0,072 NDVI/década)."
+    }
+   }
+  }
+ ],
+ "referencia_espacio_publico": {
+  "indicador_local": "m2_verde_publico_por_hab = verde público mapeado en OSM (parques, jardines, zonas de juego y recreativas de acceso supuesto público) / población 2026",
+  "decreto_1504_1998_minimo_espacio_publico_efectivo_m2_hab": 15,
+  "conpes_3718_promedio_nacional_2010_m2_hab": 3.3,
+  "conpes_3718_meta_2015_m2_hab": [
+   5,
+   6
+  ],
+  "cabecera_m2_verde_publico_por_hab": 1.67,
+  "pct_del_minimo_decreto_1504": 11.1,
+  "advertencia": "No son conceptos idénticos: el espacio público efectivo incluye plazas y plazoletas duras y se mide con el inventario municipal; el verde OSM es un inventario parcial (ver limitaciones de espacio_verde.geojson). La comparación es de orden de magnitud. El diagnóstico del POT citado por Findeter (2022) da 1,68 m²/hab de espacio público efectivo urbano en 2021 (verificado por el producto verdes)."
+ },
+ "coherencia_poblacion": {
+  "suma_poblacion_zonas": 139554.0,
+  "poblacion_cabecera_union_de_zonas": 139554.0,
+  "diferencia_suma_zonas_menos_cabecera": 0.0,
+  "solape_entre_poligonos_de_zonas_m2": 1119.0,
+  "poblacion_cabecera_osm_mascara_urbana": 135290.0,
+  "poblacion_cabecera_dane_mgn2018_celdas": 139242.0,
+  "proyeccion_dane_2026_cabecera": 139614,
+  "pct_de_la_proyeccion_dane_cabecera": 99.96,
+  "poblacion_zona_vs_serie_poblacion": {
+   "c1": {
+    "indicadores": 22039.0,
+    "series_poblacion": 22039
+   },
+   "c2": {
+    "indicadores": 14237.0,
+    "series_poblacion": 14237
+   },
+   "c3": {
+    "indicadores": 14308.0,
+    "series_poblacion": 14308
+   },
+   "c4": {
+    "indicadores": 21944.0,
+    "series_poblacion": 21944
+   },
+   "c5": {
+    "indicadores": 4897.0,
+    "series_poblacion": 4897
+   },
+   "c6": {
+    "indicadores": 26113.0,
+    "series_poblacion": 26113
+   },
+   "c7": {
+    "indicadores": 31763.0,
+    "series_poblacion": 31763
+   },
+   "zaragoza": {
+    "indicadores": 4252.0,
+    "series_poblacion": 4252
+   }
+  },
+  "nota": "La cabecera de este producto es la unión de las 8 zonas (Comunas 1–7 de OSM y la huella WorldCover de Zaragoza); las zonas no se solapan en la rejilla, así que la suma de zonas es exactamente la cabecera. El polígono OSM de comun.mascara_urbana() excluye Zaragoza; la cabecera DANE (MGN 2018) incluye Zaragoza y una franja periurbana mayor. La proyección DANE 2026 de la cabecera es la cifra de referencia.",
+  "coherente": true
+ },
+ "documentacion_umbral_trafico": {
+  "celdas_cabecera_indice_ge_60": 1470,
+  "pct_celdas_cabecera": 7.1,
+  "distancia_a_via_principal_m_p50_p90": [
+   17.0,
+   41.0
+  ],
+  "pct_a_menos_de_50m_de_via_principal": 96.1,
+  "nota": "Vías principales = highway trunk, primary, secondary o tertiary de fuentes/osm-vias.json (OSM, ODbL). Según trafico.json la mediana del índice es 56,2 a menos de 25 m del eje de una vía principal: el umbral 60 selecciona la parte más expuesta de esa franja inmediata. Es un umbral de la tarea, no sanitario."
+ },
+ "verificacion": {
+  "puntos_control": {
+   "Parque Bolívar": {
+    "lat": 4.7497,
+    "lon": -75.9132,
+    "zona": "Comuna 5",
+    "lst_c": 40.74,
+    "calor_extremo": false,
+    "trafico": 63.4,
+    "distancia_verde_m": 0.0,
+    "susceptibilidad_clase": 1,
+    "poblacion_celda": 0.0
+   },
+   "Aeropuerto (punto de referencia)": {
+    "lat": 4.7601,
+    "lon": -75.9545,
+    "zona": "Comuna 7",
+    "lst_c": 36.91,
+    "calor_extremo": false,
+    "trafico": 0.4,
+    "distancia_verde_m": 556.0,
+    "susceptibilidad_clase": 2,
+    "poblacion_celda": 0.0
+   },
+   "Rural suroccidente": {
+    "lat": 4.72,
+    "lon": -75.97,
+    "zona": null,
+    "lst_c": 36.66,
+    "calor_extremo": false,
+    "trafico": 0.6,
+    "distancia_verde_m": 5174.0,
+    "susceptibilidad_clase": 2,
+    "poblacion_celda": 0.0
+   }
+  },
+  "rio_la_vieja": {
+   "celdas_cabecera_a_100m_del_la_vieja": 405,
+   "lst_media_a_100m_del_rio_c": 36.33,
+   "lst_media_cabecera_a_mas_de_500m_del_rio_c": 38.53,
+   "pct_celdas_calor_extremo_a_100m_del_rio": 0.0,
+   "distancia_mediana_al_rio_celdas_calor_extremo_m": 847.0,
+   "distancia_mediana_al_rio_resto_cabecera_m": 1643.0
+  },
+  "latitud_media_zonas": {
+   "Comuna 1": 4.75,
+   "Comuna 2": 4.7374,
+   "Comuna 3": 4.7309,
+   "Comuna 4": 4.741,
+   "Comuna 5": 4.7508,
+   "Comuna 6": 4.7519,
+   "Comuna 7": 4.7583,
+   "Zaragoza (corregimiento)": 4.6984
+  },
+  "norte_sur_ok": true
+ },
+ "procesamiento": [
+  "Zonas rasterizadas con comun.mascara_zonas() (centro de celda); medias por área con el área real de cada celda (comun.area_celda_m2()).",
+  "Ponderación por población con la capa poblacion (hab/celda, 2026).",
+  "Calor extremo: LST ≥ p90 de la cabecera = 42,85 °C.",
+  "Verde público por habitante: intersección en UTM 18N de los polígonos públicos de espacio_verde.geojson con cada zona.",
+  "Arbolado por habitante: Σ(fracción arbolada × área de celda) / población.",
+  "Inundación: clases de susceptibilidad_inundacion (HAND) por un lado; por otro, registros del IDEAM rasterizados por centro de celda: amenaza por creciente súbita TR 50 años y unión de las áreas afectadas por La Niña (con la mancha reducida y ampliada ≈ 55 m como sensibilidad).",
+  "Coherencia topográfica de las manchas La Niña: por periodo, HAND dentro de la mancha frente a las celdas del mismo ámbito fuera de toda mancha (cabecera y fuera de ella; todas las celdas y celdas abiertas), con la probabilidad de superioridad de Mann-Whitney; la evidencia oficial se recalcula sin La Niña 2011 como variante.",
+  "Distancias a los ríos: centros de celda al eje OSM del La Vieja y del Cauca (comun.lineas_rio) en UTM 18N.",
+  "Equipamientos: punto en polígono de zona; exposición con la celda del punto y la distancia vectorial a verde del producto verdes.",
+  "Tendencia: medianas anuales de las rejillas Landsat por zona (valor de zona-año solo si ≥ 50 % de sus celdas tiene dato), pendiente de Sen (scipy.stats.theilslopes, IC 95 %) y Mann-Kendall (τ de Kendall) por tramo; solo años confiables de datos/series/landsat.json."
+ ],
+ "limitaciones": [
+  "La LST es temperatura de SUPERFICIE a media mañana (10:19 hora local) en días despejados, no temperatura del aire ni la máxima del día.",
+  "El umbral de calor extremo es relativo (p90 de la propia cabecera): por construcción ≈ 10 % del área de la cabecera queda en calor extremo; no indica riesgo sanitario.",
+  "Arbolado = área que ESA WorldCover 2021 clasifica como árboles (≥ 10 % de cobertura por píxel de 10 m), no fracción de copa; subestima el arbolado de calle absorbido por la clase construida.",
+  "El NDVI 2024–2025 mezcla dos años distintos: la mediana por fecha del NDVI Sentinel-2 de la cabecera fue 0,334 en 2024 (67 fechas) y 0,363 en 2025 (63 fechas) (datos/series/sentinel2.json); las fechas no se reparten igual entre meses. No hay NDVI por año y zona.",
+  "Verde público y equipamientos dependen de la completitud de OpenStreetMap: OSM tiene ≈ 26 % de las sedes educativas del MEN y ≈ 11 % de las sedes de IPS del REPS (producto verdes); el acceso al verde se supone público en los 53 polígonos y el orden de las comunas por acceso no es robusto (ver datos/series/verdes.json → sensibilidad).",
+  "Inundación: la susceptibilidad topográfica (HAND) y los registros oficiales del IDEAM no coinciden del todo dentro de la ciudad. De la amenaza ALTA por creciente súbita del IDEAM, la clase alta HAND cubre el 39,1 % del área en toda la rejilla y el 5,1 % dentro de la cabecera (512 celdas IDEAM ALTA), donde el 28,1 % cae en las clases HAND baja o > 15 m, que no descartan amenaza (junto al La Vieja, el 6,0 % de 25,8 ha; en las corrientes menores de Comuna 3 y Zaragoza (corregimiento), el 70,5 % de 13,5 ha). De la población de la cabecera en áreas afectadas por La Niña, el 0,5 % está en clase alta HAND y el 18,7 % en media. El desacuerdo puede venir de los dos lados: del HAND (DSM con edificios, red de drenaje) y de los registros (bordes gruesos, escala no declarada; la parte urbana de La Niña 2011 no es coherente con el relieve, ver la limitación sobre La Niña 2011). Poca población en clase alta HAND NO significa ausencia de amenaza: por eso el componente de inundación por defecto usa los registros del IDEAM. Consúltense además el POT y la CVC.",
+  "Registros del IDEAM: la amenaza por creciente súbita (TR 50 años) solo cubre las corrientes de la cuenca directa del río La Vieja junto a la cabecera (la capa del IDEAM atribuye sus 4 polígonos de amenaza ALTA a la corriente «Río La Vieja» (cuenca «Directos Río La Vieja»), pero 3 de ellos están a 2,5–5,4 km del eje del río: corresponden a corrientes menores de su cuenca directa), no la inundación lenta del Cauca; las áreas afectadas por La Niña son manchas de escala no declarada (bordes gruesos, eventos posiblemente incompletos, sin profundidad ni duración), el IDEAM advierte en datos.gov.co que no las ha validado y no son una zonificación de amenaza. Con la mancha reducida o ampliada ≈ 55 m la población expuesta cambia mucho (ver 'sensibilidad_borde_55m'). La población dentro de cada mancha es la de 2026, no la afectada en el evento: la inundación de 1988 se registró sobre una ciudad distinta de la actual.",
+  "La parte urbana de la mancha La Niña 2011 del IDEAM no es coherente con el relieve y puede sobrestimar el área inundada. HAND mediano de la parte urbana de La Niña 2011: 9,6 m dentro frente a 9,3 m fuera (P = 0,51); en celdas abiertas, 10,6 m dentro frente a 7,0 m fuera (P = 0,41). En el campo, la misma mancha sí está en el fondo del valle: 2,1 m dentro frente a 18,7 m fuera (P = 0,81); la de 1988 en la ciudad, 6,7 m dentro frente a 9,3 m fuera (P = 0,65). P = probabilidad de que una celda de la mancha esté más baja que una de fuera (0,5 = sin diferencia). Puede ser un error de comisión o de generalización, un encharcamiento no fluvial o un error del HAND. El IDEAM advierte en datos.gov.co que estas capas no han sido validadas. De ella depende el 36 % de la cifra por defecto de la cabecera: 6.009 hab de la cabecera solo están en la mancha de 2011 (Comuna 7 3.439, Comuna 6 1.559, Comuna 4 1.011). Registros oficiales con La Niña 2011, 16.553 hab de la cabecera (11,9 %); sin ella, 10.545 hab (7,6 %); por zona: Comuna 7 30,1 → 19,3 %; Comuna 6 7,3 → 1,3 %; Comuna 4 5,9 → 1,3 % (variante 'inundacion_ideam_sin_2011'). Antes de usar las cifras de Comuna 7, Comuna 6, Comuna 4, contrastar con los registros municipales de gestión del riesgo (alcaldía de Cartago) o el consolidado anual de emergencias de la UNGRD (serie desde 1998 en el repositorio institucional de la UNGRD, que no respondió desde aquí el 2026-10-01; en datos.gov.co los conjuntos de emergencias de la UNGRD empiezan en 2019, p. ej. wwkg-r6te, así que no cubren 2010–2011) sobre los barrios afectados en 2010–2011. La parte urbana de La Niña 2000 también es dudosa (falla con celdas abiertas), pero ningún habitante depende únicamente de ella.",
+  "Tráfico: índice relativo de proximidad a vías ponderadas por categoría OSM; no es concentración de NO₂ ni aforo.",
+  "Zaragoza es la huella construida de WorldCover (0,73 km²) y las comunas son polígonos administrativos con suelo no construido (la Comuna 7 incluye el aeródromo): las densidades y los promedios por área no son del todo comparables entre ambos tipos de zona.",
+  "Población: proyección DANE 2026 repartida con el censo 2018 por manzana; las urbanizaciones habitadas después de 2018 no aparecen.",
+  "Tendencias de LST por zona: el tramo 2000–2025 sin armonizar está dominado por el salto de 2012–2013 y no debe usarse para decidir. En 2024–2025 cambió el dato atmosférico auxiliar del producto ST del USGS (GEOS-IT). Tramo 2013–2025 (mediana): ninguna pendiente por zona es significativa; ver 'tendencia_lst_significativa' y 'tendencia_lst_ic95' en cada zona.",
+  "Tendencias de NDVI Landsat por zona: la magnitud depende del estadístico (la mediana de una zona bimodal exagera la caída; ver 'tendencia_ndvi_landsat_variantes_2013_2025' y la advertencia de datos/series/landsat.json). Que la caída sea casi uniforme en los núcleos construidos mientras el campo no cambia no está explicado (podría ser pérdida real de vegetación residual o un artefacto no identificado) y no se ha contrastado con una fuente independiente (Sentinel-2 desde 2017 o fotointerpretación): no usar para decidir sin ese contraste."
+ ],
+ "fuentes": [
+  {
+   "capa": "lst",
+   "nombre": "USGS Landsat 8-9 OLI/TIRS Collection 2 Level-2 (ST_B10, QA_PIXEL), vía Microsoft Planetary Computer",
+   "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+   "licencia": "Dominio público (USGS): sin restricciones de uso ni redistribución; se pide citar la fuente",
+   "cita": "Landsat 8-9 OLI/TIRS Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey. doi:10.5066/P9OGBGM6"
+  },
+  {
+   "capa": "ndvi",
+   "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+   "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+   "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)",
+   "cita": "Contiene datos modificados de Copernicus Sentinel [2024–2025], procesados por BioMap Cartago"
+  },
+  {
+   "capa": "arbolado",
+   "nombre": "ESA WorldCover 10 m 2021 v200 (tesela N03W078)",
+   "url": "https://doi.org/10.5281/zenodo.7254221",
+   "licencia": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+   "cita": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221"
+  },
+  {
+   "capa": "poblacion",
+   "nombre": "DANE (CNPV 2018 por manzana y sección rural, proyecciones PPED por área, MGN 2018, grilla 1 km), Meta/CIESIN HRSL v1.5 y ESA WorldCover 2021",
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0",
+   "licencia": "DANE: uso y transformación autorizados citando «Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co». HRSL y ESA WorldCover: CC BY 4.0.",
+   "cita": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co. Meta and Center for International Earth Science Information Network - CIESIN - Columbia University. 2022. High Resolution Settlement Layer (HRSL). Source imagery for HRSL © 2016 Maxar. Consultado en https://registry.opendata.aws/dataforgood-fb-hrsl el 2026-10-01. Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221. © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium."
+  },
+  {
+   "capa": "susceptibilidad_inundacion",
+   "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+   "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+   "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)",
+   "cita": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65. Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0. Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., et al. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. Remote Sensing of Environment 300, 113888. doi:10.1016/j.rse.2023.113888"
+  },
+  {
+   "capa": "trafico",
+   "nombre": "OpenStreetMap — red vial (highway=*) descargada con Overpass API",
+   "url": "https://www.openstreetmap.org/copyright",
+   "licencia": "ODbL 1.0 (© colaboradores de OpenStreetMap)",
+   "cita": "© colaboradores de OpenStreetMap, ODbL 1.0. Instantánea Overpass 2026-10-01T01:50:59Z (UTC). Índice derivado por BioMap Cartago."
+  },
+  {
+   "capa": "distancia_verde",
+   "nombre": "OpenStreetMap: parques, zonas de juego, zonas recreativas y jardines públicos",
+   "url": "https://www.openstreetmap.org/copyright",
+   "licencia": "ODbL 1.0",
+   "cita": "© colaboradores de OpenStreetMap, ODbL 1.0 (https://www.openstreetmap.org/copyright)"
+  },
+  {
+   "capa": "zonas",
+   "nombre": "OpenStreetMap (Comunas 1–7) y ESA WorldCover 2021 (huella de Zaragoza, datos/zaragoza.json)",
+   "url": "https://www.openstreetmap.org/copyright",
+   "licencia": "ODbL 1.0 / CC BY 4.0",
+   "cita": "© colaboradores de OpenStreetMap; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+  },
+  {
+   "capa": "verde público y equipamientos",
+   "nombre": "OpenStreetMap (datos/vectores/espacio_verde.geojson y equipamientos.geojson del producto verdes)",
+   "url": "https://www.openstreetmap.org/copyright",
+   "licencia": "ODbL 1.0",
+   "cita": "© colaboradores de OpenStreetMap"
+  },
+  {
+   "capa": "inundación: registros oficiales",
+   "nombre": "IDEAM, servicio Amenaza_Ambiental: capa 0 «Amenaza Creciente Súbita TR 50 años, 8 cabeceras municipales 2K» y capas 6, 7, 8, 9, 22, 23, 24, 26 y 27 «Áreas afectadas por inundación, La Niña» (1988, 2000, 2011, 2012, 2016, 2020–2022; escala no declarada); en datos.gov.co, La Niña 1988, 2000, 2011 y 2012: khg6-9h39, 5p6w-58v3, 6eu7-pzc5 y nufr-59j5",
+   "url": "https://visualizador.ideam.gov.co/gisserver/rest/services/Amenaza_Ambiental/MapServer",
+   "licencia": "El servicio ArcGIS Amenaza_Ambiental no declara licencia (copyrightText vacío en el servicio y en sus capas). Las áreas afectadas por La Niña 1988, 2000, 2011 y 2012 las publica también el IDEAM en datos.gov.co con licencia CC BY-SA 4.0 (conjuntos khg6-9h39, 5p6w-58v3, 6eu7-pzc5 y nufr-59j5; licencia verificada en el catálogo de datos.gov.co el 2026-10-01) y la advertencia, verificada en 6eu7-pzc5 (La Niña 2011), de que «no han sido validados por el IDEAM». La amenaza por creciente súbita TR 50 y La Niña 2016 y 2020–2022 no aparecieron en la búsqueda del catálogo de datos.gov.co (2026-10-01). No se copian polígonos del IDEAM: solo se publican estadísticas derivadas, con atribución al IDEAM; las que derivan de las capas CC BY-SA (ideam_nina_observada, ideam_evidencia_oficial y sus variantes) se comparten con la misma licencia CC BY-SA 4.0 (criterio prudente del proyecto).",
+   "cita": "IDEAM – Instituto de Hidrología, Meteorología y Estudios Ambientales, servicio Amenaza_Ambiental (consulta 2026-09-30)"
+  },
+  {
+   "capa": "serie y tendencia",
+   "nombre": "Rejillas anuales Landsat 2000–2025 (producto landsat)",
+   "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+   "licencia": "Dominio público USGS",
+   "cita": "Landsat Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey"
+  }
+ ],
+ "referencias": [
+  {
+   "nombre": "Decreto 1504 de 1998, arts. 12 y 14",
+   "url": "https://normas.cra.gov.co/gestor/docs/decreto_1504_1998.htm",
+   "uso": "Espacio público efectivo (zonas verdes, parques, plazas y plazoletas de carácter permanente); índice mínimo 15 m²/hab.",
+   "verificado": true
+  },
+  {
+   "nombre": "CONPES 3718 de 2012, Política Nacional de Espacio Público (31-ene-2012), Gráfico 7",
+   "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Conpes-3718-de-2012.pdf",
+   "uso": "Promedio nacional ajustado a 2010: 3,3 m²/hab; meta 5–6 m²/hab a 2015 para ciudades de más de 100.000 hab.",
+   "verificado": true
+  },
+  {
+   "nombre": "IDEAM, «Áreas Afectadas Inundación Niña 2011», datos.gov.co 6eu7-pzc5",
+   "url": "https://www.datos.gov.co/api/views/6eu7-pzc5.json",
+   "uso": "Licencia CC BY-SA 4.0; advertencia «Los datos a visualizar o descargar a continuación no han sido validados por el IDEAM»; sin escala declarada.",
+   "verificado": true
+  },
+  {
+   "nombre": "Catálogo de datos.gov.co: conjuntos «Emergencias UNGRD» (wwkg-r6te, 2019–2022; otros desde 2019)",
+   "url": "https://api.us.socrata.com/api/catalog/v1?domains=www.datos.gov.co&q=emergencias%20UNGRD",
+   "uso": "Los registros abiertos de emergencias de la UNGRD en datos.gov.co no cubren 2010–2011.",
+   "verificado": true
+  },
+  {
+   "nombre": "UNGRD, «Consolidado reporte de emergencias 1998-2021» (repositorio institucional)",
+   "url": "https://repositorio.gestiondelriesgo.gov.co:8443/handle/20.500.11762/20782",
+   "uso": "Fuente sugerida para contrastar La Niña 2010–2011 en Cartago (registros por municipio, no por barrio).",
+   "verificado": false,
+   "nota": "Encontrado con un buscador web; el servidor no respondió desde aquí el 2026-10-01, así que su contenido no se comprobó."
+  }
+ ],
+ "script": "scripts/indicadores.py",
+ "fecha_proceso": "2026-10-01",
+ "hallazgos": [
+  "Calor (población en celdas con LST ≥ 42,85 °C, p90 de la cabecera). Mayor proporción: Comuna 5 34,4 % (1.686 hab); Comuna 4 34,2 % (7.500 hab); Comuna 6 33,9 % (8.860 hab). Más personas: Comuna 6 8.860 hab (33,9 %); Comuna 4 7.500 hab (34,2 %); Comuna 7 3.759 hab (11,8 %). En la cabecera, el 10 % del área más caliente aloja al 18,5 % de la población (25.768 hab); la LST media ponderada por población es 41,10 °C frente a 38,73 °C por área.",
+  "Déficit de verde (índice 0–1): Comuna 2 0,90 (99,7 % de la población a más de 300 m de verde ≥ 0,5 ha; arbolado ponderado por población 4,9 %; 0,21 m² de verde público/hab); Comuna 3 0,75 (99,3 % de la población a más de 300 m de verde ≥ 0,5 ha; arbolado ponderado por población 8,7 %; 0,00 m² de verde público/hab); Comuna 1 0,73 (75,3 % de la población a más de 300 m de verde ≥ 0,5 ha; arbolado ponderado por población 5,7 %; 0,24 m² de verde público/hab). Más personas a más de 300 m: Comuna 7 21.794 hab; Comuna 1 16.600 hab; Comuna 3 14.210 hab. Cabecera: 1,67 m²/hab de verde público OSM frente al mínimo de 15 m²/hab de espacio público efectivo del Decreto 1504 de 1998 (conceptos no idénticos) y al promedio nacional de 3,3 m²/hab del CONPES 3718.",
+  "Inundación según los registros oficiales del IDEAM (amenaza ALTA por creciente súbita TR 50 en las corrientes de la cuenca directa del La Vieja ∪ áreas afectadas por La Niña 1988–2022): Comuna 7 30,1 % (9.567 hab); Comuna 1 14,5 % (3.199 hab); Zaragoza (corregimiento) 13,6 % (577 hab); cabecera 16.553 hab (11,9 %). La parte urbana de la mancha de La Niña 2011 no está más baja sobre el drenaje que la ciudad no inundada y puede sobrestimar: sin ella, la cabecera queda en 10.545 hab (7,6 %) y Comuna 7 pasa de 30,1 % a 19,3 %; Comuna 6 pasa de 7,3 % a 1,3 %; Comuna 4 pasa de 5,9 % a 1,3 %; el orden del índice pasa a Comuna 1, Comuna 2, Comuna 5, Comuna 4, Comuna 6, Comuna 7, Comuna 3, Zaragoza (corregimiento). Contrastar con registros municipales o de la UNGRD de 2010–2011 antes de usar las cifras de Comuna 7, Comuna 6, Comuna 4. Habitantes actuales (2026) dentro de las manchas La Niña (no son los afectados de cada evento): Comuna 7 9.567 hab (30,1 %; dentro de la mancha de 1988: 6.128, 2011: 3.504; con el borde ± 55 m entre 6.184 y 13.856); Comuna 6 1.803 hab (6,9 %; dentro de la mancha de 1988: 202, 2000: 202, 2011: 1.761, 2012: 202, 2020–2022: 64; con el borde ± 55 m entre 816 y 3.664); Comuna 4 1.299 hab (5,9 %; dentro de la mancha de 1988: 278, 2000: 40, 2011: 1.157; con el borde ± 55 m entre 711 y 2.509). Creciente súbita TR 50, amenaza ALTA: Comuna 1 3.199 hab (junto al La Vieja, mediana 80 m del eje); Zaragoza (corregimiento) 577 hab (a 6,1 km del eje del La Vieja: corrientes menores de su cuenca directa); Comuna 6 146 hab (junto al La Vieja, mediana 440 m del eje); Comuna 3 8 hab (a 2,6 km del eje del La Vieja: corrientes menores de su cuenca directa); Comuna 5 2 hab (junto al La Vieja, mediana 30 m del eje). La susceptibilidad topográfica HAND alta suma 172 hab en la cabecera y no coincide con esos registros: de la población de la cabecera en áreas afectadas por La Niña, el 0,5 % está en clase alta HAND, el 18,7 % en media y el 80,8 % en baja o HAND > 15 m (que no descartan amenaza). La mayor población con registro de inundación está en la Comuna 7 (áreas afectadas por La Niña, que la capa de creciente súbita no cubre). Las manchas La Niña no dicen qué cauce desbordó.",
+  "Tráfico (población con índice ≥ 60). Mayor proporción: Comuna 1 17,7 % (3.901 hab); Comuna 5 15,8 % (773 hab); Comuna 2 7,1 % (1.012 hab). Más personas: Comuna 1 3.901 hab; Comuna 2 1.012 hab; Comuna 4 913 hab. En la cabecera, 6,0 %; el índice medio ponderado por población es 32,9 frente a 25,7 por área. Es un índice de proximidad a vías, no NO₂.",
+  "Densidad bruta: Comuna 1 17.050 hab/km²; Comuna 2 14.542 hab/km²; Comuna 3 12.197 hab/km². Cabecera 8.744 hab/km².",
+  "Índice por defecto (pesos iguales; inundación con registros del IDEAM): 1.º Comuna 1 (0,672), 2.º Comuna 2 (0,503), 3.º Comuna 4 (0,497), 4.º Comuna 5 (0,492), 5.º Comuna 6 (0,453), 6.º Comuna 7 (0,410), 7.º Comuna 3 (0,292), 8.º Zaragoza (corregimiento) (0,208); empate práctico (diferencia < 0,01) entre Comuna 2 y Comuna 4, Comuna 4 y Comuna 5. Rango de puesto en 17 escenarios: Comuna 1 1–2; Comuna 2 1–6; Comuna 4 2–4; Comuna 5 2–7; Comuna 6 3–7; Comuna 7 2–8; Comuna 3 6–8; Zaragoza (corregimiento) 6–8. Con el componente literal de la tarea (HAND alta) el orden es Comuna 1, Comuna 2, Comuna 5, Comuna 4, Comuna 6, Comuna 3, Comuna 7, Zaragoza (corregimiento); ese orden es idéntico al de quitar la inundación. Con conteos absolutos: Comuna 1, Comuna 7, Comuna 6, Comuna 4, Comuna 2, Comuna 3, Comuna 5, Zaragoza (corregimiento). Sin La Niña 2011 en el componente de inundación: Comuna 1, Comuna 2, Comuna 5, Comuna 4, Comuna 6, Comuna 7, Comuna 3, Zaragoza (corregimiento).",
+  "Calibración (cabecera, unidades de ≈ 111 m, N = 1245, R² = 0,79): +10 pp de arbolado en lugar de pasto se asocia con -0,21 °C de LST (IC 95 % bloques -0,28 a -0,14); +10 pp de construido en lugar de pasto, +0,60 °C (+0,54 a +0,65); arbolado en lugar de construido, -0,81 °C por 10 pp. NDVI: +0,014 y -0,040 por 10 pp (R² = 0,66; equivalencia de cobertura, en parte circular). Topes que calibracion.json propone para el simulador (regla_combinacion): cada intervención hasta su superficie disponible (max_pp_techos_verdes, max_pp_pavimento_frio…; max_pp_sobre_construido es el tope conjunto) y ΔLST total ≥ delta_lst_minimo_c, para que ninguna zona baje de la LST del bosque urbano observado (35,05 °C; la rural es 33,97 °C). El piso hace falta: aun dentro de esas superficies, una sola intervención en su tope bajaría de él en las 8 zonas y la combinación máxima en todas; el mayor exceso es de 3,31 °C, en Zaragoza (corregimiento). Son restricciones propuestas en el archivo: una cifra del simulador solo las respeta si las aplica. Asociación transversal, no causalidad.",
+  "Tendencias 2013–2025 (Landsat 8/9): LST sin tendencia detectable en ninguna zona con ninguna de las 3 variantes (cabecera, mediana: Sen +0,67 °C/década, IC -3,01 a +4,45). NDVI Landsat: disminución consistente en las 3 variantes (mediana, media, núcleo construido) en 7 zonas (Comuna 1, Comuna 2, Comuna 3, Comuna 4, Comuna 5, Comuna 6, Zaragoza (corregimiento)); depende del método en Comuna 7. En esas zonas, Sen entre -0,116 y -0,041 NDVI/década según la zona y la variante (la mediana da la caída mayor en 5 de 7); el campo de referencia no tiene tendencia (Sen 0,000/década). Comuna 7: mediana -0,019 (p = 0,367), media -0,027 (p = 0,204), núcleo construido -0,061 (p < 0,001). La caída no está contrastada con una fuente independiente: no usar para decidir sin ese contraste.",
+  "Equipamientos OSM dentro de las zonas: 34 (22 de educación, 7 de salud, 1 de cuidado, 4 de emergencia o gobierno). En calor extremo: Universidad Remington (43,40 °C, margen +0,56 °C); Hospital Sagrado Corazón de Jesús (43,21 °C, margen +0,36 °C, en el umbral); Sor María Anastasia (43,04 °C, margen +0,19 °C, en el umbral); Respirar Unidad Pediátrica (42,99 °C, margen +0,15 °C, en el umbral). A más de 300 m de verde ≥ 0,5 ha: 15; susceptibilidad alta HAND: 0; tráfico alto: 3; amenaza alta IDEAM por creciente súbita: 1; en áreas afectadas por La Niña (IDEAM): 3 (I.E Indalecio Penilla: 2011; The flying cockpits: 1988; Oncologos de Occidente: 2011). OSM solo tiene una parte de las sedes reales."
+ ],
+ "problemas": []
+}

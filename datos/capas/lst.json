@@ -1,0 +1,423 @@
+{
+ "titulo": "Temperatura superficial terrestre (Landsat 8 y 9, 2022–2025)",
+ "descripcion": "Temperatura de la superficie (techos, vías, suelo, vegetación, agua) medida por satélite hacia las 10:19 de la mañana en días despejados; mediana de 78 pasos entre 2022 y 2025. No es la temperatura del aire que se siente a la sombra.",
+ "unidad": "°C",
+ "fuente": {
+  "nombre": "USGS Landsat 8-9 OLI/TIRS Collection 2 Level-2 (ST_B10, QA_PIXEL), vía Microsoft Planetary Computer",
+  "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+  "licencia": "Dominio público (USGS): sin restricciones de uso ni redistribución; se pide citar la fuente",
+  "cita": "Landsat 8-9 OLI/TIRS Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey. doi:10.5066/P9OGBGM6"
+ },
+ "fuentes_secundarias": [
+  {
+   "uso": "Polígono de la cabecera (zona urbana y su entorno de 500 m) y ejes de los ríos para verificación",
+   "nombre": "OpenStreetMap (vía js/datos-osm.js, comun.mascara_urbana())",
+   "url": "https://www.openstreetmap.org/copyright",
+   "licencia": "ODbL 1.0",
+   "cita": "© colaboradores de OpenStreetMap"
+  },
+  {
+   "uso": "Núcleo construido (≥ 80 %) y periurbano verde (< 20 %) de la cabecera; exclusión de celdas construidas (≥ 10 %) de la referencia rural",
+   "capa": "datos/capas/construido.json",
+   "nombre": "ESA WorldCover 10 m 2021 v200 (tesela N03W078)",
+   "url": "https://doi.org/10.5281/zenodo.7254221",
+   "licencia": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+   "cita": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221"
+  },
+  {
+   "uso": "Exclusión de agua (≥ 50 %) de la referencia rural",
+   "capa": "datos/capas/agua.json",
+   "nombre": "ESA WorldCover 10 m 2021 v200 (tesela N03W078)",
+   "url": "https://doi.org/10.5281/zenodo.7254221",
+   "licencia": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+   "cita": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221"
+  },
+  {
+   "uso": "Referencia rural en la misma franja de altitud que la cabecera (± 30 m de su mediana)",
+   "capa": "datos/capas/altitud.json",
+   "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+   "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+   "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)",
+   "cita": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65"
+  }
+ ],
+ "periodo": "2022-01-01 a 2025-12-31 (78 escenas de días con al menos parte del área despejada; hora local media de paso 10:19, rango 10:18–10:19)",
+ "resolucion_original_m": 100,
+ "procesamiento": [
+  "Búsqueda STAC en Planetary Computer: 143 escenas Landsat 8 y 9, Tier 1, ruta/fila WRS-2 009/057, 2022–2025.",
+  "Lectura solo de la ventana del área (COG) de QA_PIXEL, ST_B10, ST_CDIST y ST_QA, y del archivo de metadatos MTL de cada escena (reanálisis atmosférico, versión del algoritmo ST y del software).",
+  "Máscara QA_PIXEL de Collection 2: se descartan los píxeles con bit 0 (relleno), 1 (nube dilatada), 2 (cirro alta confianza), 3 (nube), 4 (sombra de nube) o 5 (nieve) activos, QA = 0 y ST = 0.",
+  "Se leen las escenas con al menos 10 % de la rejilla despejado: 99 de 143.",
+  "ST_B10 → K = DN × 0,00341802 + 149,0; °C = K − 273,15.",
+  "Reproyección de UTM 18N (30 m) a la rejilla común EPSG:4326 de 0,00025° con remuestreo bilineal que ignora píxeles sin dato.",
+  "Filtro empírico de nubes no detectadas por QA_PIXEL (supuesto propio): se descarta la escena si al menos el 20 % de sus píxeles despejados está más de 10 °C por debajo de la referencia. En la primera pasada la referencia es la mediana de todas las escenas; luego, el compuesto de las aceptadas, y se repite hasta que el conjunto no cambia (3 pasadas). Se descartan 21 escenas (con una sola pasada eran 18). Quedan 78.",
+  "Mediana por celda de las observaciones despejadas; se dejan sin dato las celdas con menos de 3 observaciones.",
+  "El número de observaciones por celda se guarda en fuentes/rejilla/lst_n.npy.",
+  "Estadísticas por zona: cabecera (polígono OSM), núcleo construido (≥ 80 % construido según WorldCover 2021), periurbano verde (< 20 % construido) y referencia rural (fuera de la cabecera, a más de 500 m, sin agua, construido < 10 % y altitud entre 886,8 y 946,8 m, ± 30 m de la mediana de la cabecera según Copernicus DEM)."
+ ],
+ "limitaciones": [
+  "Es temperatura de la superficie (piel radiativa), no temperatura del aire; en días soleados puede superar en muchos grados a la del aire.",
+  "Describe solo la mañana de días con cielo despejado sobre la celda (paso del satélite hacia las 10:19 hora local); no informa sobre la tarde, la noche ni los días nublados.",
+  "El sensor térmico TIRS mide a 100 m; el USGS lo entrega remuestreado a 30 m. Detalles menores a una manzana (un techo, una calle) no se resuelven.",
+  "El nivel absoluto depende del tratamiento de nubes. QA_PIXEL deja pasar nubes delgadas y bruma; el filtro por escena es un umbral propio y no separa limpiamente: las escenas descartadas tenían medianas de cabecera de 11,2 a 33,1 °C y entre las usadas hay medianas desde 28,3 °C. Según la variante (tabla sensibilidad_nubes), la mediana de la cabecera va de 38,4 a 40,1 °C; la diferencia cabecera − rural cambia poco (5,1 a 5,2 °C) y la del núcleo construido va de 7,8 a 8,0 °C. Las máscaras por píxel con ST_CDIST o ST_QA, sin el filtro por escena, dejan 6 a 16 escenas con ≥ 20 % de píxeles fríos, por eso no lo reemplazan.",
+  "Cambio de procesamiento del USGS dentro del periodo: el producto ST corrige la atmósfera con el reanálisis GEOS-5 FP-IT en las adquisiciones hasta el 31-12-2023 y con GEOS-5 IT (GEOS-IT) desde el 1-1-2024 (guía LSDS-1619 v6.0 del USGS, mayo de 2024; campo DATA_SOURCE_REANALYSIS del MTL, leído en 78 de 78 escenas). El compuesto mezcla 33 escenas con GEOS-5 FP-IT y 45 escenas con GEOS-5 IT. Por separado: con GEOS-5 FP-IT (33 escenas de 2022-2023) la cabecera da 38,5 °C, la isla +4,9 °C y la del núcleo +7,7 °C; con GEOS-5 IT (45 escenas de 2024-2025), 39,9 °C, +5,6 °C y +8,2 °C (tabla sensibilidad_reanalisis). Esa diferencia no se puede atribuir al reanálisis: los dos grupos son años distintos, con otras fechas despejadas y otro clima (2024 incluye el final de El Niño 2023-2024, que terminaba en mayo de 2024 según NOAA). Además, según los MTL el algoritmo ST pasó de st_1.3.0 a st_1.5.0 entre las adquisiciones del 2023-05-01 y el 2023-06-10 (no se encontró documentación del USGS sobre ese cambio). Las actualizaciones con escenas de 2026 en adelante serán solo GEOS-IT.",
+  "El polígono OSM de la cabecera es heterogéneo: el 43 % de sus celdas tiene menos de 20 % construido y el 45 % tiene 80 % o más. La LST de la cabecera es bimodal (núcleo construido 41,7 °C, periurbano verde 35,6 °C) y su mediana cae entre ambos modos; para comparar zonas conviene usar el núcleo construido o la media.",
+  "Las escenas despejadas no se reparten igual en todos los meses ni en todos los años; la mediana de cada escena difiere de la del compuesto entre -6,6 y +12,1 °C según la fecha. El compuesto describe 2022–2025 en conjunto, no un día ni un año típico.",
+  "455 celdas sin ninguna observación válida por huecos fijos del producto ST del USGS, que no tiene dato donde falta la emisividad de ASTER GED (https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature-data-gaps-due-missing-aster-ged).",
+  "La emisividad del producto USGS combina ASTER GED con NDVI; en techos metálicos y superficies muy reflectivas el error es mayor.",
+  "La referencia rural depende de capas de otros productos (WorldCover 2021 y Copernicus DEM) y de umbrales propios (± 30 m, construido < 10 %). Con la definición anterior (todo lo de fuera a más de 500 m, sin agua, incluidas las colinas de 1 000-1 300 m) la mediana rural era 33,0 °C."
+ ],
+ "rango_visual": [
+  28.0,
+  42.0
+ ],
+ "paleta": [
+  "#313695",
+  "#74add1",
+  "#ffffbf",
+  "#f46d43",
+  "#a50026"
+ ],
+ "interpretacion": "No existe un umbral normativo de temperatura superficial. Se interpreta en relación con el campo a la misma altitud: mediana rural 34,0 °C (fuera de la cabecera, a más de 500 m, sin agua ni construcción, entre 886,8 y 946,8 m). La cabecera da 39,1 °C en mediana (+5,1 °C), su núcleo construido 41,7 °C (+7,8 °C) y sus zonas verdes periurbanas 35,6 °C. Celdas varios grados por encima de la mediana rural indican superficies que acumulan calor (cubiertas, pavimento, suelo desnudo); valores bajos, vegetación densa o agua.",
+ "escenas_usadas": 78,
+ "escenas_descartadas_por_nube_no_detectada": [
+  "2022-03-19",
+  "2022-06-15",
+  "2022-07-17",
+  "2022-10-21",
+  "2022-12-24",
+  "2023-01-17",
+  "2023-03-22",
+  "2023-05-09",
+  "2023-05-25",
+  "2023-09-06",
+  "2023-09-14",
+  "2023-11-01",
+  "2024-02-29",
+  "2024-04-09",
+  "2024-10-18",
+  "2024-11-03",
+  "2025-03-11",
+  "2025-06-23",
+  "2025-09-19",
+  "2025-10-13",
+  "2025-12-16"
+ ],
+ "filtro_nubes_pasadas": [
+  {
+   "pasada": 1,
+   "referencia": "mediana de todas las escenas",
+   "escenas_aceptadas": 81,
+   "descartadas": [
+    "2022-03-19",
+    "2022-06-15",
+    "2022-07-17",
+    "2022-10-21",
+    "2022-12-24",
+    "2023-01-17",
+    "2023-03-22",
+    "2023-05-09",
+    "2023-05-25",
+    "2023-09-06",
+    "2024-02-29",
+    "2024-04-09",
+    "2024-10-18",
+    "2024-11-03",
+    "2025-03-11",
+    "2025-06-23",
+    "2025-09-19",
+    "2025-10-13"
+   ]
+  },
+  {
+   "pasada": 2,
+   "referencia": "compuesto de las escenas aceptadas en la pasada anterior",
+   "escenas_aceptadas": 78,
+   "descartadas": [
+    "2022-03-19",
+    "2022-06-15",
+    "2022-07-17",
+    "2022-10-21",
+    "2022-12-24",
+    "2023-01-17",
+    "2023-03-22",
+    "2023-05-09",
+    "2023-05-25",
+    "2023-09-06",
+    "2023-09-14",
+    "2023-11-01",
+    "2024-02-29",
+    "2024-04-09",
+    "2024-10-18",
+    "2024-11-03",
+    "2025-03-11",
+    "2025-06-23",
+    "2025-09-19",
+    "2025-10-13",
+    "2025-12-16"
+   ]
+  },
+  {
+   "pasada": 3,
+   "referencia": "compuesto de las escenas aceptadas en la pasada anterior",
+   "escenas_aceptadas": 78,
+   "descartadas": [
+    "2022-03-19",
+    "2022-06-15",
+    "2022-07-17",
+    "2022-10-21",
+    "2022-12-24",
+    "2023-01-17",
+    "2023-03-22",
+    "2023-05-09",
+    "2023-05-25",
+    "2023-09-06",
+    "2023-09-14",
+    "2023-11-01",
+    "2024-02-29",
+    "2024-04-09",
+    "2024-10-18",
+    "2024-11-03",
+    "2025-03-11",
+    "2025-06-23",
+    "2025-09-19",
+    "2025-10-13",
+    "2025-12-16"
+   ]
+  }
+ ],
+ "filtro_nubes_convergio": true,
+ "escenas_por_plataforma": {
+  "landsat-8": 38,
+  "landsat-9": 40
+ },
+ "escenas_por_reanalisis_st": {
+  "GEOS-5 FP-IT": 33,
+  "GEOS-5 IT": 45
+ },
+ "escenas_por_algoritmo_st": {
+  "st_1.3.0": 19,
+  "st_1.5.0": 59
+ },
+ "procedencia_reanalisis": {
+  "MTL": 78
+ },
+ "hora_local_media_paso": "10:19",
+ "hora_local_rango_paso": [
+  "10:18",
+  "10:19"
+ ],
+ "observaciones_por_celda": {
+  "min": 0,
+  "p10": 52.0,
+  "mediana": 67.0,
+  "max": 76,
+  "archivo": "fuentes/rejilla/lst_n.npy"
+ },
+ "celdas_sin_observacion": 455,
+ "lst_mediana_rural_c": 33.966,
+ "lst_mediana_cabecera_c": 39.066,
+ "lst_media_cabecera_c": 38.778,
+ "lst_mediana_nucleo_construido_c": 41.723,
+ "lst_mediana_periurbano_verde_c": 35.558,
+ "isla_calor_cabecera_c": 5.099,
+ "isla_calor_nucleo_construido_c": 7.757,
+ "lst_mediana_rural_definicion_anterior_c": 32.993,
+ "zonas": {
+  "cabecera_celdas": 19878,
+  "nucleo_celdas": 9011,
+  "nucleo_frac_cabecera": 0.453,
+  "periurbano_celdas": 8534,
+  "periurbano_frac_cabecera": 0.429,
+  "rural_celdas": 109565,
+  "rural_altitud_m": [
+   886.8,
+   946.8
+  ],
+  "cabecera_altitud_p10_p50_p90_m": [
+   908.0,
+   916.8,
+   929.7
+  ],
+  "rural_altitud_p10_p50_p90_m": [
+   903.0,
+   907.2,
+   930.9
+  ],
+  "rural_amplia_altitud_p10_p50_p90_m": [
+   903.4,
+   921.2,
+   1111.3
+  ]
+ },
+ "sensibilidad_nubes": {
+  "solo_qa_pixel": {
+   "escenas": 99,
+   "cabecera": 38.354,
+   "nucleo": 41.092,
+   "rural": 33.246,
+   "isla_cabecera": 5.108,
+   "isla_nucleo": 7.846,
+   "obs_por_celda_mediana": 76.0,
+   "escenas_aun_frias": 18
+  },
+  "qa_pixel_mas_filtro_escena_una_pasada": {
+   "escenas": 81,
+   "cabecera": 38.955,
+   "nucleo": 41.613,
+   "rural": 33.826,
+   "isla_cabecera": 5.129,
+   "isla_nucleo": 7.787,
+   "obs_por_celda_mediana": 69.0,
+   "escenas_aun_frias": 3
+  },
+  "qa_pixel_mas_filtro_escena_USADO": {
+   "escenas": 78,
+   "cabecera": 39.066,
+   "nucleo": 41.723,
+   "rural": 33.966,
+   "isla_cabecera": 5.099,
+   "isla_nucleo": 7.757,
+   "obs_por_celda_mediana": 67.0,
+   "escenas_aun_frias": 0
+  },
+  "filtro_escena_estricto_5pct": {
+   "escenas": 63,
+   "cabecera": 39.757,
+   "nucleo": 42.496,
+   "rural": 34.564,
+   "isla_cabecera": 5.193,
+   "isla_nucleo": 7.932,
+   "obs_por_celda_mediana": 56.0,
+   "escenas_aun_frias": 0
+  },
+  "cdist_1km": {
+   "escenas": 99,
+   "cabecera": 39.179,
+   "nucleo": 41.916,
+   "rural": 34.044,
+   "isla_cabecera": 5.136,
+   "isla_nucleo": 7.872,
+   "obs_por_celda_mediana": 50.0,
+   "escenas_aun_frias": 16
+  },
+  "cdist_1km_mas_filtro_escena": {
+   "escenas": 78,
+   "cabecera": 39.677,
+   "nucleo": 42.395,
+   "rural": 34.562,
+   "isla_cabecera": 5.114,
+   "isla_nucleo": 7.833,
+   "obs_por_celda_mediana": 46.0,
+   "escenas_aun_frias": 0
+  },
+  "cdist_2km": {
+   "escenas": 99,
+   "cabecera": 39.69,
+   "nucleo": 42.534,
+   "rural": 34.578,
+   "isla_cabecera": 5.111,
+   "isla_nucleo": 7.956,
+   "obs_por_celda_mediana": 32.0,
+   "escenas_aun_frias": 6
+  },
+  "cdist_2km_mas_filtro_escena": {
+   "escenas": 78,
+   "cabecera": 40.096,
+   "nucleo": 42.906,
+   "rural": 34.973,
+   "isla_cabecera": 5.123,
+   "isla_nucleo": 7.934,
+   "obs_por_celda_mediana": 31.0,
+   "escenas_aun_frias": 0
+  },
+  "stqa_5K": {
+   "escenas": 99,
+   "cabecera": 38.767,
+   "nucleo": 41.509,
+   "rural": 33.614,
+   "isla_cabecera": 5.153,
+   "isla_nucleo": 7.895,
+   "obs_por_celda_mediana": 67.0,
+   "escenas_aun_frias": 16
+  },
+  "stqa_5K_mas_filtro_escena": {
+   "escenas": 78,
+   "cabecera": 39.318,
+   "nucleo": 42.02,
+   "rural": 34.221,
+   "isla_cabecera": 5.097,
+   "isla_nucleo": 7.799,
+   "obs_por_celda_mediana": 60.0,
+   "escenas_aun_frias": 0
+  }
+ },
+ "sensibilidad_reanalisis": {
+  "GEOS-5 FP-IT": {
+   "escenas": 33,
+   "cabecera": 38.543,
+   "nucleo": 41.322,
+   "rural": 33.608,
+   "isla_cabecera": 4.935,
+   "isla_nucleo": 7.714,
+   "obs_por_celda_mediana": 29.0,
+   "escenas_aun_frias": 0,
+   "anios": [
+    "2022",
+    "2023"
+   ],
+   "celdas_con_dato_pct": 99.8
+  },
+  "GEOS-5 IT": {
+   "escenas": 45,
+   "cabecera": 39.873,
+   "nucleo": 42.44,
+   "rural": 34.254,
+   "isla_cabecera": 5.62,
+   "isla_nucleo": 8.186,
+   "obs_por_celda_mediana": 38.0,
+   "escenas_aun_frias": 0,
+   "anios": [
+    "2024",
+    "2025"
+   ],
+   "celdas_con_dato_pct": 99.8
+  }
+ },
+ "nombre": "lst",
+ "escala": 0.01,
+ "desplazamiento": -20,
+ "codificacion": "RGBA 16 bits: v=R*256+G; v=0 sin dato; valor=(v-1)*escala+desplazamiento",
+ "rejilla": {
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res": 0.00025,
+  "ancho": 520,
+  "alto": 428,
+  "crs": "EPSG:4326"
+ },
+ "estadisticas": {
+  "extension": {
+   "min": 26.2435,
+   "p10": 29.8771,
+   "media": 33.4306,
+   "p50": 33.3875,
+   "p90": 36.5865,
+   "max": 46.5582,
+   "celdas": 222105
+  },
+  "cabecera_urbana": {
+   "min": 30.584,
+   "p10": 34.2725,
+   "media": 38.7781,
+   "p50": 39.0658,
+   "p90": 42.8844,
+   "max": 45.6358,
+   "celdas": 19878
+  }
+ },
+ "cobertura_pct": 99.8,
+ "fecha_proceso": "2026-10-01"
+}

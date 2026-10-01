@@ -1,0 +1,907 @@
+{
+ "titulo": "Exposición relativa al tráfico vehicular",
+ "descripcion": "Índice de 0 a 100 que indica qué tan cerca está cada lugar de vías con más tráfico probable (según su categoría en OpenStreetMap). No es una medición de contaminación: 100 marca las zonas urbanas más expuestas (1 % superior).",
+ "unidad": "índice relativo 0–100 (adimensional)",
+ "fuente": {
+  "nombre": "OpenStreetMap — red vial (highway=*) descargada con Overpass API",
+  "url": "https://www.openstreetmap.org/copyright",
+  "licencia": "ODbL 1.0 (© colaboradores de OpenStreetMap)",
+  "cita": "© colaboradores de OpenStreetMap, ODbL 1.0. Instantánea Overpass 2026-10-01T01:50:59Z (UTC). Índice derivado por BioMap Cartago.",
+  "consulta_overpass_equivalente": "[out:json][timeout:180];\nway[\"highway\"](4.688,-75.985,4.795,-75.855);\nout geom;"
+ },
+ "periodo": "Red vial OSM, instantánea Overpass 2026-10-01T01:50:59Z (UTC) = 2026-09-30 20:50 hora de Bogotá; sin dimensión temporal (no hay aforos)",
+ "resolucion_original_m": 10.0,
+ "procesamiento": [
+  "Pesos por clase OSM: motorway/trunk 1,0; primary 0,8; secondary 0,6; tertiary 0,4; unclassified 0,2; residential/living_street 0,1; service 0,05; *_link = peso de su clase; peatonal, footway, cycleway, path, steps, construction = 0. Supuestos propios: track = 0,05; vías con access=no o motor_vehicle=no = 0.",
+  "Reproyección a UTM 18N (EPSG:32618) y muestreo de cada segmento cada ≤ 1 m.",
+  "Regla de calzadas dobles (supuesto): las muestras de una vía oneway de clase motorway–tertiary (sin *_link ni glorietas) que tienen a ≤ 40 m otra vía oneway de la misma clase en sentido contrario (≥ ~151°) pesan × 0.5: una vía dividida cuenta una vez, como una de calzada sencilla de su clase. Las calles de un solo sentido sin calzada opuesta pesan completo.",
+  "Rasterización de la longitud ponderada en celdas de 10 m con 400 m de margen.",
+  "Núcleo gaussiano isotrópico normalizado, σ = 50 m (truncado a 4σ) → densidad vial ponderada suavizada en km/km².",
+  "Promedio a la rejilla común EPSG:4326 de 0,00025° (≈ 27,7 m).",
+  "Normalización: percentil 99 dentro de la cabecera urbana (OSM) = 100 (p99 = 11.023 km/km² ponderados); recorte a [0, 100]."
+ ],
+ "parametros": {
+  "pesos": {
+   "motorway": 1.0,
+   "trunk": 1.0,
+   "primary": 0.8,
+   "secondary": 0.6,
+   "tertiary": 0.4,
+   "unclassified": 0.2,
+   "residential": 0.1,
+   "living_street": 0.1,
+   "service": 0.05,
+   "track": 0.05
+  },
+  "peso_cero": [
+   "bridleway",
+   "construction",
+   "corridor",
+   "cycleway",
+   "elevator",
+   "footway",
+   "path",
+   "pedestrian",
+   "platform",
+   "proposed",
+   "steps"
+  ],
+  "sigma_m": 50.0,
+  "celda_m": 10.0,
+  "p99_cabecera_km_km2_ponderados": 11.0233,
+  "calzadas_dobles": {
+   "distancia_max_m": 40.0,
+   "suma_vectores_sentido_max": 0.5,
+   "factor": 0.5,
+   "clases": [
+    "motorway",
+    "primary",
+    "secondary",
+    "tertiary",
+    "trunk"
+   ],
+   "diagnostico_por_clase_en_la_descarga": {
+    "trunk": {
+     "km_oneway": 38.74,
+     "km_en_calzada_doble_x05": 35.8,
+     "pct": 92.4,
+     "socia_mismo_nombre_o_ref_pct": 100.0,
+     "socia_nombre_distinto_pct": 0.0,
+     "socia_sin_nombre_ni_ref_pct": 0.0,
+     "vias_principales_km": {
+      "Vía Cerritos Cartago": 15.16,
+      "Troncal de Occidente": 8.2,
+      "Variante Cartago": 6.7,
+      "Vía Cartago Zaragoza": 4.36,
+      "Calle 10": 1.29,
+      "Vía Zaragoza Cartago": 0.09
+     },
+     "separacion_calzadas_m": {
+      "p10": 8.6,
+      "p50": 12.4,
+      "p90": 28.4
+     },
+     "oneway_sin_pareja": {
+      "km": 2.94,
+      "pct_con_antiparalela_40_150m": 69.5,
+      "distancia_antiparalela_m": {
+       "p10": 43.0,
+       "p50": 49.6,
+       "p90": 59.3
+      }
+     }
+    },
+    "primary": {
+     "km_oneway": 0.25,
+     "km_en_calzada_doble_x05": 0.01,
+     "pct": 5.3,
+     "socia_mismo_nombre_o_ref_pct": 100.0,
+     "socia_nombre_distinto_pct": 0.0,
+     "socia_sin_nombre_ni_ref_pct": 0.0,
+     "vias_principales_km": {
+      "Vía Cartago Alcala": 0.01
+     },
+     "oneway_sin_pareja": {
+      "km": 0.24,
+      "pct_con_antiparalela_40_150m": 1.6,
+      "distancia_antiparalela_m": {
+       "p10": 69.7,
+       "p50": 70.8,
+       "p90": 71.8
+      }
+     }
+    },
+    "secondary": {
+     "km_oneway": 27.06,
+     "km_en_calzada_doble_x05": 20.2,
+     "pct": 74.7,
+     "socia_mismo_nombre_o_ref_pct": 98.9,
+     "socia_nombre_distinto_pct": 1.1,
+     "socia_sin_nombre_ni_ref_pct": 0.0,
+     "vias_principales_km": {
+      "Carrera 2": 7.97,
+      "Calle 10": 3.47,
+      "Avenida del Río": 2.76,
+      "Calle 14": 1.67,
+      "Carrera 7": 1.39,
+      "Calle 16": 0.99,
+      "Carrera 11": 0.8,
+      "Calle 16C": 0.66
+     },
+     "separacion_calzadas_m": {
+      "p10": 7.4,
+      "p50": 9.4,
+      "p90": 12.6
+     },
+     "oneway_sin_pareja": {
+      "km": 6.85,
+      "pct_con_antiparalela_40_150m": 79.3,
+      "distancia_antiparalela_m": {
+       "p10": 79.8,
+       "p50": 111.5,
+       "p90": 125.4
+      }
+     }
+    },
+    "tertiary": {
+     "km_oneway": 3.09,
+     "km_en_calzada_doble_x05": 2.65,
+     "pct": 85.8,
+     "socia_mismo_nombre_o_ref_pct": 76.5,
+     "socia_nombre_distinto_pct": 23.5,
+     "socia_sin_nombre_ni_ref_pct": 0.0,
+     "vias_principales_km": {
+      "Avenida del Río": 2.33,
+      "Avenida del rio - extension san pablo": 0.29,
+      "Avenida del rio": 0.03
+     },
+     "separacion_calzadas_m": {
+      "p10": 6.7,
+      "p50": 7.5,
+      "p90": 19.5
+     },
+     "oneway_sin_pareja": {
+      "km": 0.44,
+      "pct_con_antiparalela_40_150m": 26.1,
+      "distancia_antiparalela_m": {
+       "p10": 50.7,
+       "p50": 94.0,
+       "p90": 138.7
+      }
+     }
+    }
+   }
+  },
+  "longitud_osm_km_por_clase_vias_descargadas_incluye_tramos_fuera": {
+   "residential": 254.33,
+   "track": 247.17,
+   "unclassified": 74.09,
+   "service": 73.69,
+   "secondary": 55.58,
+   "primary": 42.13,
+   "trunk": 39.26,
+   "footway": 24.14,
+   "tertiary": 7.56,
+   "cycleway": 4.42,
+   "path": 2.72,
+   "trunk_link": 1.49,
+   "pedestrian": 0.99,
+   "construction": 0.56,
+   "secondary_link": 0.11,
+   "steps": 0.08
+  }
+ },
+ "fundamento_sigma": {
+  "referencia": "Karner, A. A., Eisinger, D. S. y Niemeier, D. A. (2010). Near-roadway air quality: synthesizing the findings from real-world data. Environmental Science & Technology, 44(14), 5334–5344. doi:10.1021/es100008x",
+  "hallazgo": "Con normalización por el borde de la vía, casi todos los contaminantes decaen al fondo entre 115 y 570 m; CO y el número de partículas ultrafinas bajan al menos 50 % hacia los 150 m; NO₂ y benceno decaen de forma sostenida en todo el rango; la masa de PM no muestra tendencia.",
+  "consecuencia": "Con σ = 50 m el perfil a través de una vía cae al 50 % a ≈ 59 m, al 14 % a 100 m y al ≈ 1 % a 150 m: el índice describe la franja de gradiente fuerte (0–150 m) y es más empinado que el decaimiento del NO₂ observado por Karner et al.",
+  "sensibilidad_spearman_cabecera": {
+   "sigma_25m": 0.928,
+   "sigma_100m": 0.922,
+   "sigma_150m": 0.822
+  }
+ },
+ "sensibilidad_regla_calzadas_dobles": {
+  "spearman_cabecera_con_y_sin_regla": 0.987,
+  "p99_sin_regla_km_km2": 17.066
+ },
+ "hallazgos": [
+  "Índice por zona: ordenadas por la media ponderada por población (índice del residente promedio), Comuna 5 42,3; Comuna 1 36,5; Comuna 7 33,7; Comuna 2 31,9; Comuna 4 31,9; Comuna 6 31,7; Zaragoza (corregimiento) 29,0; Comuna 3 28,0. En la cabecera, 33,0 ponderada por población frente a 25,3 por área. La media sobre todo el polígono mide la densidad vial del territorio, no la exposición de los residentes, y castiga a las comunas con mucho suelo no construido: Comuna 7 tiene construido solo el 27 % de sus celdas y queda 8.ª de 8 por área (16,7), pero 3.ª por población, es la más poblada (31 763 hab); sobre sus celdas construidas, su mediana (32,9) es la 2.ª y su media (31,8) la 8.ª. Zaragoza no se compara por área: su zona es la huella construida, no un polígono administrativo. Conserva el mismo puesto con las cuatro métricas: Comuna 5. Entre los puestos 3 y 6 (Comuna 7, Comuna 2, Comuna 4, Comuna 6) la media ponderada solo varía 2,0 puntos: ese tramo del orden no es firme en un índice relativo sin aforos."
+ ],
+ "estadisticas_por_zona": [
+  {
+   "n": 997,
+   "media": 46.0,
+   "p10": 21.3,
+   "mediana": 47.5,
+   "p90": 68.7,
+   "max": 100.0,
+   "id": "c5",
+   "nombre": "Comuna 5",
+   "geometria_fuente": "OpenStreetMap",
+   "geometria_tipo": "polígono administrativo (OpenStreetMap)",
+   "pct_celdas_ge_25": 81.0,
+   "poblacion_hab": 4897,
+   "media_ponderada_poblacion": 42.3,
+   "pct_poblacion_indice_ge_25": 76.9,
+   "pct_poblacion_indice_ge_50": 35.6,
+   "celdas_construidas": 839,
+   "pct_celdas_construidas": 84.2,
+   "construidas": {
+    "n": 839,
+    "media": 45.3,
+    "p10": 21.5,
+    "mediana": 46.0,
+    "p90": 67.3,
+    "max": 100.0
+   },
+   "puesto": {
+    "media_ponderada_poblacion": 1,
+    "media_area": 1,
+    "media_celdas_construidas": 1,
+    "mediana_celdas_construidas": 1
+   },
+   "rango_de_puesto_entre_metricas": [
+    1,
+    1
+   ]
+  },
+  {
+   "n": 1686,
+   "media": 40.5,
+   "p10": 11.4,
+   "mediana": 29.1,
+   "p90": 88.3,
+   "max": 100.0,
+   "id": "c1",
+   "nombre": "Comuna 1",
+   "geometria_fuente": "OpenStreetMap",
+   "geometria_tipo": "polígono administrativo (OpenStreetMap)",
+   "pct_celdas_ge_25": 60.1,
+   "poblacion_hab": 22039,
+   "media_ponderada_poblacion": 36.5,
+   "pct_poblacion_indice_ge_25": 60.0,
+   "pct_poblacion_indice_ge_50": 22.2,
+   "celdas_construidas": 1303,
+   "pct_celdas_construidas": 77.3,
+   "construidas": {
+    "n": 1303,
+    "media": 43.5,
+    "p10": 17.6,
+    "mediana": 31.6,
+    "p90": 88.7,
+    "max": 100.0
+   },
+   "puesto": {
+    "media_ponderada_poblacion": 2,
+    "media_area": 2,
+    "media_celdas_construidas": 2,
+    "mediana_celdas_construidas": 3
+   },
+   "rango_de_puesto_entre_metricas": [
+    2,
+    3
+   ]
+  },
+  {
+   "n": 8321,
+   "media": 16.7,
+   "p10": 0.0,
+   "mediana": 10.1,
+   "p90": 43.0,
+   "max": 81.0,
+   "id": "c7",
+   "nombre": "Comuna 7",
+   "geometria_fuente": "OpenStreetMap",
+   "geometria_tipo": "polígono administrativo (OpenStreetMap)",
+   "pct_celdas_ge_25": 30.2,
+   "poblacion_hab": 31763,
+   "media_ponderada_poblacion": 33.7,
+   "pct_poblacion_indice_ge_25": 79.8,
+   "pct_poblacion_indice_ge_50": 10.0,
+   "celdas_construidas": 2273,
+   "pct_celdas_construidas": 27.3,
+   "construidas": {
+    "n": 2273,
+    "media": 31.8,
+    "p10": 7.5,
+    "mediana": 32.9,
+    "p90": 52.2,
+    "max": 81.0
+   },
+   "puesto": {
+    "media_ponderada_poblacion": 3,
+    "media_area": 8,
+    "media_celdas_construidas": 8,
+    "mediana_celdas_construidas": 2
+   },
+   "rango_de_puesto_entre_metricas": [
+    2,
+    8
+   ]
+  },
+  {
+   "n": 1277,
+   "media": 35.4,
+   "p10": 11.9,
+   "mediana": 27.4,
+   "p90": 76.9,
+   "max": 100.0,
+   "id": "c2",
+   "nombre": "Comuna 2",
+   "geometria_fuente": "OpenStreetMap",
+   "geometria_tipo": "polígono administrativo (OpenStreetMap)",
+   "pct_celdas_ge_25": 57.3,
+   "poblacion_hab": 14237,
+   "media_ponderada_poblacion": 31.9,
+   "pct_poblacion_indice_ge_25": 60.6,
+   "pct_poblacion_indice_ge_50": 11.3,
+   "celdas_construidas": 932,
+   "pct_celdas_construidas": 73.0,
+   "construidas": {
+    "n": 932,
+    "media": 35.7,
+    "p10": 18.1,
+    "mediana": 27.7,
+    "p90": 73.6,
+    "max": 100.0
+   },
+   "puesto": {
+    "media_ponderada_poblacion": 4,
+    "media_area": 3,
+    "media_celdas_construidas": 3,
+    "mediana_celdas_construidas": 6
+   },
+   "rango_de_puesto_entre_metricas": [
+    3,
+    6
+   ]
+  },
+  {
+   "n": 2788,
+   "media": 26.4,
+   "p10": 4.7,
+   "mediana": 24.0,
+   "p90": 51.5,
+   "max": 88.4,
+   "id": "c4",
+   "nombre": "Comuna 4",
+   "geometria_fuente": "OpenStreetMap",
+   "geometria_tipo": "polígono administrativo (OpenStreetMap)",
+   "pct_celdas_ge_25": 47.0,
+   "poblacion_hab": 21944,
+   "media_ponderada_poblacion": 31.9,
+   "pct_poblacion_indice_ge_25": 62.5,
+   "pct_poblacion_indice_ge_50": 13.6,
+   "celdas_construidas": 1844,
+   "pct_celdas_construidas": 66.1,
+   "construidas": {
+    "n": 1844,
+    "media": 32.0,
+    "p10": 17.0,
+    "mediana": 28.1,
+    "p90": 54.6,
+    "max": 88.4
+   },
+   "puesto": {
+    "media_ponderada_poblacion": 4,
+    "media_area": 7,
+    "media_celdas_construidas": 7,
+    "mediana_celdas_construidas": 5
+   },
+   "rango_de_puesto_entre_metricas": [
+    4,
+    7
+   ]
+  },
+  {
+   "n": 3277,
+   "media": 27.2,
+   "p10": 7.9,
+   "mediana": 26.4,
+   "p90": 48.6,
+   "max": 90.7,
+   "id": "c6",
+   "nombre": "Comuna 6",
+   "geometria_fuente": "OpenStreetMap",
+   "geometria_tipo": "polígono administrativo (OpenStreetMap)",
+   "pct_celdas_ge_25": 54.5,
+   "poblacion_hab": 26113,
+   "media_ponderada_poblacion": 31.7,
+   "pct_poblacion_indice_ge_25": 73.3,
+   "pct_poblacion_indice_ge_50": 8.4,
+   "celdas_construidas": 2126,
+   "pct_celdas_construidas": 64.9,
+   "construidas": {
+    "n": 2126,
+    "media": 32.4,
+    "p10": 18.4,
+    "mediana": 29.7,
+    "p90": 50.6,
+    "max": 90.7
+   },
+   "puesto": {
+    "media_ponderada_poblacion": 6,
+    "media_area": 6,
+    "media_celdas_construidas": 6,
+    "mediana_celdas_construidas": 4
+   },
+   "rango_de_puesto_entre_metricas": [
+    4,
+    6
+   ]
+  },
+  {
+   "n": 940,
+   "media": 34.2,
+   "p10": 11.8,
+   "mediana": 25.7,
+   "p90": 74.6,
+   "max": 100.0,
+   "id": "zaragoza",
+   "nombre": "Zaragoza (corregimiento)",
+   "geometria_fuente": "ESA WorldCover 2021: área construida conectada al centro poblado (nodo OSM)",
+   "geometria_tipo": "huella construida (ESA WorldCover 2021), no un límite administrativo",
+   "pct_celdas_ge_25": 52.0,
+   "poblacion_hab": 4252,
+   "media_ponderada_poblacion": 29.0,
+   "pct_poblacion_indice_ge_25": 60.0,
+   "pct_poblacion_indice_ge_50": 8.2,
+   "celdas_construidas": 531,
+   "pct_celdas_construidas": 56.5,
+   "construidas": {
+    "n": 531,
+    "media": 34.6,
+    "p10": 14.5,
+    "mediana": 27.5,
+    "p90": 74.7,
+    "max": 100.0
+   },
+   "puesto": {
+    "media_ponderada_poblacion": 7,
+    "media_area": 4,
+    "media_celdas_construidas": 4,
+    "mediana_celdas_construidas": 8
+   },
+   "rango_de_puesto_entre_metricas": [
+    4,
+    8
+   ]
+  },
+  {
+   "n": 1530,
+   "media": 27.9,
+   "p10": 4.1,
+   "mediana": 23.0,
+   "p90": 57.4,
+   "max": 100.0,
+   "id": "c3",
+   "nombre": "Comuna 3",
+   "geometria_fuente": "OpenStreetMap",
+   "geometria_tipo": "polígono administrativo (OpenStreetMap)",
+   "pct_celdas_ge_25": 45.7,
+   "poblacion_hab": 14308,
+   "media_ponderada_poblacion": 28.0,
+   "pct_poblacion_indice_ge_25": 55.2,
+   "pct_poblacion_indice_ge_50": 5.5,
+   "celdas_construidas": 933,
+   "pct_celdas_construidas": 61.0,
+   "construidas": {
+    "n": 933,
+    "media": 33.1,
+    "p10": 13.2,
+    "mediana": 27.6,
+    "p90": 61.0,
+    "max": 100.0
+   },
+   "puesto": {
+    "media_ponderada_poblacion": 8,
+    "media_area": 5,
+    "media_celdas_construidas": 5,
+    "mediana_celdas_construidas": 7
+   },
+   "rango_de_puesto_entre_metricas": [
+    5,
+    8
+   ]
+  }
+ ],
+ "estadisticas_por_zona_nota": "Tres denominadores: «media» (y n, p10, mediana, p90, pct_celdas_ge_25) = todas las celdas del polígono: mide la densidad vial del territorio, no la exposición de quienes viven en él, y baja en las comunas con mucho suelo no construido. «media_ponderada_poblacion» = índice del residente promedio (pesos = habitantes por celda de la capa 'poblacion'): es la métrica para comparar zonas y la que ordena esta lista. «construidas» = celdas con ≥ 50 % construido según la capa 'construido' (ESA WorldCover 2021). «puesto» y «rango_de_puesto_entre_metricas» muestran qué tanto depende el orden de la métrica. Zaragoza no es comparable con las comunas en las métricas por área: su zona es la huella construida del centro poblado (datos/zaragoza.json), no un polígono administrativo, así que su media por área no se diluye con suelo rural.",
+ "estadisticas_cabecera": {
+  "media_area": 25.3,
+  "poblacion_hab": 135290,
+  "media_ponderada_poblacion": 33.0,
+  "pct_poblacion_indice_ge_25": 67.8,
+  "pct_poblacion_indice_ge_50": 12.9,
+  "pct_celdas_construidas": 51.6,
+  "media_celdas_construidas": 35.0
+ },
+ "estadisticas_por_zona_dependencias": {
+  "poblacion": {
+   "archivo": "fuentes/rejilla/poblacion.npy",
+   "titulo": "Población estimada por celda (2026)",
+   "unidad": "hab/celda",
+   "fecha_proceso": "2026-10-01",
+   "modificado": "2026-10-01T01:24"
+  },
+  "construido": {
+   "archivo": "fuentes/rejilla/construido.npy",
+   "titulo": "Área clasificada como construida (ESA WorldCover 2021)",
+   "unidad": "%",
+   "fecha_proceso": "2026-10-01",
+   "modificado": "2026-10-01T01:32"
+  },
+  "nota": "Estas estadísticas usan capas de otros productos (scripts/poblacion.py y scripts/worldcover.py): si se regeneran, reejecutar `scripts/aire.py --solo-trafico`."
+ },
+ "verificacion": {
+  "consulta_osm": {
+   "elementos": 3495,
+   "tipos": {
+    "way": 3495
+   },
+   "sin_etiqueta_highway": 0,
+   "sin_geometria": 0,
+   "que_no_tocan_la_caja": 0,
+   "con_bounds": 3495
+  },
+  "puntos_control": {
+   "parque_bolivar": 63.4,
+   "centro_rejilla": 56.2,
+   "aeropuerto": 0.4
+  },
+  "rio_la_vieja_eje": {
+   "n": 1077,
+   "media": 4.4,
+   "p10": 0.0,
+   "mediana": 0.8,
+   "p90": 9.2,
+   "max": 86.1,
+   "pct_ge_25": 3.2
+  },
+  "rural_fuera_cabecera": {
+   "n": 202682,
+   "media": 3.26,
+   "p10": 0.0,
+   "mediana": 0.01,
+   "p90": 7.22,
+   "max": 100.0,
+   "pct_menor_0_5": 63.2
+  },
+  "medianas_por_clase_en_muestras_cada_10m": {
+   "trunk_link": {
+    "peso": 1.0,
+    "todas": 100.0,
+    "n": 159,
+    "rurales": 100.0
+   },
+   "trunk": {
+    "peso": 1.0,
+    "todas": 77.4,
+    "n": 3312,
+    "rurales": 74.3
+   },
+   "primary": {
+    "peso": 0.8,
+    "todas": 58.0,
+    "n": 1408,
+    "rurales": 57.9
+   },
+   "secondary": {
+    "peso": 0.6,
+    "todas": 53.6,
+    "n": 4283,
+    "rurales": 44.4
+   },
+   "tertiary": {
+    "peso": 0.4,
+    "todas": 43.1,
+    "n": 664,
+    "rurales": 31.8
+   },
+   "unclassified": {
+    "peso": 0.2,
+    "todas": 15.1,
+    "n": 4785,
+    "rurales": 15.1
+   },
+   "residential": {
+    "peso": 0.1,
+    "todas": 28.6,
+    "n": 25583,
+    "rurales": 14.1
+   },
+   "track": {
+    "peso": 0.05,
+    "todas": 4.1,
+    "n": 19199,
+    "rurales": 4.0
+   },
+   "service": {
+    "peso": 0.05,
+    "todas": 7.8,
+    "n": 7456,
+    "rurales": 6.1
+   }
+  },
+  "medianas_rurales_por_tipo_de_calzada": {
+   "trunk_calzada_doble_rural": {
+    "mediana": 73.9,
+    "mediana_sin_regla": 92.7,
+    "n": 2279
+   },
+   "trunk_oneway_sin_calzada_opuesta_rural": {
+    "mediana": 100.0,
+    "mediana_sin_regla": 100.0,
+    "n": 128
+   },
+   "primary_oneway_sin_calzada_opuesta_rural": {
+    "mediana": 100.0,
+    "mediana_sin_regla": 93.9,
+    "n": 20
+   },
+   "primary_doble_sentido_rural": {
+    "mediana": 57.9,
+    "mediana_sin_regla": 37.4,
+    "n": 1364
+   },
+   "secondary_calzada_doble_rural": {
+    "mediana": 91.7,
+    "mediana_sin_regla": 69.1,
+    "n": 21
+   },
+   "secondary_doble_sentido_rural": {
+    "mediana": 44.2,
+    "mediana_sin_regla": 28.6,
+    "n": 1030
+   }
+  },
+  "cociente_troncal_dividida_vs_primaria_doble_sentido_rural": {
+   "con_regla": 1.28,
+   "sin_regla": 2.48,
+   "esperado_por_pesos": 1.25
+  },
+  "perfil_perpendicular_troncales_rurales": {
+   "0_m": {
+    "mediana": 74.1,
+    "gaussiana_linea_aislada_rel": 1.0
+   },
+   "30_m": {
+    "mediana": 66.2,
+    "gaussiana_linea_aislada_rel": 0.835
+   },
+   "60_m": {
+    "mediana": 41.9,
+    "gaussiana_linea_aislada_rel": 0.487
+   },
+   "100_m": {
+    "mediana": 14.7,
+    "gaussiana_linea_aislada_rel": 0.135
+   },
+   "150_m": {
+    "mediana": 2.9,
+    "gaussiana_linea_aislada_rel": 0.011
+   },
+   "250_m": {
+    "mediana": 0.5,
+    "gaussiana_linea_aislada_rel": 0.0
+   }
+  },
+  "indice_por_distancia_a_vias_principales_cabecera": {
+   "0-25_m": {
+    "n": 2137,
+    "media": 61.5,
+    "p10": 43.9,
+    "mediana": 56.2,
+    "p90": 91.8,
+    "max": 100.0,
+    "pct_celdas_ge_10": 100.0,
+    "pct_celdas_ge_25": 99.6
+   },
+   "25-50_m": {
+    "n": 1767,
+    "media": 50.1,
+    "p10": 33.9,
+    "mediana": 47.0,
+    "p90": 71.1,
+    "max": 100.0,
+    "pct_celdas_ge_10": 99.9,
+    "pct_celdas_ge_25": 98.4
+   },
+   "50-100_m": {
+    "n": 2926,
+    "media": 30.8,
+    "p10": 14.5,
+    "mediana": 30.5,
+    "p90": 46.5,
+    "max": 88.9,
+    "pct_celdas_ge_10": 96.0,
+    "pct_celdas_ge_25": 67.3
+   },
+   "100-150_m": {
+    "n": 2519,
+    "media": 18.5,
+    "p10": 4.0,
+    "mediana": 18.8,
+    "p90": 32.6,
+    "max": 47.7,
+    "pct_celdas_ge_10": 72.8,
+    "pct_celdas_ge_25": 29.1
+   },
+   "150-250_m": {
+    "n": 3841,
+    "media": 15.8,
+    "p10": 1.3,
+    "mediana": 16.0,
+    "p90": 31.3,
+    "max": 46.0,
+    "pct_celdas_ge_10": 62.5,
+    "pct_celdas_ge_25": 22.8
+   },
+   "250-500_m": {
+    "n": 4224,
+    "media": 14.2,
+    "p10": 0.1,
+    "mediana": 13.4,
+    "p90": 30.3,
+    "max": 44.2,
+    "pct_celdas_ge_10": 54.8,
+    "pct_celdas_ge_25": 24.2
+   },
+   ">=500_m": {
+    "n": 2464,
+    "media": 10.6,
+    "p10": 0.0,
+    "mediana": 7.1,
+    "p90": 29.4,
+    "max": 41.9,
+    "pct_celdas_ge_10": 42.9,
+    "pct_celdas_ge_25": 16.3
+   }
+  },
+  "pct_celdas_cabecera_a_150m_o_mas_de_vias_principales_con_indice_ge_10": 54.8,
+  "norte_sur": {
+   "mediana_troncales": 77.4,
+   "mediana_con_filas_invertidas": 0.0
+  },
+  "pico_teorico_linea_aislada_w1": 72.4,
+  "pct_celdas_cabecera_saturadas_en_100": 1.0,
+  "enlaces_y_saturacion": {
+   "umbral_saturacion": 99.99,
+   "celdas_saturadas": 374,
+   "urbanas": 200,
+   "rurales": 174,
+   "indice_sin_recorte_en_saturadas": {
+    "urbanas": {
+     "n": 200,
+     "media": 128.9,
+     "p10": 102.5,
+     "mediana": 120.6,
+     "p90": 163.9,
+     "max": 207.9
+    },
+    "rurales": {
+     "n": 174,
+     "media": 132.8,
+     "p10": 103.6,
+     "mediana": 127.4,
+     "p90": 171.3,
+     "max": 219.1
+    },
+    "nota": "100 × densidad / p99 de la cabecera, antes de recortar a 100"
+   },
+   "pct_rurales_a_100m_o_menos_de_un_enlace": 78.7,
+   "pct_urbanas_a_100m_o_menos_de_un_enlace": 55.0,
+   "grupos_rurales_mayores": [
+    {
+     "celdas": 35,
+     "lat": 4.6908,
+     "lon": -75.924,
+     "enlace_a_100m_o_menos": true,
+     "vias_a_150m": [
+      "Troncal de Occidente",
+      "(sin nombre)"
+     ]
+    },
+    {
+     "celdas": 34,
+     "lat": 4.7048,
+     "lon": -75.9235,
+     "enlace_a_100m_o_menos": true,
+     "vias_a_150m": [
+      "Vía Cartago Zaragoza",
+      "Calle 10",
+      "(sin nombre)"
+     ]
+    },
+    {
+     "celdas": 27,
+     "lat": 4.7212,
+     "lon": -75.9169,
+     "enlace_a_100m_o_menos": true,
+     "vias_a_150m": [
+      "Troncal de Occidente",
+      "Vía Cartago Zaragoza",
+      "(sin nombre)"
+     ]
+    }
+   ],
+   "mediana_en_enlaces": {
+    "peso_de_su_clase": 100.0,
+    "enlaces_a_factor_sensibilidad": 100.0,
+    "n": 170
+   },
+   "sensibilidad_enlaces": {
+    "factor_sobre_peso_de_clase": 0.5,
+    "celdas_saturadas": 350,
+    "urbanas": 200,
+    "rurales": 150,
+    "nota": "Solo sensibilidad: la capa publicada usa enlaces con el peso de su clase."
+   },
+   "spearman_cabecera_con_enlaces_1_y_0_5": 1.0
+  },
+  "png_vs_npy": {
+   "max_abs_dif": 0.005,
+   "misma_mascara_nan": true
+  }
+ },
+ "limitaciones": [
+  "Índice relativo de proximidad a vías ponderadas por su categoría en OSM; NO es una concentración ni una medición, y no usa aforos vehiculares (no hay aforos abiertos para Cartago).",
+  "La categoría OSM es un sustituto grueso del volumen de tráfico; no considera velocidad, congestión, pendiente, flota (motos, buses, camiones cañeros) ni horario.",
+  "Calzadas dobles: se cuentan una vez por una regla geométrica (oneway de la misma clase, sentido contrario, ≤ 40 m). Una vía dividida pesa como una de calzada sencilla de su clase aunque tenga más carriles; si una de las calzadas no está marcada como oneway en OSM, la vía cuenta doble. Dos calles de un solo sentido de la misma clase a menos de 40 m también se contarían como una. En esta red, 2.94 km de troncal oneway quedan sin pareja y suman completo (el 69.5 % tiene la calzada opuesta a 43.0–59.3 m, tramos con separador más ancho que el umbral); las calles de un solo sentido del centro (p. ej., Carreras 4, 4A y 5, Calle 14) tienen su par antiparalelo a 79.8–125.4 m y no se emparejan.",
+  "Los enlaces (*_link) pesan como su clase (supuesto), aunque un ramal lleva solo una parte del tráfico de la vía. En los intercambiadores confluyen en pocos metros la troncal, varios ramales y la vía que cruza, y el índice se recorta en 100: la mediana en los enlaces es 100,0 (n = 170 muestras cada ~10 m). De las 374 celdas con índice ≥ 99,99, 200 están en la cabecera y 174 fuera; el 79 % de las rurales está a ≤ 100 m de un enlace (grupos mayores: 4.6908, -75.924, 35 celdas, Troncal de Occidente / (sin nombre); 4.7048, -75.9235, 34 celdas, Vía Cartago Zaragoza / Calle 10 / (sin nombre); 4.7212, -75.9169, 27 celdas, Troncal de Occidente / Vía Cartago Zaragoza / (sin nombre)). Sensibilidad (no aplicada a la capa): con los enlaces a 0,5 × su clase quedarían 350 celdas saturadas (200 urbanas, 150 rurales) y la mediana en los enlaces seguiría en 100,0: la saturación viene de la confluencia de vías y del recorte, no solo del peso de los ramales (el orden de las celdas de la cabecera no cambia: Spearman 1,000). Sin recortar, la mediana en las celdas saturadas es 120,6 en la cabecera y 127,4 fuera. Lea 100 junto a intercambiadores y troncales sin calzada opuesta como «máximo de la escala», no como una exposición proporcionalmente mayor.",
+  "El núcleo de σ = 50 m es más corto que el decaimiento de NO₂ medido (hasta ~500 m); los gradientes lejanos están subrepresentados.",
+  "No incluye viento, topografía ni efecto cañón de las calles.",
+  "La completitud de OSM es menor en zona rural (vías terciarias y caminos de finca pueden faltar o estar mal clasificados).",
+  "La descarga Overpass usó la misma caja que la rejilla común: las vías que quedan enteramente fuera no se cuentan, por lo que en los ~150 m junto al borde de la extensión el índice puede estar subestimado.",
+  "La normalización con el percentil 99 de la cabecera hace que el índice solo sea comparable dentro de esta capa."
+ ],
+ "rango_visual": [
+  0,
+  100
+ ],
+ "paleta": [
+  "#f7f4ea",
+  "#f3d27a",
+  "#e8913a",
+  "#c2452d",
+  "#6b1d2a"
+ ],
+ "interpretacion": "No hay umbrales sanitarios para este índice: es relativo y las bandas son descriptivas, derivadas de la propia capa (verificacion.indice_por_distancia_a_vias_principales_cabecera). En la cabecera, la mediana del índice es 56.2 a menos de 25 m del eje de una vía principal (trunk, primary, secondary o tertiary), 47.0 entre 25 y 50 m, 30.5 entre 50 y 100 m, 13.4–18.8 entre 100 y 500 m y 7.1 a más de 500 m (p90 29.4); el 54.8 % de las celdas urbanas a 150 m o más de una vía principal tiene índice ≥ 10 por la densidad de calles residenciales. Una vía aislada de peso 1 (troncal) da ≈ 72 en su eje. Lectura sugerida: < 10 = baja densidad vial ponderada (zona rural, bordes urbanos o manzanas lejos de vías principales); 10–25 = malla residencial o vías principales a 100–500 m; 25–50 = 25–100 m de una vía principal, o malla residencial muy densa; ≥ 50 = franja inmediata (menos de ~25–50 m) de vías principales o confluencia de varias. Un mismo valor puede venir de una arteria cercana o de muchas calles residenciales: el índice no distingue. Para comparar zonas use la media ponderada por población (estadisticas_por_zona), no la media sobre el área del polígono, que mide la densidad vial del territorio y no la exposición de los residentes. Para concentraciones reales se necesitan mediciones (estaciones o campañas con sensores) o un modelo de dispersión con aforos.",
+ "uso_en_aplicacion": "Rotular como «Exposición relativa al tráfico (índice 0–100)», sin unidades de concentración. No sustituye ni debe rotularse como NO₂ en µg/m³; para el aire regional use datos/series/aire.json (un solo valor para el municipio).",
+ "nombre": "trafico",
+ "escala": 0.01,
+ "desplazamiento": 0,
+ "codificacion": "RGBA 16 bits: v=R*256+G; v=0 sin dato; valor=(v-1)*escala+desplazamiento",
+ "rejilla": {
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res": 0.00025,
+  "ancho": 520,
+  "alto": 428,
+  "crs": "EPSG:4326"
+ },
+ "estadisticas": {
+  "extension": {
+   "min": 0.0,
+   "p10": 0.0,
+   "media": 5.2308,
+   "p50": 0.0607,
+   "p90": 15.7816,
+   "max": 100.0,
+   "celdas": 222560
+  },
+  "cabecera_urbana": {
+   "min": 0.0,
+   "p10": 0.9052,
+   "media": 25.3283,
+   "p50": 22.4003,
+   "p90": 53.1442,
+   "max": 100.0,
+   "celdas": 19878
+  }
+ },
+ "cobertura_pct": 100.0,
+ "fecha_proceso": "2026-10-01"
+}

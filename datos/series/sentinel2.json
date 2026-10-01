@@ -1,0 +1,3288 @@
+{
+ "titulo": "NDVI por adquisición Sentinel-2 (2024–2025)",
+ "fuente": {
+  "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+  "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+  "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)",
+  "cita": "Contiene datos modificados de Copernicus Sentinel [2024–2025], procesados por BioMap Cartago"
+ },
+ "descripcion": "Mediana del NDVI de cada adquisición en la cabecera y en el resto de la rejilla, solo si la escena dejó ver ≥ 30 % de la zona. Cifras por escena: sensibles a nubes residuales, bruma y humo.",
+ "nota_robustez": "Solo dos años y entre 6 y 20 fechas por mes calendario: el patrón mensual es indicativo, no un ciclo estacional establecido. Las fechas con NDVI bajo pueden reflejar senescencia o cosecha real, pero también bruma o humo que la SCL no detecta; 'aot_mediana' y 'frac_veg_rojo_menor_0_1' ayudan a distinguirlo, sin resolverlo. Correlaciones entre fechas: NDVI rural vs AOT r = -0.268; NDVI rural vs fracción de vegetación con rojo < 0,1 r = 0.774. El AOT mediano de marzo (0.299) es el 1.º más alto de los 12 meses (mediana de todas las fechas 0.237): el mínimo de NDVI de marzo puede deberse en parte a bruma, sin que el AOT de Sen2Cor permita separarla de la senescencia o la cosecha.",
+ "campos": {
+  "nubosidad_tesela_min": "eo:cloud_cover mínimo de los items de la adquisición (% de la tesela de 110 km, no de la zona)",
+  "frac_valida_scl": "fracción de la rejilla con SCL válida (clases 4–6, fuera del margen de 40 m de nubes)",
+  "frac_usada": "fracción de la rejilla con NDVI calculado (bloques descargados, reflectancias > 0, sin censurados)",
+  "ndvi_mediana_cabecera": "mediana del NDVI de 10 m en la cabecera (null si se vio < 30 % de ella)",
+  "ndvi_mediana_rural_rejilla": "ídem en la rejilla fuera de la cabecera (incluye municipios vecinos)",
+  "aot_mediana": "espesor óptico de aerosoles de Sen2Cor (550 nm) mediano en los píxeles válidos de la zona",
+  "aot_atipico": "AOT > 0.466 (Q3 + 1,5·IQR de las fechas; criterio propio)",
+  "frac_veg_rojo_menor_0_1": "fracción de píxeles SCL 4 (vegetación) con reflectancia roja < 0,1; baja con senescencia, suelo expuesto o bruma"
+ },
+ "resumen_mensual_indicativo": {
+  "1": {
+   "fechas": 20,
+   "fechas_2024": 12,
+   "fechas_2025": 8,
+   "ndvi_rural_mediana": 0.718,
+   "ndvi_rural_min": 0.542,
+   "ndvi_rural_max": 0.756,
+   "aot_mediana": 0.23
+  },
+  "2": {
+   "fechas": 6,
+   "fechas_2024": 5,
+   "fechas_2025": 1,
+   "ndvi_rural_mediana": 0.604,
+   "ndvi_rural_min": 0.576,
+   "ndvi_rural_max": 0.674,
+   "aot_mediana": 0.225
+  },
+  "3": {
+   "fechas": 10,
+   "fechas_2024": 6,
+   "fechas_2025": 4,
+   "ndvi_rural_mediana": 0.504,
+   "ndvi_rural_min": 0.449,
+   "ndvi_rural_max": 0.704,
+   "aot_mediana": 0.299
+  },
+  "4": {
+   "fechas": 11,
+   "fechas_2024": 7,
+   "fechas_2025": 4,
+   "ndvi_rural_mediana": 0.669,
+   "ndvi_rural_min": 0.581,
+   "ndvi_rural_max": 0.752,
+   "aot_mediana": 0.274
+  },
+  "5": {
+   "fechas": 7,
+   "fechas_2024": 2,
+   "fechas_2025": 5,
+   "ndvi_rural_mediana": 0.757,
+   "ndvi_rural_min": 0.459,
+   "ndvi_rural_max": 0.772,
+   "aot_mediana": 0.276
+  },
+  "6": {
+   "fechas": 6,
+   "fechas_2024": 1,
+   "fechas_2025": 5,
+   "ndvi_rural_mediana": 0.773,
+   "ndvi_rural_min": 0.769,
+   "ndvi_rural_max": 0.809,
+   "aot_mediana": 0.195
+  },
+  "7": {
+   "fechas": 15,
+   "fechas_2024": 6,
+   "fechas_2025": 9,
+   "ndvi_rural_mediana": 0.704,
+   "ndvi_rural_min": 0.647,
+   "ndvi_rural_max": 0.774,
+   "aot_mediana": 0.187
+  },
+  "8": {
+   "fechas": 11,
+   "fechas_2024": 8,
+   "fechas_2025": 3,
+   "ndvi_rural_mediana": 0.712,
+   "ndvi_rural_min": 0.675,
+   "ndvi_rural_max": 0.746,
+   "aot_mediana": 0.252
+  },
+  "9": {
+   "fechas": 12,
+   "fechas_2024": 5,
+   "fechas_2025": 7,
+   "ndvi_rural_mediana": 0.695,
+   "ndvi_rural_min": 0.588,
+   "ndvi_rural_max": 0.743,
+   "aot_mediana": 0.294
+  },
+  "10": {
+   "fechas": 9,
+   "fechas_2024": 6,
+   "fechas_2025": 3,
+   "ndvi_rural_mediana": 0.691,
+   "ndvi_rural_min": 0.563,
+   "ndvi_rural_max": 0.749,
+   "aot_mediana": 0.207
+  },
+  "11": {
+   "fechas": 8,
+   "fechas_2024": 4,
+   "fechas_2025": 4,
+   "ndvi_rural_mediana": 0.765,
+   "ndvi_rural_min": 0.715,
+   "ndvi_rural_max": 0.776,
+   "aot_mediana": 0.236
+  },
+  "12": {
+   "fechas": 16,
+   "fechas_2024": 6,
+   "fechas_2025": 10,
+   "ndvi_rural_mediana": 0.755,
+   "ndvi_rural_min": 0.69,
+   "ndvi_rural_max": 0.782,
+   "aot_mediana": 0.226
+  }
+ },
+ "campos_resumen_mensual": {
+  "fechas": "adquisiciones del mes (2024+2025) con mediana rural, es decir, que dejaron ver ≥ 30 % de la zona rural de la rejilla",
+  "ndvi_rural_mediana": "mediana, entre esas fechas, de 'ndvi_mediana_rural_rejilla'",
+  "aot_mediana": "mediana, entre esas fechas, de 'aot_mediana'"
+ },
+ "aot": {
+  "aot_por_fecha": {
+   "min": 0.084,
+   "p25": 0.182,
+   "mediana": 0.237,
+   "p75": 0.296,
+   "max": 0.379,
+   "fechas": 132
+  },
+  "limite_atipico": 0.466,
+  "criterio": "AOT mediano de la zona > Q3 + 1,5·IQR de las fechas (regla de Tukey; criterio propio)",
+  "fechas_atipicas": [],
+  "correlacion_ndvi_rural_vs_aot": {
+   "r": -0.268,
+   "fechas": 131
+  },
+  "correlacion_ndvi_rural_vs_frac_veg_rojo_menor_0_1": {
+   "r": 0.774,
+   "fechas": 131
+  },
+  "correlacion_aot_vs_frac_veg_rojo_menor_0_1": {
+   "r": -0.492,
+   "fechas": 132
+  }
+ },
+ "lluvia_chirps": {
+  "fuente": {
+   "nombre": "CHIRPS v3.0 mensual (Climate Hazards Center, UCSB), media sobre la huella urbana; tomado del producto 'clima' de BioMap Cartago (datos/series/clima.json)",
+   "url": "https://www.chc.ucsb.edu/data/chirps3",
+   "licencia": "CC BY 4.0",
+   "cita": "Funk, C., Peterson, P., Harrison, L. et al. (2026). The Climate Hazards Center Infrared Precipitation with Stations, Version 3. Scientific Data 13, 718. doi:10.1038/s41597-026-07096-4"
+  },
+  "correlacion_ndvi_rural_mensual_vs_lluvia": {
+   "lluvia_mes_menos_0": 0.2,
+   "lluvia_mes_menos_1": 0.569,
+   "lluvia_mes_menos_2": 0.491,
+   "lluvia_mes_menos_3": 0.102,
+   "lluvia_acumulada_meses_menos_1_y_2": 0.673,
+   "meses": 24,
+   "nota": "NDVI rural = mediana de las fechas de cada año-mes; 24 meses: indicativo"
+  },
+  "lluvia_media_mensual_2024_2025_mm": {
+   "meses_secos_calendario": 110.2,
+   "otros_meses": 167.0
+  },
+  "lluvia_media_mensual_normal_1991_2020_mm": {
+   "meses_secos_calendario": 102.5,
+   "otros_meses": 182.7
+  },
+  "meses_secos_calendario_mas_lluviosos_que_su_normal": [
+   {
+    "mes": "2024-06",
+    "lluvia_mm": 190.9,
+    "normal_1991_2020_mm": 122.2
+   },
+   {
+    "mes": "2024-12",
+    "lluvia_mm": 182.8,
+    "normal_1991_2020_mm": 108.3
+   },
+   {
+    "mes": "2025-02",
+    "lluvia_mm": 214.3,
+    "normal_1991_2020_mm": 99.7
+   },
+   {
+    "mes": "2025-06",
+    "lluvia_mm": 171.0,
+    "normal_1991_2020_mm": 122.2
+   },
+   {
+    "mes": "2025-08",
+    "lluvia_mm": 181.8,
+    "normal_1991_2020_mm": 98.3
+   }
+  ],
+  "tras_lluvia_baja": {
+   "criterio": "meses cuya lluvia acumulada de los 2 meses previos ≤ 229 mm (tercil inferior de 2024–2025; criterio propio)",
+   "meses": [
+    "2024-01",
+    "2024-02",
+    "2024-03",
+    "2024-04",
+    "2024-09",
+    "2024-10",
+    "2025-08",
+    "2025-09"
+   ],
+   "adquisiciones": 52,
+   "cobertura_pct": 100.0,
+   "diferencia_con_anual": {
+    "cabecera": {
+     "p10": -0.109,
+     "mediana": -0.013,
+     "p90": 0.003,
+     "frac_menor_-0_05": 0.236,
+     "frac_mayor_0_05": 0.0112
+    },
+    "fuera_de_la_cabecera": {
+     "p10": -0.135,
+     "mediana": -0.038,
+     "p90": 0.004,
+     "frac_menor_-0_05": 0.4061,
+     "frac_mayor_0_05": 0.0091
+    }
+   },
+   "uso": "diagnóstico exploratorio; no se publica como capa"
+  }
+ },
+ "serie": [
+  {
+   "adquisicion": "2024-01-01_2A_R068",
+   "fecha": "2024-01-01",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240101_0_L2A",
+    "S2A_18NVL_20240101_0_L2A"
+   ],
+   "nubosidad_tesela_min": 57.5,
+   "frac_valida_scl": 0.4512,
+   "frac_usada": 0.4442,
+   "ndvi_mediana_cabecera": 0.3409,
+   "ndvi_mediana_rural_rejilla": 0.7564,
+   "aot_mediana": 0.235,
+   "frac_veg_rojo_menor_0_1": 0.9706,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-03_2B_R025",
+   "fecha": "2024-01-03",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20240103_0_L2A",
+    "S2B_18NVL_20240103_0_L2A"
+   ],
+   "nubosidad_tesela_min": 19.5,
+   "frac_valida_scl": 0.7705,
+   "frac_usada": 0.7705,
+   "ndvi_mediana_cabecera": 0.4134,
+   "ndvi_mediana_rural_rejilla": 0.7392,
+   "aot_mediana": 0.216,
+   "frac_veg_rojo_menor_0_1": 0.9549,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-06_2B_R068",
+   "fecha": "2024-01-06",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240106_0_L2A",
+    "S2B_18NVL_20240106_0_L2A"
+   ],
+   "nubosidad_tesela_min": 16.6,
+   "frac_valida_scl": 0.6555,
+   "frac_usada": 0.6522,
+   "ndvi_mediana_cabecera": 0.3346,
+   "ndvi_mediana_rural_rejilla": 0.7376,
+   "aot_mediana": 0.177,
+   "frac_veg_rojo_menor_0_1": 0.9812,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-08_2A_R025",
+   "fecha": "2024-01-08",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240108_0_L2A",
+    "S2A_18NVL_20240108_0_L2A"
+   ],
+   "nubosidad_tesela_min": 16.6,
+   "frac_valida_scl": 0.9155,
+   "frac_usada": 0.9155,
+   "ndvi_mediana_cabecera": 0.3058,
+   "ndvi_mediana_rural_rejilla": 0.7178,
+   "aot_mediana": 0.379,
+   "frac_veg_rojo_menor_0_1": 0.9171,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-11_2A_R068",
+   "fecha": "2024-01-11",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240111_0_L2A",
+    "S2A_18NVL_20240111_0_L2A"
+   ],
+   "nubosidad_tesela_min": 34.7,
+   "frac_valida_scl": 0.4988,
+   "frac_usada": 0.4898,
+   "ndvi_mediana_cabecera": 0.3305,
+   "ndvi_mediana_rural_rejilla": 0.7187,
+   "aot_mediana": 0.269,
+   "frac_veg_rojo_menor_0_1": 0.959,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-13_2B_R025",
+   "fecha": "2024-01-13",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20240113_0_L2A",
+    "S2B_18NVL_20240113_0_L2A"
+   ],
+   "nubosidad_tesela_min": 42.0,
+   "frac_valida_scl": 0.624,
+   "frac_usada": 0.6238,
+   "ndvi_mediana_cabecera": 0.3361,
+   "ndvi_mediana_rural_rejilla": 0.715,
+   "aot_mediana": 0.217,
+   "frac_veg_rojo_menor_0_1": 0.9191,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-16_2B_R068",
+   "fecha": "2024-01-16",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240116_0_L2A",
+    "S2B_18NVL_20240116_0_L2A"
+   ],
+   "nubosidad_tesela_min": 0.3,
+   "frac_valida_scl": 0.7477,
+   "frac_usada": 0.7444,
+   "ndvi_mediana_cabecera": 0.3189,
+   "ndvi_mediana_rural_rejilla": 0.6952,
+   "aot_mediana": 0.177,
+   "frac_veg_rojo_menor_0_1": 0.9804,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-21_2A_R068",
+   "fecha": "2024-01-21",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240121_0_L2A",
+    "S2A_18NVL_20240121_0_L2A"
+   ],
+   "nubosidad_tesela_min": 10.1,
+   "frac_valida_scl": 0.7862,
+   "frac_usada": 0.7776,
+   "ndvi_mediana_cabecera": 0.3032,
+   "ndvi_mediana_rural_rejilla": 0.657,
+   "aot_mediana": 0.227,
+   "frac_veg_rojo_menor_0_1": 0.9596,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-23_2B_R025",
+   "fecha": "2024-01-23",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20240123_0_L2A",
+    "S2B_18NVL_20240123_0_L2A"
+   ],
+   "nubosidad_tesela_min": 5.9,
+   "frac_valida_scl": 0.724,
+   "frac_usada": 0.724,
+   "ndvi_mediana_cabecera": 0.3401,
+   "ndvi_mediana_rural_rejilla": 0.6266,
+   "aot_mediana": 0.213,
+   "frac_veg_rojo_menor_0_1": 0.8585,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-26_2B_R068",
+   "fecha": "2024-01-26",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240126_0_L2A",
+    "S2B_18NVL_20240126_0_L2A"
+   ],
+   "nubosidad_tesela_min": 27.5,
+   "frac_valida_scl": 0.5215,
+   "frac_usada": 0.5138,
+   "ndvi_mediana_cabecera": 0.3176,
+   "ndvi_mediana_rural_rejilla": 0.6124,
+   "aot_mediana": 0.258,
+   "frac_veg_rojo_menor_0_1": 0.9254,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-28_2A_R025",
+   "fecha": "2024-01-28",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240128_0_L2A",
+    "S2A_18NVL_20240128_0_L2A"
+   ],
+   "nubosidad_tesela_min": 19.0,
+   "frac_valida_scl": 0.8337,
+   "frac_usada": 0.8337,
+   "ndvi_mediana_cabecera": 0.2984,
+   "ndvi_mediana_rural_rejilla": 0.5936,
+   "aot_mediana": 0.314,
+   "frac_veg_rojo_menor_0_1": 0.8048,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-01-31_2A_R068",
+   "fecha": "2024-01-31",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240131_0_L2A",
+    "S2A_18NVL_20240131_0_L2A"
+   ],
+   "nubosidad_tesela_min": 21.9,
+   "frac_valida_scl": 0.5797,
+   "frac_usada": 0.5796,
+   "ndvi_mediana_cabecera": 0.2297,
+   "ndvi_mediana_rural_rejilla": 0.5416,
+   "aot_mediana": 0.197,
+   "frac_veg_rojo_menor_0_1": 0.8728,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-02-07_2A_R025",
+   "fecha": "2024-02-07",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240207_0_L2A",
+    "S2A_18NVL_20240207_0_L2A"
+   ],
+   "nubosidad_tesela_min": 25.5,
+   "frac_valida_scl": 0.8754,
+   "frac_usada": 0.8754,
+   "ndvi_mediana_cabecera": 0.304,
+   "ndvi_mediana_rural_rejilla": 0.6023,
+   "aot_mediana": 0.243,
+   "frac_veg_rojo_menor_0_1": 0.8927,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-02-10_2A_R068",
+   "fecha": "2024-02-10",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240210_0_L2A",
+    "S2A_18NVL_20240210_0_L2A"
+   ],
+   "nubosidad_tesela_min": 6.2,
+   "frac_valida_scl": 0.7163,
+   "frac_usada": 0.716,
+   "ndvi_mediana_cabecera": 0.3224,
+   "ndvi_mediana_rural_rejilla": 0.6135,
+   "aot_mediana": 0.115,
+   "frac_veg_rojo_menor_0_1": 0.9651,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-02-15_2B_R068",
+   "fecha": "2024-02-15",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240215_0_L2A",
+    "S2B_18NVL_20240215_0_L2A"
+   ],
+   "nubosidad_tesela_min": 1.5,
+   "frac_valida_scl": 0.7211,
+   "frac_usada": 0.7171,
+   "ndvi_mediana_cabecera": 0.3035,
+   "ndvi_mediana_rural_rejilla": 0.5758,
+   "aot_mediana": 0.238,
+   "frac_veg_rojo_menor_0_1": 0.9552,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-02-20_2A_R068",
+   "fecha": "2024-02-20",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240220_0_L2A",
+    "S2A_18NVL_20240220_0_L2A"
+   ],
+   "nubosidad_tesela_min": 16.9,
+   "frac_valida_scl": 0.6005,
+   "frac_usada": 0.5936,
+   "ndvi_mediana_cabecera": 0.3704,
+   "ndvi_mediana_rural_rejilla": 0.6061,
+   "aot_mediana": 0.213,
+   "frac_veg_rojo_menor_0_1": 0.9378,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-02-27_2A_R025",
+   "fecha": "2024-02-27",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240227_0_L2A",
+    "S2A_18NVL_20240227_0_L2A"
+   ],
+   "nubosidad_tesela_min": 18.3,
+   "frac_valida_scl": 0.9418,
+   "frac_usada": 0.9418,
+   "ndvi_mediana_cabecera": 0.3118,
+   "ndvi_mediana_rural_rejilla": 0.5811,
+   "aot_mediana": 0.365,
+   "frac_veg_rojo_menor_0_1": 0.8298,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-03-06_2B_R068",
+   "fecha": "2024-03-06",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NVL_20240306_0_L2A"
+   ],
+   "nubosidad_tesela_min": 87.6,
+   "frac_valida_scl": 0.2144,
+   "frac_usada": 0.2007,
+   "ndvi_mediana_cabecera": null,
+   "ndvi_mediana_rural_rejilla": null,
+   "aot_mediana": 0.367,
+   "frac_veg_rojo_menor_0_1": 0.9134,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-03-08_2A_R025",
+   "fecha": "2024-03-08",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240308_0_L2A",
+    "S2A_18NVL_20240308_0_L2A"
+   ],
+   "nubosidad_tesela_min": 50.9,
+   "frac_valida_scl": 0.8629,
+   "frac_usada": 0.8629,
+   "ndvi_mediana_cabecera": 0.2512,
+   "ndvi_mediana_rural_rejilla": 0.5218,
+   "aot_mediana": 0.309,
+   "frac_veg_rojo_menor_0_1": 0.7021,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-03-16_2B_R068",
+   "fecha": "2024-03-16",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240316_0_L2A",
+    "S2B_18NVL_20240316_0_L2A"
+   ],
+   "nubosidad_tesela_min": 26.8,
+   "frac_valida_scl": 0.7494,
+   "frac_usada": 0.7457,
+   "ndvi_mediana_cabecera": 0.2564,
+   "ndvi_mediana_rural_rejilla": 0.4856,
+   "aot_mediana": 0.3,
+   "frac_veg_rojo_menor_0_1": 0.9066,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-03-18_2A_R025",
+   "fecha": "2024-03-18",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240318_0_L2A",
+    "S2A_18NUL_20240318_1_L2A",
+    "S2A_18NVL_20240318_0_L2A",
+    "S2A_18NVL_20240318_1_L2A"
+   ],
+   "nubosidad_tesela_min": 11.9,
+   "frac_valida_scl": 0.737,
+   "frac_usada": 0.737,
+   "ndvi_mediana_cabecera": 0.2386,
+   "ndvi_mediana_rural_rejilla": 0.4544,
+   "aot_mediana": 0.299,
+   "frac_veg_rojo_menor_0_1": 0.6211,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-03-21_2A_R068",
+   "fecha": "2024-03-21",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240321_0_L2A",
+    "S2A_18NVL_20240321_0_L2A"
+   ],
+   "nubosidad_tesela_min": 79.5,
+   "frac_valida_scl": 0.6287,
+   "frac_usada": 0.6282,
+   "ndvi_mediana_cabecera": 0.2282,
+   "ndvi_mediana_rural_rejilla": 0.4488,
+   "aot_mediana": 0.313,
+   "frac_veg_rojo_menor_0_1": 0.8235,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-03-26_2B_R068",
+   "fecha": "2024-03-26",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240326_0_L2A",
+    "S2B_18NVL_20240326_0_L2A"
+   ],
+   "nubosidad_tesela_min": 52.7,
+   "frac_valida_scl": 0.5175,
+   "frac_usada": 0.5168,
+   "ndvi_mediana_cabecera": 0.2571,
+   "ndvi_mediana_rural_rejilla": 0.4513,
+   "aot_mediana": 0.218,
+   "frac_veg_rojo_menor_0_1": 0.8268,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-03-28_2A_R025",
+   "fecha": "2024-03-28",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240328_0_L2A",
+    "S2A_18NVL_20240328_0_L2A"
+   ],
+   "nubosidad_tesela_min": 27.1,
+   "frac_valida_scl": 0.6455,
+   "frac_usada": 0.6436,
+   "ndvi_mediana_cabecera": 0.2161,
+   "ndvi_mediana_rural_rejilla": 0.4751,
+   "aot_mediana": 0.294,
+   "frac_veg_rojo_menor_0_1": 0.6841,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-04-05_2B_R068",
+   "fecha": "2024-04-05",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240405_0_L2A",
+    "S2B_18NVL_20240405_0_L2A"
+   ],
+   "nubosidad_tesela_min": 30.2,
+   "frac_valida_scl": 0.5986,
+   "frac_usada": 0.5986,
+   "ndvi_mediana_cabecera": 0.2894,
+   "ndvi_mediana_rural_rejilla": 0.5805,
+   "aot_mediana": 0.174,
+   "frac_veg_rojo_menor_0_1": 0.9225,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-04-07_2A_R025",
+   "fecha": "2024-04-07",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240407_0_L2A",
+    "S2A_18NVL_20240407_0_L2A"
+   ],
+   "nubosidad_tesela_min": 23.9,
+   "frac_valida_scl": 0.9365,
+   "frac_usada": 0.9365,
+   "ndvi_mediana_cabecera": 0.3487,
+   "ndvi_mediana_rural_rejilla": 0.6162,
+   "aot_mediana": 0.304,
+   "frac_veg_rojo_menor_0_1": 0.8544,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-04-10_2A_R068",
+   "fecha": "2024-04-10",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240410_0_L2A",
+    "S2A_18NVL_20240410_0_L2A"
+   ],
+   "nubosidad_tesela_min": 23.9,
+   "frac_valida_scl": 0.5585,
+   "frac_usada": 0.5524,
+   "ndvi_mediana_cabecera": 0.3379,
+   "ndvi_mediana_rural_rejilla": 0.6112,
+   "aot_mediana": 0.315,
+   "frac_veg_rojo_menor_0_1": 0.9155,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-04-12_2B_R025",
+   "fecha": "2024-04-12",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20240412_0_L2A",
+    "S2B_18NVL_20240412_0_L2A"
+   ],
+   "nubosidad_tesela_min": 3.8,
+   "frac_valida_scl": 0.991,
+   "frac_usada": 0.991,
+   "ndvi_mediana_cabecera": 0.32,
+   "ndvi_mediana_rural_rejilla": 0.6464,
+   "aot_mediana": 0.339,
+   "frac_veg_rojo_menor_0_1": 0.8687,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-04-15_2B_R068",
+   "fecha": "2024-04-15",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240415_0_L2A",
+    "S2B_18NVL_20240415_0_L2A"
+   ],
+   "nubosidad_tesela_min": 32.7,
+   "frac_valida_scl": 0.3869,
+   "frac_usada": 0.3852,
+   "ndvi_mediana_cabecera": 0.4051,
+   "ndvi_mediana_rural_rejilla": 0.6244,
+   "aot_mediana": 0.305,
+   "frac_veg_rojo_menor_0_1": 0.8757,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-04-20_2A_R068",
+   "fecha": "2024-04-20",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240420_0_L2A",
+    "S2A_18NVL_20240420_0_L2A"
+   ],
+   "nubosidad_tesela_min": 30.7,
+   "frac_valida_scl": 0.4484,
+   "frac_usada": 0.4483,
+   "ndvi_mediana_cabecera": 0.3139,
+   "ndvi_mediana_rural_rejilla": 0.669,
+   "aot_mediana": 0.126,
+   "frac_veg_rojo_menor_0_1": 0.9413,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-04-30_2A_R068",
+   "fecha": "2024-04-30",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240430_0_L2A",
+    "S2A_18NVL_20240430_0_L2A"
+   ],
+   "nubosidad_tesela_min": 30.4,
+   "frac_valida_scl": 0.5766,
+   "frac_usada": 0.5676,
+   "ndvi_mediana_cabecera": 0.3564,
+   "ndvi_mediana_rural_rejilla": 0.7398,
+   "aot_mediana": 0.274,
+   "frac_veg_rojo_menor_0_1": 0.97,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-05-07_2A_R025",
+   "fecha": "2024-05-07",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240507_0_L2A",
+    "S2A_18NVL_20240507_0_L2A"
+   ],
+   "nubosidad_tesela_min": 48.5,
+   "frac_valida_scl": 0.8189,
+   "frac_usada": 0.8187,
+   "ndvi_mediana_cabecera": 0.3497,
+   "ndvi_mediana_rural_rejilla": 0.765,
+   "aot_mediana": 0.314,
+   "frac_veg_rojo_menor_0_1": 0.9468,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-05-30_2A_R068",
+   "fecha": "2024-05-30",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240530_0_L2A",
+    "S2A_18NVL_20240530_0_L2A"
+   ],
+   "nubosidad_tesela_min": 25.7,
+   "frac_valida_scl": 0.4564,
+   "frac_usada": 0.4564,
+   "ndvi_mediana_cabecera": 0.339,
+   "ndvi_mediana_rural_rejilla": 0.7719,
+   "aot_mediana": 0.1,
+   "frac_veg_rojo_menor_0_1": 0.9765,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-06-01_2B_R025",
+   "fecha": "2024-06-01",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20240601_0_L2A",
+    "S2B_18NVL_20240601_0_L2A"
+   ],
+   "nubosidad_tesela_min": 17.1,
+   "frac_valida_scl": 0.9056,
+   "frac_usada": 0.9055,
+   "ndvi_mediana_cabecera": 0.3857,
+   "ndvi_mediana_rural_rejilla": 0.8086,
+   "aot_mediana": 0.182,
+   "frac_veg_rojo_menor_0_1": 0.9758,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-07-06_2A_R025",
+   "fecha": "2024-07-06",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240706_0_L2A",
+    "S2A_18NVL_20240706_0_L2A"
+   ],
+   "nubosidad_tesela_min": 34.3,
+   "frac_valida_scl": 0.5148,
+   "frac_usada": 0.5148,
+   "ndvi_mediana_cabecera": 0.5551,
+   "ndvi_mediana_rural_rejilla": 0.7745,
+   "aot_mediana": 0.187,
+   "frac_veg_rojo_menor_0_1": 0.9696,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-07-14_2B_R068",
+   "fecha": "2024-07-14",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240714_0_L2A",
+    "S2B_18NVL_20240714_0_L2A"
+   ],
+   "nubosidad_tesela_min": 18.3,
+   "frac_valida_scl": 0.4319,
+   "frac_usada": 0.4319,
+   "ndvi_mediana_cabecera": 0.4855,
+   "ndvi_mediana_rural_rejilla": 0.7603,
+   "aot_mediana": 0.115,
+   "frac_veg_rojo_menor_0_1": 0.9764,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-07-19_2A_R068",
+   "fecha": "2024-07-19",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240719_0_L2A",
+    "S2A_18NVL_20240719_0_L2A"
+   ],
+   "nubosidad_tesela_min": 66.2,
+   "frac_valida_scl": 0.8305,
+   "frac_usada": 0.8276,
+   "ndvi_mediana_cabecera": 0.3338,
+   "ndvi_mediana_rural_rejilla": 0.7511,
+   "aot_mediana": 0.197,
+   "frac_veg_rojo_menor_0_1": 0.9615,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-07-24_2B_R068",
+   "fecha": "2024-07-24",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240724_0_L2A",
+    "S2B_18NVL_20240724_0_L2A"
+   ],
+   "nubosidad_tesela_min": 14.9,
+   "frac_valida_scl": 0.7208,
+   "frac_usada": 0.7203,
+   "ndvi_mediana_cabecera": 0.3378,
+   "ndvi_mediana_rural_rejilla": 0.7378,
+   "aot_mediana": 0.156,
+   "frac_veg_rojo_menor_0_1": 0.9688,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-07-29_2A_R068",
+   "fecha": "2024-07-29",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240729_0_L2A",
+    "S2A_18NVL_20240729_0_L2A"
+   ],
+   "nubosidad_tesela_min": 1.2,
+   "frac_valida_scl": 0.7762,
+   "frac_usada": 0.7761,
+   "ndvi_mediana_cabecera": 0.3214,
+   "ndvi_mediana_rural_rejilla": 0.705,
+   "aot_mediana": 0.167,
+   "frac_veg_rojo_menor_0_1": 0.9621,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-07-31_2B_R025",
+   "fecha": "2024-07-31",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20240731_0_L2A",
+    "S2B_18NVL_20240731_0_L2A"
+   ],
+   "nubosidad_tesela_min": 9.9,
+   "frac_valida_scl": 0.9019,
+   "frac_usada": 0.9018,
+   "ndvi_mediana_cabecera": 0.316,
+   "ndvi_mediana_rural_rejilla": 0.7044,
+   "aot_mediana": 0.208,
+   "frac_veg_rojo_menor_0_1": 0.906,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-08-08_2A_R068",
+   "fecha": "2024-08-08",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240808_0_L2A",
+    "S2A_18NVL_20240808_0_L2A"
+   ],
+   "nubosidad_tesela_min": 69.8,
+   "frac_valida_scl": 0.8057,
+   "frac_usada": 0.8019,
+   "ndvi_mediana_cabecera": 0.3249,
+   "ndvi_mediana_rural_rejilla": 0.7088,
+   "aot_mediana": 0.21,
+   "frac_veg_rojo_menor_0_1": 0.9662,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-08-13_2B_R068",
+   "fecha": "2024-08-13",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240813_0_L2A",
+    "S2B_18NVL_20240813_0_L2A"
+   ],
+   "nubosidad_tesela_min": 8.7,
+   "frac_valida_scl": 0.6983,
+   "frac_usada": 0.6983,
+   "ndvi_mediana_cabecera": 0.3357,
+   "ndvi_mediana_rural_rejilla": 0.7118,
+   "aot_mediana": 0.084,
+   "frac_veg_rojo_menor_0_1": 0.9785,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-08-15_2A_R025",
+   "fecha": "2024-08-15",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240815_0_L2A",
+    "S2A_18NVL_20240815_0_L2A"
+   ],
+   "nubosidad_tesela_min": 21.6,
+   "frac_valida_scl": 0.7028,
+   "frac_usada": 0.7027,
+   "ndvi_mediana_cabecera": 0.403,
+   "ndvi_mediana_rural_rejilla": 0.7231,
+   "aot_mediana": 0.272,
+   "frac_veg_rojo_menor_0_1": 0.9326,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-08-18_2A_R068",
+   "fecha": "2024-08-18",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240818_0_L2A",
+    "S2A_18NVL_20240818_0_L2A"
+   ],
+   "nubosidad_tesela_min": 3.3,
+   "frac_valida_scl": 0.8413,
+   "frac_usada": 0.8411,
+   "ndvi_mediana_cabecera": 0.3463,
+   "ndvi_mediana_rural_rejilla": 0.7378,
+   "aot_mediana": 0.141,
+   "frac_veg_rojo_menor_0_1": 0.9768,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-08-20_2B_R025",
+   "fecha": "2024-08-20",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20240820_0_L2A",
+    "S2B_18NVL_20240820_0_L2A"
+   ],
+   "nubosidad_tesela_min": 31.6,
+   "frac_valida_scl": 0.685,
+   "frac_usada": 0.6841,
+   "ndvi_mediana_cabecera": 0.3776,
+   "ndvi_mediana_rural_rejilla": 0.6754,
+   "aot_mediana": 0.309,
+   "frac_veg_rojo_menor_0_1": 0.8585,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-08-23_2B_R068",
+   "fecha": "2024-08-23",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240823_0_L2A",
+    "S2B_18NVL_20240823_0_L2A"
+   ],
+   "nubosidad_tesela_min": 24.8,
+   "frac_valida_scl": 0.7676,
+   "frac_usada": 0.7593,
+   "ndvi_mediana_cabecera": 0.3386,
+   "ndvi_mediana_rural_rejilla": 0.7256,
+   "aot_mediana": 0.252,
+   "frac_veg_rojo_menor_0_1": 0.9611,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-08-28_2A_R068",
+   "fecha": "2024-08-28",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20240828_0_L2A",
+    "S2A_18NVL_20240828_0_L2A"
+   ],
+   "nubosidad_tesela_min": 0.7,
+   "frac_valida_scl": 0.8543,
+   "frac_usada": 0.8535,
+   "ndvi_mediana_cabecera": 0.3334,
+   "ndvi_mediana_rural_rejilla": 0.7291,
+   "aot_mediana": 0.182,
+   "frac_veg_rojo_menor_0_1": 0.9721,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-08-30_2B_R025",
+   "fecha": "2024-08-30",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20240830_0_L2A",
+    "S2B_18NVL_20240830_0_L2A"
+   ],
+   "nubosidad_tesela_min": 1.5,
+   "frac_valida_scl": 0.9945,
+   "frac_usada": 0.9945,
+   "ndvi_mediana_cabecera": 0.3315,
+   "ndvi_mediana_rural_rejilla": 0.6893,
+   "aot_mediana": 0.187,
+   "frac_veg_rojo_menor_0_1": 0.923,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-09-02_2B_R068",
+   "fecha": "2024-09-02",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20240902_0_L2A",
+    "S2B_18NVL_20240902_0_L2A"
+   ],
+   "nubosidad_tesela_min": 15.9,
+   "frac_valida_scl": 0.6744,
+   "frac_usada": 0.6743,
+   "ndvi_mediana_cabecera": 0.3347,
+   "ndvi_mediana_rural_rejilla": 0.6874,
+   "aot_mediana": 0.244,
+   "frac_veg_rojo_menor_0_1": 0.9615,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-09-04_2A_R025",
+   "fecha": "2024-09-04",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240904_0_L2A",
+    "S2A_18NVL_20240904_0_L2A"
+   ],
+   "nubosidad_tesela_min": 15.9,
+   "frac_valida_scl": 0.9124,
+   "frac_usada": 0.9124,
+   "ndvi_mediana_cabecera": 0.3003,
+   "ndvi_mediana_rural_rejilla": 0.6556,
+   "aot_mediana": 0.304,
+   "frac_veg_rojo_menor_0_1": 0.8647,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-09-09_2B_R025",
+   "fecha": "2024-09-09",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20240909_0_L2A",
+    "S2B_18NVL_20240909_0_L2A"
+   ],
+   "nubosidad_tesela_min": 16.9,
+   "frac_valida_scl": 0.9686,
+   "frac_usada": 0.9685,
+   "ndvi_mediana_cabecera": 0.3032,
+   "ndvi_mediana_rural_rejilla": 0.6384,
+   "aot_mediana": 0.319,
+   "frac_veg_rojo_menor_0_1": 0.7852,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-09-14_2A_R025",
+   "fecha": "2024-09-14",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240914_0_L2A",
+    "S2A_18NVL_20240914_0_L2A"
+   ],
+   "nubosidad_tesela_min": 19.0,
+   "frac_valida_scl": 0.8839,
+   "frac_usada": 0.88,
+   "ndvi_mediana_cabecera": 0.2756,
+   "ndvi_mediana_rural_rejilla": 0.6012,
+   "aot_mediana": 0.309,
+   "frac_veg_rojo_menor_0_1": 0.7222,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-09-24_2A_R025",
+   "fecha": "2024-09-24",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20240924_0_L2A",
+    "S2A_18NVL_20240924_0_L2A"
+   ],
+   "nubosidad_tesela_min": 16.7,
+   "frac_valida_scl": 0.97,
+   "frac_usada": 0.9668,
+   "ndvi_mediana_cabecera": 0.2596,
+   "ndvi_mediana_rural_rejilla": 0.588,
+   "aot_mediana": 0.334,
+   "frac_veg_rojo_menor_0_1": 0.7489,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-10-02_2B_R068",
+   "fecha": "2024-10-02",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20241002_0_L2A",
+    "S2B_18NVL_20241002_0_L2A"
+   ],
+   "nubosidad_tesela_min": 67.9,
+   "frac_valida_scl": 0.3465,
+   "frac_usada": 0.3444,
+   "ndvi_mediana_cabecera": null,
+   "ndvi_mediana_rural_rejilla": 0.5626,
+   "aot_mediana": 0.276,
+   "frac_veg_rojo_menor_0_1": 0.8288,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-10-07_2A_R068",
+   "fecha": "2024-10-07",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20241007_0_L2A",
+    "S2A_18NVL_20241007_0_L2A"
+   ],
+   "nubosidad_tesela_min": 30.7,
+   "frac_valida_scl": 0.8029,
+   "frac_usada": 0.8028,
+   "ndvi_mediana_cabecera": 0.3088,
+   "ndvi_mediana_rural_rejilla": 0.6435,
+   "aot_mediana": 0.156,
+   "frac_veg_rojo_menor_0_1": 0.9676,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-10-12_2B_R068",
+   "fecha": "2024-10-12",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20241012_0_L2A",
+    "S2B_18NVL_20241012_0_L2A"
+   ],
+   "nubosidad_tesela_min": 34.5,
+   "frac_valida_scl": 0.4005,
+   "frac_usada": 0.3983,
+   "ndvi_mediana_cabecera": 0.453,
+   "ndvi_mediana_rural_rejilla": 0.6741,
+   "aot_mediana": 0.207,
+   "frac_veg_rojo_menor_0_1": 0.961,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-10-14_2A_R025",
+   "fecha": "2024-10-14",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20241014_0_L2A",
+    "S2A_18NVL_20241014_0_L2A"
+   ],
+   "nubosidad_tesela_min": 8.6,
+   "frac_valida_scl": 0.986,
+   "frac_usada": 0.9859,
+   "ndvi_mediana_cabecera": 0.3348,
+   "ndvi_mediana_rural_rejilla": 0.7,
+   "aot_mediana": 0.248,
+   "frac_veg_rojo_menor_0_1": 0.9428,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-10-17_2A_R068",
+   "fecha": "2024-10-17",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20241017_0_L2A",
+    "S2A_18NVL_20241017_0_L2A"
+   ],
+   "nubosidad_tesela_min": 25.6,
+   "frac_valida_scl": 0.7223,
+   "frac_usada": 0.7199,
+   "ndvi_mediana_cabecera": 0.3343,
+   "ndvi_mediana_rural_rejilla": 0.7054,
+   "aot_mediana": 0.192,
+   "frac_veg_rojo_menor_0_1": 0.9689,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-10-24_2A_R025",
+   "fecha": "2024-10-24",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20241024_0_L2A",
+    "S2A_18NVL_20241024_0_L2A"
+   ],
+   "nubosidad_tesela_min": 23.1,
+   "frac_valida_scl": 0.746,
+   "frac_usada": 0.7457,
+   "ndvi_mediana_cabecera": 0.4261,
+   "ndvi_mediana_rural_rejilla": 0.7037,
+   "aot_mediana": 0.304,
+   "frac_veg_rojo_menor_0_1": 0.9135,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-11-06_2A_R068",
+   "fecha": "2024-11-06",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20241106_0_L2A",
+    "S2A_18NVL_20241106_0_L2A"
+   ],
+   "nubosidad_tesela_min": 22.9,
+   "frac_valida_scl": 0.8492,
+   "frac_usada": 0.8451,
+   "ndvi_mediana_cabecera": 0.332,
+   "ndvi_mediana_rural_rejilla": 0.7455,
+   "aot_mediana": 0.202,
+   "frac_veg_rojo_menor_0_1": 0.9787,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-11-18_2B_R025",
+   "fecha": "2024-11-18",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20241118_0_L2A",
+    "S2B_18NVL_20241118_0_L2A"
+   ],
+   "nubosidad_tesela_min": 54.8,
+   "frac_valida_scl": 0.7794,
+   "frac_usada": 0.7783,
+   "ndvi_mediana_cabecera": 0.3395,
+   "ndvi_mediana_rural_rejilla": 0.7636,
+   "aot_mediana": 0.299,
+   "frac_veg_rojo_menor_0_1": 0.9539,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-11-26_2A_R068",
+   "fecha": "2024-11-26",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20241126_0_L2A",
+    "S2A_18NVL_20241126_0_L2A"
+   ],
+   "nubosidad_tesela_min": 31.9,
+   "frac_valida_scl": 0.7601,
+   "frac_usada": 0.7411,
+   "ndvi_mediana_cabecera": 0.3467,
+   "ndvi_mediana_rural_rejilla": 0.7548,
+   "aot_mediana": 0.249,
+   "frac_veg_rojo_menor_0_1": 0.9771,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-11-28_2B_R025",
+   "fecha": "2024-11-28",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20241128_0_L2A",
+    "S2B_18NVL_20241128_0_L2A"
+   ],
+   "nubosidad_tesela_min": 35.4,
+   "frac_valida_scl": 0.7124,
+   "frac_usada": 0.7123,
+   "ndvi_mediana_cabecera": 0.3806,
+   "ndvi_mediana_rural_rejilla": 0.7665,
+   "aot_mediana": 0.289,
+   "frac_veg_rojo_menor_0_1": 0.952,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-12-03_2A_R025",
+   "fecha": "2024-12-03",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20241203_0_L2A",
+    "S2A_18NVL_20241203_0_L2A"
+   ],
+   "nubosidad_tesela_min": 44.5,
+   "frac_valida_scl": 0.7533,
+   "frac_usada": 0.7532,
+   "ndvi_mediana_cabecera": 0.3348,
+   "ndvi_mediana_rural_rejilla": 0.7496,
+   "aot_mediana": 0.298,
+   "frac_veg_rojo_menor_0_1": 0.9441,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-12-08_2B_R025",
+   "fecha": "2024-12-08",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20241208_0_L2A",
+    "S2B_18NVL_20241208_0_L2A"
+   ],
+   "nubosidad_tesela_min": 25.3,
+   "frac_valida_scl": 0.6177,
+   "frac_usada": 0.6177,
+   "ndvi_mediana_cabecera": 0.4104,
+   "ndvi_mediana_rural_rejilla": 0.7265,
+   "aot_mediana": 0.266,
+   "frac_veg_rojo_menor_0_1": 0.9418,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-12-11_2B_R068",
+   "fecha": "2024-12-11",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20241211_0_L2A",
+    "S2B_18NVL_20241211_0_L2A"
+   ],
+   "nubosidad_tesela_min": 46.4,
+   "frac_valida_scl": 0.5705,
+   "frac_usada": 0.5506,
+   "ndvi_mediana_cabecera": 0.3566,
+   "ndvi_mediana_rural_rejilla": 0.7348,
+   "aot_mediana": 0.324,
+   "frac_veg_rojo_menor_0_1": 0.9641,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-12-16_2A_R068",
+   "fecha": "2024-12-16",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20241216_0_L2A",
+    "S2A_18NVL_20241216_0_L2A"
+   ],
+   "nubosidad_tesela_min": 70.2,
+   "frac_valida_scl": 0.5798,
+   "frac_usada": 0.5796,
+   "ndvi_mediana_cabecera": 0.2803,
+   "ndvi_mediana_rural_rejilla": 0.7075,
+   "aot_mediana": 0.151,
+   "frac_veg_rojo_menor_0_1": 0.9579,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-12-16_2C_R068",
+   "fecha": "2024-12-16",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20241216_1_L2A",
+    "S2C_18NVL_20241216_1_L2A"
+   ],
+   "nubosidad_tesela_min": 70.4,
+   "frac_valida_scl": 0.5607,
+   "frac_usada": 0.5597,
+   "ndvi_mediana_cabecera": 0.2794,
+   "ndvi_mediana_rural_rejilla": 0.7091,
+   "aot_mediana": 0.152,
+   "frac_veg_rojo_menor_0_1": 0.9569,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2024-12-18_2B_R025",
+   "fecha": "2024-12-18",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20241218_0_L2A",
+    "S2B_18NVL_20241218_0_L2A"
+   ],
+   "nubosidad_tesela_min": 35.5,
+   "frac_valida_scl": 0.5358,
+   "frac_usada": 0.5358,
+   "ndvi_mediana_cabecera": 0.4271,
+   "ndvi_mediana_rural_rejilla": 0.6904,
+   "aot_mediana": 0.295,
+   "frac_veg_rojo_menor_0_1": 0.8964,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-01-02_2A_R025",
+   "fecha": "2025-01-02",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20250102_0_L2A",
+    "S2A_18NVL_20250102_0_L2A"
+   ],
+   "nubosidad_tesela_min": 32.4,
+   "frac_valida_scl": 0.661,
+   "frac_usada": 0.6609,
+   "ndvi_mediana_cabecera": 0.4867,
+   "ndvi_mediana_rural_rejilla": 0.7439,
+   "aot_mediana": 0.233,
+   "frac_veg_rojo_menor_0_1": 0.9689,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-01-12_2A_R025",
+   "fecha": "2025-01-12",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20250112_0_L2A",
+    "S2A_18NVL_20250112_0_L2A"
+   ],
+   "nubosidad_tesela_min": 14.8,
+   "frac_valida_scl": 0.9865,
+   "frac_usada": 0.9863,
+   "ndvi_mediana_cabecera": 0.3615,
+   "ndvi_mediana_rural_rejilla": 0.7484,
+   "aot_mediana": 0.212,
+   "frac_veg_rojo_menor_0_1": 0.9633,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-01-15_2A_R068",
+   "fecha": "2025-01-15",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20250115_0_L2A",
+    "S2A_18NVL_20250115_0_L2A"
+   ],
+   "nubosidad_tesela_min": 13.4,
+   "frac_valida_scl": 0.6761,
+   "frac_usada": 0.6642,
+   "ndvi_mediana_cabecera": 0.4146,
+   "ndvi_mediana_rural_rejilla": 0.7488,
+   "aot_mediana": 0.263,
+   "frac_veg_rojo_menor_0_1": 0.9746,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-01-17_2B_R025",
+   "fecha": "2025-01-17",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20250117_0_L2A",
+    "S2B_18NVL_20250117_0_L2A"
+   ],
+   "nubosidad_tesela_min": 38.1,
+   "frac_valida_scl": 0.8031,
+   "frac_usada": 0.803,
+   "ndvi_mediana_cabecera": 0.3723,
+   "ndvi_mediana_rural_rejilla": 0.7458,
+   "aot_mediana": 0.248,
+   "frac_veg_rojo_menor_0_1": 0.9431,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-01-20_2B_R068",
+   "fecha": "2025-01-20",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20250120_0_L2A",
+    "S2B_18NVL_20250120_0_L2A"
+   ],
+   "nubosidad_tesela_min": 13.0,
+   "frac_valida_scl": 0.6817,
+   "frac_usada": 0.6803,
+   "ndvi_mediana_cabecera": 0.5062,
+   "ndvi_mediana_rural_rejilla": 0.7356,
+   "aot_mediana": 0.203,
+   "frac_veg_rojo_menor_0_1": 0.9762,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-01-22_2C_R025",
+   "fecha": "2025-01-22",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20250122_0_L2A",
+    "S2C_18NVL_20250122_0_L2A"
+   ],
+   "nubosidad_tesela_min": 21.1,
+   "frac_valida_scl": 0.8935,
+   "frac_usada": 0.8934,
+   "ndvi_mediana_cabecera": 0.3584,
+   "ndvi_mediana_rural_rejilla": 0.7351,
+   "aot_mediana": 0.284,
+   "frac_veg_rojo_menor_0_1": 0.9367,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-01-25_2C_R068",
+   "fecha": "2025-01-25",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20250125_0_L2A",
+    "S2C_18NVL_20250125_0_L2A"
+   ],
+   "nubosidad_tesela_min": 16.9,
+   "frac_valida_scl": 0.6591,
+   "frac_usada": 0.6429,
+   "ndvi_mediana_cabecera": 0.3441,
+   "ndvi_mediana_rural_rejilla": 0.7146,
+   "aot_mediana": 0.237,
+   "frac_veg_rojo_menor_0_1": 0.9721,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-01-30_2B_R068",
+   "fecha": "2025-01-30",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20250130_0_L2A",
+    "S2B_18NVL_20250130_0_L2A"
+   ],
+   "nubosidad_tesela_min": 28.2,
+   "frac_valida_scl": 0.6689,
+   "frac_usada": 0.6655,
+   "ndvi_mediana_cabecera": 0.3338,
+   "ndvi_mediana_rural_rejilla": 0.7086,
+   "aot_mediana": 0.177,
+   "frac_veg_rojo_menor_0_1": 0.9762,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-02-19_2B_R068",
+   "fecha": "2025-02-19",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20250219_0_L2A",
+    "S2B_18NVL_20250219_0_L2A"
+   ],
+   "nubosidad_tesela_min": 50.8,
+   "frac_valida_scl": 0.3953,
+   "frac_usada": 0.3953,
+   "ndvi_mediana_cabecera": 0.5426,
+   "ndvi_mediana_rural_rejilla": 0.6739,
+   "aot_mediana": 0.1,
+   "frac_veg_rojo_menor_0_1": 0.9722,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-03-08_2B_R025",
+   "fecha": "2025-03-08",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20250308_0_L2A",
+    "S2B_18NVL_20250308_0_L2A"
+   ],
+   "nubosidad_tesela_min": 51.5,
+   "frac_valida_scl": 0.6184,
+   "frac_usada": 0.6184,
+   "ndvi_mediana_cabecera": 0.3697,
+   "ndvi_mediana_rural_rejilla": 0.6555,
+   "aot_mediana": 0.312,
+   "frac_veg_rojo_menor_0_1": 0.9035,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-03-18_2A_R068",
+   "fecha": "2025-03-18",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20250318_1_L2A",
+    "S2A_18NVL_20250318_0_L2A"
+   ],
+   "nubosidad_tesela_min": 23.6,
+   "frac_valida_scl": 0.7038,
+   "frac_usada": 0.7038,
+   "ndvi_mediana_cabecera": 0.3323,
+   "ndvi_mediana_rural_rejilla": 0.6136,
+   "aot_mediana": 0.187,
+   "frac_veg_rojo_menor_0_1": 0.8444,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-03-18_2B_R025",
+   "fecha": "2025-03-18",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20250318_0_L2A",
+    "S2B_18NVL_20250318_1_L2A"
+   ],
+   "nubosidad_tesela_min": 28.1,
+   "frac_valida_scl": 0.8931,
+   "frac_usada": 0.8931,
+   "ndvi_mediana_cabecera": 0.3489,
+   "ndvi_mediana_rural_rejilla": 0.6389,
+   "aot_mediana": 0.289,
+   "frac_veg_rojo_menor_0_1": 0.8397,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-03-25_2A_R025",
+   "fecha": "2025-03-25",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20250325_0_L2A",
+    "S2A_18NVL_20250325_0_L2A"
+   ],
+   "nubosidad_tesela_min": 30.0,
+   "frac_valida_scl": 0.7882,
+   "frac_usada": 0.7882,
+   "ndvi_mediana_cabecera": 0.4758,
+   "ndvi_mediana_rural_rejilla": 0.7042,
+   "aot_mediana": 0.308,
+   "frac_veg_rojo_menor_0_1": 0.8961,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-04-05_2C_R068",
+   "fecha": "2025-04-05",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20250405_1_L2A",
+    "S2C_18NVL_20250405_1_L2A"
+   ],
+   "nubosidad_tesela_min": 13.5,
+   "frac_valida_scl": 0.3687,
+   "frac_usada": 0.3685,
+   "ndvi_mediana_cabecera": 0.3365,
+   "ndvi_mediana_rural_rejilla": 0.7124,
+   "aot_mediana": 0.212,
+   "frac_veg_rojo_menor_0_1": 0.961,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-04-07_2B_R025",
+   "fecha": "2025-04-07",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20250407_0_L2A",
+    "S2B_18NVL_20250407_0_L2A"
+   ],
+   "nubosidad_tesela_min": 6.1,
+   "frac_valida_scl": 0.9566,
+   "frac_usada": 0.9566,
+   "ndvi_mediana_cabecera": 0.3633,
+   "ndvi_mediana_rural_rejilla": 0.7248,
+   "aot_mediana": 0.238,
+   "frac_veg_rojo_menor_0_1": 0.9364,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-04-12_2C_R025",
+   "fecha": "2025-04-12",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20250412_0_L2A",
+    "S2C_18NVL_20250412_0_L2A"
+   ],
+   "nubosidad_tesela_min": 16.1,
+   "frac_valida_scl": 0.8907,
+   "frac_usada": 0.8903,
+   "ndvi_mediana_cabecera": 0.3793,
+   "ndvi_mediana_rural_rejilla": 0.7516,
+   "aot_mediana": 0.248,
+   "frac_veg_rojo_menor_0_1": 0.951,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-04-15_2C_R068",
+   "fecha": "2025-04-15",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20250415_0_L2A",
+    "S2C_18NVL_20250415_0_L2A"
+   ],
+   "nubosidad_tesela_min": 68.8,
+   "frac_valida_scl": 0.457,
+   "frac_usada": 0.4569,
+   "ndvi_mediana_cabecera": 0.4043,
+   "ndvi_mediana_rural_rejilla": 0.7002,
+   "aot_mediana": 0.341,
+   "frac_veg_rojo_menor_0_1": 0.9309,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-05-10_2B_R068",
+   "fecha": "2025-05-10",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20250510_0_L2A",
+    "S2B_18NVL_20250510_0_L2A"
+   ],
+   "nubosidad_tesela_min": 12.4,
+   "frac_valida_scl": 0.6684,
+   "frac_usada": 0.6551,
+   "ndvi_mediana_cabecera": 0.3563,
+   "ndvi_mediana_rural_rejilla": 0.7604,
+   "aot_mediana": 0.219,
+   "frac_veg_rojo_menor_0_1": 0.9801,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-05-12_2C_R025",
+   "fecha": "2025-05-12",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20250512_0_L2A",
+    "S2C_18NVL_20250512_0_L2A"
+   ],
+   "nubosidad_tesela_min": 28.6,
+   "frac_valida_scl": 0.7684,
+   "frac_usada": 0.7684,
+   "ndvi_mediana_cabecera": 0.4269,
+   "ndvi_mediana_rural_rejilla": 0.7415,
+   "aot_mediana": 0.344,
+   "frac_veg_rojo_menor_0_1": 0.9425,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-05-14_2A_R025",
+   "fecha": "2025-05-14",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20250514_0_L2A",
+    "S2A_18NVL_20250514_0_L2A"
+   ],
+   "nubosidad_tesela_min": 37.8,
+   "frac_valida_scl": 0.6941,
+   "frac_usada": 0.6938,
+   "ndvi_mediana_cabecera": 0.3288,
+   "ndvi_mediana_rural_rejilla": 0.7567,
+   "aot_mediana": 0.276,
+   "frac_veg_rojo_menor_0_1": 0.9505,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-05-22_2C_R025",
+   "fecha": "2025-05-22",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20250522_0_L2A",
+    "S2C_18NVL_20250522_0_L2A"
+   ],
+   "nubosidad_tesela_min": 43.1,
+   "frac_valida_scl": 0.7334,
+   "frac_usada": 0.7328,
+   "ndvi_mediana_cabecera": 0.2704,
+   "ndvi_mediana_rural_rejilla": 0.4589,
+   "aot_mediana": 0.3,
+   "frac_veg_rojo_menor_0_1": 0.8168,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-05-27_2A_R068",
+   "fecha": "2025-05-27",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20250527_1_L2A",
+    "S2A_18NVL_20250527_1_L2A"
+   ],
+   "nubosidad_tesela_min": 57.6,
+   "frac_valida_scl": 0.4008,
+   "frac_usada": 0.4006,
+   "ndvi_mediana_cabecera": 0.4112,
+   "ndvi_mediana_rural_rejilla": 0.7469,
+   "aot_mediana": 0.141,
+   "frac_veg_rojo_menor_0_1": 0.9728,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-06-03_2A_R025",
+   "fecha": "2025-06-03",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20250603_0_L2A",
+    "S2A_18NVL_20250603_0_L2A"
+   ],
+   "nubosidad_tesela_min": 48.1,
+   "frac_valida_scl": 0.6849,
+   "frac_usada": 0.6844,
+   "ndvi_mediana_cabecera": 0.407,
+   "ndvi_mediana_rural_rejilla": 0.7728,
+   "aot_mediana": 0.289,
+   "frac_veg_rojo_menor_0_1": 0.9537,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-06-14_2C_R068",
+   "fecha": "2025-06-14",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20250614_0_L2A",
+    "S2C_18NVL_20250614_0_L2A"
+   ],
+   "nubosidad_tesela_min": 33.9,
+   "frac_valida_scl": 0.6183,
+   "frac_usada": 0.6169,
+   "ndvi_mediana_cabecera": 0.4046,
+   "ndvi_mediana_rural_rejilla": 0.7698,
+   "aot_mediana": 0.11,
+   "frac_veg_rojo_menor_0_1": 0.9778,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-06-19_2B_R068",
+   "fecha": "2025-06-19",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20250619_0_L2A",
+    "S2B_18NVL_20250619_0_L2A"
+   ],
+   "nubosidad_tesela_min": 2.9,
+   "frac_valida_scl": 0.7326,
+   "frac_usada": 0.7315,
+   "ndvi_mediana_cabecera": 0.3141,
+   "ndvi_mediana_rural_rejilla": 0.769,
+   "aot_mediana": 0.177,
+   "frac_veg_rojo_menor_0_1": 0.9834,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-06-26_2A_R068",
+   "fecha": "2025-06-26",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20250626_1_L2A",
+    "S2A_18NVL_20250626_0_L2A"
+   ],
+   "nubosidad_tesela_min": 54.8,
+   "frac_valida_scl": 0.698,
+   "frac_usada": 0.6939,
+   "ndvi_mediana_cabecera": 0.4001,
+   "ndvi_mediana_rural_rejilla": 0.7749,
+   "aot_mediana": 0.208,
+   "frac_veg_rojo_menor_0_1": 0.9834,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-06-26_2B_R025",
+   "fecha": "2025-06-26",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20250626_0_L2A",
+    "S2B_18NVL_20250626_1_L2A"
+   ],
+   "nubosidad_tesela_min": 30.5,
+   "frac_valida_scl": 0.8103,
+   "frac_usada": 0.8103,
+   "ndvi_mediana_cabecera": 0.3954,
+   "ndvi_mediana_rural_rejilla": 0.7724,
+   "aot_mediana": 0.243,
+   "frac_veg_rojo_menor_0_1": 0.9766,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-07-04_2C_R068",
+   "fecha": "2025-07-04",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20250704_0_L2A",
+    "S2C_18NVL_20250704_0_L2A"
+   ],
+   "nubosidad_tesela_min": 71.0,
+   "frac_valida_scl": 0.5746,
+   "frac_usada": 0.5697,
+   "ndvi_mediana_cabecera": 0.4703,
+   "ndvi_mediana_rural_rejilla": 0.7617,
+   "aot_mediana": 0.188,
+   "frac_veg_rojo_menor_0_1": 0.9715,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-07-06_2A_R068",
+   "fecha": "2025-07-06",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20250706_1_L2A",
+    "S2A_18NVL_20250706_1_L2A"
+   ],
+   "nubosidad_tesela_min": 42.2,
+   "frac_valida_scl": 0.3646,
+   "frac_usada": 0.3646,
+   "ndvi_mediana_cabecera": 0.6158,
+   "ndvi_mediana_rural_rejilla": 0.7007,
+   "aot_mediana": 0.089,
+   "frac_veg_rojo_menor_0_1": 0.937,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-07-14_2C_R068",
+   "fecha": "2025-07-14",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20250714_0_L2A",
+    "S2C_18NVL_20250714_0_L2A"
+   ],
+   "nubosidad_tesela_min": 10.3,
+   "frac_valida_scl": 0.4682,
+   "frac_usada": 0.4682,
+   "ndvi_mediana_cabecera": 0.326,
+   "ndvi_mediana_rural_rejilla": 0.655,
+   "aot_mediana": 0.105,
+   "frac_veg_rojo_menor_0_1": 0.9501,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-07-16_2A_R068",
+   "fecha": "2025-07-16",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20250716_0_L2A",
+    "S2A_18NVL_20250716_0_L2A"
+   ],
+   "nubosidad_tesela_min": 12.1,
+   "frac_valida_scl": 0.3997,
+   "frac_usada": 0.3995,
+   "ndvi_mediana_cabecera": 0.3562,
+   "ndvi_mediana_rural_rejilla": 0.6884,
+   "aot_mediana": 0.177,
+   "frac_veg_rojo_menor_0_1": 0.9581,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-07-16_2B_R025",
+   "fecha": "2025-07-16",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20250716_1_L2A",
+    "S2B_18NVL_20250716_1_L2A"
+   ],
+   "nubosidad_tesela_min": 45.4,
+   "frac_valida_scl": 0.7043,
+   "frac_usada": 0.7043,
+   "ndvi_mediana_cabecera": 0.3855,
+   "ndvi_mediana_rural_rejilla": 0.7099,
+   "aot_mediana": 0.197,
+   "frac_veg_rojo_menor_0_1": 0.9443,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-07-24_2C_R068",
+   "fecha": "2025-07-24",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20250724_0_L2A",
+    "S2C_18NVL_20250724_0_L2A"
+   ],
+   "nubosidad_tesela_min": 6.1,
+   "frac_valida_scl": 0.6104,
+   "frac_usada": 0.6086,
+   "ndvi_mediana_cabecera": 0.3281,
+   "ndvi_mediana_rural_rejilla": 0.6623,
+   "aot_mediana": 0.167,
+   "frac_veg_rojo_menor_0_1": 0.9585,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-07-26_2A_R068",
+   "fecha": "2025-07-26",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20250726_1_L2A",
+    "S2A_18NVL_20250726_1_L2A"
+   ],
+   "nubosidad_tesela_min": 35.1,
+   "frac_valida_scl": 0.4773,
+   "frac_usada": 0.4632,
+   "ndvi_mediana_cabecera": 0.3426,
+   "ndvi_mediana_rural_rejilla": 0.6489,
+   "aot_mediana": 0.288,
+   "frac_veg_rojo_menor_0_1": 0.9204,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-07-26_2B_R025",
+   "fecha": "2025-07-26",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20250726_0_L2A",
+    "S2B_18NVL_20250726_0_L2A"
+   ],
+   "nubosidad_tesela_min": 39.2,
+   "frac_valida_scl": 0.5786,
+   "frac_usada": 0.5785,
+   "ndvi_mediana_cabecera": 0.2795,
+   "ndvi_mediana_rural_rejilla": 0.6474,
+   "aot_mediana": 0.309,
+   "frac_veg_rojo_menor_0_1": 0.8269,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-07-31_2C_R025",
+   "fecha": "2025-07-31",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20250731_0_L2A",
+    "S2C_18NVL_20250731_0_L2A"
+   ],
+   "nubosidad_tesela_min": 24.1,
+   "frac_valida_scl": 0.5289,
+   "frac_usada": 0.5287,
+   "ndvi_mediana_cabecera": 0.4114,
+   "ndvi_mediana_rural_rejilla": 0.6585,
+   "aot_mediana": 0.228,
+   "frac_veg_rojo_menor_0_1": 0.8304,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-08-12_2A_R025",
+   "fecha": "2025-08-12",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20250812_0_L2A",
+    "S2A_18NVL_20250812_0_L2A"
+   ],
+   "nubosidad_tesela_min": 18.7,
+   "frac_valida_scl": 0.9322,
+   "frac_usada": 0.9286,
+   "ndvi_mediana_cabecera": 0.3419,
+   "ndvi_mediana_rural_rejilla": 0.6964,
+   "aot_mediana": 0.273,
+   "frac_veg_rojo_menor_0_1": 0.9352,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-08-20_2C_R025",
+   "fecha": "2025-08-20",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20250820_0_L2A",
+    "S2C_18NVL_20250820_0_L2A"
+   ],
+   "nubosidad_tesela_min": 16.0,
+   "frac_valida_scl": 0.8639,
+   "frac_usada": 0.8613,
+   "ndvi_mediana_cabecera": 0.3517,
+   "ndvi_mediana_rural_rejilla": 0.7122,
+   "aot_mediana": 0.253,
+   "frac_veg_rojo_menor_0_1": 0.943,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-08-30_2C_R025",
+   "fecha": "2025-08-30",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20250830_0_L2A",
+    "S2C_18NVL_20250830_0_L2A"
+   ],
+   "nubosidad_tesela_min": 15.1,
+   "frac_valida_scl": 0.9766,
+   "frac_usada": 0.9755,
+   "ndvi_mediana_cabecera": 0.3738,
+   "ndvi_mediana_rural_rejilla": 0.7461,
+   "aot_mediana": 0.289,
+   "frac_veg_rojo_menor_0_1": 0.9521,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-09-02_2C_R068",
+   "fecha": "2025-09-02",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20250902_0_L2A",
+    "S2C_18NVL_20250902_0_L2A"
+   ],
+   "nubosidad_tesela_min": 30.4,
+   "frac_valida_scl": 0.6856,
+   "frac_usada": 0.6856,
+   "ndvi_mediana_cabecera": 0.3552,
+   "ndvi_mediana_rural_rejilla": 0.6984,
+   "aot_mediana": 0.1,
+   "frac_veg_rojo_menor_0_1": 0.9696,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-09-07_2B_R068",
+   "fecha": "2025-09-07",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20250907_0_L2A",
+    "S2B_18NVL_20250907_0_L2A"
+   ],
+   "nubosidad_tesela_min": 46.1,
+   "frac_valida_scl": 0.7481,
+   "frac_usada": 0.738,
+   "ndvi_mediana_cabecera": 0.3625,
+   "ndvi_mediana_rural_rejilla": 0.7428,
+   "aot_mediana": 0.233,
+   "frac_veg_rojo_menor_0_1": 0.9727,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-09-09_2C_R025",
+   "fecha": "2025-09-09",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20250909_0_L2A",
+    "S2C_18NVL_20250909_0_L2A"
+   ],
+   "nubosidad_tesela_min": 12.3,
+   "frac_valida_scl": 0.9732,
+   "frac_usada": 0.9717,
+   "ndvi_mediana_cabecera": 0.3426,
+   "ndvi_mediana_rural_rejilla": 0.7406,
+   "aot_mediana": 0.248,
+   "frac_veg_rojo_menor_0_1": 0.9383,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-09-14_2A_R068",
+   "fecha": "2025-09-14",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2A_18NUL_20250914_1_L2A",
+    "S2A_18NVL_20250914_0_L2A"
+   ],
+   "nubosidad_tesela_min": 23.3,
+   "frac_valida_scl": 0.6631,
+   "frac_usada": 0.6528,
+   "ndvi_mediana_cabecera": 0.3507,
+   "ndvi_mediana_rural_rejilla": 0.7228,
+   "aot_mediana": 0.294,
+   "frac_veg_rojo_menor_0_1": 0.9501,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-09-14_2B_R025",
+   "fecha": "2025-09-14",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20250914_0_L2A",
+    "S2B_18NVL_20250914_1_L2A"
+   ],
+   "nubosidad_tesela_min": 16.4,
+   "frac_valida_scl": 0.763,
+   "frac_usada": 0.7609,
+   "ndvi_mediana_cabecera": 0.4172,
+   "ndvi_mediana_rural_rejilla": 0.7046,
+   "aot_mediana": 0.319,
+   "frac_veg_rojo_menor_0_1": 0.8707,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-09-17_2B_R068",
+   "fecha": "2025-09-17",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20250917_0_L2A",
+    "S2B_18NVL_20250917_0_L2A"
+   ],
+   "nubosidad_tesela_min": 48.9,
+   "frac_valida_scl": 0.7539,
+   "frac_usada": 0.7435,
+   "ndvi_mediana_cabecera": 0.3377,
+   "ndvi_mediana_rural_rejilla": 0.724,
+   "aot_mediana": 0.294,
+   "frac_veg_rojo_menor_0_1": 0.9621,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-09-27_2B_R068",
+   "fecha": "2025-09-27",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20250927_0_L2A",
+    "S2B_18NVL_20250927_0_L2A"
+   ],
+   "nubosidad_tesela_min": 36.4,
+   "frac_valida_scl": 0.6869,
+   "frac_usada": 0.6817,
+   "ndvi_mediana_cabecera": 0.3191,
+   "ndvi_mediana_rural_rejilla": 0.6917,
+   "aot_mediana": 0.232,
+   "frac_veg_rojo_menor_0_1": 0.9591,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-10-11_2A_R025",
+   "fecha": "2025-10-11",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20251011_0_L2A",
+    "S2A_18NVL_20251011_0_L2A"
+   ],
+   "nubosidad_tesela_min": 53.2,
+   "frac_valida_scl": 0.5594,
+   "frac_usada": 0.5594,
+   "ndvi_mediana_cabecera": 0.2607,
+   "ndvi_mediana_rural_rejilla": 0.6894,
+   "aot_mediana": 0.13,
+   "frac_veg_rojo_menor_0_1": 0.94,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-10-22_2C_R068",
+   "fecha": "2025-10-22",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20251022_0_L2A",
+    "S2C_18NVL_20251022_0_L2A"
+   ],
+   "nubosidad_tesela_min": 66.7,
+   "frac_valida_scl": 0.693,
+   "frac_usada": 0.6903,
+   "ndvi_mediana_cabecera": 0.389,
+   "ndvi_mediana_rural_rejilla": 0.7488,
+   "aot_mediana": 0.157,
+   "frac_veg_rojo_menor_0_1": 0.9803,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-10-24_2B_R025",
+   "fecha": "2025-10-24",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20251024_1_L2A",
+    "S2B_18NUL_20251024_0_L2A",
+    "S2B_18NVL_20251024_0_L2A",
+    "S2B_18NVL_20251024_1_L2A"
+   ],
+   "nubosidad_tesela_min": 35.6,
+   "frac_valida_scl": 0.5336,
+   "frac_usada": 0.5336,
+   "ndvi_mediana_cabecera": 0.4132,
+   "ndvi_mediana_rural_rejilla": 0.6909,
+   "aot_mediana": 0.309,
+   "frac_veg_rojo_menor_0_1": 0.8999,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-11-08_2C_R025",
+   "fecha": "2025-11-08",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20251108_0_L2A",
+    "S2C_18NVL_20251108_0_L2A"
+   ],
+   "nubosidad_tesela_min": 72.2,
+   "frac_valida_scl": 0.6335,
+   "frac_usada": 0.6335,
+   "ndvi_mediana_cabecera": 0.3926,
+   "ndvi_mediana_rural_rejilla": 0.7145,
+   "aot_mediana": 0.299,
+   "frac_veg_rojo_menor_0_1": 0.9303,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-11-18_2C_R025",
+   "fecha": "2025-11-18",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20251118_0_L2A",
+    "S2C_18NVL_20251118_0_L2A"
+   ],
+   "nubosidad_tesela_min": 24.7,
+   "frac_valida_scl": 0.8775,
+   "frac_usada": 0.8773,
+   "ndvi_mediana_cabecera": 0.3808,
+   "ndvi_mediana_rural_rejilla": 0.7723,
+   "aot_mediana": 0.199,
+   "frac_veg_rojo_menor_0_1": 0.9699,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-11-21_2C_R068",
+   "fecha": "2025-11-21",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20251121_0_L2A",
+    "S2C_18NVL_20251121_0_L2A"
+   ],
+   "nubosidad_tesela_min": 53.1,
+   "frac_valida_scl": 0.5705,
+   "frac_usada": 0.5615,
+   "ndvi_mediana_cabecera": 0.3468,
+   "ndvi_mediana_rural_rejilla": 0.7685,
+   "aot_mediana": 0.224,
+   "frac_veg_rojo_menor_0_1": 0.984,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-11-26_2B_R068",
+   "fecha": "2025-11-26",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20251126_0_L2A",
+    "S2B_18NVL_20251126_0_L2A"
+   ],
+   "nubosidad_tesela_min": 22.1,
+   "frac_valida_scl": 0.7474,
+   "frac_usada": 0.7473,
+   "ndvi_mediana_cabecera": 0.4298,
+   "ndvi_mediana_rural_rejilla": 0.7759,
+   "aot_mediana": 0.152,
+   "frac_veg_rojo_menor_0_1": 0.9862,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-12-01_2C_R068",
+   "fecha": "2025-12-01",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20251201_0_L2A",
+    "S2C_18NVL_20251201_0_L2A"
+   ],
+   "nubosidad_tesela_min": 27.2,
+   "frac_valida_scl": 0.6222,
+   "frac_usada": 0.6217,
+   "ndvi_mediana_cabecera": 0.3765,
+   "ndvi_mediana_rural_rejilla": 0.768,
+   "aot_mediana": 0.115,
+   "frac_veg_rojo_menor_0_1": 0.9859,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-12-06_2B_R068",
+   "fecha": "2025-12-06",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2B_18NUL_20251206_0_L2A",
+    "S2B_18NVL_20251206_0_L2A"
+   ],
+   "nubosidad_tesela_min": 16.6,
+   "frac_valida_scl": 0.7639,
+   "frac_usada": 0.7626,
+   "ndvi_mediana_cabecera": 0.3457,
+   "ndvi_mediana_rural_rejilla": 0.7821,
+   "aot_mediana": 0.136,
+   "frac_veg_rojo_menor_0_1": 0.9902,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-12-08_2C_R025",
+   "fecha": "2025-12-08",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20251208_0_L2A",
+    "S2C_18NVL_20251208_0_L2A"
+   ],
+   "nubosidad_tesela_min": 14.9,
+   "frac_valida_scl": 0.9957,
+   "frac_usada": 0.9957,
+   "ndvi_mediana_cabecera": 0.3425,
+   "ndvi_mediana_rural_rejilla": 0.7674,
+   "aot_mediana": 0.176,
+   "frac_veg_rojo_menor_0_1": 0.9723,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-12-10_2A_R025",
+   "fecha": "2025-12-10",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20251210_0_L2A",
+    "S2A_18NVL_20251210_0_L2A"
+   ],
+   "nubosidad_tesela_min": 26.0,
+   "frac_valida_scl": 0.9333,
+   "frac_usada": 0.9333,
+   "ndvi_mediana_cabecera": 0.347,
+   "ndvi_mediana_rural_rejilla": 0.7587,
+   "aot_mediana": 0.312,
+   "frac_veg_rojo_menor_0_1": 0.9704,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-12-13_2B_R025",
+   "fecha": "2025-12-13",
+   "plataforma": "Sentinel-2B",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2B_18NUL_20251213_0_L2A",
+    "S2B_18NVL_20251213_0_L2A"
+   ],
+   "nubosidad_tesela_min": 24.4,
+   "frac_valida_scl": 0.7716,
+   "frac_usada": 0.7716,
+   "ndvi_mediana_cabecera": 0.4791,
+   "ndvi_mediana_rural_rejilla": 0.7545,
+   "aot_mediana": 0.34,
+   "frac_veg_rojo_menor_0_1": 0.9628,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-12-18_2C_R025",
+   "fecha": "2025-12-18",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20251218_0_L2A",
+    "S2C_18NVL_20251218_0_L2A"
+   ],
+   "nubosidad_tesela_min": 51.7,
+   "frac_valida_scl": 0.715,
+   "frac_usada": 0.7149,
+   "ndvi_mediana_cabecera": 0.409,
+   "ndvi_mediana_rural_rejilla": 0.7622,
+   "aot_mediana": 0.289,
+   "frac_veg_rojo_menor_0_1": 0.9571,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-12-21_2C_R068",
+   "fecha": "2025-12-21",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20251221_0_L2A",
+    "S2C_18NVL_20251221_0_L2A"
+   ],
+   "nubosidad_tesela_min": 31.2,
+   "frac_valida_scl": 0.6505,
+   "frac_usada": 0.6478,
+   "ndvi_mediana_cabecera": 0.3733,
+   "ndvi_mediana_rural_rejilla": 0.7645,
+   "aot_mediana": 0.152,
+   "frac_veg_rojo_menor_0_1": 0.9885,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-12-28_2C_R025",
+   "fecha": "2025-12-28",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2C_18NUL_20251228_0_L2A",
+    "S2C_18NVL_20251228_0_L2A"
+   ],
+   "nubosidad_tesela_min": 25.1,
+   "frac_valida_scl": 0.8516,
+   "frac_usada": 0.8516,
+   "ndvi_mediana_cabecera": 0.451,
+   "ndvi_mediana_rural_rejilla": 0.7588,
+   "aot_mediana": 0.215,
+   "frac_veg_rojo_menor_0_1": 0.9694,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-12-30_2A_R025",
+   "fecha": "2025-12-30",
+   "plataforma": "Sentinel-2A",
+   "orbita_relativa": "R025",
+   "items": [
+    "S2A_18NUL_20251230_0_L2A",
+    "S2A_18NVL_20251230_0_L2A"
+   ],
+   "nubosidad_tesela_min": 25.1,
+   "frac_valida_scl": 0.8405,
+   "frac_usada": 0.8405,
+   "ndvi_mediana_cabecera": 0.3262,
+   "ndvi_mediana_rural_rejilla": 0.7374,
+   "aot_mediana": 0.238,
+   "frac_veg_rojo_menor_0_1": 0.9617,
+   "aot_atipico": false
+  },
+  {
+   "adquisicion": "2025-12-31_2C_R068",
+   "fecha": "2025-12-31",
+   "plataforma": "Sentinel-2C",
+   "orbita_relativa": "R068",
+   "items": [
+    "S2C_18NUL_20251231_0_L2A",
+    "S2C_18NVL_20251231_0_L2A"
+   ],
+   "nubosidad_tesela_min": 29.4,
+   "frac_valida_scl": 0.6521,
+   "frac_usada": 0.6423,
+   "ndvi_mediana_cabecera": 0.3452,
+   "ndvi_mediana_rural_rejilla": 0.7563,
+   "aot_mediana": 0.153,
+   "frac_veg_rojo_menor_0_1": 0.9832,
+   "aot_atipico": false
+  }
+ ],
+ "no_usadas": [
+  {
+   "adquisicion": "2024-01-18_2A_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 52.6
+  },
+  {
+   "adquisicion": "2024-02-02_2B_R025",
+   "frac_despejada": 0.0064,
+   "nubosidad_tesela_min": 86.1
+  },
+  {
+   "adquisicion": "2024-02-12_2B_R025",
+   "frac_despejada": 0.4434,
+   "nubosidad_tesela_min": 34.1
+  },
+  {
+   "adquisicion": "2024-02-17_2A_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 69.1
+  },
+  {
+   "adquisicion": "2024-02-22_2B_R025",
+   "frac_despejada": 0.2521,
+   "nubosidad_tesela_min": 86.4
+  },
+  {
+   "adquisicion": "2024-03-13_2B_R025",
+   "frac_despejada": 0.3539,
+   "nubosidad_tesela_min": 53.7
+  },
+  {
+   "adquisicion": "2024-04-27_2A_R025",
+   "frac_despejada": 0.1346,
+   "nubosidad_tesela_min": 85.1
+  },
+  {
+   "adquisicion": "2024-05-02_2B_R025",
+   "frac_despejada": 0.2478,
+   "nubosidad_tesela_min": 70.1
+  },
+  {
+   "adquisicion": "2024-05-10_2A_R068",
+   "frac_despejada": 0.0026,
+   "nubosidad_tesela_min": 64.8
+  },
+  {
+   "adquisicion": "2024-05-17_2A_R025",
+   "frac_despejada": 0.0002,
+   "nubosidad_tesela_min": 77.5
+  },
+  {
+   "adquisicion": "2024-05-22_2B_R025",
+   "frac_despejada": 0.3129,
+   "nubosidad_tesela_min": 48.0
+  },
+  {
+   "adquisicion": "2024-05-25_2B_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 87.3
+  },
+  {
+   "adquisicion": "2024-06-09_2A_R068",
+   "frac_despejada": 0.0003,
+   "nubosidad_tesela_min": 63.0
+  },
+  {
+   "adquisicion": "2024-06-14_2B_R068",
+   "frac_despejada": 0.3403,
+   "nubosidad_tesela_min": 81.8
+  },
+  {
+   "adquisicion": "2024-06-16_2A_R025",
+   "frac_despejada": 0.0757,
+   "nubosidad_tesela_min": 85.2
+  },
+  {
+   "adquisicion": "2024-06-19_2A_R068",
+   "frac_despejada": 0.1077,
+   "nubosidad_tesela_min": 83.1
+  },
+  {
+   "adquisicion": "2024-06-21_2B_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 86.1
+  },
+  {
+   "adquisicion": "2024-06-24_2B_R068",
+   "frac_despejada": 0.3495,
+   "nubosidad_tesela_min": 56.3
+  },
+  {
+   "adquisicion": "2024-06-29_2A_R068",
+   "frac_despejada": 0.3394,
+   "nubosidad_tesela_min": 40.1
+  },
+  {
+   "adquisicion": "2024-07-01_2B_R025",
+   "frac_despejada": 0.485,
+   "nubosidad_tesela_min": 35.8
+  },
+  {
+   "adquisicion": "2024-07-09_2A_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 74.0
+  },
+  {
+   "adquisicion": "2024-07-11_2B_R025",
+   "frac_despejada": 0.3649,
+   "nubosidad_tesela_min": 56.0
+  },
+  {
+   "adquisicion": "2024-07-16_2A_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 50.3
+  },
+  {
+   "adquisicion": "2024-07-21_2B_R025",
+   "frac_despejada": 0.0088,
+   "nubosidad_tesela_min": 41.8
+  },
+  {
+   "adquisicion": "2024-07-26_2A_R025",
+   "frac_despejada": 0.124,
+   "nubosidad_tesela_min": 84.6
+  },
+  {
+   "adquisicion": "2024-08-05_2A_R025",
+   "frac_despejada": 0.1519,
+   "nubosidad_tesela_min": 73.1
+  },
+  {
+   "adquisicion": "2024-08-10_2B_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 86.6
+  },
+  {
+   "adquisicion": "2024-09-17_2A_R068",
+   "frac_despejada": 0.0509,
+   "nubosidad_tesela_min": 87.9
+  },
+  {
+   "adquisicion": "2024-09-19_2B_R025",
+   "frac_despejada": 0.1662,
+   "nubosidad_tesela_min": 56.7
+  },
+  {
+   "adquisicion": "2024-09-22_2B_R068",
+   "frac_despejada": 0.4938,
+   "nubosidad_tesela_min": 67.1
+  },
+  {
+   "adquisicion": "2024-09-27_2A_R068",
+   "frac_despejada": 0.1115,
+   "nubosidad_tesela_min": 73.9
+  },
+  {
+   "adquisicion": "2024-09-29_2B_R025",
+   "frac_despejada": 0.2708,
+   "nubosidad_tesela_min": 62.0
+  },
+  {
+   "adquisicion": "2024-10-09_2B_R025",
+   "frac_despejada": 0.2435,
+   "nubosidad_tesela_min": 53.0
+  },
+  {
+   "adquisicion": "2024-10-22_2B_R068",
+   "frac_despejada": 0.2177,
+   "nubosidad_tesela_min": 85.3
+  },
+  {
+   "adquisicion": "2024-10-27_2A_R068",
+   "frac_despejada": 0.3729,
+   "nubosidad_tesela_min": 78.6
+  },
+  {
+   "adquisicion": "2024-10-29_2B_R025",
+   "frac_despejada": 0.3432,
+   "nubosidad_tesela_min": 62.6
+  },
+  {
+   "adquisicion": "2024-11-11_2B_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 81.4
+  },
+  {
+   "adquisicion": "2024-11-13_2A_R025",
+   "frac_despejada": 0.2595,
+   "nubosidad_tesela_min": 73.4
+  },
+  {
+   "adquisicion": "2024-11-16_2A_R068",
+   "frac_despejada": 0.0051,
+   "nubosidad_tesela_min": 82.6
+  },
+  {
+   "adquisicion": "2024-11-21_2B_R068",
+   "frac_despejada": 0.2825,
+   "nubosidad_tesela_min": 71.2
+  },
+  {
+   "adquisicion": "2024-11-23_2A_R025",
+   "frac_despejada": 0.0806,
+   "nubosidad_tesela_min": 77.4
+  },
+  {
+   "adquisicion": "2024-12-01_2B_R068",
+   "frac_despejada": 0.4068,
+   "nubosidad_tesela_min": 49.6
+  },
+  {
+   "adquisicion": "2024-12-06_2A_R068",
+   "frac_despejada": 0.0029,
+   "nubosidad_tesela_min": 75.9
+  },
+  {
+   "adquisicion": "2024-12-06_2C_R068",
+   "frac_despejada": 0.005,
+   "nubosidad_tesela_min": 76.2
+  },
+  {
+   "adquisicion": "2024-12-28_2B_R025",
+   "frac_despejada": 0.4326,
+   "nubosidad_tesela_min": 82.5
+  },
+  {
+   "adquisicion": "2024-12-31_2B_R068",
+   "frac_despejada": 0.0587,
+   "nubosidad_tesela_min": 60.7
+  },
+  {
+   "adquisicion": "2025-01-07_2B_R025",
+   "frac_despejada": 0.0038,
+   "nubosidad_tesela_min": 70.4
+  },
+  {
+   "adquisicion": "2025-01-10_2B_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 60.4
+  },
+  {
+   "adquisicion": "2025-01-27_2B_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 84.8
+  },
+  {
+   "adquisicion": "2025-02-01_2C_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 87.3
+  },
+  {
+   "adquisicion": "2025-02-06_2B_R025",
+   "frac_despejada": 0.2201,
+   "nubosidad_tesela_min": 74.6
+  },
+  {
+   "adquisicion": "2025-02-09_2B_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 73.9
+  },
+  {
+   "adquisicion": "2025-02-14_2C_R068",
+   "frac_despejada": 0.1628,
+   "nubosidad_tesela_min": 79.4
+  },
+  {
+   "adquisicion": "2025-02-16_2B_R025",
+   "frac_despejada": 0.0805,
+   "nubosidad_tesela_min": 73.5
+  },
+  {
+   "adquisicion": "2025-02-24_2C_R068",
+   "frac_despejada": 0.0215,
+   "nubosidad_tesela_min": 67.1
+  },
+  {
+   "adquisicion": "2025-02-26_2B_R025",
+   "frac_despejada": 0.2987,
+   "nubosidad_tesela_min": 65.9
+  },
+  {
+   "adquisicion": "2025-03-01_2B_R068",
+   "frac_despejada": 0.0005,
+   "nubosidad_tesela_min": 48.8
+  },
+  {
+   "adquisicion": "2025-03-11_2B_R068",
+   "frac_despejada": 0.0007,
+   "nubosidad_tesela_min": 88.7
+  },
+  {
+   "adquisicion": "2025-03-16_2C_R068",
+   "frac_despejada": 0.1516,
+   "nubosidad_tesela_min": 36.6
+  },
+  {
+   "adquisicion": "2025-03-23_2C_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 76.5
+  },
+  {
+   "adquisicion": "2025-03-28_2B_R025",
+   "frac_despejada": 0.2512,
+   "nubosidad_tesela_min": 76.3
+  },
+  {
+   "adquisicion": "2025-04-02_2C_R025",
+   "frac_despejada": 0.0084,
+   "nubosidad_tesela_min": 60.9
+  },
+  {
+   "adquisicion": "2025-04-07_2A_R068",
+   "frac_despejada": 0.4309,
+   "nubosidad_tesela_min": 5.1
+  },
+  {
+   "adquisicion": "2025-04-14_2A_R025",
+   "frac_despejada": 0.0001,
+   "nubosidad_tesela_min": 60.6
+  },
+  {
+   "adquisicion": "2025-04-22_2C_R025",
+   "frac_despejada": 0.1197,
+   "nubosidad_tesela_min": 75.3
+  },
+  {
+   "adquisicion": "2025-04-27_2A_R068",
+   "frac_despejada": 0.4047,
+   "nubosidad_tesela_min": 64.9
+  },
+  {
+   "adquisicion": "2025-04-27_2B_R025",
+   "frac_despejada": 0.3981,
+   "nubosidad_tesela_min": 61.3
+  },
+  {
+   "adquisicion": "2025-05-17_2A_R068",
+   "frac_despejada": 0.1364,
+   "nubosidad_tesela_min": 78.2
+  },
+  {
+   "adquisicion": "2025-05-17_2B_R025",
+   "frac_despejada": 0.1826,
+   "nubosidad_tesela_min": 89.6
+  },
+  {
+   "adquisicion": "2025-05-20_2B_R068",
+   "frac_despejada": 0.0013,
+   "nubosidad_tesela_min": 84.3
+  },
+  {
+   "adquisicion": "2025-05-24_2A_R025",
+   "frac_despejada": 0.0701,
+   "nubosidad_tesela_min": 64.7
+  },
+  {
+   "adquisicion": "2025-05-25_2C_R068",
+   "frac_despejada": 0.0009,
+   "nubosidad_tesela_min": 70.9
+  },
+  {
+   "adquisicion": "2025-05-27_2B_R025",
+   "frac_despejada": 0.4343,
+   "nubosidad_tesela_min": 54.4
+  },
+  {
+   "adquisicion": "2025-06-04_2C_R068",
+   "frac_despejada": 0.0321,
+   "nubosidad_tesela_min": 60.7
+  },
+  {
+   "adquisicion": "2025-06-06_2A_R068",
+   "frac_despejada": 0.3706,
+   "nubosidad_tesela_min": 60.5
+  },
+  {
+   "adquisicion": "2025-06-06_2B_R025",
+   "frac_despejada": 0.3596,
+   "nubosidad_tesela_min": 49.8
+  },
+  {
+   "adquisicion": "2025-06-11_2C_R025",
+   "frac_despejada": 0.2343,
+   "nubosidad_tesela_min": 59.8
+  },
+  {
+   "adquisicion": "2025-06-21_2C_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 85.4
+  },
+  {
+   "adquisicion": "2025-06-23_2A_R025",
+   "frac_despejada": 0.0048,
+   "nubosidad_tesela_min": 78.7
+  },
+  {
+   "adquisicion": "2025-06-24_2C_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 88.1
+  },
+  {
+   "adquisicion": "2025-06-29_2B_R068",
+   "frac_despejada": 0.001,
+   "nubosidad_tesela_min": 65.3
+  },
+  {
+   "adquisicion": "2025-07-01_2C_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 76.1
+  },
+  {
+   "adquisicion": "2025-07-03_2A_R025",
+   "frac_despejada": 0.0007,
+   "nubosidad_tesela_min": 79.7
+  },
+  {
+   "adquisicion": "2025-07-06_2B_R025",
+   "frac_despejada": 0.4731,
+   "nubosidad_tesela_min": 48.9
+  },
+  {
+   "adquisicion": "2025-07-09_2B_R068",
+   "frac_despejada": 0.357,
+   "nubosidad_tesela_min": 75.2
+  },
+  {
+   "adquisicion": "2025-07-11_2C_R025",
+   "frac_despejada": 0.1891,
+   "nubosidad_tesela_min": 69.9
+  },
+  {
+   "adquisicion": "2025-07-13_2A_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 82.5
+  },
+  {
+   "adquisicion": "2025-07-19_2B_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 83.8
+  },
+  {
+   "adquisicion": "2025-07-21_2C_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 88.7
+  },
+  {
+   "adquisicion": "2025-07-23_2A_R025",
+   "frac_despejada": 0.0454,
+   "nubosidad_tesela_min": 83.9
+  },
+  {
+   "adquisicion": "2025-07-29_2B_R068",
+   "frac_despejada": 0.0042,
+   "nubosidad_tesela_min": 76.8
+  },
+  {
+   "adquisicion": "2025-08-03_2C_R068",
+   "frac_despejada": 0.006,
+   "nubosidad_tesela_min": 46.5
+  },
+  {
+   "adquisicion": "2025-08-05_2A_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 61.1
+  },
+  {
+   "adquisicion": "2025-08-05_2B_R025",
+   "frac_despejada": 0.0074,
+   "nubosidad_tesela_min": 79.0
+  },
+  {
+   "adquisicion": "2025-08-08_2B_R068",
+   "frac_despejada": 0.1534,
+   "nubosidad_tesela_min": 40.7
+  },
+  {
+   "adquisicion": "2025-08-13_2C_R068",
+   "frac_despejada": 0.2955,
+   "nubosidad_tesela_min": 38.9
+  },
+  {
+   "adquisicion": "2025-08-15_2A_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 59.4
+  },
+  {
+   "adquisicion": "2025-08-15_2B_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 87.7
+  },
+  {
+   "adquisicion": "2025-08-22_2A_R025",
+   "frac_despejada": 0.416,
+   "nubosidad_tesela_min": 76.2
+  },
+  {
+   "adquisicion": "2025-08-23_2C_R068",
+   "frac_despejada": 0.0335,
+   "nubosidad_tesela_min": 45.1
+  },
+  {
+   "adquisicion": "2025-08-25_2A_R068",
+   "frac_despejada": 0.4251,
+   "nubosidad_tesela_min": 79.7
+  },
+  {
+   "adquisicion": "2025-08-25_2B_R025",
+   "frac_despejada": 0.2879,
+   "nubosidad_tesela_min": 87.6
+  },
+  {
+   "adquisicion": "2025-08-28_2B_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 57.9
+  },
+  {
+   "adquisicion": "2025-09-01_2A_R025",
+   "frac_despejada": 0.3161,
+   "nubosidad_tesela_min": 49.8
+  },
+  {
+   "adquisicion": "2025-09-11_2A_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 77.0
+  },
+  {
+   "adquisicion": "2025-09-12_2C_R068",
+   "frac_despejada": 0.0426,
+   "nubosidad_tesela_min": 59.1
+  },
+  {
+   "adquisicion": "2025-09-19_2C_R025",
+   "frac_despejada": 0.4832,
+   "nubosidad_tesela_min": 57.8
+  },
+  {
+   "adquisicion": "2025-09-21_2A_R025",
+   "frac_despejada": 0.4297,
+   "nubosidad_tesela_min": 32.0
+  },
+  {
+   "adquisicion": "2025-09-22_2C_R068",
+   "frac_despejada": 0.456,
+   "nubosidad_tesela_min": 22.2
+  },
+  {
+   "adquisicion": "2025-09-24_2B_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 80.2
+  },
+  {
+   "adquisicion": "2025-09-29_2C_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 87.6
+  },
+  {
+   "adquisicion": "2025-10-01_2A_R025",
+   "frac_despejada": 0.2203,
+   "nubosidad_tesela_min": 78.0
+  },
+  {
+   "adquisicion": "2025-10-02_2C_R068",
+   "frac_despejada": 0.0378,
+   "nubosidad_tesela_min": 50.4
+  },
+  {
+   "adquisicion": "2025-10-04_2B_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 75.3
+  },
+  {
+   "adquisicion": "2025-10-07_2B_R068",
+   "frac_despejada": 0.013,
+   "nubosidad_tesela_min": 58.3
+  },
+  {
+   "adquisicion": "2025-10-09_2C_R025",
+   "frac_despejada": 0.4366,
+   "nubosidad_tesela_min": 33.3
+  },
+  {
+   "adquisicion": "2025-10-12_2C_R068",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 85.5
+  },
+  {
+   "adquisicion": "2025-10-14_2B_R025",
+   "frac_despejada": 0.2141,
+   "nubosidad_tesela_min": 75.4
+  },
+  {
+   "adquisicion": "2025-10-19_2C_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 84.4
+  },
+  {
+   "adquisicion": "2025-10-21_2A_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 89.4
+  },
+  {
+   "adquisicion": "2025-10-29_2C_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 77.0
+  },
+  {
+   "adquisicion": "2025-10-31_2A_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 89.3
+  },
+  {
+   "adquisicion": "2025-11-01_2C_R068",
+   "frac_despejada": 0.1959,
+   "nubosidad_tesela_min": 54.8
+  },
+  {
+   "adquisicion": "2025-11-03_2B_R025",
+   "frac_despejada": 0.0393,
+   "nubosidad_tesela_min": 76.9
+  },
+  {
+   "adquisicion": "2025-11-10_2A_R025",
+   "frac_despejada": 0.0,
+   "nubosidad_tesela_min": 80.0
+  },
+  {
+   "adquisicion": "2025-11-13_2B_R025",
+   "frac_despejada": 0.0418,
+   "nubosidad_tesela_min": 79.7
+  },
+  {
+   "adquisicion": "2025-11-20_2A_R025",
+   "frac_despejada": 0.4227,
+   "nubosidad_tesela_min": 61.1
+  },
+  {
+   "adquisicion": "2025-11-30_2A_R025",
+   "frac_despejada": 0.0791,
+   "nubosidad_tesela_min": 86.7
+  },
+  {
+   "adquisicion": "2025-12-03_2B_R025",
+   "frac_despejada": 0.1716,
+   "nubosidad_tesela_min": 56.7
+  },
+  {
+   "adquisicion": "2025-12-11_2C_R068",
+   "frac_despejada": 0.0454,
+   "nubosidad_tesela_min": 80.8
+  },
+  {
+   "adquisicion": "2025-12-23_2B_R025",
+   "frac_despejada": 0.4677,
+   "nubosidad_tesela_min": 46.5
+  },
+  {
+   "adquisicion": "2025-12-26_2B_R068",
+   "frac_despejada": 0.1553,
+   "nubosidad_tesela_min": 87.3
+  }
+ ]
+}

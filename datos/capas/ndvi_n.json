@@ -1,0 +1,106 @@
+{
+ "titulo": "Observaciones válidas del NDVI 2024–2025",
+ "descripcion": "Cuántas fechas sin nubes de Sentinel-2 sostienen el valor de NDVI de cada celda. Más fechas significa un valor más estable; pocas fechas, más incertidumbre.",
+ "unidad": "número de adquisiciones (media de los píxeles de 10 m de la celda)",
+ "fuente": {
+  "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+  "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+  "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)",
+  "cita": "Contiene datos modificados de Copernicus Sentinel [2024–2025], procesados por BioMap Cartago"
+ },
+ "periodo": "2024-01-01 a 2025-12-31 (132 adquisiciones con datos)",
+ "resolucion_original_m": 10,
+ "procesamiento": [
+  "Catálogo STAC de Earth Search (colección sentinel-2-l2a), 2024-01-01/2025-12-31, sin filtro de nubes en la consulta: 684 items de las teselas MGRS 18NUL y 18NVL. Se consideran los 476 con nubosidad de tesela < 90 % (eo:cloud_cover se calcula sobre la tesela de 110 km, de la que la zona es ≈ 1,4 %); la selección real la hace la SCL local. Lista de IDs versionada en scripts/sentinel2_items.json.",
+  "Mosaico por adquisición de las dos teselas y de los datastrips de una misma tesela, con 18NUL primero y, dentro de cada tesela, el item que más cubre la zona: 264 adquisiciones (plataforma+fecha+órbita) con dato en la zona. Cuando una tesela tiene dos items el mismo día (_0 y _1/_2) son datastrips distintos de la misma pasada (distinto datastrip_id y hora de inicio), no reprocesos; en la zona se solapan con 95–99 % de acuerdo en la SCL, y tomar el que más cubre evita costuras entre dos corridas de Sen2Cor.",
+  "Máscara SCL (20 m, ampliada a 10 m): válidas las clases [4, 5, 6] (vegetación, no vegetado, agua); se descartan 0–3 y 8–11. La clase 7 (sin clasificar, «clouds low probability / unclassified» en la documentación de Copernicus) también se descarta: es el 0.74 % de las observaciones (clases 1–11) de las adquisiciones usadas, así que la decisión casi no cambia el resultado.",
+  "Además se descartan los píxeles a menos de 40 m de nube, sombra de nube o cirro (clases 3, 8, 9, 10), porque los bordes de nube suelen escapar a la SCL (criterio propio).",
+  "Se usan todas las adquisiciones cuya parte de la zona cubierta tenga ≥ 50 % de píxeles válidos: 132 de 264; 132 descargadas por completo y usadas. Fechas por mes calendario (2024+2025): {1: 20, 2: 6, 3: 11, 4: 11, 5: 7, 6: 6, 7: 15, 8: 11, 9: 12, 10: 9, 11: 8, 12: 16}.",
+  "Solo se descargaron los bloques internos del COG (1024×1024 px) con al menos 2000 píxeles válidos en la zona (red lenta); los demás píxeles de esas escenas no se usan. 132 items aportaron píxeles, de 267 items en las adquisiciones usadas (el resto solo cubre zonas nubladas o ya cubiertas por el otro item de la misma pasada).",
+  "Reflectancia = DN × 0,0001. Los productos son baseline 05.10/05.11 (BOA_ADD_OFFSET = −1000 en sus metadatos de ESA), pero Earth Search ya restó ese offset a los DN de los COG (propiedad earthsearch:boa_offset_applied = true), aunque 'raster:bands' sigue declarando offset −0,1: aplicarlo restaría dos veces. Se verificó por item (DN del rojo en vegetación) y contra Planetary Computer; si un COG conservara los DN originales se usaría DN × 0,0001 − 0,1. Ver 'evidencia_offset'.",
+  "Los COG de Earth Search recortan a DN = 1 las reflectancias que tras el offset serían ≤ 0 (comparación con Planetary Computer: DN 931 → 1). DN ≤ 1 en B04 o B08 se trata como dato censurado y se descarta: 0.33 % de los píxeles válidos por SCL, 3.9 % de los de agua (SCL 6).",
+  "NDVI = (B08 − B04)/(B08 + B04) por escena a 10 m; se descartan píxeles con reflectancia ≤ 0 en alguna banda.",
+  "Bruma: se calcula el AOT de Sen2Cor (asset 'aot', 550 nm; el COG es de 60 m aunque el STAC declare 20 m, y se lee con su propia georreferenciación) mediano de cada fecha (rango 0.084–0.379). Ninguna fecha supera Q3 + 1,5·IQR (0.466; criterio propio), así que no se excluye ninguna escena por bruma. El AOT no explica bien las fechas de NDVI bajo (r = -0.268 con el NDVI rural por fecha).",
+  "N por píxel de 10 m = número de adquisiciones con NDVI válido; solo cuentan los píxeles con N ≥ 5 (los que aportan mediana a la capa ndvi).",
+  "Promedio ponderado por área (GDAL «average») a la rejilla común; los píxeles de 10 m que no aportan quedan fuera del promedio.",
+  "Fracción de píxeles de 10 m de la celda que aportan: ver 'fraccion_pixeles_aportan' (fuentes/rejilla/ndvi_frac_aporta.npy)."
+ ],
+ "limitaciones": [
+  "El número de observaciones no es uniforme (capa ndvi_n): baja de oeste a este (N mediano 114 al occidente de −75,93° y 43 al oriente de −75,88°) porque el borde de la franja de barrido de la órbita relativa 068 cruza la zona y solo las pasadas de la órbita 025 la cubren entera; también es menor en el agua (reflectancias censuradas) y junto a techos muy brillantes confundidos con nube.",
+  "Los meses lluviosos aportan menos fechas despejadas: en el píxel típico el 56 % de las observaciones son de meses de temporada seca (dic–feb, jun–ago, que son la mitad del año); la mediana pesa algo más esas épocas.",
+  "Es una medida de cantidad de datos, no de error: no incluye la variabilidad entre fechas ni los errores de la SCL."
+ ],
+ "rango_visual": [
+  0.0,
+  130.0
+ ],
+ "paleta": [
+  "#f7fbff",
+  "#c6dbef",
+  "#6baed6",
+  "#2171b5",
+  "#08306b"
+ ],
+ "interpretacion": "No hay un umbral normativo. En este producto un píxel de 10 m necesita N ≥ 5 para tener mediana (criterio propio); con N bajo la mediana es más sensible a una sola fecha con bruma o nube no detectada.",
+ "n_obs_celda": {
+  "min": 11.7,
+  "p5": 35.9,
+  "mediana": 104.4,
+  "max": 128.0,
+  "celdas_menor_10": 0,
+  "celdas_menor_20": 89
+ },
+ "fraccion_pixeles_aportan": {
+  "mediana": 1.0,
+  "min": 0.692,
+  "celdas_menor_1": 22,
+  "celdas_menor_0_5": 0
+ },
+ "seco": {
+  "n_obs_celda": {
+   "min": 3.0,
+   "p5": 18.4,
+   "mediana": 59.0,
+   "max": 74.0,
+   "celdas_menor_10": 140,
+   "celdas_menor_20": 14851
+  },
+  "archivo": "fuentes/rejilla/ndvi_seco_n.npy (no publicado)"
+ },
+ "nombre": "ndvi_n",
+ "escala": 0.01,
+ "desplazamiento": 0,
+ "codificacion": "RGBA 16 bits: v=R*256+G; v=0 sin dato; valor=(v-1)*escala+desplazamiento",
+ "rejilla": {
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res": 0.00025,
+  "ancho": 520,
+  "alto": 428,
+  "crs": "EPSG:4326"
+ },
+ "estadisticas": {
+  "extension": {
+   "min": 11.6697,
+   "p10": 43.0,
+   "media": 92.412,
+   "p50": 104.4,
+   "p90": 118.9201,
+   "max": 128.0,
+   "celdas": 222560
+  },
+  "cabecera_urbana": {
+   "min": 28.246,
+   "p10": 94.7383,
+   "media": 108.003,
+   "p50": 110.2998,
+   "p90": 120.0,
+   "max": 126.0,
+   "celdas": 19878
+  }
+ },
+ "cobertura_pct": 100.0,
+ "fecha_proceso": "2026-09-30"
+}

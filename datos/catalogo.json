@@ -1,0 +1,583 @@
+{
+ "titulo": "Catálogo de datos abiertos de BioMap Cartago",
+ "rejilla": {
+  "crs": "EPSG:4326",
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res_grados": 0.00025,
+  "res_m_aprox": 27.7,
+  "ancho": 520,
+  "alto": 428
+ },
+ "capas": [
+  {
+   "id": "agua",
+   "titulo": "Agua superficial permanente (ESA WorldCover 2021)",
+   "descripcion": "Porcentaje de cada celda de unos 28 m cuyos píxeles de 10 m el mapa satelital ESA WorldCover 2021 clasifica como agua la mayor parte del año (ríos, lagos, embalses). Muestra el cauce visible de los ríos La Vieja y Cauca y los cuerpos de agua.",
+   "unidad": "%",
+   "periodo": "2021 (enero–diciembre)",
+   "resolucion_original_m": 10,
+   "fuente": {
+    "nombre": "ESA WorldCover 10 m 2021 v200 (tesela N03W078)",
+    "url": "https://doi.org/10.5281/zenodo.7254221",
+    "licencia": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+    "cita": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221",
+    "atribucion": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+    "datos_crudos": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N03W078_Map.tif"
+   },
+   "geotiff": "descargas/agua.tif",
+   "png": "capas/agua.png",
+   "metadatos": "capas/agua.json",
+   "tamano_tif_kb": 51
+  },
+  {
+   "id": "agua_ocurrencia",
+   "titulo": "Agua superficial histórica (ocurrencia 1984–2024)",
+   "descripcion": "Porcentaje de las observaciones Landsat entre 1984 y 2024 en que se vio agua en cada lugar. Muestra el cauce y las zonas que el río ha ocupado.",
+   "unidad": "% del tiempo con agua",
+   "periodo": "1984/2024",
+   "resolucion_original_m": 30,
+   "fuente": {
+    "nombre": "JRC Global Surface Water v1.5 (1984–2024), capa occurrence — EC JRC / Google",
+    "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/occurrence/occurrence_80W_10N_v1_5_2024.tif",
+    "licencia": "Programa Copernicus: libre y gratuita, sin restricción de uso, con cita obligatoria",
+    "cita": "Pekel, J.-F., Cottam, A., Gorelick, N., Belward, A. S. (2016). High-resolution mapping of global surface water and its long-term changes. Nature 540, 418–422. doi:10.1038/nature20584. Source: EC JRC/Google"
+   },
+   "geotiff": "descargas/agua_ocurrencia.tif",
+   "png": "capas/agua_ocurrencia.png",
+   "metadatos": "capas/agua_ocurrencia.json",
+   "tamano_tif_kb": 60
+  },
+  {
+   "id": "altitud",
+   "titulo": "Altitud de la superficie (DSM)",
+   "descripcion": "Altura sobre el nivel del mar de la superficie visible desde el satélite (incluye edificios y árboles), a unos 30 m de detalle.",
+   "unidad": "m s.n.m.",
+   "periodo": "Adquisiciones TanDEM-X 2011–2015 (Copernicus DEM GLO-30)",
+   "resolucion_original_m": 30,
+   "fuente": {
+    "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+    "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+    "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)",
+    "cita": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65"
+   },
+   "geotiff": "descargas/altitud.tif",
+   "png": "capas/altitud.png",
+   "metadatos": "capas/altitud.json",
+   "tamano_tif_kb": 691
+  },
+  {
+   "id": "arbolado",
+   "titulo": "Área clasificada como arbolado (ESA WorldCover 2021)",
+   "descripcion": "Porcentaje de cada celda de unos 28 m cuyos píxeles de 10 m el mapa satelital ESA WorldCover 2021 clasifica como arbolado. Señala dónde dominan los árboles (bosques de galería, arbolado urbano denso, plantaciones); no mide la copa de los árboles.",
+   "unidad": "%",
+   "periodo": "2021 (enero–diciembre)",
+   "resolucion_original_m": 10,
+   "fuente": {
+    "nombre": "ESA WorldCover 10 m 2021 v200 (tesela N03W078)",
+    "url": "https://doi.org/10.5281/zenodo.7254221",
+    "licencia": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+    "cita": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221",
+    "atribucion": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+    "datos_crudos": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N03W078_Map.tif"
+   },
+   "geotiff": "descargas/arbolado.tif",
+   "png": "capas/arbolado.png",
+   "metadatos": "capas/arbolado.json",
+   "tamano_tif_kb": 458
+  },
+  {
+   "id": "construido",
+   "titulo": "Área clasificada como construida (ESA WorldCover 2021)",
+   "descripcion": "Porcentaje de cada celda de unos 28 m cuyos píxeles de 10 m el mapa satelital ESA WorldCover 2021 clasifica como construidos (edificaciones, vías y otras estructuras). Indica qué tan edificado está cada lugar.",
+   "unidad": "%",
+   "periodo": "2021 (enero–diciembre)",
+   "resolucion_original_m": 10,
+   "fuente": {
+    "nombre": "ESA WorldCover 10 m 2021 v200 (tesela N03W078)",
+    "url": "https://doi.org/10.5281/zenodo.7254221",
+    "licencia": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+    "cita": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221",
+    "atribucion": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+    "datos_crudos": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N03W078_Map.tif"
+   },
+   "geotiff": "descargas/construido.tif",
+   "png": "capas/construido.png",
+   "metadatos": "capas/construido.json",
+   "tamano_tif_kb": 118
+  },
+  {
+   "id": "distancia_verde",
+   "titulo": "Distancia al espacio verde público (≥ 0,5 ha)",
+   "descripcion": "Metros en línea recta desde cada punto hasta el borde del parque o zona verde pública de al menos media hectárea más cercano, según lo mapeado en OpenStreetMap. La OMS (2016) propone como indicador la proporción de la población que vive a 300 m o menos de uno (unos 5 minutos a pie).",
+   "unidad": "m",
+   "periodo": "Estado de OpenStreetMap en la marca 2026-10-01T01:50:59Z en UTC (2026-09-30 20:50 hora de Colombia, UTC−5)",
+   "resolucion_original_m": null,
+   "fuente": {
+    "nombre": "OpenStreetMap: parques, zonas de juego, zonas recreativas y jardines públicos",
+    "url": "https://www.openstreetmap.org/copyright",
+    "licencia": "ODbL 1.0",
+    "cita": "© colaboradores de OpenStreetMap, ODbL 1.0 (https://www.openstreetmap.org/copyright)",
+    "consulta_overpass": "[out:json][timeout:170];(nwr[\"leisure\"~\"^(park|garden|pitch|playground|nature_reserve|recreation_ground)$\"](4.688,-75.985,4.795,-75.855);nwr[\"landuse\"~\"^(grass|recreation_ground|forest|meadow|village_green|cemetery)$\"](4.688,-75.985,4.795,-75.855);nwr[\"natural\"~\"^(wood|wetland|water|scrub|tree_row)$\"](4.688,-75.985,4.795,-75.855);nwr[\"amenity\"~\"^(school|kindergarten|college|university|hospital|clinic|doctors|nursing_home|social_facility|fire_station|police|townhall)$\"](4.688,-75.985,4.795,-75.855););out geom;"
+   },
+   "geotiff": "descargas/distancia_verde.tif",
+   "png": "capas/distancia_verde.png",
+   "metadatos": "capas/distancia_verde.json",
+   "tamano_tif_kb": 568
+  },
+  {
+   "id": "hand",
+   "titulo": "Altura sobre el drenaje más cercano (HAND)",
+   "descripcion": "Cuántos metros está cada lugar por encima del río o cauce al que escurre su agua. Cuanto más bajo, más fácil que el agua lo alcance en una creciente; un valor alto no descarta inundación.",
+   "unidad": "m",
+   "periodo": "Topografía 2011–2015 (TanDEM-X); dosel Meta/WRI CHM v1 (imágenes 2014–2018); cauces OSM descargados en 2026",
+   "resolucion_original_m": 30,
+   "fuente": {
+    "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+    "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+    "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)",
+    "cita": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65. Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0. Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., et al. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. Remote Sensing of Environment 300, 113888. doi:10.1016/j.rse.2023.113888"
+   },
+   "geotiff": "descargas/hand.tif",
+   "png": "capas/hand.png",
+   "metadatos": "capas/hand.json",
+   "tamano_tif_kb": 761
+  },
+  {
+   "id": "hand_rio_mayor",
+   "titulo": "Altura sobre el río La Vieja o el Cauca",
+   "descripcion": "Cuántos metros está cada lugar por encima del nivel del río La Vieja o del Cauca, en el punto donde llega su agua. Es la base de la clase de susceptibilidad alta.",
+   "unidad": "m",
+   "periodo": "Topografía 2011–2015 (TanDEM-X); dosel Meta/WRI CHM v1 (imágenes 2014–2018); cauces OSM descargados en 2026",
+   "resolucion_original_m": 30,
+   "fuente": {
+    "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+    "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+    "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)",
+    "cita": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65. Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0. Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., et al. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. Remote Sensing of Environment 300, 113888. doi:10.1016/j.rse.2023.113888"
+   },
+   "geotiff": "descargas/hand_rio_mayor.tif",
+   "png": "capas/hand_rio_mayor.png",
+   "metadatos": "capas/hand_rio_mayor.json",
+   "tamano_tif_kb": 689
+  },
+  {
+   "id": "lst",
+   "titulo": "Temperatura superficial terrestre (Landsat 8 y 9, 2022–2025)",
+   "descripcion": "Temperatura de la superficie (techos, vías, suelo, vegetación, agua) medida por satélite hacia las 10:19 de la mañana en días despejados; mediana de 78 pasos entre 2022 y 2025. No es la temperatura del aire que se siente a la sombra.",
+   "unidad": "°C",
+   "periodo": "2022-01-01 a 2025-12-31 (78 escenas de días con al menos parte del área despejada; hora local media de paso 10:19, rango 10:18–10:19)",
+   "resolucion_original_m": 100,
+   "fuente": {
+    "nombre": "USGS Landsat 8-9 OLI/TIRS Collection 2 Level-2 (ST_B10, QA_PIXEL), vía Microsoft Planetary Computer",
+    "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+    "licencia": "Dominio público (USGS): sin restricciones de uso ni redistribución; se pide citar la fuente",
+    "cita": "Landsat 8-9 OLI/TIRS Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey. doi:10.5066/P9OGBGM6"
+   },
+   "geotiff": "descargas/lst.tif",
+   "png": "capas/lst.png",
+   "metadatos": "capas/lst.json",
+   "tamano_tif_kb": 776
+  },
+  {
+   "id": "ndvi",
+   "titulo": "Vegetación (NDVI) 2024–2025",
+   "descripcion": "Verdor de la vegetación medido por los satélites Sentinel-2 entre 2024 y 2025 (valor típico de todas las fechas sin nubes). Valores altos: árboles y cultivos vigorosos; valores bajos: techos, pavimento, suelo desnudo o agua.",
+   "unidad": "NDVI (adimensional, −1 a 1)",
+   "periodo": "2024-01-01 a 2025-12-31 (132 adquisiciones con datos)",
+   "resolucion_original_m": 10,
+   "fuente": {
+    "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+    "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+    "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)",
+    "cita": "Contiene datos modificados de Copernicus Sentinel [2024–2025], procesados por BioMap Cartago"
+   },
+   "geotiff": "descargas/ndvi.tif",
+   "png": "capas/ndvi.png",
+   "metadatos": "capas/ndvi.json",
+   "tamano_tif_kb": 889
+  },
+  {
+   "id": "ndvi_n",
+   "titulo": "Observaciones válidas del NDVI 2024–2025",
+   "descripcion": "Cuántas fechas sin nubes de Sentinel-2 sostienen el valor de NDVI de cada celda. Más fechas significa un valor más estable; pocas fechas, más incertidumbre.",
+   "unidad": "número de adquisiciones (media de los píxeles de 10 m de la celda)",
+   "periodo": "2024-01-01 a 2025-12-31 (132 adquisiciones con datos)",
+   "resolucion_original_m": 10,
+   "fuente": {
+    "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+    "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+    "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)",
+    "cita": "Contiene datos modificados de Copernicus Sentinel [2024–2025], procesados por BioMap Cartago"
+   },
+   "geotiff": "descargas/ndvi_n.tif",
+   "png": "capas/ndvi_n.png",
+   "metadatos": "capas/ndvi_n.json",
+   "tamano_tif_kb": 799
+  },
+  {
+   "id": "ndvi_seco",
+   "titulo": "Vegetación (NDVI) en meses de temporada seca 2024–2025",
+   "descripcion": "Verdor típico de la vegetación en los meses de temporada seca del calendario (diciembre–febrero y junio–agosto) de 2024 y 2025. En esos dos años casi no se diferencia de la capa anual (varios de esos meses llovieron más de lo normal y el verdor responde a la lluvia con uno o dos meses de retraso), así que no sirve para señalar zonas que pierden verdor por falta de lluvia.",
+   "unidad": "NDVI (adimensional, −1 a 1)",
+   "periodo": "meses 12, 1, 2, 6, 7 y 8 entre 2024-01-01 y 2025-12-31 (74 adquisiciones)",
+   "resolucion_original_m": 10,
+   "fuente": {
+    "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+    "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+    "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)",
+    "cita": "Contiene datos modificados de Copernicus Sentinel [2024–2025], procesados por BioMap Cartago"
+   },
+   "geotiff": "descargas/ndvi_seco.tif",
+   "png": "capas/ndvi_seco.png",
+   "metadatos": "capas/ndvi_seco.json",
+   "tamano_tif_kb": 888
+  },
+  {
+   "id": "poblacion",
+   "titulo": "Población estimada por celda (2026)",
+   "descripcion": "Cuántas personas viven aproximadamente en cada cuadro de unos 28 × 28 m del municipio de Cartago en 2026. Parte del censo 2018 del DANE contado por manzana (y por sección en la zona rural) y lo lleva a 2026 con las proyecciones oficiales; es una estimación, no un conteo casa a casa.",
+   "unidad": "hab/celda",
+   "periodo": "Totales: proyección DANE 2026 (PPED, Actualizado el 30 de Julio de 2025). Reparto espacial: CNPV 2018 por manzana y sección rural; dentro de cada cuadro rural de 1 km y de manzanas ≥ 2 ha, edificaciones HRSL (imágenes 2016) y área construida ESA WorldCover (2021).",
+   "resolucion_original_m": 44,
+   "fuente": {
+    "nombre": "DANE (CNPV 2018 por manzana y sección rural, proyecciones PPED por área, MGN 2018, grilla 1 km), Meta/CIESIN HRSL v1.5 y ESA WorldCover 2021",
+    "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0",
+    "licencia": "DANE: uso y transformación autorizados citando «Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co». HRSL y ESA WorldCover: CC BY 4.0.",
+    "cita": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co. Meta and Center for International Earth Science Information Network - CIESIN - Columbia University. 2022. High Resolution Settlement Layer (HRSL). Source imagery for HRSL © 2016 Maxar. Consultado en https://registry.opendata.aws/dataforgood-fb-hrsl el 2026-10-01. Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221. © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium."
+   },
+   "geotiff": "descargas/poblacion.tif",
+   "png": "capas/poblacion.png",
+   "metadatos": "capas/poblacion.json",
+   "tamano_tif_kb": 176
+  },
+  {
+   "id": "susceptibilidad_inundacion",
+   "titulo": "Susceptibilidad topográfica a inundación",
+   "descripcion": "Zonas que por su poca altura sobre los ríos y cauces podrían inundarse con más facilidad. Es una lectura del relieve, no la amenaza oficial: las clases baja y 'HAND > 15 m' no descartan inundación (consultar IDEAM, CVC y POT).",
+   "unidad": "clase (0–3)",
+   "periodo": "Topografía 2011–2015 (TanDEM-X); dosel Meta/WRI CHM v1 (imágenes 2014–2018); cauces OSM descargados en 2026",
+   "resolucion_original_m": 30,
+   "fuente": {
+    "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+    "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+    "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)",
+    "cita": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65. Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0. Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., et al. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. Remote Sensing of Environment 300, 113888. doi:10.1016/j.rse.2023.113888"
+   },
+   "geotiff": "descargas/susceptibilidad_inundacion.tif",
+   "png": "capas/susceptibilidad_inundacion.png",
+   "metadatos": "capas/susceptibilidad_inundacion.json",
+   "tamano_tif_kb": 170
+  },
+  {
+   "id": "trafico",
+   "titulo": "Exposición relativa al tráfico vehicular",
+   "descripcion": "Índice de 0 a 100 que indica qué tan cerca está cada lugar de vías con más tráfico probable (según su categoría en OpenStreetMap). No es una medición de contaminación: 100 marca las zonas urbanas más expuestas (1 % superior).",
+   "unidad": "índice relativo 0–100 (adimensional)",
+   "periodo": "Red vial OSM, instantánea Overpass 2026-10-01T01:50:59Z (UTC) = 2026-09-30 20:50 hora de Bogotá; sin dimensión temporal (no hay aforos)",
+   "resolucion_original_m": 10.0,
+   "fuente": {
+    "nombre": "OpenStreetMap — red vial (highway=*) descargada con Overpass API",
+    "url": "https://www.openstreetmap.org/copyright",
+    "licencia": "ODbL 1.0 (© colaboradores de OpenStreetMap)",
+    "cita": "© colaboradores de OpenStreetMap, ODbL 1.0. Instantánea Overpass 2026-10-01T01:50:59Z (UTC). Índice derivado por BioMap Cartago.",
+    "consulta_overpass_equivalente": "[out:json][timeout:180];\nway[\"highway\"](4.688,-75.985,4.795,-75.855);\nout geom;"
+   },
+   "geotiff": "descargas/trafico.tif",
+   "png": "capas/trafico.png",
+   "metadatos": "capas/trafico.json",
+   "tamano_tif_kb": 728
+  }
+ ],
+ "series": [
+  {
+   "archivo": "series/aire.json",
+   "tamano_kb": 245,
+   "titulo": "Calidad del aire modelada (CAMS global) — Cartago",
+   "fuente": {
+    "nombre": "Copernicus Atmosphere Monitoring Service (CAMS) — pronóstico global de composición atmosférica, servido por Open-Meteo Air Quality API",
+    "url": "https://open-meteo.com/en/docs/air-quality-api",
+    "licencia": "CC BY 4.0 (Open-Meteo: https://open-meteo.com/en/licence; CAMS: licencia CC-BY declarada en el Atmosphere Data Store)",
+    "cita": "Contiene información modificada del Copernicus Atmosphere Monitoring Service 2026. Datos de Open-Meteo.com (https://open-meteo.com/)."
+   }
+  },
+  {
+   "archivo": "series/clima.json",
+   "tamano_kb": 410,
+   "titulo": "Clima de Cartago 1950–2026 (reanálisis ERA5-Land y ERA5; lluvia CHIRPS v3; radiación NASA POWER)",
+   "fuente": {
+    "nombre": "ERA5-Land (temperatura y humedad) y ERA5 (lluvia y radiación), ECMWF / Copernicus Climate Change Service, vía Open-Meteo Historical Weather API; lluvia de referencia CHIRPS v3 (Climate Hazards Center, UCSB); radiación de referencia NASA POWER",
+    "url": "https://open-meteo.com/en/docs/historical-weather-api",
+    "licencia": "CC BY 4.0 (Open-Meteo); CC-BY (Copernicus Climate Data Store); CC BY 4.0 (CHIRPS v3, NASA POWER, ESA WorldCover); ODbL (OpenStreetMap, solo pesos espaciales); IDEAM CC BY-SA 4.0 (validación y umbral eq32). Producto: CC BY-SA 4.0",
+    "cita": "Muñoz-Sabater, J. et al. (2021). ERA5-Land: a state-of-the-art global reanalysis dataset for land applications. Earth Syst. Sci. Data 13, 4349–4383. doi:10.5194/essd-13-4349-2021. Hersbach, H. et al. (2020). The ERA5 global reanalysis. Q. J. R. Meteorol. Soc. 146, 1999–2049. doi:10.1002/qj.3803. Funk, C. et al. (2026). The Climate Hazards Center Infrared Precipitation with Stations, Version 3. Sci. Data 13, 718. doi:10.1038/s41597-026-07096-4. Datos: Open-Meteo.com (CC BY 4.0)."
+   }
+  },
+  {
+   "archivo": "series/inundacion.json",
+   "tamano_kb": 63,
+   "titulo": "Susceptibilidad topográfica a inundación por zona (HAND)",
+   "fuente": [
+    {},
+    {},
+    {},
+    {},
+    {}
+   ]
+  },
+  {
+   "archivo": "series/landsat.json",
+   "tamano_kb": 364,
+   "titulo": "Serie anual Landsat 2000–2025: temperatura superficial y NDVI de Cartago",
+   "fuente": {
+    "nombre": "USGS Landsat Collection 2 Level-2 (L5 TM, L7 ETM+, L8-9 OLI/TIRS), vía Microsoft Planetary Computer",
+    "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+    "licencia": "Dominio público (USGS): sin restricciones de uso ni redistribución; se pide citar la fuente",
+    "cita": "Landsat Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey. doi:10.5066/P9IAXOVV (L4-5), doi:10.5066/P9C7I13B (L7), doi:10.5066/P9OGBGM6 (L8-9)"
+   }
+  },
+  {
+   "archivo": "series/poblacion.json",
+   "tamano_kb": 36,
+   "titulo": "Población de Cartago: totales por fuente",
+   "fuente": [
+    {
+     "nombre": "DANE — MGN 2018 integrado con el CNPV 2018: manzana censal (personas en hogares particulares)",
+     "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0",
+     "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)"
+    },
+    {
+     "nombre": "DANE — MGN 2018 integrado con el CNPV 2018: sección rural",
+     "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaSeccionRuralInt_2018/MapServer/0",
+     "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)"
+    },
+    {
+     "nombre": "DANE — Serie municipal de población por área 2018-2042 (PPED)",
+     "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx",
+     "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)"
+    },
+    {
+     "nombre": "DANE — Marco Geoestadístico Nacional 2018 (zona urbana y municipio)",
+     "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapasMGN_2018/FeatureServer",
+     "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)"
+    },
+    {
+     "nombre": "DANE — Grilla estadística nivel 6 (1 km), CNPV 2018",
+     "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/Grilla_DANE/Serv_Grilla_DANE/FeatureServer/1",
+     "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)"
+    },
+    {
+     "nombre": "DANE — Ficha municipal CNPV 2018, Cartago (76147)",
+     "url": "https://sitios.dane.gov.co/cnpv/app/views/informacion/fichas/76147.pdf",
+     "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)"
+    },
+    {
+     "nombre": "DANE — Manzanas censales de municipios vecinos dentro de la ventana (se restan de la grilla)",
+     "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0",
+     "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)"
+    },
+    {
+     "nombre": "HRSL v1.5 (Meta Data for Good y CIESIN), población general 2020",
+     "url": "https://dataforgood-fb-data.s3.amazonaws.com/hrsl-cogs/hrsl_general/hrsl_general-latest.vrt",
+     "licencia": "CC BY 4.0"
+    },
+    {
+     "nombre": "ESA WorldCover 10 m 2021 v200, clase 50 «construido» (reparto dentro de cuadros rurales de 1 km y de manzanas ≥ 2 ha; ventana local de scripts/worldcover.py)",
+     "url": "https://doi.org/10.5281/zenodo.7254221",
+     "licencia": "CC BY 4.0"
+    },
+    {
+     "nombre": "OpenStreetMap (límite municipal para la ventana de lectura; comunas, vías principales y puntos de control de las verificaciones)",
+     "url": "https://www.openstreetmap.org/copyright",
+     "licencia": "ODbL 1.0"
+    },
+    {
+     "nombre": "WorldPop — Global per country 2000-2020 (wpgppop), Colombia 2020",
+     "url": "https://hub.worldpop.org/geodata/summary?id=6349",
+     "licencia": "CC BY 4.0"
+    },
+    {
+     "nombre": "Zona 'Zaragoza' de por_zona: ESA WorldCover 2021: área construida conectada al centro poblado (nodo OSM)",
+     "url": "https://doi.org/10.5281/zenodo.7254221",
+     "licencia": "ESA WorldCover: CC BY 4.0; nodo: OpenStreetMap (ODbL); validación: DANE MGN 2024 (CC BY 4.0)"
+    },
+    {
+     "nombre": "Definición de lugar especial de alojamiento (LEA), DANE",
+     "url": "https://conceptos.dane.gov.co/conceptos/conceptos/4720/ficha/",
+     "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)"
+    }
+   ]
+  },
+  {
+   "archivo": "series/sentinel2.json",
+   "tamano_kb": 83,
+   "titulo": "NDVI por adquisición Sentinel-2 (2024–2025)",
+   "fuente": {
+    "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+    "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+    "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)",
+    "cita": "Contiene datos modificados de Copernicus Sentinel [2024–2025], procesados por BioMap Cartago"
+   }
+  },
+  {
+   "archivo": "series/verdes.json",
+   "tamano_kb": 56,
+   "titulo": "Espacio verde público y equipamientos sensibles mapeados en OpenStreetMap (Cartago)"
+  },
+  {
+   "archivo": "series/zonas.json",
+   "tamano_kb": 178,
+   "titulo": "Serie anual Landsat por zona: temperatura de superficie y NDVI (2000–2025)",
+   "fuente": {
+    "nombre": "Rejillas anuales del producto landsat (fuentes/rejilla/lst_<año>.npy, ndvi_<año>.npy), USGS Landsat C2 L2 vía Planetary Computer",
+    "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+    "licencia": "Dominio público USGS",
+    "cita": "Landsat Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey"
+   }
+  }
+ ],
+ "vectores": [
+  {
+   "archivo": "vectores/equipamientos.geojson",
+   "tamano_kb": 27,
+   "titulo": null
+  },
+  {
+   "archivo": "vectores/equipamientos_exposicion.geojson",
+   "tamano_kb": 64,
+   "titulo": null
+  },
+  {
+   "archivo": "vectores/espacio_verde.geojson",
+   "tamano_kb": 60,
+   "titulo": null
+  },
+  {
+   "archivo": "vectores/inundacion_drenaje.geojson",
+   "tamano_kb": 32,
+   "titulo": null
+  },
+  {
+   "archivo": "vectores/poblacion.geojson",
+   "tamano_kb": 282,
+   "titulo": null
+  },
+  {
+   "archivo": "vectores/zonas.geojson",
+   "tamano_kb": 42,
+   "titulo": null
+  }
+ ],
+ "tablas": [
+  {
+   "archivo": "calibracion.json",
+   "tamano_kb": 44,
+   "titulo": "Modelos empíricos locales para el simulador de intervenciones",
+   "fuente": [
+    {
+     "nombre": "USGS Landsat 8-9 OLI/TIRS Collection 2 Level-2 (ST_B10, QA_PIXEL), vía Microsoft Planetary Computer",
+     "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+     "licencia": "Dominio público (USGS): sin restricciones de uso ni redistribución; se pide citar la fuente"
+    },
+    {
+     "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+     "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+     "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)"
+    },
+    {
+     "nombre": "ESA WorldCover 10 m 2021 v200 (tesela N03W078)",
+     "url": "https://doi.org/10.5281/zenodo.7254221",
+     "licencia": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)"
+    },
+    {
+     "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+     "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+     "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)"
+    },
+    {
+     "nombre": "OpenStreetMap, red vial (fuentes/osm-vias.json)",
+     "url": "https://www.openstreetmap.org/copyright",
+     "licencia": "ODbL 1.0"
+    },
+    {
+     "nombre": "USGS Landsat Collection 2 Level-2 (producto landsat)",
+     "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+     "licencia": "Dominio público USGS"
+    }
+   ]
+  },
+  {
+   "archivo": "indicadores.json",
+   "tamano_kb": 163,
+   "titulo": "Indicadores ambientales y de exposición por zona de Cartago",
+   "fuente": [
+    {
+     "nombre": "USGS Landsat 8-9 OLI/TIRS Collection 2 Level-2 (ST_B10, QA_PIXEL), vía Microsoft Planetary Computer",
+     "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+     "licencia": "Dominio público (USGS): sin restricciones de uso ni redistribución; se pide citar la fuente"
+    },
+    {
+     "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+     "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+     "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)"
+    },
+    {
+     "nombre": "ESA WorldCover 10 m 2021 v200 (tesela N03W078)",
+     "url": "https://doi.org/10.5281/zenodo.7254221",
+     "licencia": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)"
+    },
+    {
+     "nombre": "DANE (CNPV 2018 por manzana y sección rural, proyecciones PPED por área, MGN 2018, grilla 1 km), Meta/CIESIN HRSL v1.5 y ESA WorldCover 2021",
+     "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0",
+     "licencia": "DANE: uso y transformación autorizados citando «Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co». HRSL y ESA WorldCover: CC BY 4.0."
+    },
+    {
+     "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+     "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+     "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)"
+    },
+    {
+     "nombre": "OpenStreetMap — red vial (highway=*) descargada con Overpass API",
+     "url": "https://www.openstreetmap.org/copyright",
+     "licencia": "ODbL 1.0 (© colaboradores de OpenStreetMap)"
+    },
+    {
+     "nombre": "OpenStreetMap: parques, zonas de juego, zonas recreativas y jardines públicos",
+     "url": "https://www.openstreetmap.org/copyright",
+     "licencia": "ODbL 1.0"
+    },
+    {
+     "nombre": "OpenStreetMap (Comunas 1–7) y ESA WorldCover 2021 (huella de Zaragoza, datos/zaragoza.json)",
+     "url": "https://www.openstreetmap.org/copyright",
+     "licencia": "ODbL 1.0 / CC BY 4.0"
+    },
+    {
+     "nombre": "OpenStreetMap (datos/vectores/espacio_verde.geojson y equipamientos.geojson del producto verdes)",
+     "url": "https://www.openstreetmap.org/copyright",
+     "licencia": "ODbL 1.0"
+    },
+    {
+     "nombre": "IDEAM, servicio Amenaza_Ambiental: capa 0 «Amenaza Creciente Súbita TR 50 años, 8 cabeceras municipales 2K» y capas 6, 7, 8, 9, 22, 23, 24, 26 y 27 «Áreas afectadas por inundación, La Niña» (1988, 2000, 2011, 2012, 2016, 2020–2022; escala no declarada); en datos.gov.co, La Niña 1988, 2000, 2011 y 2012: khg6-9h39, 5p6w-58v3, 6eu7-pzc5 y nufr-59j5",
+     "url": "https://visualizador.ideam.gov.co/gisserver/rest/services/Amenaza_Ambiental/MapServer",
+     "licencia": "El servicio ArcGIS Amenaza_Ambiental no declara licencia (copyrightText vacío en el servicio y en sus capas). Las áreas afectadas por La Niña 1988, 2000, 2011 y 2012 las publica también el IDEAM en datos.gov.co con licencia CC BY-SA 4.0 (conjuntos khg6-9h39, 5p6w-58v3, 6eu7-pzc5 y nufr-59j5; licencia verificada en el catálogo de datos.gov.co el 2026-10-01) y la advertencia, verificada en 6eu7-pzc5 (La Niña 2011), de que «no han sido validados por el IDEAM». La amenaza por creciente súbita TR 50 y La Niña 2016 y 2020–2022 no aparecieron en la búsqueda del catálogo de datos.gov.co (2026-10-01). No se copian polígonos del IDEAM: solo se publican estadísticas derivadas, con atribución al IDEAM; las que derivan de las capas CC BY-SA (ideam_nina_observada, ideam_evidencia_oficial y sus variantes) se comparten con la misma licencia CC BY-SA 4.0 (criterio prudente del proyecto)."
+    },
+    {
+     "nombre": "Rejillas anuales Landsat 2000–2025 (producto landsat)",
+     "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+     "licencia": "Dominio público USGS"
+    }
+   ]
+  },
+  {
+   "archivo": "prioridades.json",
+   "tamano_kb": 30,
+   "titulo": "Componentes de priorización por zona"
+  },
+  {
+   "archivo": "zaragoza.json",
+   "tamano_kb": 7,
+   "titulo": null
+  }
+ ]
+}

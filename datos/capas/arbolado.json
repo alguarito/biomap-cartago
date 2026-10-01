@@ -1,0 +1,508 @@
+{
+ "unidad": "%",
+ "fuente": {
+  "nombre": "ESA WorldCover 10 m 2021 v200 (tesela N03W078)",
+  "url": "https://doi.org/10.5281/zenodo.7254221",
+  "licencia": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+  "cita": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221",
+  "atribucion": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+  "datos_crudos": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N03W078_Map.tif"
+ },
+ "fuentes_auxiliares": [
+  {
+   "nombre": "OpenStreetMap: polígonos de comunas, cabecera y municipio; ejes de los ríos La Vieja y Cauca; nodo de Zaragoza",
+   "url": "https://www.openstreetmap.org/copyright",
+   "licencia": "ODbL 1.0 (https://opendatacommons.org/licenses/odbl/1-0/)",
+   "cita": "© colaboradores de OpenStreetMap",
+   "uso": "solo para definir las zonas de 'por_zona' y la huella de Zaragoza; los valores de la capa salen de WorldCover"
+  },
+  {
+   "nombre": "DANE, Marco Geoestadístico Nacional (MGN) 2024: zona urbana (capa 305), sector urbano (246) y municipios (317)",
+   "url": "https://geoportal.dane.gov.co/",
+   "servicio": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2024/Serv_CapasMGN_2024/FeatureServer",
+   "licencia": "CC BY 4.0 (Geoportal DANE, 'Licencia y condiciones de uso')",
+   "cita": "Departamento Administrativo Nacional de Estadística - DANE: www.dane.gov.co",
+   "uso": "límite independiente de Zaragoza (sector urbano que contiene el nodo OSM) y municipio de la otra orilla del río La Vieja"
+  }
+ ],
+ "periodo": "2021 (enero–diciembre)",
+ "resolucion_original_m": 10,
+ "procesamiento": [
+  "Lectura por ventana del COG público de la tesela N03W078 (rejilla común + 0,01°), sin descargar la tesela completa.",
+  "Máscara binaria de la clase (1 = clase, 0 = otra clase, sin dato = código 0 de WorldCover).",
+  "Remuestreo por promedio a la rejilla común de 0,00025° (≈27,7 m): cada celda es la media de 3×3 píxeles de WorldCover (rejillas anidadas); × 100 = porcentaje de la celda.",
+  "Verificación: diferencia máxima frente al promedio exacto 3×3 = 0.0 puntos porcentuales.",
+  "Solo para los resúmenes '(10 m)' de 'por_zona' (municipio completo y corredor del La Vieja en todo el tramo limítrofe): ventana ampliada de la misma tesela que contiene todo el municipio, idéntica píxel a píxel a la de la rejilla en el solape; % = conteo de píxeles de 10 m. No cambia la rejilla ni las capas."
+ ],
+ "rango_visual": [
+  0,
+  100
+ ],
+ "por_zona": {
+  "Comuna 1": {
+   "celdas": 1686,
+   "arbolado": 15.53,
+   "arbustos": 0.0,
+   "pasto": 6.6,
+   "cultivo": 0.0,
+   "construido": 76.74,
+   "suelo": 0.86,
+   "agua": 0.28,
+   "humedal": 0.0
+  },
+  "Comuna 2": {
+   "celdas": 1277,
+   "arbolado": 14.93,
+   "arbustos": 0.0,
+   "pasto": 12.51,
+   "cultivo": 0.0,
+   "construido": 72.54,
+   "suelo": 0.02,
+   "agua": 0.0,
+   "humedal": 0.0
+  },
+  "Comuna 3": {
+   "celdas": 1530,
+   "arbolado": 29.62,
+   "arbustos": 0.0,
+   "pasto": 8.02,
+   "cultivo": 0.02,
+   "construido": 60.32,
+   "suelo": 1.59,
+   "agua": 0.42,
+   "humedal": 0.0
+  },
+  "Comuna 4": {
+   "celdas": 2788,
+   "arbolado": 13.47,
+   "arbustos": 0.0,
+   "pasto": 17.14,
+   "cultivo": 0.18,
+   "construido": 65.76,
+   "suelo": 3.45,
+   "agua": 0.0,
+   "humedal": 0.0
+  },
+  "Comuna 5": {
+   "celdas": 997,
+   "arbolado": 15.56,
+   "arbustos": 0.0,
+   "pasto": 0.2,
+   "cultivo": 0.0,
+   "construido": 84.14,
+   "suelo": 0.07,
+   "agua": 0.03,
+   "humedal": 0.0
+  },
+  "Comuna 6": {
+   "celdas": 3277,
+   "arbolado": 21.94,
+   "arbustos": 0.0,
+   "pasto": 8.89,
+   "cultivo": 3.09,
+   "construido": 64.44,
+   "suelo": 1.61,
+   "agua": 0.02,
+   "humedal": 0.0
+  },
+  "Comuna 7": {
+   "celdas": 8321,
+   "arbolado": 24.97,
+   "arbustos": 0.0,
+   "pasto": 44.97,
+   "cultivo": 1.48,
+   "construido": 27.32,
+   "suelo": 1.26,
+   "agua": 0.0,
+   "humedal": 0.0
+  },
+  "Zaragoza (corregimiento)": {
+   "celdas": 940,
+   "arbolado": 26.82,
+   "arbustos": 0.0,
+   "pasto": 13.06,
+   "cultivo": 3.9,
+   "construido": 55.63,
+   "suelo": 0.59,
+   "agua": 0.0,
+   "humedal": 0.0,
+   "nota": "construido y demás clases por construcción (zona definida con los mismos píxeles construidos); no comparable"
+  },
+  "Cabecera municipal (OSM)": {
+   "celdas": 19878,
+   "arbolado": 21.29,
+   "arbustos": 0.0,
+   "pasto": 24.69,
+   "cultivo": 1.15,
+   "construido": 51.33,
+   "suelo": 1.48,
+   "agua": 0.06,
+   "humedal": 0.0
+  },
+  "Municipio de Cartago (parte dentro de la rejilla)": {
+   "celdas": 174496,
+   "arbolado": 23.86,
+   "arbustos": 0.0,
+   "pasto": 53.88,
+   "cultivo": 14.7,
+   "construido": 6.55,
+   "suelo": 0.31,
+   "agua": 0.7,
+   "humedal": 0.0,
+   "nota": "solo el 53,5 % del municipio (133,7 de 249,8 km²; excluye el sur y el oriente rurales): NO son cifras municipales; ver 'Municipio de Cartago completo (10 m; ventana ampliada de la misma tesela)'"
+  },
+  "Municipio de Cartago completo (10 m; ventana ampliada de la misma tesela)": {
+   "celdas": null,
+   "pixeles_10m": 2933610,
+   "area_km2": 249.92,
+   "arbolado": 28.18,
+   "arbustos": 0.0,
+   "pasto": 49.91,
+   "cultivo": 17.35,
+   "construido": 3.57,
+   "suelo": 0.18,
+   "agua": 0.8,
+   "humedal": 0.0,
+   "nota": "calculado a 10 m (% de píxeles de WorldCover cuyo centro cae en la zona) sobre una ventana ampliada de la misma tesela; no son celdas de la rejilla ('celdas' = null)"
+  },
+  "Municipio de Cartago: parte fuera de la rejilla (10 m; sur, oriente y franja norte)": {
+   "celdas": null,
+   "pixeles_10m": 1363126,
+   "area_km2": 116.13,
+   "arbolado": 33.17,
+   "arbustos": 0.0,
+   "pasto": 45.33,
+   "cultivo": 20.41,
+   "construido": 0.14,
+   "suelo": 0.03,
+   "agua": 0.91,
+   "humedal": 0.0,
+   "nota": "calculado a 10 m (% de píxeles de WorldCover cuyo centro cae en la zona) sobre una ventana ampliada de la misma tesela; no son celdas de la rejilla ('celdas' = null)"
+  },
+  "Municipio de Cartago: parte dentro de la rejilla (10 m; control)": {
+   "celdas": null,
+   "pixeles_10m": 1570484,
+   "area_km2": 133.79,
+   "arbolado": 23.86,
+   "arbustos": 0.0,
+   "pasto": 53.88,
+   "cultivo": 14.7,
+   "construido": 6.55,
+   "suelo": 0.31,
+   "agua": 0.7,
+   "humedal": 0.0,
+   "nota": "calculado a 10 m (% de píxeles de WorldCover cuyo centro cae en la zona) sobre una ventana ampliada de la misma tesela; no son celdas de la rejilla ('celdas' = null)"
+  },
+  "Zaragoza: sector urbano DANE MGN 2024 completo (incluye la franja vial hacia la cabecera)": {
+   "celdas": 3147,
+   "arbolado": 41.76,
+   "arbustos": 0.0,
+   "pasto": 32.93,
+   "cultivo": 1.52,
+   "construido": 22.92,
+   "suelo": 0.87,
+   "agua": 0.0,
+   "humedal": 0.0
+  },
+  "Zaragoza: sector urbano DANE MGN 2024 al sur de 4,7065° (núcleo; corte supuesto)": {
+   "celdas": 2274,
+   "arbolado": 41.86,
+   "arbustos": 0.0,
+   "pasto": 28.13,
+   "cultivo": 2.01,
+   "construido": 27.23,
+   "suelo": 0.77,
+   "agua": 0.0,
+   "humedal": 0.0,
+   "nota": "construido entre 22,4 y 31,1 % según el corte supuesto (4,700°–4,715°); usar el rango, no el valor central"
+  },
+  "Corredor río La Vieja 0–50 m del eje, ambas orillas": {
+   "celdas": 3088,
+   "arbolado": 58.85,
+   "arbustos": 0.0,
+   "pasto": 6.95,
+   "cultivo": 1.95,
+   "construido": 1.22,
+   "suelo": 1.7,
+   "agua": 29.33,
+   "humedal": 0.0
+  },
+  "Corredor río La Vieja 0–50 m del eje, orilla de Cartago": {
+   "celdas": 1555,
+   "arbolado": 57.91,
+   "arbustos": 0.0,
+   "pasto": 7.56,
+   "cultivo": 2.32,
+   "construido": 1.37,
+   "suelo": 1.54,
+   "agua": 29.3,
+   "humedal": 0.0
+  },
+  "Corredor río La Vieja 0–100 m del eje, ambas orillas": {
+   "celdas": 6195,
+   "arbolado": 51.47,
+   "arbustos": 0.0,
+   "pasto": 18.1,
+   "cultivo": 10.82,
+   "construido": 3.83,
+   "suelo": 0.86,
+   "agua": 14.92,
+   "humedal": 0.0
+  },
+  "Corredor río La Vieja 0–100 m del eje, orilla de Cartago": {
+   "celdas": 3142,
+   "arbolado": 51.53,
+   "arbustos": 0.0,
+   "pasto": 17.14,
+   "cultivo": 9.54,
+   "construido": 6.28,
+   "suelo": 0.77,
+   "agua": 14.73,
+   "humedal": 0.0
+  },
+  "Corredor río La Vieja 0–200 m del eje, ambas orillas": {
+   "celdas": 11982,
+   "arbolado": 40.14,
+   "arbustos": 0.0,
+   "pasto": 26.24,
+   "cultivo": 18.28,
+   "construido": 7.12,
+   "suelo": 0.48,
+   "agua": 7.74,
+   "humedal": 0.0
+  },
+  "Corredor río La Vieja 0–200 m del eje, orilla de Cartago": {
+   "celdas": 6247,
+   "arbolado": 41.5,
+   "arbustos": 0.0,
+   "pasto": 25.04,
+   "cultivo": 13.67,
+   "construido": 11.98,
+   "suelo": 0.4,
+   "agua": 7.41,
+   "humedal": 0.0
+  },
+  "Corredor río La Vieja 0–100 m del eje, otra orilla (fuera del municipio)": {
+   "celdas": 3053,
+   "arbolado": 51.4,
+   "arbustos": 0.0,
+   "pasto": 19.08,
+   "cultivo": 12.14,
+   "construido": 1.31,
+   "suelo": 0.96,
+   "agua": 15.11,
+   "humedal": 0.0
+  },
+  "Corredor 0–100 m, tramo junto a la cabecera (≤250 m), ambas orillas": {
+   "celdas": 1486,
+   "arbolado": 54.82,
+   "arbustos": 0.0,
+   "pasto": 4.74,
+   "cultivo": 9.44,
+   "construido": 14.21,
+   "suelo": 0.73,
+   "agua": 16.06,
+   "humedal": 0.0
+  },
+  "Corredor 0–100 m, tramo junto a la cabecera (≤250 m), orilla de Cartago": {
+   "celdas": 839,
+   "arbolado": 53.89,
+   "arbustos": 0.0,
+   "pasto": 5.05,
+   "cultivo": 1.96,
+   "construido": 22.47,
+   "suelo": 0.64,
+   "agua": 16.0,
+   "humedal": 0.0
+  },
+  "Corredor 0–100 m, tramo junto a la cabecera (≤250 m), otra orilla": {
+   "celdas": 647,
+   "arbolado": 56.04,
+   "arbustos": 0.0,
+   "pasto": 4.34,
+   "cultivo": 19.13,
+   "construido": 3.5,
+   "suelo": 0.84,
+   "agua": 16.14,
+   "humedal": 0.0
+  },
+  "Corredor 0–100 m, tramo alejado de la cabecera (>250 m), orilla de Cartago": {
+   "celdas": 2303,
+   "arbolado": 50.68,
+   "arbustos": 0.0,
+   "pasto": 21.55,
+   "cultivo": 12.31,
+   "construido": 0.38,
+   "suelo": 0.82,
+   "agua": 14.27,
+   "humedal": 0.0,
+   "nota": "solo la parte rural del corredor que cae dentro de la rejilla; no representa todo el corredor rural del La Vieja"
+  },
+  "Corredor 0–100 m, tramo alejado de la cabecera (>250 m), otra orilla": {
+   "celdas": 2406,
+   "arbolado": 50.15,
+   "arbustos": 0.0,
+   "pasto": 23.04,
+   "cultivo": 10.26,
+   "construido": 0.72,
+   "suelo": 0.99,
+   "agua": 14.84,
+   "humedal": 0.0
+  },
+  "Corredor río La Vieja 0–100 m del eje completo, orilla de Cartago, todo el tramo limítrofe (10 m)": {
+   "celdas": null,
+   "pixeles_10m": 59041,
+   "area_km2": 5.03,
+   "arbolado": 52.85,
+   "arbustos": 0.0,
+   "pasto": 26.83,
+   "cultivo": 5.79,
+   "construido": 3.03,
+   "suelo": 0.54,
+   "agua": 10.96,
+   "humedal": 0.0,
+   "nota": "calculado a 10 m (% de píxeles de WorldCover cuyo centro cae en la zona) sobre una ventana ampliada de la misma tesela; no son celdas de la rejilla ('celdas' = null)"
+  },
+  "Corredor río La Vieja 0–100 m del eje completo, orilla de Cartago, parte dentro de la rejilla (10 m)": {
+   "celdas": null,
+   "pixeles_10m": 28254,
+   "area_km2": 2.41,
+   "arbolado": 51.48,
+   "arbustos": 0.0,
+   "pasto": 17.4,
+   "cultivo": 9.41,
+   "construido": 6.29,
+   "suelo": 0.82,
+   "agua": 14.6,
+   "humedal": 0.0,
+   "nota": "calculado a 10 m (% de píxeles de WorldCover cuyo centro cae en la zona) sobre una ventana ampliada de la misma tesela; no son celdas de la rejilla ('celdas' = null)"
+  },
+  "Corredor río La Vieja 0–100 m del eje completo, orilla de Cartago, parte fuera de la rejilla (10 m)": {
+   "celdas": null,
+   "pixeles_10m": 30787,
+   "area_km2": 2.62,
+   "arbolado": 54.1,
+   "arbustos": 0.0,
+   "pasto": 35.5,
+   "cultivo": 2.46,
+   "construido": 0.04,
+   "suelo": 0.28,
+   "agua": 7.62,
+   "humedal": 0.0,
+   "nota": "calculado a 10 m (% de píxeles de WorldCover cuyo centro cae en la zona) sobre una ventana ampliada de la misma tesela; no son celdas de la rejilla ('celdas' = null)"
+  }
+ },
+ "por_zona_definicion": {
+  "unidad": "porcentaje medio de las celdas de la rejilla cuyo centro cae en la zona (equivale al % del área clasificada en cada clase). Las zonas marcadas '(10 m)' son % de píxeles de WorldCover de 10 m (ver su 'nota').",
+  "Comuna 1 … Comuna 7": "polígonos OSM de las comunas (comun.comunas()); © colaboradores de OpenStreetMap, ODbL",
+  "Zaragoza (corregimiento)": "huella derivada de este mismo producto (datos/zaragoza.json): píxeles construidos de WorldCover conectados al nodo OSM, dilatados 30 m (supuesto). Es una zona de trabajo, no un límite oficial. Su % construido (y por complemento el de las demás clases) sale POR CONSTRUCCIÓN y no es comparable con el de las comunas; su área depende de la dilatación (0 m: 0,40 km²; 30 m: 0,73 km²). Para comparar, usar 'Zaragoza: sector urbano DANE MGN 2024 al sur de 4,7065° (núcleo; corte supuesto)' y su rango de sensibilidad.",
+  "Cabecera municipal (OSM)": "polígono OSM de la cabecera (comun.mascara_urbana()); no incluye Zaragoza",
+  "Municipio de Cartago (parte dentro de la rejilla)": "polígono OSM del municipio recortado a la rejilla común. NO representa al municipio. La rejilla cubre 133,7 de los 249,8 km² del polígono OSM del municipio (53,5 %; el MGN 2024 del DANE da 247,8 km²). Quedan fuera 116,1 km², casi todos rurales: el sur y el oriente del municipio y una franja al norte. En el municipio completo (conteo a 10 m): arbolado 28,2 %, pasto 49,9 %, cultivo 17,4 %, construido 3,6 %. En la parte dentro de la rejilla: arbolado 23,9 %, pasto 53,9 %, cultivo 14,7 %, construido 6,5 %; en la parte fuera: arbolado 33,2 %, pasto 45,3 %, cultivo 20,4 %, construido 0,1 %. Por eso las cifras de la zona 'Municipio de Cartago (parte dentro de la rejilla)' no son municipales: su construido (6,5 %) es 1,8 veces el del municipio completo (3,6 %) y su arbolado es menor (23,9 frente a 28,2 %). Para cifras municipales usar 'Municipio de Cartago completo (10 m; ventana ampliada de la misma tesela)'.",
+  "Corredor río La Vieja 0–N m del eje": "celdas cuyo centro está a ≤ N m del eje OSM del río La Vieja dentro de la rejilla (comun.lineas_rio(), medido en UTM 18N). Los corredores del La Vieja de la rejilla cubren solo 23,9 de los 51,1 km del río que limitan con Cartago (46,8 %). El resto queda fuera de la rejilla: 14,6 km al sur (suroriente del municipio); 9,1 km al oriente; 3,4 km al norte. Tramo limítrofe = eje a ≤ 300 m del límite del polígono OSM del municipio (UTM 18N), medido con las vías OSM completas 749764338 + 1126843631 (el eje recortado de comun.lineas_rio() mide 36,6 km y no sirve para longitudes); con el límite municipal del MGN 2024 del DANE da 23,9 de 51,1 km. Para la orilla de Cartago en todo el tramo limítrofe usar 'Corredor río La Vieja 0–100 m del eje completo, orilla de Cartago, todo el tramo limítrofe (10 m)' y sus partes dentro y fuera de la rejilla. SUPUESTO de trabajo: el eje no es la orilla, y 0–100 m del eje aproxima semiancho del cauce + faja de 30 m + una celda de rejilla.",
+  "ambas orillas / orilla de Cartago / otra orilla": "orilla de Cartago = centro de celda dentro del polígono OSM del municipio; otra orilla = fuera de él. Según el MGN 2024 del DANE (límites generalizados a ~11 m), las celdas de la otra orilla (0–100 m) son de: PEREIRA (RISARALDA) 78,9 %, CARTAGO (VALLE DEL CAUCA) 10,6 %, ULLOA (VALLE DEL CAUCA) 7,3 %, ALCALÁ (VALLE DEL CAUCA) 2,8 %. Los límites OSM y DANE no coinciden del todo junto al cauce: el 9,3 % de las celdas 'orilla de Cartago' queda fuera de Cartago según el DANE, y la parte de 'otra orilla' que el DANE asigna a Cartago es la indicada arriba. En el tramo norte el eje OSM del río (vía 749764338) está etiquetado como límite departamental (admin_level=4). Las cifras de 'ambas orillas' mezclan Cartago con otros municipios (sobre todo Pereira, Risaralda): para decisiones sobre Cartago usar 'orilla de Cartago'.",
+  "tramo junto a / alejado de la cabecera": "corredor 0–100 m dividido según si la celda está a ≤ 250 m (supuesto) del polígono OSM de la cabecera. Frente a la cabecera, en la otra orilla, está Puerto Caldas (centro poblado de Pereira en el MGN 2024). El 'tramo alejado de la cabecera' es solo la parte rural del corredor que cae dentro de la rejilla: NO representa todo el corredor rural del La Vieja, cuya mayor parte queda fuera de la rejilla y tiene otra composición (orilla de Cartago, 0–100 m, fuera de la rejilla: arbolado 54,1 %, pasto 35,5 %, cultivo 2,5 %, agua 7,6 %).",
+  "pasto y cultivo (columnas)": "el reparto entre pasto (clase 30) y cultivo (clase 40) puede estar confundido en el valle plano al occidente y suroccidente de la cabecera (patrón compatible con el artefacto de 'hard borders' del PUM v2.0, §4; la clase 30 puede contener cultivos sin cosecha en 2021). Ver la limitación completa en fuentes/rejilla/cob_pasto.json y cob_cultivo.json. La suma pasto + cultivo es más fiable que cada clase por separado.",
+  "arbustos y humedal (columnas)": "0 significa que WorldCover no asignó esa clase a ningún píxel de la zona, no que no haya arbustales o humedales en el terreno: los humedales y madreviejas de Cartago reconocidos por la CVC quedan aquí dentro de otras clases (pasto, agua, arbolado u otras; ver 'hallazgos').",
+  "contexto normativo (no es un límite de estas zonas)": "El art. 83 lit. d) del Decreto-Ley 2811 de 1974 declara bien inalienable e imprescriptible del Estado una faja paralela al cauce permanente de los ríos 'hasta de treinta metros de ancho' (faja de dominio público), medida desde el cauce, no desde el eje. La ronda hídrica comprende esa faja y el área de protección o conservación aferente (Decreto 2245 de 2017, que adiciona la sección 3A al Decreto 1076 de 2015, art. 2.2.3.2.3A.2), y su acotamiento corresponde a la autoridad ambiental competente (en el Valle del Cauca, la CVC). Ninguna de estas zonas ni de estas capas la reemplaza. Textos oficiales en 'normas_citadas' (Gestor Normativo de Función Pública).",
+  "zonas '(10 m)'": "calculadas sobre una ventana ampliada de la misma tesela N03W078 (leída solo para estos resúmenes; no cambia la rejilla común ni las capas publicadas), contando píxeles de 10 m cuyo centro cae en la zona. 'Municipio de Cartago completo (10 m; ventana ampliada de la misma tesela)': polígono OSM completo del municipio. 'Corredor río La Vieja 0–100 m del eje completo, orilla de Cartago, todo el tramo limítrofe (10 m)': píxeles a ≤ 100 m del eje OSM COMPLETO del La Vieja (vías 749764338 + 1126843631 de fuentes/osm-base.json) y dentro del polígono OSM del municipio. Control: 'Municipio de Cartago: parte dentro de la rejilla (10 m; control)' reproduce las cifras de 'Municipio de Cartago (parte dentro de la rejilla)' (arbolado 23,9 %, pasto 53,9 %, cultivo 14,7 %, construido 6,5 %), porque cada celda es la media exacta de 3×3 píxeles.",
+  "Zaragoza: sector urbano DANE MGN 2024 completo (incluye la franja vial hacia la cabecera)": "sector urbano del MGN 2024 del DANE que contiene el nodo OSM de Zaragoza (el DANE lo incluye en la zona urbana 'Cabecera municipal' de Cartago). Límite independiente de WorldCover; incluye una franja a lo largo de la vía que lo une con la ciudad. DANE, CC BY 4.0.",
+  "Zaragoza: sector urbano DANE MGN 2024 al sur de 4,7065° (núcleo; corte supuesto)": "el mismo sector DANE recortado al sur de la latitud 4,7065° (SUPUESTO: corte donde la franja vial se une al núcleo de Zaragoza). Es la zona independiente recomendada para comparar Zaragoza; el % construido depende mucho del corte supuesto: va de 22,4 a 31,1 % según la latitud del corte (de 4,700° a 4,715°); con 4,7065° es 27,2 %. El arbolado es estable (40,6–43,2 %). Usar el rango, no el valor central."
+ },
+ "hallazgos": [
+  "La rejilla cubre 133,7 de los 249,8 km² del polígono OSM del municipio (53,5 %; el MGN 2024 del DANE da 247,8 km²). Quedan fuera 116,1 km², casi todos rurales: el sur y el oriente del municipio y una franja al norte. En el municipio completo (conteo a 10 m): arbolado 28,2 %, pasto 49,9 %, cultivo 17,4 %, construido 3,6 %. En la parte dentro de la rejilla: arbolado 23,9 %, pasto 53,9 %, cultivo 14,7 %, construido 6,5 %; en la parte fuera: arbolado 33,2 %, pasto 45,3 %, cultivo 20,4 %, construido 0,1 %. Por eso las cifras de la zona 'Municipio de Cartago (parte dentro de la rejilla)' no son municipales: su construido (6,5 %) es 1,8 veces el del municipio completo (3,6 %) y su arbolado es menor (23,9 frente a 28,2 %).",
+  "Los corredores del La Vieja de la rejilla cubren solo 23,9 de los 51,1 km del río que limitan con Cartago (46,8 %). El resto queda fuera de la rejilla: 14,6 km al sur (suroriente del municipio); 9,1 km al oriente; 3,4 km al norte. Tramo limítrofe = eje a ≤ 300 m del límite del polígono OSM del municipio (UTM 18N), medido con las vías OSM completas 749764338 + 1126843631 (el eje recortado de comun.lineas_rio() mide 36,6 km y no sirve para longitudes); con el límite municipal del MGN 2024 del DANE da 23,9 de 51,1 km. En la orilla de Cartago (0–100 m del eje completo, conteo a 10 m), la parte fuera de la rejilla (2,62 km²) es mayor que la de dentro (2,41 km²) y tiene otra composición: pasto 35,5 frente a 17,4 %, agua 7,6 frente a 14,6 %, cultivo 2,5 frente a 9,4 %; el arbolado es parecido (54,1 frente a 51,5 %). Por eso el 'tramo alejado de la cabecera' de la rejilla no representa todo el corredor rural del La Vieja.",
+  "WorldCover no clasifica ningún píxel de la rejilla como arbustos (clase 20) ni como humedal herbáceo (clase 90). En el municipio completo hay 0 y 8 píxeles de 10 m, respectivamente; los de clase 90 están al sur de la rejilla, a 7,8 km o más del eje del La Vieja. Eso describe al clasificador, NO al terreno. Cartago tiene humedales y madreviejas reconocidos por la CVC (p. ej., La Culebrera, 5,86 ha en la margen izquierda del La Vieja, con plan de manejo; La Zapata, antiguo cauce del La Vieja en las comunas 6 y 7), que este mapa no clasifica como humedal: quedan dentro de otras clases (pasto, agua, arbolado u otras). Comprobación: el polígono OSM way 654797249 (natural=wetland, wetland=marsh, water=pond; 3,5 ha) tiene 406 píxeles: 366 de pasto, 40 de arbolado y 0 de humedal. Para cualquier decisión sobre humedales, usar el inventario y los planes de manejo de la CVC, no esta capa.",
+  "Zaragoza (sector urbano DANE al sur del corte supuesto): el % construido depende mucho del corte supuesto: va de 22,4 a 31,1 % según la latitud del corte (de 4,700° a 4,715°); con 4,7065° es 27,2 %. El arbolado es estable (40,6–43,2 %). Usar el rango, no el valor central."
+ ],
+ "normas_citadas": [
+  {
+   "norma": "Decreto-Ley 2811 de 1974, art. 83 lit. d)",
+   "contenido": "faja paralela a la línea de mareas máximas o a la del cauce permanente de ríos y lagos, hasta de treinta metros de ancho (bien inalienable e imprescriptible del Estado)",
+   "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=1551"
+  },
+  {
+   "norma": "Decreto 2245 de 2017 (adiciona la sección 3A al Decreto 1076 de 2015), art. 2.2.3.2.3A.2",
+   "contenido": "ronda hídrica: comprende la faja paralela del art. 83 d) y el área de protección o conservación aferente; su acotamiento corresponde a la autoridad ambiental competente",
+   "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=85056"
+  }
+ ],
+ "referencias_humedales": {
+  "humedales_cvc_en_cartago": [
+   {
+    "nombre": "Madrevieja La Culebrera",
+    "dato": "margen izquierda del río La Vieja, corregimiento Cauca; huella del humedal 5,86 ha y área forestal protectora 5,56 ha (plan de manejo, Convenio CVC 131 de 2021, julio de 2023)",
+    "url": "https://cvc.gov.co/sites/default/files/2025-04/Plan%20de%20Manejo%20La%20Culebrera.pdf"
+   },
+   {
+    "nombre": "Madrevieja La Zapata",
+    "dato": "antiguo cauce del río La Vieja en las comunas 6 y 7, entre el antiguo Matadero Municipal y el barrio Cámbulos (boletín CVC, 3 de febrero de 2021)",
+    "url": "https://www.cvc.gov.co/2021015"
+   }
+  ],
+  "inventario_cvc": {
+   "nombre": "CVC y ASOCARS (2015). Inventario de humedales lénticos del corredor del río Cauca (modelo digital de elevación LiDAR)",
+   "url": "https://ecopedia.cvc.gov.co/biodiversidad/humedales/inventario-de-humedales-lenticos-del-corredor-del-rio-cauca"
+  }
+ },
+ "titulo": "Área clasificada como arbolado (ESA WorldCover 2021)",
+ "descripcion": "Porcentaje de cada celda de unos 28 m cuyos píxeles de 10 m el mapa satelital ESA WorldCover 2021 clasifica como arbolado. Señala dónde dominan los árboles (bosques de galería, arbolado urbano denso, plantaciones); no mide la copa de los árboles.",
+ "limitaciones": [
+  "Mapa clasificado por aprendizaje automático: exactitud global declarada 76,7 ± 0,5 % (Suramérica 77,9 ± 1,1 %; ESA WorldCover PUM v2.0, tabla 4); en una celda concreta puede haber errores de clase.",
+  "Representa el año 2021; no muestra cambios posteriores.",
+  "No comparable con WorldCover 2020 (v100): el algoritmo cambió y las diferencias entre ambos mapas mezclan cambios reales con cambios de método.",
+  "Cada píxel de 10 m recibe una sola clase (la dominante): el porcentaje cuenta píxeles clasificados, no la superficie real de cada cobertura.",
+  "Cada celda es la media de 3×3 píxeles, así que solo toma valores múltiplos de 100/9 ≈ 11,1 % (0; 11,1; 22,2; … 100).",
+  "La rejilla incluye terrenos de otros municipios (según el MGN 2024 del DANE, la rejilla es CARTAGO (VALLE DEL CAUCA) 78,4 %, PEREIRA (RISARALDA) 16,1 %, ANSERMANUEVO (VALLE DEL CAUCA) 5,3 %, ALCALÁ (VALLE DEL CAUCA) 0,1 %, ULLOA (VALLE DEL CAUCA) 0,1 %) y solo cubre el 53,5 % del municipio de Cartago (133,7 de 249,8 km² del polígono OSM; faltan el sur y el oriente rurales y una franja al norte): las estadísticas de 'extension' no son del municipio, y tampoco lo es la zona 'Municipio de Cartago (parte dentro de la rejilla)' de 'por_zona'. Para cifras municipales usar 'Municipio de Cartago completo (10 m; ventana ampliada de la misma tesela)'; para el corredor del río, las zonas 'orilla de Cartago' (y las '(10 m)' para todo el tramo limítrofe).",
+  "No es fracción de copa (dosel): un píxel 'arbolado' es un área dominada por árboles con cobertura ≥ 10 %, y debajo puede haber pasto, construcciones o agua, incluso con más densidad que los árboles (PUM v2.0, tabla 3). Sobrestima la copa en potreros con árboles dispersos y en bosques abiertos, y la subestima donde los árboles de calles y patios quedan dentro de píxeles construidos. No sirve para medir metas de cobertura de copa por barrio.",
+  "Incluye plantaciones forestales y cultivos arbóreos (PUM v2.0, tabla 3): no distingue bosque natural de plantación.",
+  "El café y otros cultivos perennes leñosos pueden quedar como arbolado o arbustos según su porte."
+ ],
+ "paleta": [
+  "#f7fcf5",
+  "#c7e9c0",
+  "#74c476",
+  "#238b45",
+  "#00441b"
+ ],
+ "interpretacion": "100 % = los 9 píxeles de 10 m de la celda están clasificados como arbolado (cada uno dominado por árboles con cobertura ≥ 10 %); no equivale a dosel completo. 0 % = ningún píxel clasificado como arbolado, aunque puede haber árboles aislados dentro de píxeles de otra clase. No se aplican umbrales normativos: no hay en esta capa una meta de cobertura arbórea verificada para Cartago.",
+ "clase_worldcover": {
+  "codigo": 10,
+  "nombre": "Tree cover"
+ },
+ "nombre": "arbolado",
+ "escala": 0.01,
+ "desplazamiento": 0.0,
+ "codificacion": "RGBA 16 bits: v=R*256+G; v=0 sin dato; valor=(v-1)*escala+desplazamiento",
+ "rejilla": {
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res": 0.00025,
+  "ancho": 520,
+  "alto": 428,
+  "crs": "EPSG:4326"
+ },
+ "estadisticas": {
+  "extension": {
+   "min": 0.0,
+   "p10": 0.0,
+   "media": 24.5853,
+   "p50": 0.0,
+   "p90": 100.0,
+   "max": 100.0,
+   "celdas": 222560
+  },
+  "cabecera_urbana": {
+   "min": 0.0,
+   "p10": 0.0,
+   "media": 21.2943,
+   "p50": 0.0,
+   "p90": 100.0,
+   "max": 100.0,
+   "celdas": 19878
+  }
+ },
+ "cobertura_pct": 100.0,
+ "fecha_proceso": "2026-10-01"
+}

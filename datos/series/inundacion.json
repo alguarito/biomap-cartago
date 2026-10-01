@@ -1,0 +1,2118 @@
+{
+ "nombre": "inundacion",
+ "titulo": "Susceptibilidad topográfica a inundación por zona (HAND)",
+ "descripcion": "Área por clase de susceptibilidad topográfica (HAND) en la cabecera y en cada zona, sensibilidad a los parámetros y validación parcial. No es la amenaza oficial del POT, de la CVC ni del IDEAM.",
+ "fuente": [
+  "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65",
+  "Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0",
+  "Meta and World Resources Institute (WRI) - 2024. High Resolution Canopy Height Maps (CHM). Source imagery © 2016 Maxar. Licencia CC BY 4.0 (https://registry.opendata.aws/dataforgood-fb-forests/). Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., et al. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. Remote Sensing of Environment 300, 113888. doi:10.1016/j.rse.2023.113888",
+  "Pekel, J.-F., Cottam, A., Gorelick, N., Belward, A. S. (2016). High-resolution mapping of global surface water and its long-term changes. Nature 540, 418–422. doi:10.1038/nature20584. Source: EC JRC/Google (v1.5)",
+  "IDEAM, servicio Amenaza_Ambiental (https://visualizador.ideam.gov.co/gisserver/rest/services/Amenaza_Ambiental/MapServer). El servicio no declara licencia (copyrightText y descripciones vacíos); la sección de datos abiertos del IDEAM solo da la definición genérica de dato abierto. Las capas de áreas afectadas por La Niña 1988, 2000, 2011 y 2012 también las publica el IDEAM en datos.gov.co con licencia CC BY-SA 4.0 (conjuntos khg6-9h39, 5p6w-58v3, 6eu7-pzc5 y nufr-59j5, con la advertencia de que no han sido validadas por el IDEAM); para la amenaza por creciente súbita TR 50 no se encontró conjunto en datos.gov.co. Aquí se publican solo estadísticas derivadas, con atribución al IDEAM; no se copian sus polígonos"
+ ],
+ "parametros": {
+  "hand_alta_m": 3.0,
+  "hand_media_m": 6.0,
+  "hand_baja_m": 15.0,
+  "distancia_cauce_mayor_m": 1500.0,
+  "umbral_drenaje_km2": 5.0,
+  "distancia_regla_de_piso_m": 100.0,
+  "profundidad_quema_cauces_osm_menores_m": 10.0,
+  "sustitucion_derivados_cerca_de_osm_m": 90.0,
+  "calibracion_dosel": {
+   "ventana_celdas": 11,
+   "desviacion_max_m": 1.5,
+   "bordes_chm_m": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    15,
+    18,
+    22,
+    30
+   ]
+  },
+  "umbral_relleno_m": 0.5,
+  "profundidad_quema_m": 20.0
+ },
+ "definicion_clases": {
+  "3": "hand_rio_mayor ≤ 3 m y distancia ≤ 1,5 km al cauce mayor",
+  "2": "hand ≤ 6 m, o distancia ≤ 100 m al cauce mayor (regla de piso), y no clase 3",
+  "1": "6 < hand ≤ 15 m (no descarta amenaza)",
+  "0": "hand > 15 m (no descarta amenaza)"
+ },
+ "hallazgos": [
+  "Las clases 'baja' y 'HAND > 15 m' NO descartan amenaza de inundación: la referencia oficial es la zonificación de amenaza del IDEAM, de la CVC y del POT de Cartago. Frente a la amenaza ALTA por creciente súbita del IDEAM (TR 50 años), en la cabecera el 8,6 % de su área (2,3 de 26,6 ha) queda en esas clases, y en toda la rejilla el 26,2 % (34,5 ha), sobre todo en cauces menores al sur de la cabecera y en Zaragoza.",
+  "Corredor del río La Vieja (amenaza ALTA del IDEAM, 94,91 ha): 54,4 % en clase alta, 43,7 % en media y 1,9 % (1,84 ha) en baja o HAND > 15 m (a 118 m del cauce mayor y HAND 7,56 m en mediana, fuera de la franja de la regla de piso). Antes de corregir el dosel y aplicar la regla de piso, las orillas arboladas de La Vieja caían en baja o HAND > 15 m porque el DSM cuenta las copas como terreno.",
+  "Cauces menores con amenaza ALTA del IDEAM (polígonos 5, 11, 30; sur de la cabecera y Zaragoza; 36,88 ha, el 28 % de la amenaza ALTA de la rejilla): 88,6 % en baja o HAND > 15 m y 11,4 % en media. Esos cauces no están en OpenStreetMap y el DSM no los resuelve: el producto NO sirve para descartar amenaza allí.",
+  "Zaragoza: de 12,65 ha con amenaza ALTA del IDEAM, 0 ha quedan en clase alta, 3,99 ha en media y 8,66 ha (68,5 %) en baja o HAND > 15 m (7,05 ha en baja y 1,61 ha en HAND > 15 m).",
+  "Comuna 4: 68,7 ha en clase media (32,14 % de la comuna), fuera de la mancha de amenaza por creciente súbita TR 50 del IDEAM; parte de ella coincide con áreas afectadas por inundación en eventos La Niña del IDEAM (cruce por zona en datos/indicadores.json). De ellas, 0,31 ha son depresiones del DSM (celdas por debajo de la cota de su cauce, HAND bruto negativo llevado a 0; pueden ser artefactos del modelo de superficie), 28,06 ha están a 0–3 m sobre un cauce menor (28,06 ha sobre arroyos o canales de drenaje mapeados en OSM, 0 ha sobre cauces derivados) y el resto a 3–6 m sobre un cauce. En la versión anterior (DSM sin corregir y red solo del DEM) la comuna tenía 27,37 ha con HAND bruto negativo (27,52 ha con HAND < 1 cm): celdas por debajo de la cota del cauce derivado al que drenaban; ahora 27,37 ha de ellas miden su HAND respecto a un arroyo o canal de drenaje mapeado en OSM y quedan a 1,11–4,49 m sobre él (p10–p90; mediana 2,6 m).",
+  "En la cabecera la clase media pasa de 330,44 ha (versión anterior) a 402,04 ha y la alta de 0,92 a 3,6 ha; 305,9 ha de la clase media se miden ahora respecto a arroyos o canales de drenaje mapeados en OSM. La función de esos canales (drenaje o riego) no está etiquetada en OSM: se decidió con una prueba topográfica (corren por lo bajo del relieve), no con documentos.",
+  "Efecto de las correcciones: la amenaza ALTA del IDEAM en la cabecera que caía en baja o HAND > 15 m pasa del 47 % al 8,6 %, y en la rejilla del 41,1 % al 26,2 % (corrección del dosel, arroyos y canales de OSM y regla de piso de la franja de ribera; detalle por paso en 'validacion.efecto_correcciones')."
+ ],
+ "aviso": "Las clases 'baja' y 'HAND > 15 m' NO descartan amenaza de inundación: la referencia oficial es la zonificación de amenaza del IDEAM, de la CVC y del POT de Cartago. Frente a la amenaza ALTA por creciente súbita del IDEAM (TR 50 años), en la cabecera el 8,6 % de su área (2,3 de 26,6 ha) queda en esas clases, y en toda la rejilla el 26,2 % (34,5 ha), sobre todo en cauces menores al sur de la cabecera y en Zaragoza.",
+ "correccion_dosel": {
+  "fuente": "Meta and World Resources Institute (WRI) - 2024. High Resolution Canopy Height Maps (CHM). Source imagery © 2016 Maxar. Licencia CC BY 4.0 (https://registry.opendata.aws/dataforgood-fb-forests/)",
+  "cita": "Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., et al. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. Remote Sensing of Environment 300, 113888. doi:10.1016/j.rse.2023.113888",
+  "fechas_imagenes_rejilla": {
+   "anios_rejilla": [
+    2014.5,
+    2015.83,
+    2018.0,
+    2018.83
+   ],
+   "min": 2014.5,
+   "max": 2018.83,
+   "mediana": 2014.5,
+   "celdas_0_01_grados": 143
+  },
+  "tabla": [
+   {
+    "chm_desde_m": 2,
+    "chm_hasta_m": 4,
+    "celdas": 5314,
+    "chm_mediana_m": 2.71,
+    "exceso_dsm_mediana_m": 1.0,
+    "exceso_dsm_p25_m": 0.2,
+    "exceso_dsm_p75_m": 2.14
+   },
+   {
+    "chm_desde_m": 4,
+    "chm_hasta_m": 6,
+    "celdas": 1809,
+    "chm_mediana_m": 4.81,
+    "exceso_dsm_mediana_m": 2.25,
+    "exceso_dsm_p25_m": 0.99,
+    "exceso_dsm_p75_m": 3.96
+   },
+   {
+    "chm_desde_m": 6,
+    "chm_hasta_m": 8,
+    "celdas": 949,
+    "chm_mediana_m": 6.85,
+    "exceso_dsm_mediana_m": 3.89,
+    "exceso_dsm_p25_m": 1.9,
+    "exceso_dsm_p75_m": 6.78
+   },
+   {
+    "chm_desde_m": 8,
+    "chm_hasta_m": 10,
+    "celdas": 480,
+    "chm_mediana_m": 8.81,
+    "exceso_dsm_mediana_m": 6.61,
+    "exceso_dsm_p25_m": 3.41,
+    "exceso_dsm_p75_m": 10.2
+   },
+   {
+    "chm_desde_m": 10,
+    "chm_hasta_m": 12,
+    "celdas": 269,
+    "chm_mediana_m": 10.76,
+    "exceso_dsm_mediana_m": 7.36,
+    "exceso_dsm_p25_m": 4.64,
+    "exceso_dsm_p75_m": 10.83
+   },
+   {
+    "chm_desde_m": 12,
+    "chm_hasta_m": 15,
+    "celdas": 109,
+    "chm_mediana_m": 12.96,
+    "exceso_dsm_mediana_m": 9.29,
+    "exceso_dsm_p25_m": 7.04,
+    "exceso_dsm_p75_m": 11.66
+   }
+  ],
+  "curva_chm_m": [
+   0.0,
+   2.71,
+   4.81,
+   6.85,
+   8.81,
+   10.76,
+   12.96
+  ],
+  "curva_correccion_m": [
+   0.0,
+   1.0,
+   2.25,
+   3.89,
+   6.61,
+   7.36,
+   9.29
+  ],
+  "razon_extrapolacion": 0.717,
+  "control_celdas_sin_dosel_exceso_mediana_m": -0.026,
+  "control_celdas": 180975,
+  "ventana_celdas": 11,
+  "desviacion_max_m": 1.5,
+  "correccion_m": {
+   "p50": 0.16,
+   "p90": 5.18,
+   "p99": 12.3,
+   "max": 19.86
+  }
+ },
+ "cauces_osm": {
+  "vias_por_tipo": {
+   "rio": 21,
+   "arroyo": 83,
+   "canal": 20
+  },
+  "canales_prueba_drenaje": {
+   "89368324": {
+    "puntos": 60,
+    "pct_en_lo_bajo": 96.7,
+    "drenaje": true
+   },
+   "677192058": {
+    "puntos": 58,
+    "pct_en_lo_bajo": 94.8,
+    "drenaje": true
+   },
+   "677330970": {
+    "puntos": 132,
+    "pct_en_lo_bajo": 82.6,
+    "drenaje": true
+   },
+   "677334109": {
+    "puntos": 88,
+    "pct_en_lo_bajo": 95.5,
+    "drenaje": true
+   },
+   "701149136": {
+    "puntos": 157,
+    "pct_en_lo_bajo": 79.0,
+    "drenaje": true
+   },
+   "755307220": {
+    "puntos": 17,
+    "pct_en_lo_bajo": 76.5,
+    "drenaje": true
+   },
+   "755307222": {
+    "puntos": 63,
+    "pct_en_lo_bajo": 93.7,
+    "drenaje": true
+   },
+   "755307241": {
+    "puntos": 21,
+    "pct_en_lo_bajo": 4.8,
+    "drenaje": false
+   },
+   "755307243": {
+    "puntos": 145,
+    "pct_en_lo_bajo": 24.8,
+    "drenaje": false
+   },
+   "1022826075": {
+    "puntos": 52,
+    "pct_en_lo_bajo": 94.2,
+    "drenaje": true
+   },
+   "1304687884": {
+    "puntos": 15,
+    "pct_en_lo_bajo": 86.7,
+    "drenaje": true
+   },
+   "677330973": {
+    "puntos": 0,
+    "pct_en_lo_bajo": null,
+    "drenaje": true,
+    "alcantarilla": true
+   },
+   "755307221": {
+    "puntos": 0,
+    "pct_en_lo_bajo": null,
+    "drenaje": true,
+    "alcantarilla": true
+   },
+   "755307242": {
+    "puntos": 0,
+    "pct_en_lo_bajo": null,
+    "drenaje": false,
+    "alcantarilla": true
+   },
+   "1012087061": {
+    "puntos": 0,
+    "pct_en_lo_bajo": null,
+    "drenaje": true,
+    "alcantarilla": true
+   },
+   "1022826074": {
+    "puntos": 0,
+    "pct_en_lo_bajo": null,
+    "drenaje": true,
+    "alcantarilla": true
+   },
+   "1304687885": {
+    "puntos": 0,
+    "pct_en_lo_bajo": null,
+    "drenaje": true,
+    "alcantarilla": true
+   }
+  },
+  "fuente": "Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0",
+  "consulta": "Overpass API, way[waterway~river|stream|canal|drain|ditch] en el dominio"
+ },
+ "desplazamiento_gsw": {
+  "altura_relativa_media_m_por_desplazamiento_fila_columna": {
+   "-1,-1": -2.93,
+   "-1,0": -3.2,
+   "-1,1": -3.31,
+   "0,-1": -2.13,
+   "0,0": -2.54,
+   "0,1": -2.78,
+   "1,-1": -0.9,
+   "1,0": -1.19,
+   "1,1": -1.35
+  },
+  "desplazamiento_con_menor_altura": "-1,1",
+  "convencion": "fila −1 = mover la máscara de agua una celda al norte; columna +1 = una celda al este",
+  "mover_hacia": "una celda al norte y una celda al este",
+  "desfase_gsw": "suroeste"
+ },
+ "fecha_proceso": "2026-10-01",
+ "resumen": {
+  "rejilla_completa": {
+   "celdas": 222560,
+   "area_ha": 17063.36,
+   "celdas_alta": 17086,
+   "area_alta_ha": 1309.94,
+   "pct_alta": 7.68,
+   "celdas_media": 79135,
+   "area_media_ha": 6067.19,
+   "pct_media": 35.56,
+   "celdas_baja": 36190,
+   "area_baja_ha": 2774.62,
+   "pct_baja": 16.26,
+   "celdas_sin": 90149,
+   "area_sin_ha": 6911.61,
+   "pct_sin": 40.51,
+   "hand_mediana_m": 9.12,
+   "hand_p10_m": 0.7,
+   "hand_rio_mayor_mediana_m": 15.17,
+   "hand_rio_mayor_p10_m": 2.18,
+   "celdas_agua_observada_ge_10pct": 1581,
+   "area_media_depresion_dsm_ha": 578.78,
+   "area_media_0_3m_sobre_cauce_menor_ha": 2770.39,
+   "area_media_0_3m_sobre_arroyo_o_canal_osm_ha": 917.98,
+   "area_media_0_3m_sobre_cauce_derivado_ha": 1841.99,
+   "area_depresion_dsm_ha_version_anterior": 1452.75,
+   "area_hand_menor_1cm_ha_version_anterior": 1486.25,
+   "depresion_anterior_ahora_sobre_arroyo_o_canal_osm_ha": 479.26,
+   "depresion_anterior_hand_actual_p10_p50_p90_m": [
+    -0.81,
+    0.29,
+    1.46
+   ],
+   "area_media_regla_de_piso_ha": 199.33,
+   "area_depresion_dsm_ha": 708.27,
+   "area_hand_menor_1cm_ha": 474.13
+  },
+  "cabecera_urbana": {
+   "celdas": 19878,
+   "area_ha": 1524.0,
+   "celdas_alta": 47,
+   "area_alta_ha": 3.6,
+   "pct_alta": 0.24,
+   "celdas_media": 5244,
+   "area_media_ha": 402.04,
+   "pct_media": 26.38,
+   "celdas_baja": 10852,
+   "area_baja_ha": 831.99,
+   "pct_baja": 54.59,
+   "celdas_sin": 3735,
+   "area_sin_ha": 286.36,
+   "pct_sin": 18.79,
+   "hand_mediana_m": 8.99,
+   "hand_p10_m": 3.91,
+   "hand_rio_mayor_mediana_m": 13.29,
+   "hand_rio_mayor_p10_m": 5.69,
+   "celdas_agua_observada_ge_10pct": 9,
+   "area_media_depresion_dsm_ha": 2.76,
+   "area_media_0_3m_sobre_cauce_menor_ha": 92.85,
+   "area_media_0_3m_sobre_arroyo_o_canal_osm_ha": 92.85,
+   "area_media_0_3m_sobre_cauce_derivado_ha": 0.0,
+   "area_depresion_dsm_ha_version_anterior": 29.13,
+   "area_hand_menor_1cm_ha_version_anterior": 29.29,
+   "depresion_anterior_ahora_sobre_arroyo_o_canal_osm_ha": 29.13,
+   "depresion_anterior_hand_actual_p10_p50_p90_m": [
+    1.14,
+    2.58,
+    4.48
+   ],
+   "area_media_regla_de_piso_ha": 18.32,
+   "area_depresion_dsm_ha": 2.76,
+   "area_hand_menor_1cm_ha": 0.46
+  },
+  "zonas": [
+   {
+    "celdas": 1686,
+    "area_ha": 129.26,
+    "celdas_alta": 18,
+    "area_alta_ha": 1.38,
+    "pct_alta": 1.07,
+    "celdas_media": 229,
+    "area_media_ha": 17.56,
+    "pct_media": 13.58,
+    "celdas_baja": 918,
+    "area_baja_ha": 70.38,
+    "pct_baja": 54.45,
+    "celdas_sin": 521,
+    "area_sin_ha": 39.94,
+    "pct_sin": 30.9,
+    "hand_mediana_m": 12.16,
+    "hand_p10_m": 5.86,
+    "hand_rio_mayor_mediana_m": 15.19,
+    "hand_rio_mayor_p10_m": 5.86,
+    "celdas_agua_observada_ge_10pct": 1,
+    "area_media_depresion_dsm_ha": 0.0,
+    "area_media_0_3m_sobre_cauce_menor_ha": 0.0,
+    "area_media_0_3m_sobre_arroyo_o_canal_osm_ha": 0.0,
+    "area_media_0_3m_sobre_cauce_derivado_ha": 0.0,
+    "area_depresion_dsm_ha_version_anterior": 0.0,
+    "area_hand_menor_1cm_ha_version_anterior": 0.0,
+    "depresion_anterior_ahora_sobre_arroyo_o_canal_osm_ha": 0.0,
+    "depresion_anterior_hand_actual_p10_p50_p90_m": null,
+    "area_media_regla_de_piso_ha": 5.44,
+    "area_depresion_dsm_ha": 0.0,
+    "area_hand_menor_1cm_ha": 0.0,
+    "id": "c1",
+    "nombre": "Comuna 1"
+   },
+   {
+    "celdas": 1277,
+    "area_ha": 97.91,
+    "celdas_alta": 0,
+    "area_alta_ha": 0.0,
+    "pct_alta": 0.0,
+    "celdas_media": 379,
+    "area_media_ha": 29.06,
+    "pct_media": 29.68,
+    "celdas_baja": 276,
+    "area_baja_ha": 21.16,
+    "pct_baja": 21.61,
+    "celdas_sin": 622,
+    "area_sin_ha": 47.69,
+    "pct_sin": 48.71,
+    "hand_mediana_m": 14.7,
+    "hand_p10_m": 1.82,
+    "hand_rio_mayor_mediana_m": 27.46,
+    "hand_rio_mayor_p10_m": 21.11,
+    "celdas_agua_observada_ge_10pct": 0,
+    "area_media_depresion_dsm_ha": 0.0,
+    "area_media_0_3m_sobre_cauce_menor_ha": 18.32,
+    "area_media_0_3m_sobre_arroyo_o_canal_osm_ha": 18.32,
+    "area_media_0_3m_sobre_cauce_derivado_ha": 0.0,
+    "area_depresion_dsm_ha_version_anterior": 0.0,
+    "area_hand_menor_1cm_ha_version_anterior": 0.0,
+    "depresion_anterior_ahora_sobre_arroyo_o_canal_osm_ha": 0.0,
+    "depresion_anterior_hand_actual_p10_p50_p90_m": null,
+    "area_media_regla_de_piso_ha": 0.0,
+    "area_depresion_dsm_ha": 0.0,
+    "area_hand_menor_1cm_ha": 0.0,
+    "id": "c2",
+    "nombre": "Comuna 2"
+   },
+   {
+    "celdas": 1530,
+    "area_ha": 117.3,
+    "celdas_alta": 0,
+    "area_alta_ha": 0.0,
+    "pct_alta": 0.0,
+    "celdas_media": 100,
+    "area_media_ha": 7.67,
+    "pct_media": 6.54,
+    "celdas_baja": 212,
+    "area_baja_ha": 16.25,
+    "pct_baja": 13.86,
+    "celdas_sin": 1218,
+    "area_sin_ha": 93.38,
+    "pct_sin": 79.61,
+    "hand_mediana_m": 20.21,
+    "hand_p10_m": 10.94,
+    "hand_rio_mayor_mediana_m": 28.48,
+    "hand_rio_mayor_p10_m": 21.35,
+    "celdas_agua_observada_ge_10pct": 5,
+    "area_media_depresion_dsm_ha": 0.38,
+    "area_media_0_3m_sobre_cauce_menor_ha": 3.91,
+    "area_media_0_3m_sobre_arroyo_o_canal_osm_ha": 3.91,
+    "area_media_0_3m_sobre_cauce_derivado_ha": 0.0,
+    "area_depresion_dsm_ha_version_anterior": 0.0,
+    "area_hand_menor_1cm_ha_version_anterior": 0.0,
+    "depresion_anterior_ahora_sobre_arroyo_o_canal_osm_ha": 0.0,
+    "depresion_anterior_hand_actual_p10_p50_p90_m": null,
+    "area_media_regla_de_piso_ha": 0.0,
+    "area_depresion_dsm_ha": 0.38,
+    "area_hand_menor_1cm_ha": 0.0,
+    "id": "c3",
+    "nombre": "Comuna 3"
+   },
+   {
+    "celdas": 2788,
+    "area_ha": 213.75,
+    "celdas_alta": 0,
+    "area_alta_ha": 0.0,
+    "pct_alta": 0.0,
+    "celdas_media": 896,
+    "area_media_ha": 68.7,
+    "pct_media": 32.14,
+    "celdas_baja": 1771,
+    "area_baja_ha": 135.78,
+    "pct_baja": 63.52,
+    "celdas_sin": 121,
+    "area_sin_ha": 9.28,
+    "pct_sin": 4.34,
+    "hand_mediana_m": 8.49,
+    "hand_p10_m": 2.5,
+    "hand_rio_mayor_mediana_m": 17.35,
+    "hand_rio_mayor_p10_m": 13.79,
+    "celdas_agua_observada_ge_10pct": 0,
+    "area_media_depresion_dsm_ha": 0.31,
+    "area_media_0_3m_sobre_cauce_menor_ha": 28.06,
+    "area_media_0_3m_sobre_arroyo_o_canal_osm_ha": 28.06,
+    "area_media_0_3m_sobre_cauce_derivado_ha": 0.0,
+    "area_depresion_dsm_ha_version_anterior": 27.37,
+    "area_hand_menor_1cm_ha_version_anterior": 27.52,
+    "depresion_anterior_ahora_sobre_arroyo_o_canal_osm_ha": 27.37,
+    "depresion_anterior_hand_actual_p10_p50_p90_m": [
+     1.11,
+     2.6,
+     4.49
+    ],
+    "area_media_regla_de_piso_ha": 0.0,
+    "area_depresion_dsm_ha": 0.31,
+    "area_hand_menor_1cm_ha": 0.0,
+    "id": "c4",
+    "nombre": "Comuna 4"
+   },
+   {
+    "celdas": 997,
+    "area_ha": 76.44,
+    "celdas_alta": 2,
+    "area_alta_ha": 0.15,
+    "pct_alta": 0.2,
+    "celdas_media": 196,
+    "area_media_ha": 15.03,
+    "pct_media": 19.66,
+    "celdas_baja": 762,
+    "area_baja_ha": 58.42,
+    "pct_baja": 76.43,
+    "celdas_sin": 37,
+    "area_sin_ha": 2.84,
+    "pct_sin": 3.71,
+    "hand_mediana_m": 10.07,
+    "hand_p10_m": 6.18,
+    "hand_rio_mayor_mediana_m": 13.04,
+    "hand_rio_mayor_p10_m": 6.74,
+    "celdas_agua_observada_ge_10pct": 0,
+    "area_media_depresion_dsm_ha": 0.0,
+    "area_media_0_3m_sobre_cauce_menor_ha": 0.0,
+    "area_media_0_3m_sobre_arroyo_o_canal_osm_ha": 0.0,
+    "area_media_0_3m_sobre_cauce_derivado_ha": 0.0,
+    "area_depresion_dsm_ha_version_anterior": 0.0,
+    "area_hand_menor_1cm_ha_version_anterior": 0.0,
+    "depresion_anterior_ahora_sobre_arroyo_o_canal_osm_ha": 0.0,
+    "depresion_anterior_hand_actual_p10_p50_p90_m": null,
+    "area_media_regla_de_piso_ha": 8.51,
+    "area_depresion_dsm_ha": 0.0,
+    "area_hand_menor_1cm_ha": 0.0,
+    "id": "c5",
+    "nombre": "Comuna 5"
+   },
+   {
+    "celdas": 3277,
+    "area_ha": 251.24,
+    "celdas_alta": 24,
+    "area_alta_ha": 1.84,
+    "pct_alta": 0.73,
+    "celdas_media": 1517,
+    "area_media_ha": 116.3,
+    "pct_media": 46.29,
+    "celdas_baja": 1483,
+    "area_baja_ha": 113.7,
+    "pct_baja": 45.25,
+    "celdas_sin": 253,
+    "area_sin_ha": 19.4,
+    "pct_sin": 7.72,
+    "hand_mediana_m": 6.53,
+    "hand_p10_m": 2.57,
+    "hand_rio_mayor_mediana_m": 11.48,
+    "hand_rio_mayor_p10_m": 4.82,
+    "celdas_agua_observada_ge_10pct": 3,
+    "area_media_depresion_dsm_ha": 0.38,
+    "area_media_0_3m_sobre_cauce_menor_ha": 28.6,
+    "area_media_0_3m_sobre_arroyo_o_canal_osm_ha": 28.6,
+    "area_media_0_3m_sobre_cauce_derivado_ha": 0.0,
+    "area_depresion_dsm_ha_version_anterior": 1.46,
+    "area_hand_menor_1cm_ha_version_anterior": 1.46,
+    "depresion_anterior_ahora_sobre_arroyo_o_canal_osm_ha": 1.46,
+    "depresion_anterior_hand_actual_p10_p50_p90_m": [
+     1.8,
+     2.87,
+     4.56
+    ],
+    "area_media_regla_de_piso_ha": 4.37,
+    "area_depresion_dsm_ha": 0.38,
+    "area_hand_menor_1cm_ha": 0.0,
+    "id": "c6",
+    "nombre": "Comuna 6"
+   },
+   {
+    "celdas": 8321,
+    "area_ha": 637.94,
+    "celdas_alta": 3,
+    "area_alta_ha": 0.23,
+    "pct_alta": 0.04,
+    "celdas_media": 1925,
+    "area_media_ha": 147.58,
+    "pct_media": 23.13,
+    "celdas_baja": 5428,
+    "area_baja_ha": 416.15,
+    "pct_baja": 65.23,
+    "celdas_sin": 965,
+    "area_sin_ha": 73.98,
+    "pct_sin": 11.6,
+    "hand_mediana_m": 8.33,
+    "hand_p10_m": 4.81,
+    "hand_rio_mayor_mediana_m": 8.92,
+    "hand_rio_mayor_p10_m": 5.27,
+    "celdas_agua_observada_ge_10pct": 0,
+    "area_media_depresion_dsm_ha": 1.69,
+    "area_media_0_3m_sobre_cauce_menor_ha": 13.95,
+    "area_media_0_3m_sobre_arroyo_o_canal_osm_ha": 13.95,
+    "area_media_0_3m_sobre_cauce_derivado_ha": 0.0,
+    "area_depresion_dsm_ha_version_anterior": 0.31,
+    "area_hand_menor_1cm_ha_version_anterior": 0.31,
+    "depresion_anterior_ahora_sobre_arroyo_o_canal_osm_ha": 0.31,
+    "depresion_anterior_hand_actual_p10_p50_p90_m": [
+     1.13,
+     1.4,
+     1.68
+    ],
+    "area_media_regla_de_piso_ha": 0.0,
+    "area_depresion_dsm_ha": 1.69,
+    "area_hand_menor_1cm_ha": 0.46,
+    "id": "c7",
+    "nombre": "Comuna 7"
+   },
+   {
+    "celdas": 940,
+    "area_ha": 72.07,
+    "celdas_alta": 0,
+    "area_alta_ha": 0.0,
+    "pct_alta": 0.0,
+    "celdas_media": 336,
+    "area_media_ha": 25.76,
+    "pct_media": 35.74,
+    "celdas_baja": 371,
+    "area_baja_ha": 28.45,
+    "pct_baja": 39.47,
+    "celdas_sin": 233,
+    "area_sin_ha": 17.86,
+    "pct_sin": 24.79,
+    "hand_mediana_m": 10.81,
+    "hand_p10_m": 0.83,
+    "hand_rio_mayor_mediana_m": 21.79,
+    "hand_rio_mayor_p10_m": 18.22,
+    "celdas_agua_observada_ge_10pct": 0,
+    "area_media_depresion_dsm_ha": 0.92,
+    "area_media_0_3m_sobre_cauce_menor_ha": 18.02,
+    "area_media_0_3m_sobre_arroyo_o_canal_osm_ha": 0.08,
+    "area_media_0_3m_sobre_cauce_derivado_ha": 17.94,
+    "area_depresion_dsm_ha_version_anterior": 0.31,
+    "area_hand_menor_1cm_ha_version_anterior": 0.31,
+    "depresion_anterior_ahora_sobre_arroyo_o_canal_osm_ha": 0.0,
+    "depresion_anterior_hand_actual_p10_p50_p90_m": [
+     10.01,
+     11.15,
+     12.3
+    ],
+    "area_media_regla_de_piso_ha": 0.0,
+    "area_depresion_dsm_ha": 0.92,
+    "area_hand_menor_1cm_ha": 0.15,
+    "id": "zaragoza",
+    "nombre": "Zaragoza (corregimiento)"
+   }
+  ],
+  "zonas_con_alta_en_cabecera": [
+   {
+    "id": "c1",
+    "nombre": "Comuna 1",
+    "celdas_alta": 18,
+    "area_alta_ha": 1.38
+   },
+   {
+    "id": "c5",
+    "nombre": "Comuna 5",
+    "celdas_alta": 2,
+    "area_alta_ha": 0.15
+   },
+   {
+    "id": "c6",
+    "nombre": "Comuna 6",
+    "celdas_alta": 24,
+    "area_alta_ha": 1.84
+   },
+   {
+    "id": "c7",
+    "nombre": "Comuna 7",
+    "celdas_alta": 3,
+    "area_alta_ha": 0.23
+   }
+  ],
+  "celdas_alta_cabecera_fuera_de_comunas": 0,
+  "alta_por_rio": {
+   "descripcion": "Área de clase alta según el río mayor al que llega el drenaje de la celda (D8).",
+   "la_vieja_ha": 237.36,
+   "cauca_ha": 1072.58,
+   "la_vieja_cabecera_ha": 3.53,
+   "cauca_cabecera_ha": 0.08,
+   "al_occidente_de_la_cabecera_ha": 1077.64,
+   "al_norte_de_4_77_ha": 316.47,
+   "al_sur_de_4_72_ha": 55.28
+  },
+  "referencia_del_hand": {
+   "descripcion": "Celdas según el cauce respecto al que se mide 'hand' (el primero de la red al que llegan por D8). 'otros_rios_osm' sustituye a la antigua clave 'consota' (Consota y demás ríos OSM).",
+   "rejilla_ha": {
+    "rio_mayor": 3850.12,
+    "otros_rios_osm": 195.49,
+    "cauce_derivado": 9250.84,
+    "arroyo_o_canal_osm": 3766.9
+   },
+   "cabecera_ha": {
+    "rio_mayor": 353.89,
+    "otros_rios_osm": 0.0,
+    "cauce_derivado": 109.64,
+    "arroyo_o_canal_osm": 1060.47
+   },
+   "clase_media_cabecera_por_referencia_ha": {
+    "rio_mayor": 96.14,
+    "otros_rios_osm": 0.0,
+    "cauce_derivado": 0.0,
+    "arroyo_o_canal_osm": 305.9
+   },
+   "clase_media_cabecera_hand_le_3_cauce_menor_ha": 95.61
+  },
+  "comparacion_reglas_clase_alta": {
+   "regla_publicada": {
+    "descripcion": "hand_rio_mayor ≤ 3 m y ≤ 1,5 km del cauce mayor",
+    "rejilla_ha": 1309.94,
+    "cabecera_ha": 3.6,
+    "celdas_cabecera": 47
+   },
+   "regla_anterior": {
+    "descripcion": "HAND respecto a cualquier cauce ≤ 3 m y ≤ 1,5 km del cauce mayor (versión anterior; etiqueta engañosa)",
+    "rejilla_ha": 2050.9,
+    "cabecera_ha": 49.53,
+    "rejilla_con_cauce_menor_de_referencia_ha": 1515.31
+   },
+   "solo_si_drena_directamente_al_rio_mayor": {
+    "descripcion": "regla publicada y además el primer cauce de la red es La Vieja o el Cauca",
+    "rejilla_ha": 533.6,
+    "cabecera_ha": 2.84
+   }
+  },
+  "puntos_de_control": [
+   {
+    "punto": "Parque Bolívar (centro)",
+    "lat": 4.7497,
+    "lon": -75.9132,
+    "fila": 181,
+    "columna": 287,
+    "hand_m": 10.46,
+    "hand_rio_mayor_m": 17.51,
+    "hand_rio_mayor_ventana_11x11_mediana_m": 18.9,
+    "hand_ventana_11x11_min_mediana_max_m": [
+     9.2,
+     13.3,
+     18.5
+    ],
+    "clase": 1,
+    "distancia_cauce_mayor_m": 452,
+    "rio_mayor_de_llegada": "Cauca"
+   },
+   {
+    "punto": "Aeropuerto Santa Ana",
+    "lat": 4.7601,
+    "lon": -75.9545,
+    "fila": 139,
+    "columna": 122,
+    "hand_m": 5.53,
+    "hand_rio_mayor_m": 5.53,
+    "hand_rio_mayor_ventana_11x11_mediana_m": 5.5,
+    "hand_ventana_11x11_min_mediana_max_m": [
+     5.0,
+     5.5,
+     8.7
+    ],
+    "clase": 2,
+    "distancia_cauce_mayor_m": 1599,
+    "rio_mayor_de_llegada": "Cauca"
+   },
+   {
+    "punto": "Río La Vieja frente al oriente de la ciudad",
+    "lat": 4.7528,
+    "lon": -75.9095,
+    "fila": 168,
+    "columna": 302,
+    "hand_m": 2.59,
+    "hand_rio_mayor_m": 2.59,
+    "hand_rio_mayor_ventana_11x11_mediana_m": 4.4,
+    "hand_ventana_11x11_min_mediana_max_m": [
+     0.6,
+     4.4,
+     12.9
+    ],
+    "clase": 3,
+    "distancia_cauce_mayor_m": 22,
+    "rio_mayor_de_llegada": "La Vieja"
+   },
+   {
+    "punto": "Lomas al suroriente (4,70; −75,87)",
+    "lat": 4.7,
+    "lon": -75.87,
+    "fila": 379,
+    "columna": 459,
+    "hand_m": 192.56,
+    "hand_rio_mayor_m": 211.07,
+    "hand_rio_mayor_ventana_11x11_mediana_m": 216.6,
+    "hand_ventana_11x11_min_mediana_max_m": [
+     141.3,
+     198.1,
+     281.6
+    ],
+    "clase": 0,
+    "distancia_cauce_mayor_m": 1726,
+    "rio_mayor_de_llegada": "La Vieja"
+   },
+   {
+    "punto": "Lomas al suroriente (4,71; −75,88)",
+    "lat": 4.71,
+    "lon": -75.88,
+    "fila": 339,
+    "columna": 420,
+    "hand_m": 238.06,
+    "hand_rio_mayor_m": 295.05,
+    "hand_rio_mayor_ventana_11x11_mediana_m": 296.2,
+    "hand_ventana_11x11_min_mediana_max_m": [
+     190.7,
+     239.2,
+     312.4
+    ],
+    "clase": 0,
+    "distancia_cauce_mayor_m": 2478,
+    "rio_mayor_de_llegada": "Cauca"
+   },
+   {
+    "punto": "Zaragoza (nodo OSM)",
+    "lat": 4.6968,
+    "lon": -75.9264,
+    "fila": 392,
+    "columna": 234,
+    "hand_m": 2.92,
+    "hand_rio_mayor_m": 22.35,
+    "hand_rio_mayor_ventana_11x11_mediana_m": 23.3,
+    "hand_ventana_11x11_min_mediana_max_m": [
+     0.1,
+     3.6,
+     20.1
+    ],
+    "clase": 2,
+    "distancia_cauce_mayor_m": 6418,
+    "rio_mayor_de_llegada": "Cauca"
+   }
+  ]
+ },
+ "red_de_drenaje": {
+  "toda_la_red": {
+   "umbral_km2": 5.0,
+   "umbral_relleno_m": 0.5,
+   "solo_mayor": false,
+   "celdas_red": 24222,
+   "celdas_derivadas_usadas": 3860,
+   "celdas_derivadas_excluidas_por_relleno": 2036,
+   "celdas_derivadas_sustituidas_por_cauce_osm": 177,
+   "celdas_red_osm_menor": 7706,
+   "celdas_red_otros_rios_osm": 3772,
+   "rebaje_derivados_m": {
+    "p50": 0.0,
+    "p90": 0.215,
+    "p99": 0.441,
+    "max": 0.496,
+    "celdas_mas_de_2m": 0,
+    "celdas_mas_de_5m": 0
+   },
+   "piso_cauces_menores_m": {
+    "celdas_elevadas": 364,
+    "max": 2.288,
+    "p99": 1.839
+   },
+   "hand_negativo_llevado_a_0": 36646,
+   "hand_negativo_dentro_de_la_rejilla": {
+    "celdas_utm_en_rejilla": 8689,
+    "celdas_utm_rejilla_total": 189421,
+    "en_depresiones_rellenadas_mas_de_0_5m": 6304,
+    "profundidad_bajo_la_referencia_m": {
+     "p50": 0.46,
+     "p90": 1.92,
+     "p99": 5.87,
+     "max": 13.04
+    }
+   },
+   "celdas_sin_destino": 35398
+  },
+  "solo_rios_mayores": {
+   "umbral_km2": 5.0,
+   "umbral_relleno_m": 0.5,
+   "solo_mayor": true,
+   "celdas_red": 8884,
+   "celdas_derivadas_usadas": 0,
+   "celdas_derivadas_excluidas_por_relleno": 0,
+   "celdas_derivadas_sustituidas_por_cauce_osm": 0,
+   "celdas_red_osm_menor": 0,
+   "celdas_red_otros_rios_osm": 0,
+   "rebaje_derivados_m": null,
+   "piso_cauces_menores_m": null,
+   "hand_negativo_llevado_a_0": 6480,
+   "hand_negativo_dentro_de_la_rejilla": {
+    "celdas_utm_en_rejilla": 1116,
+    "celdas_utm_rejilla_total": 189421,
+    "en_depresiones_rellenadas_mas_de_0_5m": 654,
+    "profundidad_bajo_la_referencia_m": {
+     "p50": 0.26,
+     "p90": 1.73,
+     "p99": 5.43,
+     "max": 7.94
+    }
+   },
+   "celdas_sin_destino": 107546
+  },
+  "perfil_rio_mayor": {
+   "p50_m": 0.0,
+   "p99_m": 0.9,
+   "max_m": 7.43,
+   "celdas_mas_de_2m": 24,
+   "celdas": 8884
+  },
+  "tramos_rectos_ge_30_celdas_red_usada": {
+   "tramos": 0,
+   "celdas": 0
+  },
+  "tramos_rectos_ge_30_celdas_sin_exclusion": {
+   "tramos": 3,
+   "celdas": 99
+  }
+ },
+ "sensibilidad_clase_alta": {
+  "descripcion": "Área de clase alta (hand_rio_mayor ≤ corte y distancia ≤ máximo) según el corte de HAND y la distancia al cauce mayor. No depende del umbral de la red menor.",
+  "filas": [
+   {
+    "hand_max_m": 2.0,
+    "distancia_max_m": 1000.0,
+    "area_alta_rejilla_ha": 605.97,
+    "area_alta_cabecera_ha": 0.61,
+    "celdas_alta_cabecera": 8,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 6"
+    ]
+   },
+   {
+    "hand_max_m": 2.0,
+    "distancia_max_m": 1250.0,
+    "area_alta_rejilla_ha": 663.86,
+    "area_alta_cabecera_ha": 0.69,
+    "celdas_alta_cabecera": 9,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 2.0,
+    "distancia_max_m": 1500.0,
+    "area_alta_rejilla_ha": 706.49,
+    "area_alta_cabecera_ha": 0.69,
+    "celdas_alta_cabecera": 9,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 2.0,
+    "distancia_max_m": 1750.0,
+    "area_alta_rejilla_ha": 752.95,
+    "area_alta_cabecera_ha": 0.77,
+    "celdas_alta_cabecera": 10,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 2.0,
+    "distancia_max_m": 2000.0,
+    "area_alta_rejilla_ha": 813.14,
+    "area_alta_cabecera_ha": 1.23,
+    "celdas_alta_cabecera": 16,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 3.0,
+    "distancia_max_m": 1000.0,
+    "area_alta_rejilla_ha": 1030.48,
+    "area_alta_cabecera_ha": 3.53,
+    "celdas_alta_cabecera": 46,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 5",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 3.0,
+    "distancia_max_m": 1250.0,
+    "area_alta_rejilla_ha": 1172.31,
+    "area_alta_cabecera_ha": 3.6,
+    "celdas_alta_cabecera": 47,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 5",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 3.0,
+    "distancia_max_m": 1500.0,
+    "area_alta_rejilla_ha": 1309.94,
+    "area_alta_cabecera_ha": 3.6,
+    "celdas_alta_cabecera": 47,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 5",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 3.0,
+    "distancia_max_m": 1750.0,
+    "area_alta_rejilla_ha": 1414.13,
+    "area_alta_cabecera_ha": 3.99,
+    "celdas_alta_cabecera": 52,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 5",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 3.0,
+    "distancia_max_m": 2000.0,
+    "area_alta_rejilla_ha": 1511.58,
+    "area_alta_cabecera_ha": 5.29,
+    "celdas_alta_cabecera": 69,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 5",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 4.0,
+    "distancia_max_m": 1000.0,
+    "area_alta_rejilla_ha": 1532.94,
+    "area_alta_cabecera_ha": 15.33,
+    "celdas_alta_cabecera": 200,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 5",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 4.0,
+    "distancia_max_m": 1250.0,
+    "area_alta_rejilla_ha": 1708.59,
+    "area_alta_cabecera_ha": 15.41,
+    "celdas_alta_cabecera": 201,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 5",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 4.0,
+    "distancia_max_m": 1500.0,
+    "area_alta_rejilla_ha": 1868.9,
+    "area_alta_cabecera_ha": 16.56,
+    "celdas_alta_cabecera": 216,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 5",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 4.0,
+    "distancia_max_m": 1750.0,
+    "area_alta_rejilla_ha": 2014.73,
+    "area_alta_cabecera_ha": 17.56,
+    "celdas_alta_cabecera": 229,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 5",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   },
+   {
+    "hand_max_m": 4.0,
+    "distancia_max_m": 2000.0,
+    "area_alta_rejilla_ha": 2142.85,
+    "area_alta_cabecera_ha": 20.39,
+    "celdas_alta_cabecera": 266,
+    "zonas_con_alta": [
+     "Comuna 1",
+     "Comuna 5",
+     "Comuna 6",
+     "Comuna 7"
+    ]
+   }
+  ]
+ },
+ "sensibilidad_red_menor": {
+  "descripcion": "Efecto del umbral de área drenada de los cauces derivados y de la exclusión de tramos sobre relleno en 'hand' y en las clases media, baja y HAND > 15 m. 'regla_anterior_area_alta_cabecera_ha' muestra cuánto dependía de estos parámetros la clase alta de la versión anterior (HAND respecto a cualquier cauce).",
+  "filas": [
+   {
+    "umbral_km2": 1.0,
+    "exclusion_relleno_m": 0.5,
+    "celdas_derivadas_usadas": 12341,
+    "hand_mediana_cabecera_m": 4.89,
+    "hand_parque_bolivar_m": 0.74,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 923.77,
+    "area_baja_cabecera_ha": 497.34,
+    "area_sin_cabecera_ha": 99.29,
+    "area_media_rejilla_ha": 7185.17,
+    "regla_anterior_area_alta_cabecera_ha": 217.35,
+    "rebaje_derivados_max_m": 0.498
+   },
+   {
+    "umbral_km2": 1.0,
+    "exclusion_relleno_m": 2.0,
+    "celdas_derivadas_usadas": 16042,
+    "hand_mediana_cabecera_m": 5.13,
+    "hand_parque_bolivar_m": 1.33,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 894.48,
+    "area_baja_cabecera_ha": 521.19,
+    "area_sin_cabecera_ha": 104.73,
+    "area_media_rejilla_ha": 6995.72,
+    "regla_anterior_area_alta_cabecera_ha": 202.25,
+    "rebaje_derivados_max_m": 1.994
+   },
+   {
+    "umbral_km2": 1.0,
+    "exclusion_relleno_m": "sin exclusión",
+    "celdas_derivadas_usadas": 18798,
+    "hand_mediana_cabecera_m": 5.66,
+    "hand_parque_bolivar_m": 2.51,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 815.74,
+    "area_baja_cabecera_ha": 547.1,
+    "area_sin_cabecera_ha": 157.55,
+    "area_media_rejilla_ha": 6545.14,
+    "regla_anterior_area_alta_cabecera_ha": 186.84,
+    "rebaje_derivados_max_m": 16.067
+   },
+   {
+    "umbral_km2": 2.0,
+    "exclusion_relleno_m": 0.5,
+    "celdas_derivadas_usadas": 7747,
+    "hand_mediana_cabecera_m": 5.97,
+    "hand_parque_bolivar_m": 3.32,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 780.55,
+    "area_baja_cabecera_ha": 605.6,
+    "area_sin_cabecera_ha": 134.25,
+    "area_media_rejilla_ha": 6823.06,
+    "regla_anterior_area_alta_cabecera_ha": 131.25,
+    "rebaje_derivados_max_m": 0.498
+   },
+   {
+    "umbral_km2": 2.0,
+    "exclusion_relleno_m": 2.0,
+    "celdas_derivadas_usadas": 10294,
+    "hand_mediana_cabecera_m": 6.16,
+    "hand_parque_bolivar_m": 3.32,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 747.89,
+    "area_baja_cabecera_ha": 632.58,
+    "area_sin_cabecera_ha": 139.92,
+    "area_media_rejilla_ha": 6639.29,
+    "regla_anterior_area_alta_cabecera_ha": 129.26,
+    "rebaje_derivados_max_m": 1.994
+   },
+   {
+    "umbral_km2": 2.0,
+    "exclusion_relleno_m": "sin exclusión",
+    "celdas_derivadas_usadas": 12034,
+    "hand_mediana_cabecera_m": 6.2,
+    "hand_parque_bolivar_m": 3.32,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 742.3,
+    "area_baja_cabecera_ha": 637.72,
+    "area_sin_cabecera_ha": 140.38,
+    "area_media_rejilla_ha": 6408.82,
+    "regla_anterior_area_alta_cabecera_ha": 126.58,
+    "rebaje_derivados_max_m": 16.067
+   },
+   {
+    "umbral_km2": 5.0,
+    "exclusion_relleno_m": 0.5,
+    "celdas_derivadas_usadas": 3860,
+    "hand_mediana_cabecera_m": 8.99,
+    "hand_parque_bolivar_m": 10.46,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 402.04,
+    "area_baja_cabecera_ha": 831.99,
+    "area_sin_cabecera_ha": 286.36,
+    "area_media_rejilla_ha": 6067.19,
+    "regla_anterior_area_alta_cabecera_ha": 49.53,
+    "rebaje_derivados_max_m": 0.496
+   },
+   {
+    "umbral_km2": 5.0,
+    "exclusion_relleno_m": 2.0,
+    "celdas_derivadas_usadas": 5203,
+    "hand_mediana_cabecera_m": 9.0,
+    "hand_parque_bolivar_m": 10.46,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 402.04,
+    "area_baja_cabecera_ha": 831.0,
+    "area_sin_cabecera_ha": 287.35,
+    "area_media_rejilla_ha": 5996.88,
+    "regla_anterior_area_alta_cabecera_ha": 49.53,
+    "rebaje_derivados_max_m": 1.989
+   },
+   {
+    "umbral_km2": 5.0,
+    "exclusion_relleno_m": "sin exclusión",
+    "celdas_derivadas_usadas": 5896,
+    "hand_mediana_cabecera_m": 9.0,
+    "hand_parque_bolivar_m": 10.46,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 402.04,
+    "area_baja_cabecera_ha": 831.0,
+    "area_sin_cabecera_ha": 287.35,
+    "area_media_rejilla_ha": 5756.37,
+    "regla_anterior_area_alta_cabecera_ha": 49.53,
+    "rebaje_derivados_max_m": 12.097
+   },
+   {
+    "umbral_km2": 10.0,
+    "exclusion_relleno_m": 0.5,
+    "celdas_derivadas_usadas": 1961,
+    "hand_mediana_cabecera_m": 9.0,
+    "hand_parque_bolivar_m": 10.46,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 401.97,
+    "area_baja_cabecera_ha": 822.56,
+    "area_sin_cabecera_ha": 295.86,
+    "area_media_rejilla_ha": 5596.83,
+    "regla_anterior_area_alta_cabecera_ha": 49.53,
+    "rebaje_derivados_max_m": 0.496
+   },
+   {
+    "umbral_km2": 10.0,
+    "exclusion_relleno_m": 2.0,
+    "celdas_derivadas_usadas": 2690,
+    "hand_mediana_cabecera_m": 9.0,
+    "hand_parque_bolivar_m": 10.46,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 401.97,
+    "area_baja_cabecera_ha": 821.95,
+    "area_sin_cabecera_ha": 296.48,
+    "area_media_rejilla_ha": 5544.39,
+    "regla_anterior_area_alta_cabecera_ha": 49.53,
+    "rebaje_derivados_max_m": 1.989
+   },
+   {
+    "umbral_km2": 10.0,
+    "exclusion_relleno_m": "sin exclusión",
+    "celdas_derivadas_usadas": 3088,
+    "hand_mediana_cabecera_m": 9.0,
+    "hand_parque_bolivar_m": 10.46,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 401.97,
+    "area_baja_cabecera_ha": 820.57,
+    "area_sin_cabecera_ha": 297.86,
+    "area_media_rejilla_ha": 5282.18,
+    "regla_anterior_area_alta_cabecera_ha": 49.53,
+    "rebaje_derivados_max_m": 9.479
+   },
+   {
+    "umbral_km2": "sin red derivada (solo ríos OSM)",
+    "exclusion_relleno_m": 0.5,
+    "celdas_derivadas_usadas": 0,
+    "hand_mediana_cabecera_m": 9.0,
+    "hand_parque_bolivar_m": 10.46,
+    "area_alta_cabecera_ha": 3.6,
+    "area_media_cabecera_ha": 401.97,
+    "area_baja_cabecera_ha": 820.72,
+    "area_sin_cabecera_ha": 297.7,
+    "area_media_rejilla_ha": 4790.12,
+    "regla_anterior_area_alta_cabecera_ha": 49.53,
+    "rebaje_derivados_max_m": null
+   }
+  ]
+ },
+ "validacion": {
+  "nota": "Validación parcial. El IDEAM y GSW son independientes del DEM, pero ninguno es un inventario completo de inundaciones de Cartago. Se separan las celdas a más de 60 m del cauce mayor quemado, donde el HAND no es ~0 por construcción.",
+  "ideam_creciente_subita_tr50": {
+   "fuente": "Amenaza Creciente Subita TR 50 Años 8 cabeceras municipales 2K — IDEAM, servicio Amenaza_Ambiental (https://visualizador.ideam.gov.co/gisserver/rest/services/Amenaza_Ambiental/MapServer). El servicio no declara licencia (copyrightText y descripciones vacíos); la sección de datos abiertos del IDEAM solo da la definición genérica de dato abierto. Las capas de áreas afectadas por La Niña 1988, 2000, 2011 y 2012 también las publica el IDEAM en datos.gov.co con licencia CC BY-SA 4.0 (conjuntos khg6-9h39, 5p6w-58v3, 6eu7-pzc5 y nufr-59j5, con la advertencia de que no han sido validadas por el IDEAM); para la amenaza por creciente súbita TR 50 no se encontró conjunto en datos.gov.co. Aquí se publican solo estadísticas derivadas, con atribución al IDEAM; no se copian sus polígonos",
+   "municipios": [
+    "Cartago"
+   ],
+   "corrientes": [
+    "Río La Vieja"
+   ],
+   "por_clase_ideam": [
+    {
+     "amenaza_ideam": "ALTA",
+     "celdas": 1719,
+     "area_ha": 131.79,
+     "area_ha_segun_atributo": 131.23,
+     "en_nuestras_clases": {
+      "clase_3_pct": 39.1,
+      "clase_2_pct": 34.7,
+      "clase_1_pct": 22.5,
+      "clase_0_pct": 3.7
+     },
+     "hand_rio_mayor_mediana_m": 4.43,
+     "hand_mediana_m": 3.91,
+     "pct_lejos_del_cauce": 41.2
+    },
+    {
+     "amenaza_ideam": "MEDIA",
+     "celdas": 1919,
+     "area_ha": 147.13,
+     "area_ha_segun_atributo": 146.52,
+     "en_nuestras_clases": {
+      "clase_3_pct": 13.7,
+      "clase_2_pct": 48.6,
+      "clase_1_pct": 32.1,
+      "clase_0_pct": 5.6
+     },
+     "hand_rio_mayor_mediana_m": 6.18,
+     "hand_mediana_m": 5.35,
+     "pct_lejos_del_cauce": 74.7
+    },
+    {
+     "amenaza_ideam": "BAJA",
+     "celdas": 2062,
+     "area_ha": 158.09,
+     "area_ha_segun_atributo": 158.84,
+     "en_nuestras_clases": {
+      "clase_3_pct": 9.4,
+      "clase_2_pct": 45.9,
+      "clase_1_pct": 33.9,
+      "clase_0_pct": 10.9
+     },
+     "hand_rio_mayor_mediana_m": 8.2,
+     "hand_mediana_m": 6.19,
+     "pct_lejos_del_cauce": 84.4
+    }
+   ],
+   "recall_alta_ideam_en_clase_3_pct": 39.1,
+   "recall_cualquier_amenaza_ideam_en_clases_2_o_3_pct": 63.2,
+   "pct_area_ideam_con_hand_rio_mayor_le_corte_y_1_5km": {
+    "ALTA": {
+     "hand_rio_mayor_le_2m": 33.4,
+     "hand_rio_mayor_le_3m": 39.1,
+     "hand_rio_mayor_le_4m": 46.2,
+     "hand_rio_mayor_le_5m": 55.0,
+     "hand_rio_mayor_le_6m": 60.8,
+     "hand_rio_mayor_le_8m": 65.9,
+     "hand_rio_mayor_le_10m": 67.6
+    },
+    "MEDIA": {
+     "hand_rio_mayor_le_2m": 9.5,
+     "hand_rio_mayor_le_3m": 13.7,
+     "hand_rio_mayor_le_4m": 26.8,
+     "hand_rio_mayor_le_5m": 39.7,
+     "hand_rio_mayor_le_6m": 49.0,
+     "hand_rio_mayor_le_8m": 59.6,
+     "hand_rio_mayor_le_10m": 62.7
+    }
+   },
+   "cabecera_alta_ideam": {
+    "area_ha": 26.6,
+    "en_nuestras_clases": {
+     "clase_3_pct": 7.5,
+     "clase_2_pct": 83.9,
+     "clase_1_pct": 6.9,
+     "clase_0_pct": 1.7
+    },
+    "en_clases_baja_o_0_ha": 2.3
+   },
+   "por_poligono_alta": [
+    {
+     "objectid_ideam": 5,
+     "area_ha": 15.87,
+     "centroide_lat_lon": [
+      4.725,
+      -75.917
+     ],
+     "distancia_al_eje_la_vieja_m": 2737,
+     "zona": "fuera de las zonas",
+     "distancia_al_arroyo_o_canal_osm_m": 1074,
+     "area_drenada_max_dsm_km2": 0.83,
+     "celdas_con_red_de_drenaje": 0,
+     "celdas": 207,
+     "tipo": "cauce menor",
+     "en_nuestras_clases": {
+      "clase_3_pct": 0.0,
+      "clase_2_pct": 1.4,
+      "clase_1_pct": 87.9,
+      "clase_0_pct": 10.6
+     },
+     "en_clases_baja_o_0_ha": 15.64,
+     "hand_mediana_m": 11.09,
+     "hand_rio_mayor_mediana_m": 17.46,
+     "pct_en_cabecera": 0.0
+    },
+    {
+     "objectid_ideam": 11,
+     "area_ha": 19.17,
+     "centroide_lat_lon": [
+      4.701,
+      -75.925
+     ],
+     "distancia_al_eje_la_vieja_m": 5387,
+     "zona": "Zaragoza (corregimiento)",
+     "distancia_al_arroyo_o_canal_osm_m": 455,
+     "area_drenada_max_dsm_km2": 13.57,
+     "celdas_con_red_de_drenaje": 9,
+     "celdas": 250,
+     "tipo": "cauce menor",
+     "en_nuestras_clases": {
+      "clase_3_pct": 0.0,
+      "clase_2_pct": 20.8,
+      "clase_1_pct": 70.4,
+      "clase_0_pct": 8.8
+     },
+     "en_clases_baja_o_0_ha": 15.18,
+     "hand_mediana_m": 10.98,
+     "hand_rio_mayor_mediana_m": 19.83,
+     "pct_en_cabecera": 0.0
+    },
+    {
+     "objectid_ideam": 29,
+     "area_ha": 94.91,
+     "centroide_lat_lon": [
+      4.761,
+      -75.91
+     ],
+     "distancia_al_eje_la_vieja_m": 0,
+     "zona": "fuera de las zonas",
+     "distancia_al_arroyo_o_canal_osm_m": 0,
+     "area_drenada_max_dsm_km2": 317.62,
+     "celdas_con_red_de_drenaje": 915,
+     "celdas": 1238,
+     "tipo": "corredor del río La Vieja",
+     "en_nuestras_clases": {
+      "clase_3_pct": 54.4,
+      "clase_2_pct": 43.7,
+      "clase_1_pct": 1.9,
+      "clase_0_pct": 0.0
+     },
+     "en_clases_baja_o_0_ha": 1.84,
+     "hand_mediana_m": 2.21,
+     "hand_rio_mayor_mediana_m": 2.4,
+     "pct_en_cabecera": 27.2
+    },
+    {
+     "objectid_ideam": 30,
+     "area_ha": 1.84,
+     "centroide_lat_lon": [
+      4.729,
+      -75.914
+     ],
+     "distancia_al_eje_la_vieja_m": 2525,
+     "zona": "fuera de las zonas",
+     "distancia_al_arroyo_o_canal_osm_m": 787,
+     "area_drenada_max_dsm_km2": 0.06,
+     "celdas_con_red_de_drenaje": 0,
+     "celdas": 24,
+     "tipo": "cauce menor",
+     "en_nuestras_clases": {
+      "clase_3_pct": 0.0,
+      "clase_2_pct": 0.0,
+      "clase_1_pct": 16.7,
+      "clase_0_pct": 83.3
+     },
+     "en_clases_baja_o_0_ha": 1.84,
+     "hand_mediana_m": 17.07,
+     "hand_rio_mayor_mediana_m": 23.44,
+     "pct_en_cabecera": 41.7
+    }
+   ],
+   "corredor_la_vieja_frente_a_cauces_menores": {
+    "corredor del río La Vieja": {
+     "area_ha": 94.91,
+     "en_nuestras_clases": {
+      "clase_3_pct": 54.4,
+      "clase_2_pct": 43.7,
+      "clase_1_pct": 1.9,
+      "clase_0_pct": 0.0
+     },
+     "en_clases_baja_o_0_ha": 1.84,
+     "en_clases_baja_o_0_distancia_mediana_al_cauce_mayor_m": 118,
+     "en_clases_baja_o_0_hand_mediana_m": 7.56,
+     "cabecera": {
+      "clase_3_pct": 7.7,
+      "clase_2_pct": 86.4,
+      "clase_1_pct": 5.9,
+      "clase_0_pct": 0.0
+     }
+    },
+    "cauce menor": {
+     "area_ha": 36.88,
+     "en_nuestras_clases": {
+      "clase_3_pct": 0.0,
+      "clase_2_pct": 11.4,
+      "clase_1_pct": 75.3,
+      "clase_0_pct": 13.3
+     },
+     "en_clases_baja_o_0_ha": 32.66,
+     "en_clases_baja_o_0_distancia_mediana_al_cauce_mayor_m": 3403,
+     "en_clases_baja_o_0_hand_mediana_m": 11.51,
+     "cabecera": {
+      "clase_3_pct": 0.0,
+      "clase_2_pct": 0.0,
+      "clase_1_pct": 40.0,
+      "clase_0_pct": 60.0
+     }
+    }
+   },
+   "por_zona": [
+    {
+     "nombre": "Comuna 1",
+     "ideam_alta_ha": 15.79,
+     "ideam_media_ha": 10.35,
+     "ideam_baja_ha": 15.72,
+     "ideam_alta_en_nuestra_clase_3_ha": 1.38,
+     "ideam_alta_en_nuestra_clase_2_ha": 12.96,
+     "ideam_alta_en_nuestra_clase_1_ha": 1.46,
+     "ideam_alta_en_nuestra_clase_0_ha": 0.0,
+     "ideam_alta_en_clases_baja_o_0_pct": 9.2,
+     "nuestra_clase_3_ha": 1.38,
+     "nuestra_clase_2_ha": 17.56,
+     "nuestra_clase_2_fuera_de_mancha_ideam_ha": 0.31
+    },
+    {
+     "nombre": "Comuna 2",
+     "ideam_alta_ha": 0.0,
+     "ideam_media_ha": 0.0,
+     "ideam_baja_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_3_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_2_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_1_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_0_ha": 0.0,
+     "ideam_alta_en_clases_baja_o_0_pct": null,
+     "nuestra_clase_3_ha": 0.0,
+     "nuestra_clase_2_ha": 29.06,
+     "nuestra_clase_2_fuera_de_mancha_ideam_ha": 29.06
+    },
+    {
+     "nombre": "Comuna 3",
+     "ideam_alta_ha": 0.84,
+     "ideam_media_ha": 1.07,
+     "ideam_baja_ha": 1.92,
+     "ideam_alta_en_nuestra_clase_3_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_2_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_1_ha": 0.31,
+     "ideam_alta_en_nuestra_clase_0_ha": 0.54,
+     "ideam_alta_en_clases_baja_o_0_pct": 100.0,
+     "nuestra_clase_3_ha": 0.0,
+     "nuestra_clase_2_ha": 7.67,
+     "nuestra_clase_2_fuera_de_mancha_ideam_ha": 7.67
+    },
+    {
+     "nombre": "Comuna 4",
+     "ideam_alta_ha": 0.0,
+     "ideam_media_ha": 0.0,
+     "ideam_baja_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_3_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_2_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_1_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_0_ha": 0.0,
+     "ideam_alta_en_clases_baja_o_0_pct": null,
+     "nuestra_clase_3_ha": 0.0,
+     "nuestra_clase_2_ha": 68.7,
+     "nuestra_clase_2_fuera_de_mancha_ideam_ha": 68.7
+    },
+    {
+     "nombre": "Comuna 5",
+     "ideam_alta_ha": 2.68,
+     "ideam_media_ha": 3.83,
+     "ideam_baja_ha": 9.81,
+     "ideam_alta_en_nuestra_clase_3_ha": 0.08,
+     "ideam_alta_en_nuestra_clase_2_ha": 2.61,
+     "ideam_alta_en_nuestra_clase_1_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_0_ha": 0.0,
+     "ideam_alta_en_clases_baja_o_0_pct": 0.0,
+     "nuestra_clase_3_ha": 0.15,
+     "nuestra_clase_2_ha": 15.03,
+     "nuestra_clase_2_fuera_de_mancha_ideam_ha": 4.98
+    },
+    {
+     "nombre": "Comuna 6",
+     "ideam_alta_ha": 7.28,
+     "ideam_media_ha": 36.8,
+     "ideam_baja_ha": 39.48,
+     "ideam_alta_en_nuestra_clase_3_ha": 0.54,
+     "ideam_alta_en_nuestra_clase_2_ha": 6.67,
+     "ideam_alta_en_nuestra_clase_1_ha": 0.08,
+     "ideam_alta_en_nuestra_clase_0_ha": 0.0,
+     "ideam_alta_en_clases_baja_o_0_pct": 1.1,
+     "nuestra_clase_3_ha": 1.84,
+     "nuestra_clase_2_ha": 116.3,
+     "nuestra_clase_2_fuera_de_mancha_ideam_ha": 44.08
+    },
+    {
+     "nombre": "Comuna 7",
+     "ideam_alta_ha": 0.0,
+     "ideam_media_ha": 0.0,
+     "ideam_baja_ha": 1.23,
+     "ideam_alta_en_nuestra_clase_3_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_2_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_1_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_0_ha": 0.0,
+     "ideam_alta_en_clases_baja_o_0_pct": null,
+     "nuestra_clase_3_ha": 0.23,
+     "nuestra_clase_2_ha": 147.58,
+     "nuestra_clase_2_fuera_de_mancha_ideam_ha": 147.35
+    },
+    {
+     "nombre": "Zaragoza (corregimiento)",
+     "ideam_alta_ha": 12.65,
+     "ideam_media_ha": 15.18,
+     "ideam_baja_ha": 9.89,
+     "ideam_alta_en_nuestra_clase_3_ha": 0.0,
+     "ideam_alta_en_nuestra_clase_2_ha": 3.99,
+     "ideam_alta_en_nuestra_clase_1_ha": 7.05,
+     "ideam_alta_en_nuestra_clase_0_ha": 1.61,
+     "ideam_alta_en_clases_baja_o_0_pct": 68.5,
+     "nuestra_clase_3_ha": 0.0,
+     "nuestra_clase_2_ha": 25.76,
+     "nuestra_clase_2_fuera_de_mancha_ideam_ha": 13.57
+    }
+   ],
+   "clase_3_cabecera_dentro_de_mancha_ideam_pct": 97.9,
+   "advertencia": "El IDEAM solo zonificó el corredor del río La Vieja junto a la cabecera; fuera de sus polígonos no se sabe si hay amenaza o si no se estudió, así que solo se calcula la cobertura (recall), no la precisión. Creciente súbita TR 50 años: no incluye el desbordamiento lento del Cauca."
+  },
+  "ideam_areas_afectadas_nina": {
+   "fuente": "IDEAM, servicio Amenaza_Ambiental (https://visualizador.ideam.gov.co/gisserver/rest/services/Amenaza_Ambiental/MapServer). El servicio no declara licencia (copyrightText y descripciones vacíos); la sección de datos abiertos del IDEAM solo da la definición genérica de dato abierto. Las capas de áreas afectadas por La Niña 1988, 2000, 2011 y 2012 también las publica el IDEAM en datos.gov.co con licencia CC BY-SA 4.0 (conjuntos khg6-9h39, 5p6w-58v3, 6eu7-pzc5 y nufr-59j5, con la advertencia de que no han sido validadas por el IDEAM); para la amenaza por creciente súbita TR 50 no se encontró conjunto en datos.gov.co. Aquí se publican solo estadísticas derivadas, con atribución al IDEAM; no se copian sus polígonos",
+   "eventos": [
+    {
+     "capa": 6,
+     "nombre": "Areas Afectadas Inundacion Niña 1988",
+     "periodo": "1988",
+     "poligonos": 17,
+     "generalizacion_grados": null,
+     "area_en_rejilla_ha": 1442.9,
+     "area_lejos_del_cauce_ha": 1198.18,
+     "en_nuestras_clases": {
+      "clase_3_pct": 18.2,
+      "clase_2_pct": 66.9,
+      "clase_1_pct": 13.8,
+      "clase_0_pct": 1.1
+     },
+     "en_nuestras_clases_lejos_del_cauce": {
+      "clase_3_pct": 4.2,
+      "clase_2_pct": 77.9,
+      "clase_1_pct": 16.6,
+      "clase_0_pct": 1.4
+     }
+    },
+    {
+     "capa": 7,
+     "nombre": "Areas Afectadas Inundacion Niña 2000",
+     "periodo": "2000",
+     "poligonos": 9,
+     "generalizacion_grados": null,
+     "area_en_rejilla_ha": 933.35,
+     "area_lejos_del_cauce_ha": 670.61,
+     "en_nuestras_clases": {
+      "clase_3_pct": 42.7,
+      "clase_2_pct": 43.9,
+      "clase_1_pct": 11.6,
+      "clase_0_pct": 1.7
+     },
+     "en_nuestras_clases_lejos_del_cauce": {
+      "clase_3_pct": 26.4,
+      "clase_2_pct": 55.0,
+      "clase_1_pct": 16.2,
+      "clase_0_pct": 2.4
+     }
+    },
+    {
+     "capa": 8,
+     "nombre": "Areas Afectadas Inundacion Niña 2011",
+     "periodo": "2011",
+     "poligonos": 5,
+     "generalizacion_grados": null,
+     "area_en_rejilla_ha": 1984.17,
+     "area_lejos_del_cauce_ha": 1683.03,
+     "en_nuestras_clases": {
+      "clase_3_pct": 33.2,
+      "clase_2_pct": 44.8,
+      "clase_1_pct": 17.2,
+      "clase_0_pct": 4.8
+     },
+     "en_nuestras_clases_lejos_del_cauce": {
+      "clase_3_pct": 24.7,
+      "clase_2_pct": 49.4,
+      "clase_1_pct": 20.2,
+      "clase_0_pct": 5.7
+     }
+    },
+    {
+     "capa": 9,
+     "nombre": "Areas Afectadas Inundacion Niña 2012",
+     "periodo": "2012",
+     "poligonos": 1,
+     "generalizacion_grados": null,
+     "area_en_rejilla_ha": 262.89,
+     "area_lejos_del_cauce_ha": 18.17,
+     "en_nuestras_clases": {
+      "clase_3_pct": 81.2,
+      "clase_2_pct": 17.9,
+      "clase_1_pct": 0.4,
+      "clase_0_pct": 0.5
+     },
+     "en_nuestras_clases_lejos_del_cauce": {
+      "clase_3_pct": 8.0,
+      "clase_2_pct": 78.9,
+      "clase_1_pct": 5.5,
+      "clase_0_pct": 7.6
+     }
+    },
+    {
+     "capa": 22,
+     "nombre": "Areas afectadas inundacion Nina 2011 V2",
+     "periodo": "2011",
+     "poligonos": 5,
+     "generalizacion_grados": null,
+     "area_en_rejilla_ha": 1984.17,
+     "area_lejos_del_cauce_ha": 1683.03,
+     "en_nuestras_clases": {
+      "clase_3_pct": 33.2,
+      "clase_2_pct": 44.8,
+      "clase_1_pct": 17.2,
+      "clase_0_pct": 4.8
+     },
+     "en_nuestras_clases_lejos_del_cauce": {
+      "clase_3_pct": 24.7,
+      "clase_2_pct": 49.4,
+      "clase_1_pct": 20.2,
+      "clase_0_pct": 5.7
+     }
+    },
+    {
+     "capa": 23,
+     "nombre": "Areas afectadas por inundacion Nina 2016",
+     "periodo": "2016",
+     "poligonos": 2,
+     "generalizacion_grados": null,
+     "area_en_rejilla_ha": 47.46,
+     "area_lejos_del_cauce_ha": 0.0,
+     "en_nuestras_clases": {
+      "clase_3_pct": 87.1,
+      "clase_2_pct": 12.9,
+      "clase_1_pct": 0.0,
+      "clase_0_pct": 0.0
+     },
+     "en_nuestras_clases_lejos_del_cauce": null
+    },
+    {
+     "capa": 24,
+     "nombre": "Areas afectadas por inundacion Nina 2020 - 2022",
+     "periodo": "2020–2022",
+     "poligonos": 4,
+     "generalizacion_grados": 5e-05,
+     "area_en_rejilla_ha": 319.32,
+     "area_lejos_del_cauce_ha": 71.3,
+     "en_nuestras_clases": {
+      "clase_3_pct": 80.3,
+      "clase_2_pct": 19.7,
+      "clase_1_pct": 0.0,
+      "clase_0_pct": 0.0
+     },
+     "en_nuestras_clases_lejos_del_cauce": {
+      "clase_3_pct": 84.4,
+      "clase_2_pct": 15.6,
+      "clase_1_pct": 0.0,
+      "clase_0_pct": 0.0
+     }
+    },
+    {
+     "capa": 25,
+     "nombre": "Areas afectadas por Inundacion niña 1988 V2",
+     "periodo": "1988",
+     "poligonos": 0,
+     "generalizacion_grados": null,
+     "area_en_rejilla_ha": 0.0,
+     "area_lejos_del_cauce_ha": 0.0,
+     "en_nuestras_clases": null,
+     "en_nuestras_clases_lejos_del_cauce": null
+    },
+    {
+     "capa": 26,
+     "nombre": "Areas afectadas por  Inundacion niña 2000 V2",
+     "periodo": "2000",
+     "poligonos": 8,
+     "generalizacion_grados": null,
+     "area_en_rejilla_ha": 480.02,
+     "area_lejos_del_cauce_ha": 479.79,
+     "en_nuestras_clases": {
+      "clase_3_pct": 25.8,
+      "clase_2_pct": 54.7,
+      "clase_1_pct": 17.4,
+      "clase_0_pct": 2.1
+     },
+     "en_nuestras_clases_lejos_del_cauce": {
+      "clase_3_pct": 25.8,
+      "clase_2_pct": 54.6,
+      "clase_1_pct": 17.4,
+      "clase_0_pct": 2.1
+     }
+    },
+    {
+     "capa": 27,
+     "nombre": "Areas afectadas por Inundacion niña 2012 V2",
+     "periodo": "2012",
+     "poligonos": 1,
+     "generalizacion_grados": null,
+     "area_en_rejilla_ha": 262.89,
+     "area_lejos_del_cauce_ha": 18.17,
+     "en_nuestras_clases": {
+      "clase_3_pct": 81.2,
+      "clase_2_pct": 17.9,
+      "clase_1_pct": 0.4,
+      "clase_0_pct": 0.5
+     },
+     "en_nuestras_clases_lejos_del_cauce": {
+      "clase_3_pct": 8.0,
+      "clase_2_pct": 78.9,
+      "clase_1_pct": 5.5,
+      "clase_0_pct": 7.6
+     }
+    }
+   ],
+   "union_area_ha": 3419.17,
+   "union_area_lejos_del_cauce_ha": 3047.87,
+   "union_en_nuestras_clases": {
+    "clase_3_pct": 25.5,
+    "clase_2_pct": 55.1,
+    "clase_1_pct": 16.0,
+    "clase_0_pct": 3.3
+   },
+   "union_en_nuestras_clases_lejos_del_cauce": {
+    "clase_3_pct": 19.5,
+    "clase_2_pct": 58.8,
+    "clase_1_pct": 18.0,
+    "clase_0_pct": 3.7
+   },
+   "union_hand_rio_mayor_mediana_m": 3.97,
+   "tasa_por_clase": {
+    "clase_3": {
+     "pct_area_observada": 66.66,
+     "pct_area_observada_lejos_del_cauce": 61.0
+    },
+    "clase_2": {
+     "pct_area_observada": 31.08,
+     "pct_area_observada_lejos_del_cauce": 30.72
+    },
+    "clase_1": {
+     "pct_area_observada": 19.72,
+     "pct_area_observada_lejos_del_cauce": 19.72
+    },
+    "clase_0": {
+     "pct_area_observada": 1.64,
+     "pct_area_observada_lejos_del_cauce": 1.64
+    }
+   },
+   "advertencia": "Manchas de áreas afectadas cartografiadas por el IDEAM (escala no declarada en el servicio ni en datos.gov.co): bordes gruesos y eventos posiblemente incompletos; el IDEAM advierte en datos.gov.co que no las ha validado."
+  },
+  "gsw_extension_maxima": {
+   "descripcion": "Celdas en que Landsat detectó agua alguna vez (JRC GSW v1.5 'extent', 1984–2024).",
+   "celdas": 5642,
+   "celdas_lejos_del_cauce": 3243,
+   "en_nuestras_clases": {
+    "clase_3_pct": 47.2,
+    "clase_2_pct": 51.7,
+    "clase_1_pct": 0.3,
+    "clase_0_pct": 0.8
+   },
+   "en_nuestras_clases_lejos_del_cauce": {
+    "clase_3_pct": 19.0,
+    "clase_2_pct": 79.1,
+    "clase_1_pct": 0.6,
+    "clase_0_pct": 1.3
+   },
+   "tasa_por_clase": {
+    "clase_3": {
+     "pct_area_observada": 15.6,
+     "pct_area_observada_lejos_del_cauce": 4.84
+    },
+    "clase_2": {
+     "pct_area_observada": 3.68,
+     "pct_area_observada_lejos_del_cauce": 3.37
+    },
+    "clase_1": {
+     "pct_area_observada": 0.05,
+     "pct_area_observada_lejos_del_cauce": 0.05
+    },
+    "clase_0": {
+     "pct_area_observada": 0.05,
+     "pct_area_observada_lejos_del_cauce": 0.05
+    }
+   }
+  },
+  "coherencia_gsw_ocurrencia_50": {
+   "descripcion": "Coherencia interna, NO validación: casi todas las celdas con agua frecuente están sobre el cauce quemado, donde el HAND vale ~0 por construcción.",
+   "celdas": 435,
+   "a_30m_o_menos_del_cauce_mayor": 426,
+   "a_60m_o_menos_del_cauce_mayor": 431,
+   "pct_hand_rio_mayor_le_3": 93.1,
+   "lejos_del_cauce": 4,
+   "lejos_del_cauce_hand_rio_mayor_le_3": 0,
+   "ocurrencia_10_50_lejos_del_cauce": 66,
+   "ocurrencia_10_50_lejos_del_cauce_hand_rio_mayor_le_3": 8
+  },
+  "efecto_correcciones": {
+   "descripcion": "Reparto de la amenaza ALTA por creciente súbita del IDEAM entre nuestras clases antes y después de cada corrección. 'version_anterior' = DSM sin corregir y red menor solo del DEM (lo publicado antes); la versión publicada añade la corrección del dosel, la red de arroyos y canales de drenaje de OSM y la regla de piso de la franja de ribera.",
+   "variantes": {
+    "version_anterior_dsm_sin_correcciones": {
+     "rejilla": {
+      "area_clase_3_ha": 1272.91,
+      "area_clase_2_ha": 5623.73,
+      "area_clase_1_ha": 2973.8,
+      "area_clase_0_ha": 7192.91,
+      "ideam_alta_ha": 131.79,
+      "ideam_alta_en_clase_pct": {
+       "3": 35.3,
+       "2": 23.7,
+       "1": 35.8,
+       "0": 5.3
+      },
+      "ideam_alta_en_clases_baja_o_0_pct": 41.1,
+      "ideam_alta_en_clases_baja_o_0_ha": 54.13
+     },
+     "cabecera": {
+      "area_clase_3_ha": 0.92,
+      "area_clase_2_ha": 330.44,
+      "area_clase_1_ha": 771.81,
+      "area_clase_0_ha": 420.83,
+      "ideam_alta_ha": 26.6,
+      "ideam_alta_en_clase_pct": {
+       "3": 2.0,
+       "2": 51.0,
+       "1": 46.1,
+       "0": 0.9
+      },
+      "ideam_alta_en_clases_baja_o_0_pct": 47.0,
+      "ideam_alta_en_clases_baja_o_0_ha": 12.5
+     }
+    },
+    "solo_correccion_dosel": {
+     "rejilla": {
+      "area_clase_3_ha": 1380.47,
+      "area_clase_2_ha": 5777.3,
+      "area_clase_1_ha": 2832.81,
+      "area_clase_0_ha": 7072.78,
+      "ideam_alta_ha": 131.79,
+      "ideam_alta_en_clase_pct": {
+       "3": 39.1,
+       "2": 24.9,
+       "1": 30.8,
+       "0": 5.2
+      },
+      "ideam_alta_en_clases_baja_o_0_pct": 36.0,
+      "ideam_alta_en_clases_baja_o_0_ha": 47.38
+     },
+     "cabecera": {
+      "area_clase_3_ha": 3.6,
+      "area_clase_2_ha": 559.06,
+      "area_clase_1_ha": 711.93,
+      "area_clase_0_ha": 249.4,
+      "ideam_alta_ha": 26.6,
+      "ideam_alta_en_clase_pct": {
+       "3": 7.5,
+       "2": 65.1,
+       "1": 25.6,
+       "0": 1.7
+      },
+      "ideam_alta_en_clases_baja_o_0_pct": 27.4,
+      "ideam_alta_en_clases_baja_o_0_ha": 7.28
+     }
+    },
+    "solo_red_osm": {
+     "rejilla": {
+      "area_clase_3_ha": 1187.5,
+      "area_clase_2_ha": 5960.24,
+      "area_clase_1_ha": 2977.71,
+      "area_clase_0_ha": 6937.91,
+      "ideam_alta_ha": 131.79,
+      "ideam_alta_en_clase_pct": {
+       "3": 35.3,
+       "2": 25.3,
+       "1": 33.7,
+       "0": 5.7
+      },
+      "ideam_alta_en_clases_baja_o_0_pct": 39.4,
+      "ideam_alta_en_clases_baja_o_0_ha": 51.98
+     },
+     "cabecera": {
+      "area_clase_3_ha": 0.92,
+      "area_clase_2_ha": 454.56,
+      "area_clase_1_ha": 769.97,
+      "area_clase_0_ha": 298.55,
+      "ideam_alta_ha": 26.6,
+      "ideam_alta_en_clase_pct": {
+       "3": 2.0,
+       "2": 56.2,
+       "1": 41.2,
+       "0": 0.6
+      },
+      "ideam_alta_en_clases_baja_o_0_pct": 41.8,
+      "ideam_alta_en_clases_baja_o_0_ha": 11.12
+     }
+    },
+    "dosel_y_red_osm_sin_regla_de_piso": {
+     "rejilla": {
+      "area_clase_3_ha": 1309.94,
+      "area_clase_2_ha": 5867.85,
+      "area_clase_1_ha": 2916.3,
+      "area_clase_0_ha": 6969.27,
+      "ideam_alta_ha": 131.79,
+      "ideam_alta_en_clase_pct": {
+       "3": 39.1,
+       "2": 25.0,
+       "1": 30.7,
+       "0": 5.2
+      },
+      "ideam_alta_en_clases_baja_o_0_pct": 35.8,
+      "ideam_alta_en_clases_baja_o_0_ha": 47.23
+     },
+     "cabecera": {
+      "area_clase_3_ha": 3.6,
+      "area_clase_2_ha": 383.72,
+      "area_clase_1_ha": 850.24,
+      "area_clase_0_ha": 286.43,
+      "ideam_alta_ha": 26.6,
+      "ideam_alta_en_clase_pct": {
+       "3": 7.5,
+       "2": 65.7,
+       "1": 25.1,
+       "0": 1.7
+      },
+      "ideam_alta_en_clases_baja_o_0_pct": 26.8,
+      "ideam_alta_en_clases_baja_o_0_ha": 7.13
+     }
+    },
+    "publicada_dosel_red_osm_y_regla_de_piso": {
+     "rejilla": {
+      "area_clase_3_ha": 1309.94,
+      "area_clase_2_ha": 6067.19,
+      "area_clase_1_ha": 2774.62,
+      "area_clase_0_ha": 6911.61,
+      "ideam_alta_ha": 131.79,
+      "ideam_alta_en_clase_pct": {
+       "3": 39.1,
+       "2": 34.7,
+       "1": 22.5,
+       "0": 3.7
+      },
+      "ideam_alta_en_clases_baja_o_0_pct": 26.2,
+      "ideam_alta_en_clases_baja_o_0_ha": 34.5
+     },
+     "cabecera": {
+      "area_clase_3_ha": 3.6,
+      "area_clase_2_ha": 402.04,
+      "area_clase_1_ha": 831.99,
+      "area_clase_0_ha": 286.36,
+      "ideam_alta_ha": 26.6,
+      "ideam_alta_en_clase_pct": {
+       "3": 7.5,
+       "2": 83.9,
+       "1": 6.9,
+       "0": 1.7
+      },
+      "ideam_alta_en_clases_baja_o_0_pct": 8.6,
+      "ideam_alta_en_clases_baja_o_0_ha": 2.3
+     }
+    }
+   },
+   "regla_de_piso": {
+    "rejilla_ha": 199.33,
+    "cabecera_ha": 18.32,
+    "desde_baja_ha": 141.68,
+    "desde_hand_mayor_15_ha": 57.65
+   },
+   "franja_30_90m_cauce_mayor_por_dosel": [
+    {
+     "chm_desde_m": 0,
+     "chm_hasta_m": 2,
+     "celdas": 3974,
+     "hand_rio_mayor_mediana_m_antes": 4.71,
+     "hand_rio_mayor_mediana_m_despues": 4.54
+    },
+    {
+     "chm_desde_m": 2,
+     "chm_hasta_m": 6,
+     "celdas": 1311,
+     "hand_rio_mayor_mediana_m_antes": 7.37,
+     "hand_rio_mayor_mediana_m_despues": 5.61
+    },
+    {
+     "chm_desde_m": 6,
+     "chm_hasta_m": 10,
+     "celdas": 375,
+     "hand_rio_mayor_mediana_m_antes": 11.35,
+     "hand_rio_mayor_mediana_m_despues": 6.55
+    },
+    {
+     "chm_desde_m": 10,
+     "chm_hasta_m": 60,
+     "celdas": 182,
+     "hand_rio_mayor_mediana_m_antes": 17.92,
+     "hand_rio_mayor_mediana_m_despues": 8.46
+    }
+   ]
+  }
+ }
+}

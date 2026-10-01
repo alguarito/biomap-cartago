@@ -1,0 +1,75 @@
+{
+ "titulo": "Altitud de la superficie (DSM)",
+ "descripcion": "Altura sobre el nivel del mar de la superficie visible desde el satélite (incluye edificios y árboles), a unos 30 m de detalle.",
+ "unidad": "m s.n.m.",
+ "fuente": {
+  "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+  "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+  "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)",
+  "cita": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65"
+ },
+ "periodo": "Adquisiciones TanDEM-X 2011–2015 (Copernicus DEM GLO-30)",
+ "resolucion_original_m": 30,
+ "procesamiento": [
+  "Lectura por ventanas de las teselas COG N04W076 y N04W077 del Copernicus DEM GLO-30 (dominio −76,08/−75,76 E, 4,60/4,88 N).",
+  "Remuestreo bilineal a la rejilla común (0,00025°) con comun.reproyectar.",
+  "Alturas sobre el geoide EGM2008 (≈ metros sobre el nivel del mar), sin ajuste al datum vertical colombiano."
+ ],
+ "limitaciones": [
+  "El Copernicus DEM es un modelo de SUPERFICIE: incluye edificios y copas de árboles; esta capa NO está corregida (el HAND sí usa una corrección del dosel; ver su ficha).",
+  "Exactitud absoluta del producto global: del orden de pocos metros; en pendientes fuertes y bajo vegetación densa el error crece.",
+  "Las fechas de adquisición (2011–2015) no reflejan construcciones posteriores."
+ ],
+ "rango_visual": [
+  895,
+  1100
+ ],
+ "paleta": [
+  "#2c6e49",
+  "#86a873",
+  "#e9d8a6",
+  "#bb9457",
+  "#7f5539"
+ ],
+ "interpretacion": "Sin umbrales: es la base topográfica del HAND. Valores bajos al occidente y al norte (llanura del Cauca y confluencia con La Vieja); altos al oriente (piedemonte). Medianas por tercios de la rejilla, de norte a sur y de oeste a este: [906,2, 911,1, 981,6]; [905,1, 918,3, 1034,8]; [903,9, 928,3, 1089,6] m.",
+ "avisos_legales": [
+  "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved",
+  "The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30"
+ ],
+ "nombre": "altitud",
+ "escala": 0.1,
+ "desplazamiento": 0,
+ "codificacion": "RGBA 16 bits: v=R*256+G; v=0 sin dato; valor=(v-1)*escala+desplazamiento",
+ "rejilla": {
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res": 0.00025,
+  "ancho": 520,
+  "alto": 428,
+  "crs": "EPSG:4326"
+ },
+ "estadisticas": {
+  "extension": {
+   "min": 899.6524,
+   "p10": 903.6221,
+   "media": 960.7511,
+   "p50": 918.4667,
+   "p90": 1094.1996,
+   "max": 1338.735,
+   "celdas": 222560
+  },
+  "cabecera_urbana": {
+   "min": 903.1344,
+   "p10": 907.996,
+   "media": 918.0691,
+   "p50": 916.771,
+   "p90": 929.6726,
+   "max": 980.61,
+   "celdas": 19878
+  }
+ },
+ "cobertura_pct": 100.0,
+ "fecha_proceso": "2026-10-01"
+}

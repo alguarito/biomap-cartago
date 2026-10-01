@@ -1,0 +1,875 @@
+{
+ "titulo": "Población de Cartago: totales por fuente",
+ "unidad": "habitantes",
+ "descripcion": "Cifras de población de Cartago según el DANE (proyecciones, censo 2018 por manzana y por sección), HRSL (Meta/CIESIN) y WorldPop, y totales de la capa 'poblacion' por comuna (comunas de OpenStreetMap).",
+ "atribucion": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co · HRSL © Meta y CIESIN (CC BY 4.0) · © colaboradores de OpenStreetMap (ODbL) · © ESA WorldCover project 2021 (CC BY 4.0)",
+ "fuentes": [
+  {
+   "nombre": "DANE — MGN 2018 integrado con el CNPV 2018: manzana censal (personas en hogares particulares)",
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0",
+   "documentacion": "https://geoportal.dane.gov.co/descargas/mgn-integrado/MGN2018_Integrado_CNPV2018_InstructivoUso.pdf",
+   "geovisor": "https://geoportal.dane.gov.co/geovisores/sociedad/cnpv2018-detallado/",
+   "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)",
+   "cita": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co",
+   "fecha_consulta": "2026-09-30"
+  },
+  {
+   "nombre": "DANE — MGN 2018 integrado con el CNPV 2018: sección rural",
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaSeccionRuralInt_2018/MapServer/0",
+   "documentacion": "https://geoportal.dane.gov.co/descargas/mgn-integrado/MGN2018_Integrado_CNPV2018_InstructivoUso.pdf",
+   "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)",
+   "cita": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co",
+   "fecha_consulta": "2026-09-30"
+  },
+  {
+   "nombre": "DANE — Serie municipal de población por área 2018-2042 (PPED)",
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx",
+   "pagina": "https://www.dane.gov.co/index.php/estadisticas-por-tema/demografia-y-poblacion/proyecciones-de-poblacion",
+   "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)",
+   "cita": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co (PPED, serie municipal por área 2018-2042; Actualizado el 30 de Julio de 2025).",
+   "fecha_descarga": "2026-09-30"
+  },
+  {
+   "nombre": "DANE — Marco Geoestadístico Nacional 2018 (zona urbana y municipio)",
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapasMGN_2018/FeatureServer",
+   "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)",
+   "cita": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co",
+   "fecha_consulta": {
+    "zona_urbana": "2026-09-30",
+    "municipio": "2026-09-30"
+   }
+  },
+  {
+   "nombre": "DANE — Grilla estadística nivel 6 (1 km), CNPV 2018",
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/Grilla_DANE/Serv_Grilla_DANE/FeatureServer/1",
+   "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)",
+   "cita": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co (Geoportal, Grilla DANE)",
+   "fecha_consulta": "2026-09-30"
+  },
+  {
+   "nombre": "DANE — Ficha municipal CNPV 2018, Cartago (76147)",
+   "url": "https://sitios.dane.gov.co/cnpv/app/views/informacion/fichas/76147.pdf",
+   "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)",
+   "cita": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co",
+   "fecha_descarga": "2026-09-30"
+  },
+  {
+   "nombre": "DANE — Manzanas censales de municipios vecinos dentro de la ventana (se restan de la grilla)",
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0",
+   "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)",
+   "cita": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co",
+   "fecha_consulta": "2026-09-30"
+  },
+  {
+   "nombre": "HRSL v1.5 (Meta Data for Good y CIESIN), población general 2020",
+   "url": "https://dataforgood-fb-data.s3.amazonaws.com/hrsl-cogs/hrsl_general/hrsl_general-latest.vrt",
+   "registro": "https://registry.opendata.aws/dataforgood-fb-hrsl/",
+   "hdx": "https://data.humdata.org/dataset/colombia-high-resolution-population-density-maps-demographic-estimates",
+   "licencia": "CC BY 4.0",
+   "cita": "Meta and Center for International Earth Science Information Network - CIESIN - Columbia University. 2022. High Resolution Settlement Layer (HRSL). Source imagery for HRSL © 2016 Maxar. Consultado en https://registry.opendata.aws/dataforgood-fb-hrsl el 2026-10-01.",
+   "fecha_lectura_ventana": "2026-09-30"
+  },
+  {
+   "nombre": "ESA WorldCover 10 m 2021 v200, clase 50 «construido» (reparto dentro de cuadros rurales de 1 km y de manzanas ≥ 2 ha; ventana local de scripts/worldcover.py)",
+   "url": "https://doi.org/10.5281/zenodo.7254221",
+   "licencia": "CC BY 4.0",
+   "cita": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221",
+   "atribucion": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+   "fecha_lectura_ventana": "2026-09-30"
+  },
+  {
+   "nombre": "OpenStreetMap (límite municipal para la ventana de lectura; comunas, vías principales y puntos de control de las verificaciones)",
+   "url": "https://www.openstreetmap.org/copyright",
+   "licencia": "ODbL 1.0",
+   "cita": "© colaboradores de OpenStreetMap"
+  },
+  {
+   "nombre": "WorldPop — Global per country 2000-2020 (wpgppop), Colombia 2020",
+   "url": "https://hub.worldpop.org/geodata/summary?id=6349",
+   "licencia": "CC BY 4.0",
+   "cita": "WorldPop (www.worldpop.org - School of Geography and Environmental Science, University of Southampton; Department of Geography and Geosciences, University of Louisville; Departement de Geographie, Universite de Namur) and Center for International Earth Science Information Network (CIESIN), Columbia University (2018). Global High Resolution Population Denominators Project - Funded by The Bill and Melinda Gates Foundation (OPP1134076). https://dx.doi.org/10.5258/SOTON/WP00645"
+  },
+  {
+   "nombre": "Zona 'Zaragoza' de por_zona: ESA WorldCover 2021: área construida conectada al centro poblado (nodo OSM)",
+   "url": "https://doi.org/10.5281/zenodo.7254221",
+   "licencia": "ESA WorldCover: CC BY 4.0; nodo: OpenStreetMap (ODbL); validación: DANE MGN 2024 (CC BY 4.0)",
+   "cita": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221",
+   "atribucion": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium · © colaboradores de OpenStreetMap"
+  },
+  {
+   "nombre": "Definición de lugar especial de alojamiento (LEA), DANE",
+   "url": "https://conceptos.dane.gov.co/conceptos/conceptos/4720/ficha/",
+   "licencia": "Términos de uso del DANE: uso y transformación autorizados citando la fuente (https://www.dane.gov.co/index.php/servicios-al-ciudadano/tramites/transparencia-y-acceso-a-la-informacion-publica/terminos-y-condiciones)",
+   "cita": "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co"
+  }
+ ],
+ "totales": [
+  {
+   "fuente": "DANE CNPV 2018 por manzana (MGN integrado)",
+   "anio": 2018,
+   "ambito": "cabecera (personas en hogares particulares)",
+   "valor_hab": 114571,
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0"
+  },
+  {
+   "fuente": "DANE CNPV 2018 por manzana (MGN integrado)",
+   "anio": 2018,
+   "ambito": "centros poblados (manzanas)",
+   "valor_hab": 394,
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaManzanaInt_2018/MapServer/0"
+  },
+  {
+   "fuente": "DANE CNPV 2018 por sección rural (MGN integrado)",
+   "anio": 2018,
+   "ambito": "centros poblados y rural disperso (secciones rurales)",
+   "valor_hab": 2824,
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaSeccionRuralInt_2018/MapServer/0"
+  },
+  {
+   "fuente": "HRSL v1.5 (Meta/CIESIN)",
+   "anio": 2020,
+   "ambito": "municipio de Cartago (MGN 2018, completo)",
+   "valor_hab": 124047,
+   "url": "https://dataforgood-fb-data.s3.amazonaws.com/hrsl-cogs/hrsl_general/hrsl_general-latest.vrt",
+   "nota": "suma a resolución nativa 1\""
+  },
+  {
+   "fuente": "HRSL v1.5 (Meta/CIESIN)",
+   "anio": 2020,
+   "ambito": "cabecera (MGN 2018)",
+   "valor_hab": 90562,
+   "url": "https://dataforgood-fb-data.s3.amazonaws.com/hrsl-cogs/hrsl_general/hrsl_general-latest.vrt",
+   "nota": "celdas de la rejilla; a resolución nativa 90.780"
+  },
+  {
+   "fuente": "HRSL v1.5 (Meta/CIESIN)",
+   "anio": 2020,
+   "ambito": "resto del municipio (municipio − cabecera)",
+   "valor_hab": 33485,
+   "url": "https://dataforgood-fb-data.s3.amazonaws.com/hrsl-cogs/hrsl_general/hrsl_general-latest.vrt"
+  },
+  {
+   "fuente": "HRSL v1.5 (Meta/CIESIN)",
+   "anio": 2020,
+   "ambito": "rejilla de análisis completa (incluye otros municipios)",
+   "valor_hab": 118743,
+   "url": "https://dataforgood-fb-data.s3.amazonaws.com/hrsl-cogs/hrsl_general/hrsl_general-latest.vrt"
+  },
+  {
+   "fuente": "HRSL v1.5 (Meta/CIESIN)",
+   "anio": 2020,
+   "ambito": "parte del municipio fuera de la rejilla",
+   "valor_hab": 17993,
+   "url": "https://dataforgood-fb-data.s3.amazonaws.com/hrsl-cogs/hrsl_general/hrsl_general-latest.vrt"
+  },
+  {
+   "fuente": "WorldPop wpgppop (100 m, no restringido)",
+   "anio": 2020,
+   "ambito": "cabecera (MGN 2018)",
+   "valor_hab": 80575,
+   "url": "https://api.worldpop.org/v1/services/stats?dataset=wpgppop&year=2020",
+   "nota": "API de estadísticas por polígono (POST con el GeoJSON del ámbito)"
+  },
+  {
+   "fuente": "WorldPop wpgppop (100 m, no restringido)",
+   "anio": 2020,
+   "ambito": "municipio de Cartago (MGN 2018)",
+   "valor_hab": 154963,
+   "url": "https://api.worldpop.org/v1/services/stats?dataset=wpgppop&year=2020",
+   "nota": "API de estadísticas por polígono (POST con el GeoJSON del ámbito)"
+  },
+  {
+   "fuente": "WorldPop wpgppop (100 m, no restringido)",
+   "anio": 2020,
+   "ambito": "rejilla de análisis completa",
+   "valor_hab": 169946,
+   "url": "https://api.worldpop.org/v1/services/stats?dataset=wpgppop&year=2020",
+   "nota": "API de estadísticas por polígono (POST con el GeoJSON del ámbito)"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2018,
+   "ambito": "cabecera municipal",
+   "valor_hab": 131646,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2018,
+   "ambito": "centros poblados y rural disperso",
+   "valor_hab": 4087,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2018,
+   "ambito": "total municipal",
+   "valor_hab": 135733,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2020,
+   "ambito": "cabecera municipal",
+   "valor_hab": 133809,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2020,
+   "ambito": "centros poblados y rural disperso",
+   "valor_hab": 4672,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2020,
+   "ambito": "total municipal",
+   "valor_hab": 138481,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2025,
+   "ambito": "cabecera municipal",
+   "valor_hab": 139000,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2025,
+   "ambito": "centros poblados y rural disperso",
+   "valor_hab": 4613,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2025,
+   "ambito": "total municipal",
+   "valor_hab": 143613,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2026,
+   "ambito": "cabecera municipal",
+   "valor_hab": 139614,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2026,
+   "ambito": "centros poblados y rural disperso",
+   "valor_hab": 4592,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE PPED (proyección municipal por área)",
+   "anio": 2026,
+   "ambito": "total municipal",
+   "valor_hab": 144206,
+   "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx"
+  },
+  {
+   "fuente": "DANE CNPV 2018, ficha municipal (personas efectivamente censadas, sin ajuste de omisión)",
+   "anio": 2018,
+   "ambito": "cabecera, total censado",
+   "valor_hab": 115979,
+   "url": "https://sitios.dane.gov.co/cnpv/app/views/informacion/fichas/76147.pdf"
+  },
+  {
+   "fuente": "DANE CNPV 2018, ficha municipal (personas efectivamente censadas, sin ajuste de omisión)",
+   "anio": 2018,
+   "ambito": "cabecera, hogares particulares",
+   "valor_hab": 114571,
+   "url": "https://sitios.dane.gov.co/cnpv/app/views/informacion/fichas/76147.pdf"
+  },
+  {
+   "fuente": "DANE CNPV 2018, ficha municipal (personas efectivamente censadas, sin ajuste de omisión)",
+   "anio": 2018,
+   "ambito": "centros poblados y rural disperso",
+   "valor_hab": 2824,
+   "url": "https://sitios.dane.gov.co/cnpv/app/views/informacion/fichas/76147.pdf"
+  },
+  {
+   "fuente": "DANE CNPV 2018, ficha municipal (personas efectivamente censadas, sin ajuste de omisión)",
+   "anio": 2018,
+   "ambito": "total censado",
+   "valor_hab": 118803,
+   "url": "https://sitios.dane.gov.co/cnpv/app/views/informacion/fichas/76147.pdf"
+  },
+  {
+   "fuente": "DANE CNPV 2018, ficha municipal (personas efectivamente censadas, sin ajuste de omisión)",
+   "anio": 2018,
+   "ambito": "lugares especiales de alojamiento (LEA)",
+   "valor_hab": 1408,
+   "url": "https://sitios.dane.gov.co/cnpv/app/views/informacion/fichas/76147.pdf"
+  },
+  {
+   "fuente": "DANE Grilla estadística 1 km (CNPV 2018)",
+   "anio": 2018,
+   "ambito": "250 celdas de 1 km codificadas como Cartago (celdas suprimidas en 0)",
+   "valor_hab": 113709,
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/Grilla_DANE/Serv_Grilla_DANE/FeatureServer/1"
+  },
+  {
+   "fuente": "DANE Grilla estadística 1 km (CNPV 2018)",
+   "anio": 2018,
+   "ambito": "repartida con HRSL dentro del polígono municipal (MGN 2018), celdas suprimidas en 0",
+   "valor_hab": 116784,
+   "url": "https://geoportal.dane.gov.co/mparcgis/rest/services/Grilla_DANE/Serv_Grilla_DANE/FeatureServer/1"
+  },
+  {
+   "fuente": "Capa 'poblacion' (este producto)",
+   "anio": 2026,
+   "ambito": "celdas con dato dentro de la rejilla",
+   "valor_hab": 142509,
+   "url": null
+  }
+ ],
+ "metodo_publicado": "censo_2018_por_manzana_y_seccion_rural",
+ "dane_serie_cartago": {
+  "municipio": "Cartago (76147), Valle del Cauca",
+  "actualizado": "Actualizado el 30 de Julio de 2025",
+  "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/PPED-AreaMun-2018-2042_VP.xlsx",
+  "pagina": "https://www.dane.gov.co/index.php/estadisticas-por-tema/demografia-y-poblacion/proyecciones-de-poblacion",
+  "anios": {
+   "2018": {
+    "cabecera": 131646,
+    "resto": 4087,
+    "total": 135733
+   },
+   "2019": {
+    "cabecera": 132675,
+    "resto": 4373,
+    "total": 137048
+   },
+   "2020": {
+    "cabecera": 133809,
+    "resto": 4672,
+    "total": 138481
+   },
+   "2021": {
+    "cabecera": 135325,
+    "resto": 4680,
+    "total": 140005
+   },
+   "2022": {
+    "cabecera": 136409,
+    "resto": 4665,
+    "total": 141074
+   },
+   "2023": {
+    "cabecera": 137139,
+    "resto": 4647,
+    "total": 141786
+   },
+   "2024": {
+    "cabecera": 138161,
+    "resto": 4631,
+    "total": 142792
+   },
+   "2025": {
+    "cabecera": 139000,
+    "resto": 4613,
+    "total": 143613
+   },
+   "2026": {
+    "cabecera": 139614,
+    "resto": 4592,
+    "total": 144206
+   },
+   "2027": {
+    "cabecera": 140164,
+    "resto": 4565,
+    "total": 144729
+   },
+   "2028": {
+    "cabecera": 140659,
+    "resto": 4534,
+    "total": 145193
+   },
+   "2029": {
+    "cabecera": 141123,
+    "resto": 4475,
+    "total": 145598
+   },
+   "2030": {
+    "cabecera": 141537,
+    "resto": 4446,
+    "total": 145983
+   },
+   "2031": {
+    "cabecera": 141893,
+    "resto": 4390,
+    "total": 146283
+   },
+   "2032": {
+    "cabecera": 142196,
+    "resto": 4346,
+    "total": 146542
+   },
+   "2033": {
+    "cabecera": 142465,
+    "resto": 4292,
+    "total": 146757
+   },
+   "2034": {
+    "cabecera": 142652,
+    "resto": 4233,
+    "total": 146885
+   },
+   "2035": {
+    "cabecera": 142780,
+    "resto": 4189,
+    "total": 146969
+   },
+   "2036": {
+    "cabecera": 142870,
+    "resto": 4120,
+    "total": 146990
+   },
+   "2037": {
+    "cabecera": 142876,
+    "resto": 4047,
+    "total": 146923
+   },
+   "2038": {
+    "cabecera": 142820,
+    "resto": 3976,
+    "total": 146796
+   },
+   "2039": {
+    "cabecera": 142696,
+    "resto": 3912,
+    "total": 146608
+   },
+   "2040": {
+    "cabecera": 142500,
+    "resto": 3843,
+    "total": 146343
+   },
+   "2041": {
+    "cabecera": 142220,
+    "resto": 3778,
+    "total": 145998
+   },
+   "2042": {
+    "cabecera": 141859,
+    "resto": 3695,
+    "total": 145554
+   }
+  }
+ },
+ "anclaje": {
+  "anio": 2026,
+  "metodo": "censo_2018_por_manzana_y_seccion_rural",
+  "dane_cabecera": 139614,
+  "dane_resto": 4592,
+  "dane_total": 144206,
+  "base_cabecera_cnpv2018": 114571.0,
+  "base_resto_cnpv2018": 2824.0,
+  "factor_cabecera": 1.21858,
+  "factor_resto": 1.62606,
+  "factor_cabecera_omision_y_lea_2018": 1.14903,
+  "factor_cabecera_crecimiento_2018_2026": 1.06053,
+  "factor_resto_omision_2018": 1.44724,
+  "factor_resto_crecimiento_2018_2026": 1.12356,
+  "publicado_por_clase": {
+   "cabecera_manzanas_clase_1": 139614.0,
+   "resto_clases_2_y_3_dentro_de_la_rejilla": 2894.7
+  },
+  "publicado_en_celdas_de_la_cabecera_mgn": 139241.5,
+  "cabecera_clase_1_en_celdas_con_centro_fuera_de_la_cabecera_mgn": 461.1,
+  "publicado_resto_dentro_de_la_rejilla": 3266.7,
+  "publicado_total_rejilla": 142508.7,
+  "resto_fuera_de_la_rejilla_2026": 1697.3,
+  "poblacion_en_celdas_con_centro_fuera_del_municipio_2018": 0.3,
+  "auxiliares": {
+   "dos_clases_hrsl": {
+    "factor_cabecera": 1.54163,
+    "factor_resto": 0.13714
+   },
+   "grilla_1km_y_hrsl_version_anterior": {
+    "factor_cabecera": 1.24478,
+    "factor_resto": 0.99292
+   }
+  }
+ },
+ "validacion": {
+  "grilla_vs_manzanas_1km_urbano": {
+   "cuadros": 6,
+   "personas_grilla": 54778,
+   "personas_manzanas": 54693,
+   "pearson": 0.9996,
+   "indice_disimilitud": 0.0047,
+   "nota": "Cuadros de 1 km con ≥ 95 % de su área en la cabecera MGN. Las diferencias vienen de la anonimización (manzanas unidas dentro de su sección) y de la asignación de viviendas a cuadros."
+  },
+  "metodos_hrsl_vs_censo_por_manzana": {
+   "hrsl_sin_escalar_o_dos_clases": {
+    "250_m": {
+     "bloques": 324,
+     "pearson": 0.681,
+     "indice_disimilitud": 0.288,
+     "bloques_con_ref_100_o_mas": 179,
+     "error_relativo_mediano": 0.352,
+     "frac_bloques_error_mayor_50pct": 0.302
+    },
+    "500_m": {
+     "bloques": 108,
+     "pearson": 0.832,
+     "indice_disimilitud": 0.24,
+     "bloques_con_ref_100_o_mas": 71,
+     "error_relativo_mediano": 0.347,
+     "frac_bloques_error_mayor_50pct": 0.338
+    },
+    "1_km": {
+     "bloques": 37,
+     "pearson": 0.933,
+     "indice_disimilitud": 0.175,
+     "bloques_con_ref_100_o_mas": 27,
+     "error_relativo_mediano": 0.255,
+     "frac_bloques_error_mayor_50pct": 0.333
+    }
+   },
+   "grilla_1km_y_hrsl_version_anterior": {
+    "250_m": {
+     "bloques": 319,
+     "pearson": 0.782,
+     "indice_disimilitud": 0.229,
+     "bloques_con_ref_100_o_mas": 179,
+     "error_relativo_mediano": 0.349,
+     "frac_bloques_error_mayor_50pct": 0.291
+    },
+    "500_m": {
+     "bloques": 106,
+     "pearson": 0.914,
+     "indice_disimilitud": 0.163,
+     "bloques_con_ref_100_o_mas": 71,
+     "error_relativo_mediano": 0.329,
+     "frac_bloques_error_mayor_50pct": 0.239
+    },
+    "1_km": {
+     "bloques": 36,
+     "pearson": 0.987,
+     "indice_disimilitud": 0.07,
+     "bloques_con_ref_100_o_mas": 27,
+     "error_relativo_mediano": 0.176,
+     "frac_bloques_error_mayor_50pct": 0.222
+    }
+   }
+  },
+  "sensibilidad_reparto_dentro_de_manzana": {
+   "celda_28_m": {
+    "indice_disimilitud": 0.0175
+   },
+   "250_m": {
+    "indice_disimilitud": 0.006
+   },
+   "500_m": {
+    "indice_disimilitud": 0.002
+   },
+   "1_km": {
+    "indice_disimilitud": 0.001
+   },
+   "nota": "Publicado (en manzanas ≥ 2 ha: HRSL si cubre ≥ 50 % de lo construido según WorldCover 2021, si no la unión de ambos) frente a reparto uniforme en todas las manzanas."
+  },
+  "sensibilidad_regla_manzanas_grandes": {
+   "celda_28_m": {
+    "indice_disimilitud": 0.0084
+   },
+   "250_m": {
+    "indice_disimilitud": 0.002
+   },
+   "500_m": {
+    "indice_disimilitud": 0.001
+   },
+   "1_km": {
+    "indice_disimilitud": 0.001
+   },
+   "nota": "Publicado frente a la regla anterior (solo edificaciones HRSL 2016 en toda manzana ≥ 2 ha con alguna)."
+  },
+  "sensibilidad_imputacion_celdas_suprimidas": {
+   "indice_disimilitud_sin_imputar_vs_publicado": 0.1145,
+   "indice_disimilitud_maximo_vs_publicado": 0.0272,
+   "indice_disimilitud_razones_de_la_grilla_vs_publicado": 0.0153,
+   "nota": "Reparto rural disperso dentro de la rejilla: imputación central frente a suprimidas = 0, = 3 viviendas ocupadas y con razones de ocupación y personas por vivienda de la propia grilla."
+  },
+  "fuera_de_la_cabecera_desacuerdo_entre_senales": {
+   "publicado": "union",
+   "indice_disimilitud_entre_repartos": {
+    "hrsl_vs_worldcover": {
+     "celda_28_m": 0.581,
+     "250_m": 0.405,
+     "500_m": 0.275,
+     "1_km": 0.213,
+     "cuadro_grilla_dane_1km": 0.047,
+     "seccion_rural": 0.016
+    },
+    "hrsl_vs_union": {
+     "celda_28_m": 0.299,
+     "250_m": 0.209,
+     "500_m": 0.144,
+     "1_km": 0.115,
+     "cuadro_grilla_dane_1km": 0.024,
+     "seccion_rural": 0.009
+    },
+    "worldcover_vs_union": {
+     "celda_28_m": 0.287,
+     "250_m": 0.199,
+     "500_m": 0.134,
+     "1_km": 0.103,
+     "cuadro_grilla_dane_1km": 0.025,
+     "seccion_rural": 0.008
+    }
+   },
+   "diagnostico_con_worldcover_2021": {
+    "hrsl": {
+     "suma_hab": 3251.4,
+     "celdas_pobladas": 11292,
+     "max_hab_celda": 33.71,
+     "hab_a_15_m_o_menos_de_vias_principales_osm": 23.9,
+     "frac_poblacion_en_celdas_con_menos_de_10pct_construido": 0.647,
+     "celdas_con_50pct_o_mas_construido": 352,
+     "de_ellas_con_0_hab": 217
+    },
+    "worldcover": {
+     "suma_hab": 3287.2,
+     "celdas_pobladas": 9314,
+     "max_hab_celda": 26.65,
+     "hab_a_15_m_o_menos_de_vias_principales_osm": 119.1,
+     "frac_poblacion_en_celdas_con_menos_de_10pct_construido": 0.286,
+     "celdas_con_50pct_o_mas_construido": 352,
+     "de_ellas_con_0_hab": 65
+    },
+    "union": {
+     "suma_hab": 3266.7,
+     "celdas_pobladas": 10541,
+     "max_hab_celda": 20.65,
+     "hab_a_15_m_o_menos_de_vias_principales_osm": 65.4,
+     "frac_poblacion_en_celdas_con_menos_de_10pct_construido": 0.477,
+     "celdas_con_50pct_o_mas_construido": 352,
+     "de_ellas_con_0_hab": 65
+    }
+   },
+   "cuadro_1km_con_mas_poblacion_fuera_de_la_cabecera": {
+    "n6_cod": "A43F08M11",
+    "lat": 4.7405,
+    "lon": -75.9261,
+    "celdas_fuera_de_la_cabecera": 1030,
+    "hrsl": {
+     "suma_hab": 1294.9,
+     "celdas_pobladas": 77,
+     "max_hab_celda": 33.71,
+     "hab_en_celdas_construidas_50pct_sin_hrsl": 0.0,
+     "celdas_construidas_50pct_sin_hrsl": 97
+    },
+    "worldcover": {
+     "suma_hab": 1380.8,
+     "celdas_pobladas": 248,
+     "max_hab_celda": 11.93,
+     "hab_en_celdas_construidas_50pct_sin_hrsl": 826.7,
+     "celdas_construidas_50pct_sin_hrsl": 97
+    },
+    "union": {
+     "suma_hab": 1338.4,
+     "celdas_pobladas": 266,
+     "max_hab_celda": 18.85,
+     "hab_en_celdas_construidas_50pct_sin_hrsl": 436.7,
+     "celdas_construidas_50pct_sin_hrsl": 97
+    }
+   },
+   "nota": "Celdas con dato fuera de la cabecera MGN (capa completa: rural disperso, centros poblados y bordes de manzanas de la cabecera). Mismo total por cuadro y por sección en los tres repartos; solo cambia el reparto dentro de cada cuadro de 1 km. Índice de disimilitud = fracción de la población que habría que mover."
+  },
+  "prueba_analoga_senales_dentro_del_cuadro_en_la_cabecera": {
+   "cabecera": {
+    "personas_censo_2018": 114177,
+    "hrsl_2016": {
+     "celda_28_m": 0.466,
+     "250_m": 0.225,
+     "500_m": 0.159,
+     "1_km": 0.064
+    },
+    "worldcover_2021": {
+     "celda_28_m": 0.32,
+     "250_m": 0.164,
+     "500_m": 0.117,
+     "1_km": 0.045
+    },
+    "union": {
+     "celda_28_m": 0.368,
+     "250_m": 0.197,
+     "500_m": 0.141,
+     "1_km": 0.056
+    },
+    "uniforme": {
+     "celda_28_m": 0.476,
+     "250_m": 0.307,
+     "500_m": 0.237,
+     "1_km": 0.112
+    }
+   },
+   "cuadros_de_baja_densidad_menos_de_6000_hab_km2": {
+    "personas_censo_2018": 18808,
+    "hrsl_2016": {
+     "celda_28_m": 0.578,
+     "250_m": 0.327,
+     "500_m": 0.26,
+     "1_km": 0.157
+    },
+    "worldcover_2021": {
+     "celda_28_m": 0.465,
+     "250_m": 0.249,
+     "500_m": 0.163,
+     "1_km": 0.093
+    },
+    "union": {
+     "celda_28_m": 0.509,
+     "250_m": 0.307,
+     "500_m": 0.232,
+     "1_km": 0.138
+    },
+    "uniforme": {
+     "celda_28_m": 0.67,
+     "250_m": 0.518,
+     "500_m": 0.397,
+     "1_km": 0.285
+    }
+   },
+   "nota": "Análogo urbano del reparto rural: dentro de cada cuadro de 1 km se reparte el total censal de la parte de cabecera según cada señal y se compara con el censo por manzana (índice de disimilitud; menor es mejor). En la cabecera WorldCover también capta comercio, industria y vías, y en lo rural puede no ver viviendas dispersas bajo árboles: es una prueba indirecta, no una validación del reparto rural."
+  },
+  "por_comuna": {
+   "hrsl_sin_escalar": {
+    "indice_disimilitud": 0.107
+   },
+   "dos_clases": {
+    "indice_disimilitud": 0.108
+   },
+   "version_anterior": {
+    "indice_disimilitud": 0.066
+   }
+  }
+ },
+ "por_zona": [
+  {
+   "id": "c1",
+   "nombre": "Comuna 1",
+   "geometria": "OpenStreetMap",
+   "celdas": 1686,
+   "poblacion_hab": 22039,
+   "cnpv2018_hogares_particulares_hab": 18085,
+   "hrsl_2020_sin_escalar_hab": 8480,
+   "dos_clases_hab": 13070,
+   "version_anterior_hab": 16712,
+   "area_km2": 1.293,
+   "densidad_hab_km2": 17050
+  },
+  {
+   "id": "c2",
+   "nombre": "Comuna 2",
+   "geometria": "OpenStreetMap",
+   "celdas": 1277,
+   "poblacion_hab": 14237,
+   "cnpv2018_hogares_particulares_hab": 11683,
+   "hrsl_2020_sin_escalar_hab": 7228,
+   "dos_clases_hab": 11143,
+   "version_anterior_hab": 13011,
+   "area_km2": 0.979,
+   "densidad_hab_km2": 14542
+  },
+  {
+   "id": "c3",
+   "nombre": "Comuna 3",
+   "geometria": "OpenStreetMap",
+   "celdas": 1530,
+   "poblacion_hab": 14308,
+   "cnpv2018_hogares_particulares_hab": 11742,
+   "hrsl_2020_sin_escalar_hab": 7656,
+   "dos_clases_hab": 11709,
+   "version_anterior_hab": 13779,
+   "area_km2": 1.173,
+   "densidad_hab_km2": 12197
+  },
+  {
+   "id": "c4",
+   "nombre": "Comuna 4",
+   "geometria": "OpenStreetMap",
+   "celdas": 2788,
+   "poblacion_hab": 21944,
+   "cnpv2018_hogares_particulares_hab": 17965,
+   "hrsl_2020_sin_escalar_hab": 12008,
+   "dos_clases_hab": 18290,
+   "version_anterior_hab": 25212,
+   "area_km2": 2.138,
+   "densidad_hab_km2": 10266
+  },
+  {
+   "id": "c5",
+   "nombre": "Comuna 5",
+   "geometria": "OpenStreetMap",
+   "celdas": 997,
+   "poblacion_hab": 4897,
+   "cnpv2018_hogares_particulares_hab": 4019,
+   "hrsl_2020_sin_escalar_hab": 6177,
+   "dos_clases_hab": 9523,
+   "version_anterior_hab": 9300,
+   "area_km2": 0.764,
+   "densidad_hab_km2": 6407
+  },
+  {
+   "id": "c6",
+   "nombre": "Comuna 6",
+   "geometria": "OpenStreetMap",
+   "celdas": 3277,
+   "poblacion_hab": 26113,
+   "cnpv2018_hogares_particulares_hab": 21226,
+   "hrsl_2020_sin_escalar_hab": 13350,
+   "dos_clases_hab": 20203,
+   "version_anterior_hab": 23449,
+   "area_km2": 2.512,
+   "densidad_hab_km2": 10394
+  },
+  {
+   "id": "c7",
+   "nombre": "Comuna 7",
+   "geometria": "OpenStreetMap",
+   "celdas": 8321,
+   "poblacion_hab": 31763,
+   "cnpv2018_hogares_particulares_hab": 26061,
+   "hrsl_2020_sin_escalar_hab": 23538,
+   "dos_clases_hab": 35925,
+   "version_anterior_hab": 32467,
+   "area_km2": 6.379,
+   "densidad_hab_km2": 4979
+  },
+  {
+   "id": "zaragoza",
+   "nombre": "Zaragoza (corregimiento)",
+   "geometria": "ESA WorldCover 2021: área construida conectada al centro poblado (nodo OSM)",
+   "celdas": 940,
+   "poblacion_hab": 4252,
+   "cnpv2018_hogares_particulares_hab": 3484,
+   "hrsl_2020_sin_escalar_hab": 5872,
+   "dos_clases_hab": 8729,
+   "version_anterior_hab": 3336,
+   "area_km2": 0.721,
+   "densidad_hab_km2": 5899
+  }
+ ],
+ "nota_por_zona": "'poblacion_hab' es la capa publicada (2026). 'cnpv2018_hogares_particulares_hab' es el censo 2018 por manzana sin proyectar. Zaragoza es parte de la cabecera municipal para el DANE (MGN 2018), aunque comun.comunas() la rotule como corregimiento.",
+ "limitaciones": [
+  "Escala de uso. En la cabecera: sumar celdas por manzana, barrio, comuna o áreas de influencia de 250 m o más; a esa escala el reparto depende poco del supuesto dentro de manzana (índice de disimilitud a 250 m frente a reparto uniforme: 0,006). Fuera de la cabecera (zona rural y periurbana, ≈ 2,3 % de la población de la capa) el reparto dentro de cada cuadro de 1 km de la grilla DANE depende de qué señal de construcción se use, y la escala útil es mayor: sumar por sección rural (su total 2018 es exacto; polígonos en datos/vectores/poblacion.geojson) o por cuadro de la grilla DANE, donde repartir con edificaciones HRSL (2016) o con área construida WorldCover (2021) cambia el resultado en ≈ 2 % y 5 % (índice de disimilitud). En áreas arbitrarias el desacuerdo crece: 21 % en bloques de 1 km, 28 % a 500 m y 40 % a 250 m; la versión publicada (unión de ambas señales) difiere de cada una en ≈ 10–12 % a 1 km y ≈ 20–21 % a 250 m. Por eso, fuera de la cabecera, áreas de influencia de 1 km o menos (un tramo de río, una vereda) dan solo un orden de magnitud.",
+  "La base es el censo de 2018: se supone que todas las manzanas de la cabecera crecieron en la misma proporción hasta 2026. Urbanizaciones habitadas después de 2018 no suman población (fuera de la cabecera, WorldCover 2021 puede ubicar en ellas parte de la población rural censada en 2018, sin aumentarla) y las que se vaciaron conservan su población de 2018.",
+  "La zona rural es menos precisa que la urbana: el total de cada sección rural es exacto (2018), pero su reparto interno usa la grilla de 1 km (con celdas suprimidas imputadas) y, dentro de cada cuadro, dos señales de construcción que no coinciden: HRSL no ve lo construido después de 2016 y WorldCover marca también vías e instalaciones no residenciales y puede no ver viviendas dispersas bajo árboles. En el cuadro con más población fuera de la cabecera (A43F08M11, 4,7405, -75,9261), 97 celdas con 50 % o más construido según WorldCover no tienen edificación HRSL; con solo HRSL valían 0 y con la unión reciben 437 hab. En 31 cuadros de 1 km sin ninguna de las dos señales fuera de lo urbano, la poca población rural asignada (sobre todo la imputada) se reparte de forma uniforme: se ve como cuadros tenues de 1 km, que significan «unas pocas personas en este km²», no una ocupación homogénea.",
+  "Dentro de cada manzana el reparto es uniforme (o, en manzanas de 2 ha o más, sobre lo construido según HRSL 2016 y WorldCover 2021): la cifra de una celda de 28 m sola es incierta y las calles, parques y zonas sin manzana censal valen 0 o casi 0.",
+  "Las 1.408 personas censadas en lugares especiales de alojamiento (LEA: centros penitenciarios, cuarteles y estaciones de policía, hogares de adultos mayores, conventos, internados, según el DANE) no tienen ubicación pública: el DANE las publica solo por clase. El factor de la cabecera las reparte en proporción a la población de los hogares, así que las celdas de esas instituciones quedan subestimadas y el resto levemente sobreestimado.",
+  "Reserva estadística del DANE: las manzanas con 1 a 3 viviendas ocupadas se unieron a otra manzana de su misma sección urbana (83 secciones en la cabecera; diagonal mediana 677 m), así que unas pocas personas aparecen corridas dentro de su sección. Las 51 manzanas de la cabecera con viviendas y 0 personas pueden ser manzanas así o manzanas sin viviendas ocupadas.",
+  "Con la escala de 0,01 hab/celda, las 9.756 celdas con menos de 0,005 hab quedan en 0 en la PNG; la cuantización resta 6 hab al total de la PNG. El .npy conserva los valores sin redondear.",
+  "Las clases urbano/rural son las del MGN 2018 del DANE (la cabecera incluye a Zaragoza); si el perímetro urbano vigente del POT difiere, cambian las celdas que reciben cada factor.",
+  "La rejilla cubre el 54 % del área municipal: la suma de la capa es menor que el total municipal del DANE (la cabecera sí está completa). Fuera del municipio no se publica valor.",
+  "La proyección del DANE parte del CNPV 2018 ajustado por omisión: es una proyección demográfica, no un conteo, y tiene su propia incertidumbre.",
+  "Por qué la unión de HRSL y WorldCover y no una sola señal (prueba indirecta, en la cabecera, donde el censo por manzana sirve de verdad): repartiendo el total de cada cuadro de 1 km según cada señal, en los cuadros de baja densidad habría que mover el 33 % de la población en bloques de 250 m con HRSL, el 25 % con WorldCover, el 31 % con la unión y el 52 % con reparto uniforme. WorldCover gana en la ciudad, pero en lo rural puede no ver viviendas dispersas que HRSL sí detecta; la unión conserva ambas.",
+  "Contraste con métodos basados solo en satélite: frente al censo por manzana, HRSL repartido dentro de cuadros de 1 km (versión anterior de esta capa) dejaba el 23 % de la población de la cabecera en bloques de 250 m equivocados, y HRSL solo, el 29 %."
+ ],
+ "fecha_proceso": "2026-10-01"
+}

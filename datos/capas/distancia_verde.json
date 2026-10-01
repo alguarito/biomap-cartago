@@ -1,0 +1,194 @@
+{
+ "titulo": "Distancia al espacio verde público (≥ 0,5 ha)",
+ "descripcion": "Metros en línea recta desde cada punto hasta el borde del parque o zona verde pública de al menos media hectárea más cercano, según lo mapeado en OpenStreetMap. La OMS (2016) propone como indicador la proporción de la población que vive a 300 m o menos de uno (unos 5 minutos a pie).",
+ "unidad": "m",
+ "fuente": {
+  "nombre": "OpenStreetMap: parques, zonas de juego, zonas recreativas y jardines públicos",
+  "url": "https://www.openstreetmap.org/copyright",
+  "licencia": "ODbL 1.0",
+  "cita": "© colaboradores de OpenStreetMap, ODbL 1.0 (https://www.openstreetmap.org/copyright)",
+  "consulta_overpass": "[out:json][timeout:170];(nwr[\"leisure\"~\"^(park|garden|pitch|playground|nature_reserve|recreation_ground)$\"](4.688,-75.985,4.795,-75.855);nwr[\"landuse\"~\"^(grass|recreation_ground|forest|meadow|village_green|cemetery)$\"](4.688,-75.985,4.795,-75.855);nwr[\"natural\"~\"^(wood|wetland|water|scrub|tree_row)$\"](4.688,-75.985,4.795,-75.855);nwr[\"amenity\"~\"^(school|kindergarten|college|university|hospital|clinic|doctors|nursing_home|social_facility|fire_station|police|townhall)$\"](4.688,-75.985,4.795,-75.855););out geom;"
+ },
+ "referencias": [
+  {
+   "cita": "WHO Regional Office for Europe (2016). Urban green spaces and health. A review of evidence. Copenhague: WHO Regional Office for Europe. Secciones 3.6.2 (p. 30-31), 4.1 (p. 32), 4.3.2 (p. 36) y 4.4 (p. 39); recuadro 4.1 (p. 33).",
+   "url": "https://www.who.int/europe/publications/i/item/WHO-EURO-2016-3352-43111-60341"
+  }
+ ],
+ "periodo": "Estado de OpenStreetMap en la marca 2026-10-01T01:50:59Z en UTC (2026-09-30 20:50 hora de Colombia, UTC−5)",
+ "resolucion_original_m": null,
+ "resolucion_nota": "Datos vectoriales: sin resolución de píxel. La distancia se calcula de forma exacta desde el centro de cada celda de la rejilla (≈27,7 m).",
+ "procesamiento": [
+  "Descarga Overpass (consulta en fuente.consulta_overpass y en fuentes/verdes/osm-verdes-equipamientos.overpassql).",
+  "Ensamblaje de polígonos OSM: ways cerrados y relaciones multipolygon (anillos outer cosidos con linemerge, menos inner).",
+  "Selección de verde: leisure=park, playground, recreation_ground, nature_reserve, garden; landuse=recreation_ground, village_green. Se excluyen canchas (leisure=pitch), cementerios, landuse=grass y coberturas naturales.",
+  "Acceso: fuera del indicador access=private/no, jardines con ≥ 50 % de su área dentro de un equipamiento (colegio, hogar, clínica…), dos centros recreativos con tarifa verificada (Villasol de Comfenalco y Mister Mojarra) y los separadores viales etiquetados como jardín (franjas de ancho medio < 10 m con ≥ 90 % del borde junto a vías principales; Urban Atlas 14100 exige 10 m de ancho mínimo, OMS 2016, recuadro 4.1).",
+  "Unión en UTM 18N (EPSG:32618) con cierre morfológico de 1.5 m; componentes conexos; se conservan los de área ≥ 0.5 ha (umbral principal de la OMS 2016).",
+  "Distancia euclidiana exacta desde el centro de cada celda al borde del componente más cercano (0 dentro del parque), con shapely STRtree.query_nearest; redondeo a 1 m.",
+  "Sensibilidad: el mismo cálculo con umbrales de 0,25 y 1 ha y con verde sin mapear o no incluido (ver 'sensibilidad')."
+ ],
+ "limitaciones": [
+  "Depende de lo mapeado en OpenStreetMap: un parque que no está en el mapa no cuenta y aumenta la distancia. La proporción de la cabecera a ≤ 300 m va de 13,4 % a 70,9 % según el umbral de tamaño y el verde sin mapear o no incluido (ver 'sensibilidad').",
+  "El orden de las comunas es 'según lo mapeado en OSM' y puede invertirse con otros supuestos: comunas sin parques mapeados de ≥ 0,5 ha (1, 2 y 3) suben mucho si se cuenta la vegetación sin mapear o los bosques. Antes de usarlo para priorizar inversión, contrastarlo con el inventario municipal de espacio público (diagnóstico del POT).",
+  "Distancia en línea recta, como propone la OMS: no considera calles, puentes ni barreras. Al otro lado del río La Vieja (Puerto Caldas, Pereira) o del Cauca la distancia real a pie puede ser mucho mayor.",
+  "Se asume público todo parque sin etiqueta de acceso; parques internos de conjuntos cerrados mal etiquetados se contarían como públicos.",
+  "No mide calidad, sombra, seguridad ni equipamiento de los parques; una plazoleta etiquetada como parque cuenta igual.",
+  "En la zona rural el valor es grande por definición y no indica falta de naturaleza: el indicador de la OMS es urbano.",
+  "Solo se usaron elementos dentro del área descargada de OSM: en los bordes de la rejilla puede haber parques cercanos fuera de la descarga.",
+  "Colores: el visor interpola entre 0 y 600 m; desde 600 m todo se ve del mismo rojo. El valor exacto está en la capa."
+ ],
+ "rango_visual": [
+  0,
+  600
+ ],
+ "paleta": [
+  "#1a9850",
+  "#a6d96a",
+  "#ffffbf",
+  "#fdae61",
+  "#d73027"
+ ],
+ "paleta_nota": "Paleta divergente con el centro (#ffffbf) en 300 m, el criterio de la OMS: verdes por debajo; amarillo, naranja y rojo por encima. Paradas cada 150 m.",
+ "leyenda_clases": [
+  {
+   "desde": 0,
+   "hasta": 200,
+   "etiqueta": "≤ 200 m",
+   "color": "#77c361"
+  },
+  {
+   "desde": 200,
+   "hasta": 300,
+   "etiqueta": "200–300 m (cumple el criterio OMS)",
+   "color": "#e1f2a3"
+  },
+  {
+   "desde": 300,
+   "hasta": 500,
+   "etiqueta": "300–500 m (no cumple)",
+   "color": "#fec980"
+  },
+  {
+   "desde": 500,
+   "hasta": null,
+   "etiqueta": "> 500 m (color saturado desde 600 m)",
+   "color": "#d73027"
+  }
+ ],
+ "interpretacion": "≤ 300 m (verdes): cumple el criterio de acceso de la OMS (Oficina Regional para Europa, 2016): estar a 300 m en línea recta o menos del borde de un espacio verde público de al menos 0,5 ha (unos 5 min a pie). 300–500 m (amarillo a naranja): fuera del criterio; la OMS sugiere analizar también 200 y 500 m y reconoce que no hay consenso sobre la distancia ligada a beneficios en salud. > 500 m (naranja rojizo a rojo): sin verde público de ≥ 0,5 ha mapeado a menos de 500 m; puede haber parques más pequeños o verde sin mapear cerca. Es un umbral de planificación urbana, no un umbral clínico.",
+ "umbrales": [
+  {
+   "valor": 200,
+   "etiqueta": "200 m (análisis adicional, OMS 2016)"
+  },
+  {
+   "valor": 300,
+   "etiqueta": "criterio OMS 2016 (300 m, ≥ 0,5 ha)"
+  },
+  {
+   "valor": 500,
+   "etiqueta": "500 m (análisis adicional, OMS 2016)"
+  }
+ ],
+ "sensibilidad": {
+  "indicador": "población de la cabecera DANE (incluye Zaragoza) a ≤ 300 m, %",
+  "resumen": "base (≥ 0,5 ha) 34,8 %; ≥ 0,25 ha 42,5 %; ≥ 1 ha 13,4 %; cualquier tamaño 62,5 %; (a) + vegetación sin mapear 57,4 %; (b) + bosques OSM 48,3 %; (c) + centros con tarifa 36,9 %; (a+b+c) 70,9 %",
+  "rango_pct": [
+   13.4,
+   70.9
+  ],
+  "escenarios": {
+   "base_05ha": {
+    "descripcion": "Verde público de OSM, componentes ≥ 0,5 ha (capa publicada)",
+    "poblacion_pct": 34.8,
+    "celdas_pct": 23.9
+   },
+   "umbral_025ha": {
+    "descripcion": "Componentes ≥ 0,25 ha (unidad mínima de Urban Atlas)",
+    "poblacion_pct": 42.5,
+    "celdas_pct": 29.1
+   },
+   "umbral_1ha": {
+    "descripcion": "Componentes ≥ 1 ha (indicador adicional de la OMS)",
+    "poblacion_pct": 13.4,
+    "celdas_pct": 9.2
+   },
+   "sin_umbral": {
+    "descripcion": "Cualquier tamaño (incluye jardineras de decenas de m²)",
+    "poblacion_pct": 62.5,
+    "celdas_pct": 40.3
+   },
+   "minimo_500m2": {
+    "descripcion": "Componentes ≥ 500 m²",
+    "poblacion_pct": 59.5,
+    "celdas_pct": 36.7
+   },
+   "minimo_1000m2": {
+    "descripcion": "Componentes ≥ 1000 m²",
+    "poblacion_pct": 55.9,
+    "celdas_pct": 34.8
+   },
+   "a_manchas_worldcover": {
+    "descripcion": "(a) Base + 11 manchas de vegetación intraurbana de WorldCover sin mapear, como si fueran parques públicos (cota superior: la OMS excluye vegetación sin manejo como área verde urbana)",
+    "poblacion_pct": 57.4,
+    "celdas_pct": 34.8
+   },
+   "b_bosques_osm": {
+    "descripcion": "(b) Base + 22 polígonos OSM natural=wood/scrub o landuse=forest ≥ 0,5 ha que tocan la cabecera (la OMS los incluye solo si lindan con ciudad por dos lados y tienen uso recreativo; no verificado)",
+    "poblacion_pct": 48.3,
+    "celdas_pct": 52.3
+   },
+   "c_con_tarifa": {
+    "descripcion": "(c) Verde público + centros recreativos con tarifa (Villasol y Mister Mojarra), ≥ 0,5 ha",
+    "poblacion_pct": 36.9,
+    "celdas_pct": 28.4
+   },
+   "abc_juntos": {
+    "descripcion": "(a+b+c) Los tres escenarios juntos (cota superior)",
+    "poblacion_pct": 70.9,
+    "celdas_pct": 64.3
+   }
+  },
+  "detalle_por_comuna": "datos/series/verdes.json → sensibilidad"
+ },
+ "variantes": {
+  "distancia_verde_todos": "fuentes/rejilla/distancia_verde_todos.npy: a cualquier componente de verde público, sin umbral de tamaño; incluye jardineras de 13–50 m² que no son espacio verde utilizable. Para comparar, preferir distancia_verde_025ha.",
+  "distancia_verde_025ha": "fuentes/rejilla/distancia_verde_025ha.npy: a componentes ≥ 0,25 ha (unidad mínima de Urban Atlas, OMS 2016, recuadro 4.1)."
+ },
+ "nombre": "distancia_verde",
+ "escala": 1,
+ "desplazamiento": 0,
+ "codificacion": "RGBA 16 bits: v=R*256+G; v=0 sin dato; valor=(v-1)*escala+desplazamiento",
+ "rejilla": {
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res": 0.00025,
+  "ancho": 520,
+  "alto": 428,
+  "crs": "EPSG:4326"
+ },
+ "estadisticas": {
+  "extension": {
+   "min": 0.0,
+   "p10": 812.1376,
+   "media": 3101.3621,
+   "p50": 2980.3612,
+   "p90": 5594.5073,
+   "max": 7800.9409,
+   "celdas": 222560
+  },
+  "cabecera_urbana": {
+   "min": 0.0,
+   "p10": 132.4126,
+   "media": 580.879,
+   "p50": 522.777,
+   "p90": 1120.7725,
+   "max": 2075.7668,
+   "celdas": 19878
+  }
+ },
+ "cobertura_pct": 100.0,
+ "fecha_proceso": "2026-09-30"
+}

@@ -1,0 +1,1203 @@
+{
+ "titulo": "Modelos empíricos locales para el simulador de intervenciones",
+ "descripcion": "Relaciones estadísticas medidas en la cabecera de Cartago entre la cobertura del suelo y la temperatura de superficie o el verdor, y coeficientes de literatura para techos verdes y pavimentos. Sirven para estimar el orden de magnitud del efecto de una intervención, no para predecirlo con exactitud.",
+ "advertencia_principal": "Asociación transversal, no causalidad: el coeficiente compara lugares distintos de la ciudad en 2021–2025, no el antes y después de una intervención. La temperatura de superficie no es la del aire.",
+ "datos": {
+  "respuesta_lst": "Capa lst (Landsat 8/9, mediana 2022–2025, 78 escenas, 10:19 hora local, °C)",
+  "respuesta_ndvi": "Capa ndvi (Sentinel-2, mediana 2024–2025)",
+  "covariables": "arbolado, construido y agua (% del área, ESA WorldCover 2021); altitud del terreno aproximada = percentil 10 del DSM Copernicus en una ventana de 19 celdas (≈ 525 m), para no confundir edificios y copas con terreno",
+  "categoria_de_referencia": "Lo que no es arbolado, construido ni agua: en la cabecera, pasto 24,2 %, cultivo 1,3 %, suelo desnudo 1,4 % (medias por celda, WorldCover 2021). Cada coeficiente compara con esa categoría (sobre todo pasto).",
+  "ambito": "Celdas de la cabecera (unión de las 8 zonas)",
+  "unidad_lst": "Unidades de 4×4 celdas (≈ 111 m) con ≥ 75 % de celdas en la cabecera: la banda térmica TIRS se adquiere a 100 m y se remuestrea a 30 m (USGS), así que a nivel de celda el efecto del arbolado se atenúa (ver sensibilidad nivel_celda_27m).",
+  "unidad_ndvi": "Celda de 0,00025° (≈ 28 m): el NDVI de Sentinel-2 (10 m) y WorldCover (10 m) tienen resolución comparable."
+ },
+ "modelos": {
+  "lst": {
+   "formula": "LST = b0 + b1·arbolado_pct + b2·construido_pct + b3·agua_pct + b4·altitud_terreno_m",
+   "n": 1245,
+   "r2": 0.792,
+   "r2_ajustado": 0.792,
+   "rmse_c": 1.41,
+   "coeficientes": {
+    "intercepto": {
+     "valor": 56.6262,
+     "unidad": "°C",
+     "ic95_bootstrap_bloques_500m": [
+      28.7087,
+      80.9845
+     ],
+     "ic95_bootstrap_bloques_1km": [
+      25.066,
+      78.9722
+     ],
+     "ic95_ingenuo_iid": [
+      44.6659,
+      68.5864
+     ]
+    },
+    "arbolado_pct": {
+     "valor": -0.2128,
+     "unidad": "°C por +10 puntos porcentuales",
+     "ic95_bootstrap_bloques_500m": [
+      -0.2793,
+      -0.144
+     ],
+     "ic95_bootstrap_bloques_1km": [
+      -0.2945,
+      -0.1291
+     ],
+     "ic95_ingenuo_iid": [
+      -0.2497,
+      -0.1759
+     ]
+    },
+    "construido_pct": {
+     "valor": 0.6004,
+     "unidad": "°C por +10 puntos porcentuales",
+     "ic95_bootstrap_bloques_500m": [
+      0.5404,
+      0.6531
+     ],
+     "ic95_bootstrap_bloques_1km": [
+      0.508,
+      0.6662
+     ],
+     "ic95_ingenuo_iid": [
+      0.5754,
+      0.6254
+     ]
+    },
+    "agua_pct": {
+     "valor": -0.4673,
+     "unidad": "°C por +10 puntos porcentuales",
+     "ic95_bootstrap_bloques_500m": [
+      -13.1829,
+      -0.3186
+     ],
+     "ic95_bootstrap_bloques_1km": [
+      -9.4183,
+      -0.303
+     ],
+     "ic95_ingenuo_iid": [
+      -1.2096,
+      0.2751
+     ],
+     "identificado": false
+    },
+    "altitud_terreno_m": {
+     "valor": -0.2243,
+     "unidad": "°C por +10 m",
+     "ic95_bootstrap_bloques_500m": [
+      -0.4926,
+      0.0814
+     ],
+     "ic95_bootstrap_bloques_1km": [
+      -0.4679,
+      0.1212
+     ],
+     "ic95_ingenuo_iid": [
+      -0.3558,
+      -0.0927
+     ]
+    }
+   },
+   "bootstrap": {
+    "replicas": 1000,
+    "semilla": 20261001,
+    "bloques": {
+     "bloques_500m": 89,
+     "bloques_1km": 29
+    },
+    "metodo": "Remuestreo con reemplazo de bloques espaciales cuadrados de 18 celdas (≈ 500 m) y, como sensibilidad, de 36 celdas (≈ 1 km); IC percentil 2,5–97,5. El tamaño de bloque es un supuesto apoyado en el correlograma de residuos."
+   },
+   "diagnostico_residuos": {
+    "r2": 0.792,
+    "r2_ajustado": 0.792,
+    "rmse_c": 1.41,
+    "mae_c": 1.12,
+    "asimetria_residuos": 0.344,
+    "curtosis_exceso_residuos": 0.355,
+    "correlograma_residuos": [
+     {
+      "distancia_m": 111,
+      "correlacion_residuos": 0.435,
+      "pares": 2328
+     },
+     {
+      "distancia_m": 221,
+      "correlacion_residuos": 0.246,
+      "pares": 2185
+     },
+     {
+      "distancia_m": 442,
+      "correlacion_residuos": 0.067,
+      "pares": 1941
+     },
+     {
+      "distancia_m": 995,
+      "correlacion_residuos": 0.044,
+      "pares": 1428
+     }
+    ],
+    "residuo_por_construido_pct": [
+     {
+      "rango": "0–20",
+      "n": 414,
+      "residuo_medio": -0.074
+     },
+     {
+      "rango": "20–40",
+      "n": 94,
+      "residuo_medio": 0.812
+     },
+     {
+      "rango": "40–60",
+      "n": 126,
+      "residuo_medio": 0.141
+     },
+     {
+      "rango": "60–80",
+      "n": 124,
+      "residuo_medio": -0.415
+     },
+     {
+      "rango": "80–100",
+      "n": 487,
+      "residuo_medio": -0.025
+     }
+    ],
+    "residuo_por_arbolado_pct": [
+     {
+      "rango": "0–10",
+      "n": 659,
+      "residuo_medio": 0.039
+     },
+     {
+      "rango": "10–20",
+      "n": 127,
+      "residuo_medio": -0.158
+     },
+     {
+      "rango": "20–40",
+      "n": 183,
+      "residuo_medio": -0.148
+     },
+     {
+      "rango": "40–60",
+      "n": 135,
+      "residuo_medio": 0.119
+     },
+     {
+      "rango": "60–100",
+      "n": 141,
+      "residuo_medio": 0.04
+     }
+    ],
+    "sd_residuo_por_tercil_de_ajustado": [
+     {
+      "ajustado_c": "33,0–36,6",
+      "sd_residuo_c": 1.501
+     },
+     {
+      "ajustado_c": "36,6–41,3",
+      "sd_residuo_c": 1.486
+     },
+     {
+      "ajustado_c": "41,3–42,3",
+      "sd_residuo_c": 1.219
+     }
+    ],
+    "vif": {
+     "arbolado_pct": 1.49,
+     "construido_pct": 1.69,
+     "agua_pct": 1.01,
+     "altitud_terreno_m": 1.18
+    },
+    "correlacion_arbolado_construido": -0.548,
+    "unidades_con_agua_mayor_que_0": 8,
+    "residuo_por_zona": {
+     "c1": {
+      "lst_observada_media": 40.02,
+      "lst_predicha_con_medias_de_zona": 40.33,
+      "residuo_c": -0.32
+     },
+     "c2": {
+      "lst_observada_media": 39.97,
+      "lst_predicha_con_medias_de_zona": 39.91,
+      "residuo_c": 0.06
+     },
+     "c3": {
+      "lst_observada_media": 38.45,
+      "lst_predicha_con_medias_de_zona": 38.8,
+      "residuo_c": -0.36
+     },
+     "c4": {
+      "lst_observada_media": 40.3,
+      "lst_predicha_con_medias_de_zona": 39.73,
+      "residuo_c": 0.56
+     },
+     "c5": {
+      "lst_observada_media": 41.1,
+      "lst_predicha_con_medias_de_zona": 40.84,
+      "residuo_c": 0.26
+     },
+     "c6": {
+      "lst_observada_media": 39.99,
+      "lst_predicha_con_medias_de_zona": 39.57,
+      "residuo_c": 0.42
+     },
+     "c7": {
+      "lst_observada_media": 37.14,
+      "lst_predicha_con_medias_de_zona": 37.34,
+      "residuo_c": -0.2
+     },
+     "zaragoza": {
+      "lst_observada_media": 37.79,
+      "lst_predicha_con_medias_de_zona": 38.73,
+      "residuo_c": -0.94
+     }
+    },
+    "nota_escala": "El coeficiente del arbolado crece con la escala de agregación: 28 m -0,08; 55 m -0,13; 111 m -0,21; 166 m -0,22; 222 m -0,28 °C por 10 pp. Por debajo de 100 m lo atenúa la resolución térmica; el valor de 111 m es conservador para intervenciones que abarcan una zona.",
+    "nota_no_linealidad": "No linealidad moderada: el residuo medio llega a +0,81 °C en unidades con 20–40 % construido (n = 94); la relación con lo construido no es exactamente lineal.",
+    "nota_sesgo_zona": "Aplicado a las medias de zona, el modelo se desvía hasta -0,94 °C (zaragoza); el simulador debe sumar el cambio predicho a la LST observada de la zona, no usar la LST predicha."
+   },
+   "sensibilidad": {
+    "sin_altitud": {
+     "arbolado_pct": -0.2256,
+     "construido_pct": 0.5837,
+     "agua_pct": -0.5301,
+     "r2": 0.79,
+     "n": 1245
+    },
+    "con_suelo_desnudo_separado": {
+     "arbolado_pct": -0.1921,
+     "construido_pct": 0.6203,
+     "agua_pct": -0.4306,
+     "altitud_terreno_m": -0.263,
+     "suelo_desnudo_pct": 0.5253,
+     "r2": 0.805,
+     "n": 1245
+    },
+    "con_log_distancia_a_rios": {
+     "arbolado_pct": -0.2231,
+     "construido_pct": 0.5782,
+     "agua_pct": -0.5163,
+     "altitud_terreno_m": -0.1133,
+     "log_dist_rio_m": -0.1861,
+     "r2": 0.794,
+     "n": 1245
+    },
+    "nivel_celda_27m": {
+     "arbolado_pct": -0.0848,
+     "construido_pct": 0.507,
+     "agua_pct": -0.3933,
+     "altitud_terreno_m": -0.0804,
+     "r2": 0.634,
+     "n": 20816
+    },
+    "unidades_2x2_55m": {
+     "arbolado_pct": -0.1347,
+     "construido_pct": 0.552,
+     "agua_pct": -0.5424,
+     "altitud_terreno_m": -0.1607,
+     "r2": 0.707,
+     "n": 5128
+    },
+    "unidades_6x6_166m": {
+     "arbolado_pct": -0.2243,
+     "construido_pct": 0.6408,
+     "agua_pct": 0.1381,
+     "altitud_terreno_m": -0.3137,
+     "r2": 0.855,
+     "n": 534
+    },
+    "unidades_8x8_222m": {
+     "arbolado_pct": -0.2815,
+     "construido_pct": 0.6477,
+     "agua_pct": 0.9688,
+     "altitud_terreno_m": -0.3241,
+     "r2": 0.89,
+     "n": 298
+    }
+   },
+   "nota_agua": "En la cabecera casi no hay agua (media 0,06 %; 8 de 1245 unidades con agua > 0): su coeficiente no está identificado y no debe usarse."
+  },
+  "ndvi": {
+   "formula": "NDVI = g0 + g1·arbolado_pct + g2·construido_pct",
+   "n": 20816,
+   "r2": 0.656,
+   "r2_ajustado": 0.656,
+   "rmse": 0.1573,
+   "coeficientes": {
+    "intercepto": {
+     "valor": 0.5754,
+     "unidad": "NDVI",
+     "ic95_bootstrap_bloques_500m": [
+      0.5278,
+      0.6122
+     ],
+     "ic95_bootstrap_bloques_1km": [
+      0.4943,
+      0.6309
+     ],
+     "ic95_ingenuo_iid": [
+      0.571,
+      0.5798
+     ]
+    },
+    "arbolado_pct": {
+     "valor": 0.0142,
+     "unidad": "NDVI por +10 puntos porcentuales",
+     "ic95_bootstrap_bloques_500m": [
+      0.0101,
+      0.019
+     ],
+     "ic95_bootstrap_bloques_1km": [
+      0.0082,
+      0.0217
+     ],
+     "ic95_ingenuo_iid": [
+      0.0135,
+      0.0149
+     ]
+    },
+    "construido_pct": {
+     "valor": -0.0398,
+     "unidad": "NDVI por +10 puntos porcentuales",
+     "ic95_bootstrap_bloques_500m": [
+      -0.0435,
+      -0.035
+     ],
+     "ic95_bootstrap_bloques_1km": [
+      -0.0454,
+      -0.0315
+     ],
+     "ic95_ingenuo_iid": [
+      -0.0403,
+      -0.0393
+     ]
+    }
+   },
+   "bootstrap": {
+    "replicas": 1000,
+    "semilla": 20261001,
+    "bloques": {
+     "bloques_500m": 96,
+     "bloques_1km": 32
+    },
+    "metodo": "Igual que en LST, por celda."
+   },
+   "diagnostico_residuos": {
+    "r2": 0.656,
+    "r2_ajustado": 0.656,
+    "rmse": 0.1573,
+    "mae": 0.119,
+    "asimetria_residuos": -0.952,
+    "curtosis_exceso_residuos": 1.857,
+    "correlograma_residuos": [
+     {
+      "distancia_m": 28,
+      "correlacion_residuos": 0.664,
+      "pares": 40910
+     },
+     {
+      "distancia_m": 55,
+      "correlacion_residuos": 0.437,
+      "pares": 40231
+     },
+     {
+      "distancia_m": 111,
+      "correlacion_residuos": 0.274,
+      "pares": 38944
+     },
+     {
+      "distancia_m": 249,
+      "correlacion_residuos": 0.105,
+      "pares": 36123
+     },
+     {
+      "distancia_m": 498,
+      "correlacion_residuos": 0.002,
+      "pares": 31628
+     },
+     {
+      "distancia_m": 995,
+      "correlacion_residuos": 0.013,
+      "pares": 24087
+     }
+    ],
+    "residuo_por_construido_pct": [
+     {
+      "rango": "0–20",
+      "n": 8812,
+      "residuo_medio": 0.003
+     },
+     {
+      "rango": "20–40",
+      "n": 872,
+      "residuo_medio": -0.06
+     },
+     {
+      "rango": "40–60",
+      "n": 694,
+      "residuo_medio": -0.013
+     },
+     {
+      "rango": "60–80",
+      "n": 1055,
+      "residuo_medio": 0.031
+     },
+     {
+      "rango": "80–100",
+      "n": 9383,
+      "residuo_medio": 0.0
+     }
+    ],
+    "residuo_por_arbolado_pct": [
+     {
+      "rango": "0–10",
+      "n": 13808,
+      "residuo_medio": -0.002
+     },
+     {
+      "rango": "10–20",
+      "n": 823,
+      "residuo_medio": 0.03
+     },
+     {
+      "rango": "20–40",
+      "n": 1421,
+      "residuo_medio": 0.023
+     },
+     {
+      "rango": "40–60",
+      "n": 838,
+      "residuo_medio": -0.012
+     },
+     {
+      "rango": "60–100",
+      "n": 3926,
+      "residuo_medio": -0.004
+     }
+    ],
+    "vif": {
+     "arbolado_pct": 1.41,
+     "construido_pct": 1.41
+    },
+    "residuo_por_zona": {
+     "c1": {
+      "ndvi_observado_medio": 0.259,
+      "ndvi_predicho_con_medias_de_zona": 0.292,
+      "residuo": -0.033
+     },
+     "c2": {
+      "ndvi_observado_medio": 0.318,
+      "ndvi_predicho_con_medias_de_zona": 0.308,
+      "residuo": 0.011
+     },
+     "c3": {
+      "ndvi_observado_medio": 0.354,
+      "ndvi_predicho_con_medias_de_zona": 0.377,
+      "residuo": -0.023
+     },
+     "c4": {
+      "ndvi_observado_medio": 0.298,
+      "ndvi_predicho_con_medias_de_zona": 0.333,
+      "residuo": -0.034
+     },
+     "c5": {
+      "ndvi_observado_medio": 0.252,
+      "ndvi_predicho_con_medias_de_zona": 0.263,
+      "residuo": -0.011
+     },
+     "c6": {
+      "ndvi_observado_medio": 0.33,
+      "ndvi_predicho_con_medias_de_zona": 0.35,
+      "residuo": -0.02
+     },
+     "c7": {
+      "ndvi_observado_medio": 0.533,
+      "ndvi_predicho_con_medias_de_zona": 0.502,
+      "residuo": 0.031
+     },
+     "zaragoza": {
+      "ndvi_observado_medio": 0.387,
+      "ndvi_predicho_con_medias_de_zona": 0.392,
+      "residuo": -0.005
+     }
+    }
+   },
+   "sensibilidad": {
+    "unidades_4x4_111m": {
+     "arbolado_pct": 0.0166,
+     "construido_pct": -0.0423,
+     "r2": 0.778,
+     "n": 1245
+    },
+    "ndvi_landsat_por_celda": {
+     "arbolado_pct": 0.009,
+     "construido_pct": -0.0334,
+     "r2": 0.717,
+     "n": 20816,
+     "anios": [
+      2021,
+      2022,
+      2023
+     ],
+     "correlacion_con_ndvi_sentinel2": 0.932
+    },
+    "ndvi_landsat_unidades_4x4_111m": {
+     "arbolado_pct": 0.0119,
+     "construido_pct": -0.0363,
+     "r2": 0.815,
+     "n": 1245
+    }
+   },
+   "tipo_de_relacion": "equivalencia_de_cobertura",
+   "advertencia_circularidad": "Relación en parte circular: ESA WorldCover 2021 (arbolado, construido) es una clasificación hecha con compuestos anuales de Sentinel-2 (reflectancias y percentiles 10, 50 y 90 del NDVI) y de radar Sentinel-1, y la respuesta es el NDVI del mismo sensor (2024–2025). El R² y los coeficientes describen sobre todo qué NDVI corresponde a cada cobertura de la clasificación, no un efecto medido de forma independiente. Con NDVI Landsat 8/9 2021–2023 (otro sensor y otros años; 'ndvi_landsat_por_celda') los coeficientes conservan signo y orden de magnitud (arbolado +0,0090 frente a +0,0142; construido -0,0334 frente a -0,0398 por 10 pp; R² 0,72): la relación no depende de las mismas imágenes, pero el coeficiente del arbolado es menor con Landsat y la dependencia conceptual se mantiene, porque todo NDVI óptico se parece a la señal con la que se clasificó. No se dispone en el proyecto de una cobertura arbórea independiente (OSM no mapea copas) para validarlo. El ΔNDVI del simulador es una equivalencia de cobertura, no un efecto medido."
+  }
+ },
+ "intervenciones": {
+  "arbolado": {
+   "descripcion": "+X puntos porcentuales de área arbolada en la zona (en la unidad de WorldCover: área clasificada como árboles).",
+   "supuesto_por_defecto": "sustituye_pasto",
+   "justificacion_supuesto": "Por defecto el árbol se planta sobre pasto, suelo o lote (la categoría de referencia): es el efecto más conservador y no exige retirar pavimento. La variante 'sustituye_construido' (despavimentar y arborizar, o copa que cubre pavimento) da un efecto mayor. El simulador debe limitar X a lo disponible en la zona (ver disponibilidad_por_zona).",
+   "variantes": {
+    "sustituye_pasto": {
+     "origen": "local",
+     "delta_lst_c_por_10pp": -0.2128,
+     "ic95_lst": [
+      -0.2793,
+      -0.144
+     ],
+     "delta_ndvi_por_10pp": 0.0142,
+     "ic95_ndvi": [
+      0.0101,
+      0.019
+     ],
+     "formula": "ΔLST = (X/10)·b1 ; ΔNDVI = (X/10)·g1",
+     "limite_x": "X ≤ max_pp_arbolado_sustituyendo_pasto de la zona (pasto, cultivo, suelo y otros)",
+     "interpretacion_ndvi": "equivalencia de cobertura (ver modelos.ndvi.advertencia_circularidad), no efecto medido"
+    },
+    "sustituye_construido": {
+     "origen": "local",
+     "delta_lst_c_por_10pp": -0.8132,
+     "ic95_lst": [
+      -0.8611,
+      -0.7599
+     ],
+     "delta_ndvi_por_10pp": 0.054,
+     "ic95_ndvi": [
+      0.0521,
+      0.0559
+     ],
+     "formula": "ΔLST = (X/10)·(b1 − b2) ; ΔNDVI = (X/10)·(g1 − g2)",
+     "limite_x": "X ≤ max_pp_sobre_construido de la zona y, junto con techos verdes y pavimento frío, dentro de la restricción conjunta (regla_combinacion)",
+     "interpretacion_ndvi": "equivalencia de cobertura (ver modelos.ndvi.advertencia_circularidad), no efecto medido"
+    }
+   }
+  },
+  "techos_verdes": {
+   "descripcion": "X puntos porcentuales del área de la zona pasan de techo convencional a techo verde.",
+   "origen": "literatura",
+   "delta_temperatura_superficie_elemento_c": -10.88,
+   "ic95_elemento_c": [
+    -15.26,
+    -6.5
+   ],
+   "delta_lst_c_por_10pp": -1.088,
+   "ic95_lst_por_10pp": [
+    -1.526,
+    -0.65
+   ],
+   "formula": "ΔLST_zona ≈ (X/100)·ΔT_elemento (mezcla lineal por área; supuesto)",
+   "limite_x": "X ≤ max_pp_techos_verdes de la zona = construido − calzadas OSM (cota superior: incluye patios, parqueaderos y andenes, y no considera la capacidad estructural ni la pendiente de los techos; supuesto), y dentro de la restricción conjunta (regla_combinacion)",
+   "heterogeneidad": {
+    "intervalo_prediccion_95_elemento_c": [
+     -30.31,
+     8.55
+    ],
+    "intervalo_prediccion_95_lst_por_10pp": [
+     -3.031,
+     0.855
+    ],
+    "se_media_c": 2.235,
+    "tau2_aproximado_c2": 78.11,
+    "k_estudios": 17,
+    "i2": 0.92,
+    "metodo": "Aproximación propia, no publicada por Das et al.: SE de la media desde su IC 95 %, τ² ≈ I²·k·SE² (supone varianzas intraestudio iguales) e intervalo de predicción de Higgins, Thompson y Spiegelhalter (2009): μ ± t(k−2)·√(τ² + SE²). Indica el rango en que caería el efecto en un sitio nuevo parecido a los estudiados; es orientativo."
+   },
+   "advertencia_ic": "El IC 95 % de la media (−15,26 a −6,50 °C) no recoge la heterogeneidad entre estudios (I² 92 %): el efecto en un sitio concreto puede quedar muy lejos de la media. Ver 'heterogeneidad' (intervalo de predicción aproximado).",
+   "cita": "Das, J. K., Kumari, B., Rahman, A. R., et al. (2025). Evaluation of community-based heat adaptation interventions: a systematic review. BMJ Public Health 3(2): e002332. doi:10.1136/bmjph-2024-002332. Metaanálisis: «green roofs significantly decrease the surface temperature by 10.88°C compared with bare concrete roofs (95% CI: −15.26°C to –6.50°C; 17 studies)», I² = 92 %.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12273142/",
+   "cota_superior_contexto": "US EPA: la superficie de un techo verde «can be 56°F lower» (≈ 31 °C) que la de un techo convencional (https://www.epa.gov/heatislands/using-green-roofs-reduce-heat-islands).",
+   "contraste_local": {
+    "analogia": "Sustituir construido por pasto en el modelo local: −b2 por 10 pp",
+    "delta_lst_c_por_10pp": -0.6004,
+    "ic95": [
+     -0.6531,
+     -0.5404
+    ]
+   },
+   "delta_ndvi": {
+    "origen": "analogia_local",
+    "delta_ndvi_por_10pp": 0.0398,
+    "nota": "Supuesto: un techo verde se ve desde el satélite como cobertura herbácea; −g2 por 10 pp. No hay medición local."
+   },
+   "advertencias": [
+    "Efecto sobre la temperatura del ELEMENTO (techo) en medias diarias, con heterogeneidad muy alta entre estudios (I² 92 %) y comparado con concreto desnudo; los techos de Cartago (fibrocemento, teja de barro, lámina) pueden diferir.",
+    "La LST del simulador es a las 10:19 hora local; la diferencia a esa hora puede ser distinta de la media diaria.",
+    "El valor de literatura por 10 pp es mayor que la analogía local (construido → pasto); la diferencia indica la incertidumbre de trasladar resultados de techo a la escala de 100 m."
+   ]
+  },
+  "pavimento_frio": {
+   "descripcion": "X puntos porcentuales del área de la zona pasan de asfalto convencional a pavimento modificado (reflectivo o de otros materiales).",
+   "origen": "literatura",
+   "delta_temperatura_superficie_elemento_c": {
+    "frente_a_asfalto": -5.45,
+    "frente_a_concreto": -1.14
+   },
+   "ic95_elemento_c": {
+    "frente_a_asfalto": [
+     -6.75,
+     -4.15
+    ],
+    "frente_a_concreto": [
+     -2.91,
+     0.63
+    ]
+   },
+   "delta_lst_c_por_10pp": -0.545,
+   "ic95_lst_por_10pp": [
+    -0.675,
+    -0.415
+   ],
+   "formula": "ΔLST_zona ≈ (X/100)·ΔT_elemento (mezcla lineal por área; supuesto). Solo para superficies de asfalto; sobre concreto el efecto no es significativo.",
+   "limite_x": "X ≤ max_pp_pavimento_frio de la zona = calzadas OSM con ancho supuesto (ver superficie_vial), y dentro de la restricción conjunta (regla_combinacion). La fracción de asfalto es desconocida: en OSM la superficie solo está etiquetada en una parte de la red (ver superficie_vial).",
+   "heterogeneidad": {
+    "intervalo_prediccion_95_elemento_c": [
+     -7.63,
+     -3.27
+    ],
+    "intervalo_prediccion_95_lst_por_10pp": [
+     -0.763,
+     -0.327
+    ],
+    "se_media_c": 0.663,
+    "tau2_aproximado_c2": 0.35,
+    "k_estudios": 8,
+    "i2": 0.1,
+    "metodo": "Aproximación propia, no publicada por Das et al.: SE de la media desde su IC 95 %, τ² ≈ I²·k·SE² (supone varianzas intraestudio iguales) e intervalo de predicción de Higgins, Thompson y Spiegelhalter (2009): μ ± t(k−2)·√(τ² + SE²). Indica el rango en que caería el efecto en un sitio nuevo parecido a los estudiados; es orientativo."
+   },
+   "cita": "Das et al. (2025), BMJ Public Health 3(2): e002332, doi:10.1136/bmjph-2024-002332: «Modified pavements significantly decrease the surface temperature by 5.45°C when compared with conventional asphalt (95% CI: −6.75 to –4.15; 8 studies)», I² = 10 %; frente a concreto: −1,14 °C (IC −2,91 a 0,63; 9 estudios), no significativo.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12273142/",
+   "delta_ndvi": {
+    "origen": "supuesto",
+    "delta_ndvi_por_10pp": 0.0,
+    "nota": "Un pavimento no cambia la vegetación."
+   }
+  },
+  "pavimento_permeable": {
+   "descripcion": "Pavimento poroso, permeable o retenedor de agua.",
+   "origen": "literatura",
+   "delta_temperatura_superficie_elemento_c": 1.74,
+   "ic95_elemento_c": [
+    0.81,
+    2.68
+   ],
+   "delta_lst_c_por_10pp": 0.174,
+   "ic95_lst_por_10pp": [
+    0.081,
+    0.268
+   ],
+   "cita": "Das et al. (2025), subgrupo frente a concreto convencional: «porous, water-retaining, and permeable concrete, pavers, and interlocking porous blocks (MD: 1.74°C; 95% CI: 0.81°C to 2.68°C; 4 studies)»: en promedio estuvieron MÁS calientes.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12273142/",
+   "recomendacion_simulador": "No presentarlo como medida de enfriamiento. Este producto no evalúa su efecto sobre la escorrentía.",
+   "delta_ndvi": {
+    "origen": "supuesto",
+    "delta_ndvi_por_10pp": 0.0
+   }
+  }
+ },
+ "efecto_no2_trafico": {
+  "cuantificable": false,
+  "texto": "No hay base local ni de literatura verificada para cuantificar el efecto de estas intervenciones sobre el NO₂ o el índice de tráfico en Cartago: el proyecto no tiene mediciones de NO₂ por calle y el índice de tráfico depende solo de la red vial. El simulador debe mostrarlo de forma cualitativa.",
+  "cualitativo": "Revisión de Abhijith et al. (2017): en cañones urbanos, las copas altas de árboles empeoraron la calidad del aire y los setos bajos la mejoraron; techos y muros verdes pueden ayudar a reducir contaminantes. Plantar árboles en calles estrechas y cerradas no debe presentarse como medida contra el NO₂.",
+  "cita": "Abhijith, K. V., Kumar, P., Gallagher, J., McNabola, A., Baldauf, R., Pilla, F., Broderick, B., Di Sabatino, S., Pulvirenti, B. (2017). Air pollution abatement performances of green infrastructure in open road and built-up street canyon environments – A review. Atmospheric Environment 162: 71–86. doi:10.1016/j.atmosenv.2017.05.014",
+  "pavimentos": "Ni el pavimento frío ni el permeable cambian las emisiones del tráfico: efecto sobre NO₂ = no cuantificado (sin base)."
+ },
+ "regla_combinacion": {
+  "restricciones": [
+   "X_arbolado_sobre_pasto ≤ max_pp_arbolado_sustituyendo_pasto",
+   "X_techos_verdes ≤ max_pp_techos_verdes",
+   "X_pavimento_frio ≤ max_pp_pavimento_frio",
+   "X_arbolado_sobre_construido + X_techos_verdes + X_pavimento_frio ≤ max_pp_sobre_construido (una misma superficie construida no puede recibir dos intervenciones)"
+  ],
+  "suma": "ΔLST_total = Σ ΔLST_i y ΔNDVI_total = Σ ΔNDVI_i (mezcla lineal por área: cada intervención actúa sobre una fracción distinta de la zona; supuesto).",
+  "pisos": "ΔLST_total ≥ delta_lst_minimo_c = piso_lst_c − LST observada de la zona, con piso_lst_c = la mayor de la LST mediana de las celdas de la cabecera con ≥ 80 % de arbolado (el bosque urbano observado) y la LST de referencia rural: una zona urbana arborizada al máximo no debería quedar más fría que el bosque urbano que ya existe, que recibe el calor de la ciudad vecina. Con estos datos el piso es 35,05 °C (bosque urbano; la referencia rural es 33,97 °C). ΔNDVI_total ≤ delta_ndvi_maximo = NDVI mediano de las celdas de la cabecera con ≥ 80 % de arbolado − NDVI observado de la zona. Supuestos de diseño para no extrapolar fuera de lo observado.",
+  "piso_lst_c": 35.05,
+  "piso_lst_criterio": "lst_celdas_cabecera_arbolado_ge_80_c",
+  "piso_lst_nota": "Hasta la versión anterior el piso era la LST de referencia rural (más fría); se cambió al bosque urbano observado por ser más conservador y estar dentro de lo medido en la ciudad.",
+  "lst_referencia_rural_c": 33.97,
+  "lst_celdas_cabecera_arbolado_ge_80_c": 35.05,
+  "ndvi_celdas_cabecera_arbolado_ge_80": 0.761,
+  "referencia_rural": "landsat.mascaras()['rural'] (fuera de la cabecera, a más de 500 m, sin agua, construido < 10 %, ± 30 m de la altitud de la cabecera), mediana de la capa lst 2022–2025",
+  "aplicacion": "Regla propuesta para el simulador: sumar el ΔLST acotado a la LST observada de la zona (no a la predicha por el modelo). Este archivo no la aplica por sí mismo: una cifra del simulador solo respeta los topes y el piso si los implementa (ver verificacion_topes)."
+ },
+ "superficie_vial": {
+  "metodo": "Ejes OSM highway = trunk, trunk_link, primary, primary_link, secondary, secondary_link, tertiary, tertiary_link, unclassified, residential, living_street, service con búfer de (carriles × 3,5 m)/2; carriles = etiqueta lanes de OSM o, si falta, 2 (1 en enlaces y service). Unión de los búferes intersecada con cada zona en UTM 18N. Ancho por carril y carriles por defecto: supuestos. No incluye andenes, separadores ni parqueaderos.",
+  "superficie_etiquetada_pct_de_la_longitud": {
+   "sin etiqueta": 74.2,
+   "asphalt": 13.8,
+   "unpaved": 7.0,
+   "gravel": 2.6,
+   "paved": 1.4,
+   "concrete": 0.4,
+   "compacted": 0.4,
+   "ground": 0.2,
+   "dirt": 0.0,
+   "concrete:plates": 0.0
+  },
+  "fuente": "fuentes/osm-vias.json, © colaboradores de OpenStreetMap, ODbL 1.0"
+ },
+ "disponibilidad_por_zona": {
+  "c1": {
+   "arbolado_pct": 15.5,
+   "construido_pct": 76.7,
+   "agua_pct": 0.28,
+   "pasto_cultivo_suelo_y_otros_pct": 7.5,
+   "max_pp_arbolado_sustituyendo_pasto": 7.5,
+   "max_pp_sobre_construido": 76.7,
+   "calzadas_osm_pct": 14.5,
+   "max_pp_pavimento_frio": 14.5,
+   "max_pp_techos_verdes": 62.2,
+   "lst_observada_media_c": 40.02,
+   "ndvi_observado_medio": 0.259,
+   "delta_lst_minimo_c": -4.96,
+   "delta_ndvi_maximo": 0.502
+  },
+  "c2": {
+   "arbolado_pct": 14.9,
+   "construido_pct": 72.5,
+   "agua_pct": 0.0,
+   "pasto_cultivo_suelo_y_otros_pct": 12.5,
+   "max_pp_arbolado_sustituyendo_pasto": 12.5,
+   "max_pp_sobre_construido": 72.5,
+   "calzadas_osm_pct": 14.7,
+   "max_pp_pavimento_frio": 14.7,
+   "max_pp_techos_verdes": 57.8,
+   "lst_observada_media_c": 39.97,
+   "ndvi_observado_medio": 0.318,
+   "delta_lst_minimo_c": -4.92,
+   "delta_ndvi_maximo": 0.442
+  },
+  "c3": {
+   "arbolado_pct": 29.6,
+   "construido_pct": 60.3,
+   "agua_pct": 0.42,
+   "pasto_cultivo_suelo_y_otros_pct": 9.6,
+   "max_pp_arbolado_sustituyendo_pasto": 9.6,
+   "max_pp_sobre_construido": 60.3,
+   "calzadas_osm_pct": 13.8,
+   "max_pp_pavimento_frio": 13.8,
+   "max_pp_techos_verdes": 46.6,
+   "lst_observada_media_c": 38.45,
+   "ndvi_observado_medio": 0.354,
+   "delta_lst_minimo_c": -3.4,
+   "delta_ndvi_maximo": 0.407
+  },
+  "c4": {
+   "arbolado_pct": 13.5,
+   "construido_pct": 65.8,
+   "agua_pct": 0.0,
+   "pasto_cultivo_suelo_y_otros_pct": 20.8,
+   "max_pp_arbolado_sustituyendo_pasto": 20.8,
+   "max_pp_sobre_construido": 65.8,
+   "calzadas_osm_pct": 14.4,
+   "max_pp_pavimento_frio": 14.4,
+   "max_pp_techos_verdes": 51.3,
+   "lst_observada_media_c": 40.3,
+   "ndvi_observado_medio": 0.298,
+   "delta_lst_minimo_c": -5.25,
+   "delta_ndvi_maximo": 0.463
+  },
+  "c5": {
+   "arbolado_pct": 15.6,
+   "construido_pct": 84.1,
+   "agua_pct": 0.03,
+   "pasto_cultivo_suelo_y_otros_pct": 0.3,
+   "max_pp_arbolado_sustituyendo_pasto": 0.3,
+   "max_pp_sobre_construido": 84.1,
+   "calzadas_osm_pct": 13.9,
+   "max_pp_pavimento_frio": 13.9,
+   "max_pp_techos_verdes": 70.2,
+   "lst_observada_media_c": 41.1,
+   "ndvi_observado_medio": 0.252,
+   "delta_lst_minimo_c": -6.05,
+   "delta_ndvi_maximo": 0.509
+  },
+  "c6": {
+   "arbolado_pct": 21.9,
+   "construido_pct": 64.4,
+   "agua_pct": 0.02,
+   "pasto_cultivo_suelo_y_otros_pct": 13.6,
+   "max_pp_arbolado_sustituyendo_pasto": 13.6,
+   "max_pp_sobre_construido": 64.4,
+   "calzadas_osm_pct": 15.4,
+   "max_pp_pavimento_frio": 15.4,
+   "max_pp_techos_verdes": 49.1,
+   "lst_observada_media_c": 39.99,
+   "ndvi_observado_medio": 0.33,
+   "delta_lst_minimo_c": -4.94,
+   "delta_ndvi_maximo": 0.431
+  },
+  "c7": {
+   "arbolado_pct": 25.0,
+   "construido_pct": 27.3,
+   "agua_pct": 0.0,
+   "pasto_cultivo_suelo_y_otros_pct": 47.7,
+   "max_pp_arbolado_sustituyendo_pasto": 47.7,
+   "max_pp_sobre_construido": 27.3,
+   "calzadas_osm_pct": 8.3,
+   "max_pp_pavimento_frio": 8.3,
+   "max_pp_techos_verdes": 19.0,
+   "lst_observada_media_c": 37.14,
+   "ndvi_observado_medio": 0.533,
+   "delta_lst_minimo_c": -2.09,
+   "delta_ndvi_maximo": 0.228
+  },
+  "zaragoza": {
+   "arbolado_pct": 26.8,
+   "construido_pct": 55.6,
+   "agua_pct": 0.0,
+   "pasto_cultivo_suelo_y_otros_pct": 17.6,
+   "max_pp_arbolado_sustituyendo_pasto": 17.6,
+   "max_pp_sobre_construido": 55.6,
+   "calzadas_osm_pct": 13.6,
+   "max_pp_pavimento_frio": 13.6,
+   "max_pp_techos_verdes": 42.0,
+   "lst_observada_media_c": 37.79,
+   "ndvi_observado_medio": 0.387,
+   "delta_lst_minimo_c": -2.74,
+   "delta_ndvi_maximo": 0.374
+  }
+ },
+ "verificacion_topes": {
+  "por_zona": {
+   "c1": {
+    "delta_lst_minimo_c": -4.96,
+    "una_intervencion_en_su_tope_c": {
+     "arbolado_sustituye_pasto": -0.16,
+     "arbolado_sustituye_construido": -6.24,
+     "techos_verdes": -6.77,
+     "pavimento_frio": -0.79
+    },
+    "intervenciones_que_bajan_del_piso": [
+     "arbolado_sustituye_construido",
+     "techos_verdes"
+    ],
+    "combinacion_maxima_c": -8.11,
+    "combinacion_maxima_pp": {
+     "arbolado_sustituye_pasto": 7.5,
+     "techos_verdes": 62.2,
+     "arbolado_sustituye_construido": 14.5,
+     "pavimento_frio": 0.0
+    },
+    "combinacion_baja_del_piso": true,
+    "exceso_sobre_el_piso_c": -3.15
+   },
+   "c2": {
+    "delta_lst_minimo_c": -4.92,
+    "una_intervencion_en_su_tope_c": {
+     "arbolado_sustituye_pasto": -0.27,
+     "arbolado_sustituye_construido": -5.9,
+     "techos_verdes": -6.29,
+     "pavimento_frio": -0.8
+    },
+    "intervenciones_que_bajan_del_piso": [
+     "arbolado_sustituye_construido",
+     "techos_verdes"
+    ],
+    "combinacion_maxima_c": -7.75,
+    "combinacion_maxima_pp": {
+     "arbolado_sustituye_pasto": 12.5,
+     "techos_verdes": 57.8,
+     "arbolado_sustituye_construido": 14.7,
+     "pavimento_frio": 0.0
+    },
+    "combinacion_baja_del_piso": true,
+    "exceso_sobre_el_piso_c": -2.83
+   },
+   "c3": {
+    "delta_lst_minimo_c": -3.4,
+    "una_intervencion_en_su_tope_c": {
+     "arbolado_sustituye_pasto": -0.2,
+     "arbolado_sustituye_construido": -4.9,
+     "techos_verdes": -5.07,
+     "pavimento_frio": -0.75
+    },
+    "intervenciones_que_bajan_del_piso": [
+     "arbolado_sustituye_construido",
+     "techos_verdes"
+    ],
+    "combinacion_maxima_c": -6.39,
+    "combinacion_maxima_pp": {
+     "arbolado_sustituye_pasto": 9.6,
+     "techos_verdes": 46.6,
+     "arbolado_sustituye_construido": 13.7,
+     "pavimento_frio": 0.0
+    },
+    "combinacion_baja_del_piso": true,
+    "exceso_sobre_el_piso_c": -2.99
+   },
+   "c4": {
+    "delta_lst_minimo_c": -5.25,
+    "una_intervencion_en_su_tope_c": {
+     "arbolado_sustituye_pasto": -0.44,
+     "arbolado_sustituye_construido": -5.35,
+     "techos_verdes": -5.58,
+     "pavimento_frio": -0.78
+    },
+    "intervenciones_que_bajan_del_piso": [
+     "arbolado_sustituye_construido",
+     "techos_verdes"
+    ],
+    "combinacion_maxima_c": -7.2,
+    "combinacion_maxima_pp": {
+     "arbolado_sustituye_pasto": 20.8,
+     "techos_verdes": 51.3,
+     "arbolado_sustituye_construido": 14.5,
+     "pavimento_frio": 0.0
+    },
+    "combinacion_baja_del_piso": true,
+    "exceso_sobre_el_piso_c": -1.95
+   },
+   "c5": {
+    "delta_lst_minimo_c": -6.05,
+    "una_intervencion_en_su_tope_c": {
+     "arbolado_sustituye_pasto": -0.01,
+     "arbolado_sustituye_construido": -6.84,
+     "techos_verdes": -7.64,
+     "pavimento_frio": -0.76
+    },
+    "intervenciones_que_bajan_del_piso": [
+     "arbolado_sustituye_construido",
+     "techos_verdes"
+    ],
+    "combinacion_maxima_c": -8.77,
+    "combinacion_maxima_pp": {
+     "arbolado_sustituye_pasto": 0.3,
+     "techos_verdes": 70.2,
+     "arbolado_sustituye_construido": 13.9,
+     "pavimento_frio": 0.0
+    },
+    "combinacion_baja_del_piso": true,
+    "exceso_sobre_el_piso_c": -2.72
+   },
+   "c6": {
+    "delta_lst_minimo_c": -4.94,
+    "una_intervencion_en_su_tope_c": {
+     "arbolado_sustituye_pasto": -0.29,
+     "arbolado_sustituye_construido": -5.24,
+     "techos_verdes": -5.34,
+     "pavimento_frio": -0.84
+    },
+    "intervenciones_que_bajan_del_piso": [
+     "arbolado_sustituye_construido",
+     "techos_verdes"
+    ],
+    "combinacion_maxima_c": -6.88,
+    "combinacion_maxima_pp": {
+     "arbolado_sustituye_pasto": 13.6,
+     "techos_verdes": 49.1,
+     "arbolado_sustituye_construido": 15.3,
+     "pavimento_frio": 0.0
+    },
+    "combinacion_baja_del_piso": true,
+    "exceso_sobre_el_piso_c": -1.94
+   },
+   "c7": {
+    "delta_lst_minimo_c": -2.09,
+    "una_intervencion_en_su_tope_c": {
+     "arbolado_sustituye_pasto": -1.02,
+     "arbolado_sustituye_construido": -2.22,
+     "techos_verdes": -2.07,
+     "pavimento_frio": -0.45
+    },
+    "intervenciones_que_bajan_del_piso": [
+     "arbolado_sustituye_construido"
+    ],
+    "combinacion_maxima_c": -3.76,
+    "combinacion_maxima_pp": {
+     "arbolado_sustituye_pasto": 47.7,
+     "techos_verdes": 19.0,
+     "arbolado_sustituye_construido": 8.3,
+     "pavimento_frio": 0.0
+    },
+    "combinacion_baja_del_piso": true,
+    "exceso_sobre_el_piso_c": -1.67
+   },
+   "zaragoza": {
+    "delta_lst_minimo_c": -2.74,
+    "una_intervencion_en_su_tope_c": {
+     "arbolado_sustituye_pasto": -0.37,
+     "arbolado_sustituye_construido": -4.52,
+     "techos_verdes": -4.57,
+     "pavimento_frio": -0.74
+    },
+    "intervenciones_que_bajan_del_piso": [
+     "arbolado_sustituye_construido",
+     "techos_verdes"
+    ],
+    "combinacion_maxima_c": -6.05,
+    "combinacion_maxima_pp": {
+     "arbolado_sustituye_pasto": 17.6,
+     "techos_verdes": 42.0,
+     "arbolado_sustituye_construido": 13.6,
+     "pavimento_frio": 0.0
+    },
+    "combinacion_baja_del_piso": true,
+    "exceso_sobre_el_piso_c": -3.31
+   }
+  },
+  "zonas_con_alguna_intervencion_bajo_el_piso": 8,
+  "zonas_con_la_combinacion_maxima_bajo_el_piso": 8,
+  "metodo": "ΔLST de cada intervención con X en su tope de superficie (max_pp_arbolado_sustituyendo_pasto, max_pp_sobre_construido para el arbolado sobre construido, max_pp_techos_verdes, max_pp_pavimento_frio) y de la combinación de mayor enfriamiento que respeta la restricción conjunta sobre lo construido, con los coeficientes centrales; se compara con delta_lst_minimo_c.",
+  "lectura": "Aun dentro de las superficies disponibles, una sola intervención en su tope bajaría del piso de LST en 8 de 8 zonas y la combinación máxima en 8: el piso (regla_combinacion.pisos) es una restricción necesaria, no redundante. max_pp_techos_verdes y max_pp_pavimento_frio son los topes de esas intervenciones; max_pp_sobre_construido es el tope conjunto de lo que se hace sobre lo construido, no el de cada una."
+ },
+ "ejemplo_por_zona_10pp": {
+  "c1": {
+   "arbolado_sustituye_pasto_delta_lst_c": null,
+   "arbolado_sustituye_construido_delta_lst_c": -0.813,
+   "nota": "La zona tiene menos de 10 pp de pasto u otras coberturas disponibles."
+  },
+  "c2": {
+   "arbolado_sustituye_pasto_delta_lst_c": -0.2128,
+   "arbolado_sustituye_construido_delta_lst_c": -0.813,
+   "nota": null
+  },
+  "c3": {
+   "arbolado_sustituye_pasto_delta_lst_c": null,
+   "arbolado_sustituye_construido_delta_lst_c": -0.813,
+   "nota": "La zona tiene menos de 10 pp de pasto u otras coberturas disponibles."
+  },
+  "c4": {
+   "arbolado_sustituye_pasto_delta_lst_c": -0.2128,
+   "arbolado_sustituye_construido_delta_lst_c": -0.813,
+   "nota": null
+  },
+  "c5": {
+   "arbolado_sustituye_pasto_delta_lst_c": null,
+   "arbolado_sustituye_construido_delta_lst_c": -0.813,
+   "nota": "La zona tiene menos de 10 pp de pasto u otras coberturas disponibles."
+  },
+  "c6": {
+   "arbolado_sustituye_pasto_delta_lst_c": -0.2128,
+   "arbolado_sustituye_construido_delta_lst_c": -0.813,
+   "nota": null
+  },
+  "c7": {
+   "arbolado_sustituye_pasto_delta_lst_c": -0.2128,
+   "arbolado_sustituye_construido_delta_lst_c": -0.813,
+   "nota": null
+  },
+  "zaragoza": {
+   "arbolado_sustituye_pasto_delta_lst_c": -0.2128,
+   "arbolado_sustituye_construido_delta_lst_c": -0.813,
+   "nota": null
+  }
+ },
+ "limitaciones": [
+  "Asociación transversal, no causalidad: otros factores ligados a la cobertura (riego, humedad del suelo, cercanía al río, materiales, sombra de edificios) pueden explicar parte del coeficiente.",
+  "La LST es temperatura de superficie a las 10:19 hora local en días despejados; no es la temperatura del aire que siente la gente ni la máxima de la tarde.",
+  "WorldCover es de 2021 y la LST de 2022–2025: los cambios de cobertura entre esos años no se reflejan.",
+  "Arbolado = área clasificada como árboles por WorldCover, no fracción de copa: el X del simulador está en esa unidad.",
+  "Modelo lineal y aditivo: fuera del rango observado es una extrapolación; No linealidad moderada: el residuo medio llega a +0,81 °C en unidades con 20–40 % construido (n = 94); la relación con lo construido no es exactamente lineal.",
+  "Aplicado a las medias de zona, el modelo se desvía hasta -0,94 °C (zaragoza); el simulador debe sumar el cambio predicho a la LST observada de la zona, no usar la LST predicha.",
+  "El coeficiente del arbolado crece con la escala de agregación: 28 m -0,08; 55 m -0,13; 111 m -0,21; 166 m -0,22; 222 m -0,28 °C por 10 pp. Por debajo de 100 m lo atenúa la resolución térmica; el valor de 111 m es conservador para intervenciones que abarcan una zona.",
+  "El coeficiente del agua no está identificado (casi no hay agua en la cabecera).",
+  "Los coeficientes de literatura (techos verdes, pavimentos) son de temperatura de superficie del elemento, de otros climas y materiales, en medias diarias; trasladarlos a la LST de 100 m con una mezcla lineal por área es un supuesto.",
+  "El IC del bootstrap por bloques recoge la autocorrelación espacial a la escala del bloque, no la incertidumbre del modelo ni la de los datos de entrada.",
+  "Los IC de literatura son de la media del metaanálisis y no recogen la heterogeneidad entre estudios (techos verdes I² 92 %); el intervalo de predicción publicado es una aproximación propia.",
+  "El modelo de NDVI es en parte circular (WorldCover se clasificó con Sentinel-2): su ΔNDVI es una equivalencia de cobertura, no un efecto medido.",
+  "Superficie vial estimada con ejes OSM y un ancho supuesto por carril: los topes de techos verdes y pavimento frío son aproximados."
+ ],
+ "referencias": [
+  {
+   "nombre": "USGS, What are the band designations for the Landsat satellites? (TIRS 100 m, remuestreado a 30 m)",
+   "url": "https://www.usgs.gov/faqs/what-are-band-designations-landsat-satellites",
+   "verificado": true
+  },
+  {
+   "nombre": "Das et al. (2025), BMJ Public Health 3(2): e002332",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12273142/",
+   "verificado": true
+  },
+  {
+   "nombre": "US EPA, Using Green Roofs to Reduce Heat Islands",
+   "url": "https://www.epa.gov/heatislands/using-green-roofs-reduce-heat-islands",
+   "verificado": true
+  },
+  {
+   "nombre": "Abhijith et al. (2017), Atmospheric Environment 162: 71–86",
+   "url": "https://doi.org/10.1016/j.atmosenv.2017.05.014",
+   "verificado": true
+  },
+  {
+   "nombre": "ESA WorldCover Sentinel-1 and Sentinel-2 10m Annual Composites (insumos de la clasificación WorldCover: compuestos S2 RGBNIR y SWIR, percentiles del NDVI S2 y S1 GAMMA0)",
+   "url": "https://registry.opendata.aws/esa-worldcover-vito-composites/",
+   "verificado": true
+  },
+  {
+   "nombre": "Higgins, J. P. T., Thompson, S. G., Spiegelhalter, D. J. (2009). A re-evaluation of random-effects meta-analysis. J R Stat Soc A 172(1): 137–159 (fórmula del intervalo de predicción μ ± t(k−2)·√(τ² + SE²), verificada en Nagashima, Noma y Furukawa, arXiv:1804.01054)",
+   "url": "https://arxiv.org/abs/1804.01054",
+   "verificado": true
+  }
+ ],
+ "fuentes": [
+  {
+   "capa": "lst",
+   "nombre": "USGS Landsat 8-9 OLI/TIRS Collection 2 Level-2 (ST_B10, QA_PIXEL), vía Microsoft Planetary Computer",
+   "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+   "licencia": "Dominio público (USGS): sin restricciones de uso ni redistribución; se pide citar la fuente",
+   "cita": "Landsat 8-9 OLI/TIRS Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey. doi:10.5066/P9OGBGM6"
+  },
+  {
+   "capa": "ndvi",
+   "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+   "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+   "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)",
+   "cita": "Contiene datos modificados de Copernicus Sentinel [2024–2025], procesados por BioMap Cartago"
+  },
+  {
+   "capa": "arbolado",
+   "nombre": "ESA WorldCover 10 m 2021 v200 (tesela N03W078)",
+   "url": "https://doi.org/10.5281/zenodo.7254221",
+   "licencia": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+   "cita": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221"
+  },
+  {
+   "capa": "altitud",
+   "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+   "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+   "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)",
+   "cita": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65"
+  },
+  {
+   "capa": "superficie vial",
+   "nombre": "OpenStreetMap, red vial (fuentes/osm-vias.json)",
+   "url": "https://www.openstreetmap.org/copyright",
+   "licencia": "ODbL 1.0",
+   "cita": "© colaboradores de OpenStreetMap"
+  },
+  {
+   "capa": "serie y tendencia (NDVI Landsat de la sensibilidad)",
+   "nombre": "USGS Landsat Collection 2 Level-2 (producto landsat)",
+   "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+   "licencia": "Dominio público USGS",
+   "cita": "Landsat Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey"
+  }
+ ],
+ "script": "scripts/indicadores.py",
+ "fecha_proceso": "2026-10-01"
+}

@@ -1,0 +1,127 @@
+{
+ "titulo": "Susceptibilidad topográfica a inundación",
+ "descripcion": "Zonas que por su poca altura sobre los ríos y cauces podrían inundarse con más facilidad. Es una lectura del relieve, no la amenaza oficial: las clases baja y 'HAND > 15 m' no descartan inundación (consultar IDEAM, CVC y POT).",
+ "unidad": "clase (0–3)",
+ "tipo": "categorica",
+ "clases": [
+  {
+   "valor": 0,
+   "etiqueta": "HAND > 15 m sobre el cauce más cercano (no descarta amenaza: consultar la zonificación oficial del IDEAM, la CVC y el POT)",
+   "etiqueta_corta": "HAND > 15 m (no descarta amenaza)",
+   "color": "#f2f2f2"
+  },
+  {
+   "valor": 1,
+   "etiqueta": "Baja: HAND 6–15 m (no descarta amenaza: consultar la zonificación oficial del IDEAM, la CVC y el POT)",
+   "etiqueta_corta": "Baja (no descarta amenaza)",
+   "color": "#c6dbef"
+  },
+  {
+   "valor": 2,
+   "etiqueta": "Media: ≤ 6 m sobre el cauce más cercano (incluidos arroyos y canales de drenaje), ≤ 3 m sobre La Vieja/Cauca a más de 1,5 km, o franja de ≤ 100 m junto a La Vieja/Cauca (regla de piso)",
+   "etiqueta_corta": "Media",
+   "color": "#6baed6"
+  },
+  {
+   "valor": 3,
+   "etiqueta": "Alta: ≤ 3 m sobre el nivel del río La Vieja o del Cauca y a ≤ 1,5 km de él",
+   "etiqueta_corta": "Alta",
+   "color": "#08519c"
+  }
+ ],
+ "fuente": {
+  "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+  "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+  "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)",
+  "cita": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65. Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0. Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., et al. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. Remote Sensing of Environment 300, 113888. doi:10.1016/j.rse.2023.113888"
+ },
+ "periodo": "Topografía 2011–2015 (TanDEM-X); dosel Meta/WRI CHM v1 (imágenes 2014–2018); cauces OSM descargados en 2026",
+ "resolucion_original_m": 30,
+ "procesamiento": [
+  "Lectura por ventanas de las teselas COG N04W076 y N04W077 del Copernicus DEM GLO-30 (dominio −76,08/−75,76 E, 4,60/4,88 N).",
+  "DEM a UTM 18N (EPSG:32618) a 30 m con remuestreo bilineal; dominio 1179×1027 celdas (35,4 × 30,8 km).",
+  "Corrección del dosel: altura del dosel de Meta/WRI CHM v1 (1 m; imágenes de 2014–2018 en la rejilla) promediada a 30 m y convertida en exceso del DSM con una curva calibrada en Cartago: en terreno llano fuera de la ciudad, mediana de (altura de la celda − media de las celdas sin dosel en 11×11 celdas) por intervalos de CHM (2,71 m → 1 m; 4,81 m → 2,25 m; 6,85 m → 3,89 m; 8,81 m → 6,61 m; 10,76 m → 7,36 m; 12,96 m → 9,29 m; por encima, 0,717 × CHM; control en celdas sin dosel: -0,026 m). El HAND usa este DEM corregido; la capa 'altitud' sigue siendo el DSM.",
+  "Quema de cauces: ejes OSM de los ríos La Vieja y Cauca (rasterizados tocando celdas), polígonos de agua fluvial OSM de La Vieja, Cauca y Consota y ejes de los demás ríos OSM bajados 20 m; arroyos OSM (83 vías, incluidas las alcantarillas) y canales OSM que pasan la prueba de drenaje bajados 10 m. Solo dirige el flujo; las alturas del HAND no usan el DEM quemado.",
+  "Prueba de drenaje de cada canal OSM: cada 30 m, el mínimo 3×3 del eje frente a la mediana de los flancos a 60–150 m a cada lado; se acepta si en ≥ 60 % de los puntos el eje queda a ≤ 0,5 m del flanco más bajo o por debajo (corre por lo bajo). Aceptados: 14 vías; rechazados (a media ladera o en terraplén, como un canal de riego): 3 vías (755307241, 755307242, 755307243).",
+  "Relleno de depresiones Priority-Flood + ε (Barnes et al. 2014) y dirección de flujo D8 por máxima pendiente.",
+  "Red de drenaje = ríos OSM ∪ arroyos y canales de drenaje OSM ∪ celdas con área drenada ≥ 5 km² (5556 celdas de 30 m; criterio técnico) fuera de la red mapeada: los cauces derivados a ≤ 90 m de un cauce OSM se sustituyen por él (177 celdas) y los tramos derivados sobre celdas que el relleno elevó más de 0,5 m se excluyen (2036 celdas); quedan 3860 celdas derivadas.",
+  "Cota del cauce: en los ríos OSM, mínimo 5×5 (±60 m) del DSM sin corregir, para tomar la lámina de agua y no la orilla arbolada; en arroyos y canales OSM, mínimo 3×3 del DEM corregido (absorbe el desfase del eje); en los derivados, la propia celda del DEM corregido. Perfil no creciente aguas abajo solo dentro de cada tipo de cauce; un cauce menor no queda por debajo del nivel del río mayor al que entrega.",
+  "HAND = altura de la celda (DEM corregido, sin quemar ni rellenar) − cota del cauce al que drena siguiendo el D8. Valores negativos (depresiones del DSM) → 0.",
+  "Remuestreo bilineal de UTM a la rejilla común; recorte a 0–60 m para la publicación.",
+  "Clases sobre la rejilla común: 3 alta = HAND respecto a La Vieja/Cauca ≤ 3 m y distancia ≤ 1500 m al cauce mayor (ejes y polígonos OSM); 2 media = HAND respecto al cauce más cercano ≤ 6 m, o distancia ≤ 100 m al cauce mayor (regla de piso), y no alta; 1 baja = 6 < HAND ≤ 15 m; 0 = HAND > 15 m."
+ ],
+ "limitaciones": [
+  "Las clases 'baja' y 'HAND > 15 m' NO descartan amenaza de inundación: la referencia oficial es la zonificación de amenaza del IDEAM, de la CVC y del POT de Cartago. Frente a la amenaza ALTA por creciente súbita del IDEAM (TR 50 años), en la cabecera el 8,6 % de su área (2,3 de 26,6 ha) queda en esas clases, y en toda la rejilla el 26,2 % (34,5 ha), sobre todo en cauces menores al sur de la cabecera y en Zaragoza.",
+  "No es la amenaza oficial por inundación: esa está en el POT de Cartago, en los estudios de la CVC y en la zonificación del IDEAM, que modelan caudales, periodos de retorno, diques y obras. Para decisiones, usar esa zonificación.",
+  "Amenaza ALTA del IDEAM en la rejilla (131,79 ha): 39,1 % en nuestra clase alta, 34,7 % en media, 22,5 % en baja y 3,7 % en HAND > 15 m. En el corredor del río La Vieja (94,91 ha) queda en baja o HAND > 15 m el 1,9 % (1,84 ha; a 118 m del cauce mayor y HAND 7,56 m en mediana). En los cauces menores (polígonos 5, 11, 30 del IDEAM: sur de la cabecera y Zaragoza, a 2,5–5,4 km de La Vieja; 36,88 ha) queda en baja o HAND > 15 m el 88,6 % (32,66 ha): esos polígonos están a 455–1074 m del arroyo o canal OSM más cercano y el área drenada máxima del DSM dentro de ellos es de 0,83 km² (polígono 5), 13,57 km² (polígono 11), 0,06 km² (polígono 30); la red de drenaje usada toca 0 de 207 celdas, 9 de 250 celdas, 0 de 24 celdas, así que casi todo su HAND se mide respecto a cauces lejanos. Antes de estas correcciones (DSM sin corregir, sin red OSM ni regla de piso) el reparto en la cabecera era 2 / 51 / 46,1 / 0,9 % (alta / media / baja / HAND > 15 m); ahora es 7,5 / 83,9 / 6,9 / 1,7 %.",
+  "El Copernicus DEM es un modelo de SUPERFICIE: incluye edificios y copas de árboles. Para el HAND se resta una estimación del exceso del dosel (Meta/WRI CHM v1, curva calibrada en Cartago); la corrección es parcial: a 30–90 m de La Vieja o del Cauca, el HAND respecto al río pasa de 17,92 a 8,46 m bajo dosel alto (CHM ≥ 10 m), frente a 4,54 m sin dosel, y los edificios no se corrigen (en la ciudad las alturas siguen por encima del suelo y el HAND tiende a quedar alto). La lámina de agua de los ríos se toma del mínimo local del DSM (±60 m).",
+  "Regla de piso: las celdas a ≤ 100 m del eje o del polígono OSM de La Vieja o del Cauca no bajan de 'media' (199,33 ha promovidas en la rejilla, 18,32 ha en la cabecera), porque allí el dosel residual del DSM y el desfase de los ejes OSM elevan el HAND. Es un criterio de precaución, no una medición.",
+  "HAND solo mide posición del terreno respecto al cauce; no considera caudales, lluvias, diques, jarillones, alcantarillado ni remanso del Cauca sobre La Vieja.",
+  "La red menor combina los arroyos y canales de drenaje de OpenStreetMap (83 arroyos y 14 tramos de canal aceptados) con cauces derivados del DEM (área drenada ≥ 5 km², criterio técnico) donde OSM no mapea nada. OSM no es exhaustivo: los cauces menores que la amenaza ALTA del IDEAM señala al sur de la cabecera y en Zaragoza no están en OSM, y allí el HAND se mide respecto a cauces lejanos (susceptibilidad subestimada). Algunos cauces derivados pueden no corresponder a cauces reales. La función de los canales OSM (drenaje o riego) no está etiquetada: se decide con una prueba topográfica que puede equivocarse en terreno llano.",
+  "Resultado sensible al umbral de área drenada (como se ha documentado en otros estudios, p. ej. Alabbad 2026, Water 18(13):1598). HAND mediano de la cabecera: 4,89 m con 1 km²; 5,97 m con 2 km²; 8,99 m con 5 km²; 9 m con 10 km²; 9 m sin red derivada (solo cauces OSM). Detalle en datos/series/inundacion.json (clave 'sensibilidad_red_menor').",
+  "Los tramos derivados que cruzan depresiones rellenadas del DSM (relleno > 0,5 m) se excluyen de la red: allí el D8 traza rectas sin cauce real. Las celdas que drenaban a ellos miden su HAND respecto al siguiente cauce aguas abajo; las que quedan por debajo de él (depresiones del DSM) toman HAND 0: 8689 de 189421 celdas UTM de la rejilla (4,6 %), con profundidad mediana 0,46 m (p90 1,92 m). En un modelo de superficie muchas de esas depresiones son artefactos (campos rodeados de árboles o edificios) y allí el HAND 0 puede exagerar la susceptibilidad; el área por zona está en 'resumen.zonas[].area_depresion_dsm_ha' de datos/series/inundacion.json.",
+  "Los ejes de OSM pueden estar desplazados decenas de metros del cauce actual; los ríos migran.",
+  "Resolución de 30 m: no resuelve bordillos, muros ni diferencias de 1–2 m entre calles vecinas.",
+  "El CHM v1 de Meta/WRI se infiere de imágenes ópticas (2014–2018 en la rejilla; fecha codificada como año − 2000, supuesto por el rango de valores) y el DSM es de 2011–2015: los árboles talados o plantados entre ambas fechas quedan mal corregidos. El CHM subestima doseles altos y densos; la curva de corrección se calibró con doseles de 2–15 m de altura media.",
+  "Las clases heredan todos los sesgos del HAND; los bordes entre clases son graduales en la realidad.",
+  "La clase alta no depende de la red menor, pero sí del corte de 3 m y de la distancia de 1,5 km (criterio técnico). Área alta en la cabecera según la distancia: 1 km → 3,53 ha; 1,5 km → 3,6 ha; 2 km → 5,29 ha; con 4 m y 1,5 km → 16,56 ha. La clase alta dentro de la cabecera NO es robusta; ver 'sensibilidad_clase_alta' en datos/series/inundacion.json.",
+  "En la llanura del Cauca (occidente y suroccidente) el HAND respecto al río es bajo en grandes extensiones; el corte de 1,5 km dibuja bordes en arco: más allá, celdas a ≤ 3 m del nivel del río quedan en 'media'.",
+  "La clase media mezcla situaciones distintas: poca altura sobre un arroyo, canal o cauce derivado (encharcamiento o desborde local), 3–6 m sobre cualquier cauce, la franja de ribera de la regla de piso y celdas en depresiones del DSM con HAND 0.",
+  "Validación parcial: frente a la amenaza por creciente súbita del IDEAM (TR 50 años) y a las áreas afectadas por La Niña 1988–2022 (IDEAM). Resultados por polígono, por zona y antes/después de las correcciones en 'validacion' de datos/series/inundacion.json.",
+  "Frente a las áreas afectadas por inundación de La Niña del IDEAM (1988–2022, escala no declarada; unión de 3419,17 ha en la rejilla): quedó inundado el 66,66 % del área de clase alta, el 31,08 % de la media, el 19,72 % de la baja y el 1,64 % de la clase HAND > 15 m. Las clases ordenan el riesgo observado, pero el 55,1 % del área inundada observada está en clase media y el 19,3 % en baja o HAND > 15 m."
+ ],
+ "rango_visual": [
+  0,
+  4
+ ],
+ "paleta": [
+  "#f2f2f2",
+  "#c6dbef",
+  "#6baed6",
+  "#08519c",
+  "#08519c"
+ ],
+ "interpretacion": "Las clases baja y 'HAND > 15 m' NO descartan amenaza: la referencia oficial es la zonificación de amenaza del IDEAM, la CVC y el POT. Capa categórica: el color k de la paleta corresponde a la clase k (0–3); el quinto color repite la clase 3 para que rango_visual [0, 4] asigne un color exacto a cada clase. Umbrales: 15 m = límite de tierras bajas de Nobre et al. (2011, SRTM 90 m, Amazonia); 3 m, 6 m, 1,5 km y la franja de 100 m = criterio técnico. Santos et al. (2021) usaron 0–3 m como 'muy alta', pero con un DEM TOPODATA de 30 m interpolado y una red de 100 celdas (≈ 0,09 km², unas 55 veces más fina que la de aquí): sus cortes no se trasladan a esta red ni a un modelo de superficie.",
+ "avisos_legales": [
+  "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved",
+  "The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30",
+  "Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0",
+  "Meta and World Resources Institute (WRI) - 2024. High Resolution Canopy Height Maps (CHM). Source imagery © 2016 Maxar. Licencia CC BY 4.0 (https://registry.opendata.aws/dataforgood-fb-forests/)"
+ ],
+ "nombre": "susceptibilidad_inundacion",
+ "escala": 1,
+ "desplazamiento": 0,
+ "codificacion": "RGBA 16 bits: v=R*256+G; v=0 sin dato; valor=(v-1)*escala+desplazamiento",
+ "rejilla": {
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res": 0.00025,
+  "ancho": 520,
+  "alto": 428,
+  "crs": "EPSG:4326"
+ },
+ "estadisticas": {
+  "extension": {
+   "min": 0.0,
+   "p10": 0.0,
+   "media": 1.1041,
+   "p50": 1.0,
+   "p90": 2.0,
+   "max": 3.0,
+   "celdas": 222560
+  },
+  "cabecera_urbana": {
+   "min": 0.0,
+   "p10": 0.0,
+   "media": 1.0806,
+   "p50": 1.0,
+   "p90": 2.0,
+   "max": 3.0,
+   "celdas": 19878
+  }
+ },
+ "cobertura_pct": 100.0,
+ "fecha_proceso": "2026-10-01"
+}

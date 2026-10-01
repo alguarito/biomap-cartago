@@ -1,0 +1,10475 @@
+{
+ "titulo": "Serie anual Landsat por zona: temperatura de superficie y NDVI (2000–2025)",
+ "descripcion": "Mediana anual por zona de la temperatura de superficie (LST) y del NDVI de Landsat, con la marca de confiabilidad de cada año y la diferencia con el campo a la misma altitud. Las cifras de distintos sensores no son directamente comparables.",
+ "unidades": {
+  "lst": "°C",
+  "ndvi": "adimensional",
+  "isla": "°C (zona − referencia rural)",
+  "pct_celdas_*": "%",
+  "sen_por_decada": "°C/década o NDVI/década"
+ },
+ "fuente": {
+  "nombre": "Rejillas anuales del producto landsat (fuentes/rejilla/lst_<año>.npy, ndvi_<año>.npy), USGS Landsat C2 L2 vía Planetary Computer",
+  "url": "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+  "licencia": "Dominio público USGS",
+  "cita": "Landsat Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey"
+ },
+ "metodo": {
+  "valor_zona_anio": "Mediana de las celdas de la zona con dato; nulo si menos del 50 % de las celdas de la zona tiene dato ese año (supuesto).",
+  "referencia_rural": "landsat.mascaras()['rural']: fuera de la cabecera, a más de 500 m, sin agua, construido < 10 % y altitud ± 30 m de la mediana de la cabecera (definición del producto landsat).",
+  "confiable": "≥ 4 escenas, en ≥ 3 trimestres distintos y ≥ 30 % de las celdas de la cabecera con dato.",
+  "tendencias": "Pendiente de Sen con IC 95 % (scipy.stats.theilslopes) y Mann-Kendall (τ de Kendall, scipy.stats.kendalltau); significativa si p < 0,05 y el IC de Sen excluye 0. Solo años confiables.",
+  "tramos": {
+   "2013_2025_landsat_8_9": "Principal: un solo tipo de sensor (TIRS), tramo preferente según datos/series/landsat.json.",
+   "2013_2023_sin_cambio_geos_it": "Sensibilidad: excluye 2024-2025, cuando el USGS pasó de GEOS FP-IT a GEOS-IT como dato atmosférico del producto ST (desde el 1-ene-2024).",
+   "2000_2012_landsat_5_7": "Landsat 5 TM y 7 ETM+ (SLC-off desde mayo de 2003).",
+   "2000_2025_sin_armonizar": "Solo referencia, NO robusta: mezcla sensores; el salto de 2012-2013 (cambio de sensor y salto de causa no determinada) domina la pendiente."
+  },
+  "variantes": {
+   "mediana": "Mediana espacial de las celdas de la zona (serie principal).",
+   "media": "Media espacial de las celdas de la zona: menos sensible al salto entre los dos modos de una zona heterogénea.",
+   "nucleo_construido": "Mediana de las celdas de la zona con ≥ 80 % construido (WorldCover 2021); solo si hay ≥ 200 celdas."
+  },
+  "robustez": "'tendencias_variantes' compara mediana, media y núcleo construido en los tramos de un solo tipo de sensor: robusta = las tres variantes significativas con el mismo signo, o ninguna significativa; si solo algunas lo son, el resultado depende del método."
+ },
+ "anios": [
+  2000,
+  2001,
+  2002,
+  2003,
+  2004,
+  2005,
+  2006,
+  2007,
+  2008,
+  2009,
+  2010,
+  2011,
+  2012,
+  2013,
+  2014,
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "metadatos_anio": [
+  {
+   "anio": 2000,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L5 TM",
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:05",
+   "celdas_frias_residuales": 18
+  },
+  {
+   "anio": 2001,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L5 TM",
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:07",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2002,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:07",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2003,
+   "confiable": false,
+   "motivo_no_confiable": [
+    "3 escenas (< 4)",
+    "escenas en 1 trimestre(s) (< 3): poco representativo del año"
+   ],
+   "sensores": [
+    "L7 ETM+"
+   ],
+   "n_escenas": 3,
+   "trimestres": [
+    1
+   ],
+   "hora_local_media": "10:07",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2004,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L7 ETM+"
+   ],
+   "n_escenas": 5,
+   "trimestres": [
+    1,
+    3,
+    4
+   ],
+   "hora_local_media": "10:08",
+   "celdas_frias_residuales": 5
+  },
+  {
+   "anio": 2005,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:08",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2006,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:09",
+   "celdas_frias_residuales": 1
+  },
+  {
+   "anio": 2007,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    4
+   ],
+   "hora_local_media": "10:09",
+   "celdas_frias_residuales": 200
+  },
+  {
+   "anio": 2008,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:08",
+   "celdas_frias_residuales": 222
+  },
+  {
+   "anio": 2009,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L5 TM",
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:09",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2010,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:11",
+   "celdas_frias_residuales": 8
+  },
+  {
+   "anio": 2011,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L5 TM",
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:12",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2012,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L7 ETM+"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:14",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2013,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:21",
+   "celdas_frias_residuales": 5
+  },
+  {
+   "anio": 2014,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2015,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2016,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2017,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2018,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2019,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2020,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2021,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2022,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS",
+    "L9 OLI-2/TIRS-2"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2023,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS",
+    "L9 OLI-2/TIRS-2"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2024,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS",
+    "L9 OLI-2/TIRS-2"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  },
+  {
+   "anio": 2025,
+   "confiable": true,
+   "motivo_no_confiable": null,
+   "sensores": [
+    "L8 OLI/TIRS",
+    "L9 OLI-2/TIRS-2"
+   ],
+   "n_escenas": 6,
+   "trimestres": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "hora_local_media": "10:19",
+   "celdas_frias_residuales": 0
+  }
+ ],
+ "rural_referencia": {
+  "lst": [
+   31.872,
+   34.485,
+   35.384,
+   36.885,
+   35.892,
+   33.332,
+   33.03,
+   34.737,
+   33.108,
+   36.796,
+   33.687,
+   34.548,
+   35.576,
+   32.327,
+   34.534,
+   37.97,
+   37.046,
+   34.337,
+   35.241,
+   35.669,
+   35.438,
+   32.388,
+   33.784,
+   35.437,
+   37.347,
+   33.984
+  ],
+  "ndvi": [
+   0.682,
+   0.6455,
+   0.6718,
+   0.5505,
+   0.5972,
+   0.6835,
+   0.6739,
+   0.6633,
+   0.6709,
+   0.692,
+   0.6895,
+   0.6773,
+   0.5976,
+   0.6989,
+   0.7107,
+   0.6746,
+   0.7197,
+   0.7299,
+   0.7258,
+   0.7157,
+   0.6886,
+   0.7339,
+   0.7023,
+   0.7127,
+   0.66,
+   0.714
+  ],
+  "tendencias": {
+   "lst": {
+    "2013_2025_landsat_8_9": {
+     "sen_por_decada": 0.036,
+     "ic95_sen": [
+      -3.643,
+      3.67
+     ],
+     "mann_kendall_p": 1.0,
+     "n_anios": 13,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": false
+    },
+    "2013_2023_sin_cambio_geos_it": {
+     "sen_por_decada": -0.58,
+     "ic95_sen": [
+      -5.437,
+      4.28
+     ],
+     "mann_kendall_p": 0.8793,
+     "n_anios": 11,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+     ],
+     "significativa": false
+    },
+    "2000_2012_landsat_5_7": {
+     "sen_por_decada": 1.66,
+     "ic95_sen": [
+      -1.92,
+      4.093
+     ],
+     "mann_kendall_p": 0.3108,
+     "n_anios": 12,
+     "anios": [
+      2000,
+      2001,
+      2002,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012
+     ],
+     "significativa": false
+    },
+    "2000_2025_sin_armonizar": {
+     "sen_por_decada": 0.477,
+     "ic95_sen": [
+      -0.428,
+      1.642
+     ],
+     "mann_kendall_p": 0.2554,
+     "n_anios": 25,
+     "anios": [
+      2000,
+      2001,
+      2002,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": false
+    }
+   },
+   "ndvi": {
+    "2013_2025_landsat_8_9": {
+     "sen_por_decada": 0.0,
+     "ic95_sen": [
+      -0.045,
+      0.039
+     ],
+     "mann_kendall_p": 1.0,
+     "n_anios": 13,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": false
+    },
+    "2013_2023_sin_cambio_geos_it": {
+     "sen_por_decada": 0.014,
+     "ic95_sen": [
+      -0.037,
+      0.064
+     ],
+     "mann_kendall_p": 0.5423,
+     "n_anios": 11,
+     "anios": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+     ],
+     "significativa": false
+    },
+    "2000_2012_landsat_5_7": {
+     "sen_por_decada": 0.006,
+     "ic95_sen": [
+      -0.051,
+      0.039
+     ],
+     "mann_kendall_p": 0.7373,
+     "n_anios": 12,
+     "anios": [
+      2000,
+      2001,
+      2002,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012
+     ],
+     "significativa": false
+    },
+    "2000_2025_sin_armonizar": {
+     "sen_por_decada": 0.026,
+     "ic95_sen": [
+      0.011,
+      0.039
+     ],
+     "mann_kendall_p": 0.002,
+     "n_anios": 25,
+     "anios": [
+      2000,
+      2001,
+      2002,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "significativa": true
+    }
+   }
+  },
+  "nota": "Control: si la zona y el campo cambian igual, el cambio no es urbano (clima, hora de paso, sensor o procesamiento)."
+ },
+ "zonas": [
+  {
+   "id": "c1",
+   "nombre": "Comuna 1",
+   "lst": [
+    37.272,
+    39.221,
+    41.402,
+    null,
+    40.133,
+    38.881,
+    40.476,
+    38.787,
+    38.46,
+    43.836,
+    39.256,
+    40.61,
+    41.347,
+    42.464,
+    41.551,
+    43.927,
+    44.499,
+    40.032,
+    41.552,
+    43.612,
+    42.605,
+    38.748,
+    40.683,
+    42.891,
+    44.528,
+    41.556
+   ],
+   "ndvi": [
+    0.3347,
+    0.327,
+    0.3131,
+    null,
+    0.2841,
+    0.3165,
+    0.3048,
+    0.3077,
+    0.3093,
+    0.3143,
+    0.3184,
+    0.3094,
+    0.3091,
+    0.364,
+    0.3435,
+    0.3328,
+    0.3211,
+    0.3527,
+    0.3357,
+    0.3189,
+    0.3044,
+    0.3204,
+    0.3102,
+    0.2871,
+    0.2746,
+    0.28
+   ],
+   "isla": [
+    5.4,
+    4.736,
+    6.018,
+    null,
+    4.241,
+    5.549,
+    7.446,
+    4.05,
+    5.352,
+    7.04,
+    5.569,
+    6.062,
+    5.771,
+    10.137,
+    7.017,
+    5.957,
+    7.452,
+    5.695,
+    6.311,
+    7.942,
+    7.167,
+    6.36,
+    6.899,
+    7.454,
+    7.18,
+    7.571
+   ],
+   "pct_celdas_lst": [
+    100.0,
+    100.0,
+    100.0,
+    21.4,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "pct_celdas_ndvi": [
+    100.0,
+    100.0,
+    100.0,
+    21.4,
+    100.0,
+    100.0,
+    100.0,
+    99.1,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "lst_media": [
+    37.053,
+    38.862,
+    40.974,
+    null,
+    39.618,
+    38.399,
+    39.854,
+    38.311,
+    38.398,
+    43.12,
+    38.761,
+    39.846,
+    40.89,
+    41.446,
+    40.992,
+    43.39,
+    43.871,
+    39.896,
+    41.024,
+    43.056,
+    41.68,
+    39.088,
+    40.181,
+    42.075,
+    43.797,
+    40.848
+   ],
+   "ndvi_media": [
+    0.3709,
+    0.3578,
+    0.3493,
+    null,
+    0.3176,
+    0.3641,
+    0.3497,
+    0.3445,
+    0.3451,
+    0.3522,
+    0.3623,
+    0.3524,
+    0.3477,
+    0.4025,
+    0.3884,
+    0.3766,
+    0.3737,
+    0.4041,
+    0.3927,
+    0.3801,
+    0.3675,
+    0.3772,
+    0.3743,
+    0.352,
+    0.3324,
+    0.3412
+   ],
+   "lst_nucleo_construido": [
+    38.67,
+    40.476,
+    42.755,
+    null,
+    41.282,
+    40.154,
+    41.918,
+    39.784,
+    40.162,
+    45.181,
+    40.291,
+    41.641,
+    42.588,
+    43.369,
+    42.734,
+    45.219,
+    45.521,
+    40.919,
+    42.77,
+    44.716,
+    43.281,
+    40.495,
+    41.84,
+    43.833,
+    45.484,
+    42.483
+   ],
+   "ndvi_nucleo_construido": [
+    0.2849,
+    0.2769,
+    0.2643,
+    null,
+    0.2476,
+    0.2673,
+    0.2585,
+    0.2629,
+    0.2666,
+    0.2694,
+    0.2719,
+    0.2643,
+    0.268,
+    0.3165,
+    0.2946,
+    0.2822,
+    0.2676,
+    0.3024,
+    0.2862,
+    0.2721,
+    0.2712,
+    0.2799,
+    0.2747,
+    0.2513,
+    0.2447,
+    0.2428
+   ],
+   "celdas_nucleo_construido": 1188,
+   "tendencias": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.004,
+      "ic95_sen": [
+       -3.427,
+       2.977
+      ],
+      "mann_kendall_p": 0.9524,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -1.803,
+      "ic95_sen": [
+       -6.08,
+       4.122
+      ],
+      "mann_kendall_p": 0.6481,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.639,
+      "ic95_sen": [
+       -1.087,
+       5.12
+      ],
+      "mann_kendall_p": 0.2496,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.542,
+      "ic95_sen": [
+       0.507,
+       2.678
+      ],
+      "mann_kendall_p": 0.0034,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.368,
+      "ic95_sen": [
+       -1.765,
+       1.85
+      ],
+      "mann_kendall_p": 0.5098,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.003,
+      "ic95_sen": [
+       -3.658,
+       2.175
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.868,
+      "ic95_sen": [
+       -1.143,
+       2.778
+      ],
+      "mann_kendall_p": 0.3108,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.949,
+      "ic95_sen": [
+       0.441,
+       1.47
+      ],
+      "mann_kendall_p": 0.0005,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.065,
+      "ic95_sen": [
+       -0.101,
+       -0.046
+      ],
+      "mann_kendall_p": 0.0001,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.058,
+      "ic95_sen": [
+       -0.107,
+       -0.029
+      ],
+      "mann_kendall_p": 0.0016,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": true
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.008,
+      "ic95_sen": [
+       -0.025,
+       0.011
+      ],
+      "mann_kendall_p": 0.459,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     }
+    }
+   },
+   "tendencias_variantes": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.004,
+        "ic95_sen": [
+         -3.427,
+         2.977
+        ],
+        "mann_kendall_p": 0.9524,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.191,
+        "ic95_sen": [
+         -3.359,
+         2.805
+        ],
+        "mann_kendall_p": 0.8577,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.319,
+        "ic95_sen": [
+         -3.593,
+         2.555
+        ],
+        "mann_kendall_p": 0.765,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.319,
+       "sen_max": 0.004,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,32 y 0,00 °C/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -1.803,
+        "ic95_sen": [
+         -6.08,
+         4.122
+        ],
+        "mann_kendall_p": 0.6481,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -1.406,
+        "ic95_sen": [
+         -4.584,
+         3.28
+        ],
+        "mann_kendall_p": 0.6481,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -1.258,
+        "ic95_sen": [
+         -6.125,
+         2.555
+        ],
+        "mann_kendall_p": 0.5423,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -1.803,
+       "sen_max": -1.258,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -1,80 y -1,26 °C/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 1.639,
+        "ic95_sen": [
+         -1.087,
+         5.12
+        ],
+        "mann_kendall_p": 0.2496,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 1.695,
+        "ic95_sen": [
+         -0.918,
+         4.668
+        ],
+        "mann_kendall_p": 0.3108,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 1.661,
+        "ic95_sen": [
+         -1.153,
+         4.93
+        ],
+        "mann_kendall_p": 0.2496,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 1.639,
+       "sen_max": 1.695,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +1,64 y +1,70 °C/década)."
+      }
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.065,
+        "ic95_sen": [
+         -0.101,
+         -0.046
+        ],
+        "mann_kendall_p": 0.0001,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.05,
+        "ic95_sen": [
+         -0.081,
+         -0.019
+        ],
+        "mann_kendall_p": 0.0027,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.049,
+        "ic95_sen": [
+         -0.069,
+         -0.025
+        ],
+        "mann_kendall_p": 0.0009,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.065,
+       "sen_max": -0.049,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,065 y -0,049 NDVI/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.058,
+        "ic95_sen": [
+         -0.107,
+         -0.029
+        ],
+        "mann_kendall_p": 0.0016,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.031,
+        "ic95_sen": [
+         -0.074,
+         -0.003
+        ],
+        "mann_kendall_p": 0.0405,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.045,
+        "ic95_sen": [
+         -0.074,
+         -0.009
+        ],
+        "mann_kendall_p": 0.0264,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.058,
+       "sen_max": -0.031,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,058 y -0,031 NDVI/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.008,
+        "ic95_sen": [
+         -0.025,
+         0.011
+        ],
+        "mann_kendall_p": 0.459,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.006,
+        "ic95_sen": [
+         -0.023,
+         0.016
+        ],
+        "mann_kendall_p": 0.6384,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.001,
+        "ic95_sen": [
+         -0.019,
+         0.024
+        ],
+        "mann_kendall_p": 0.9452,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.008,
+       "sen_max": -0.001,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,008 y -0,001 NDVI/década)."
+      }
+     }
+    }
+   },
+   "lectura": "LST 2013-2025 (Landsat 8/9): Sen 0,00 °C/década (IC 95 % -3,43 a +2,98; Mann-Kendall p = 0,95): sin tendencia detectable. Diferencia con el campo: +0,37 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,54 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,32 y 0,00 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,065 y -0,049 NDVI/década)."
+  },
+  {
+   "id": "c2",
+   "nombre": "Comuna 2",
+   "lst": [
+    38.078,
+    40.009,
+    41.867,
+    42.621,
+    40.475,
+    39.324,
+    38.753,
+    40.138,
+    39.927,
+    44.686,
+    38.975,
+    40.297,
+    41.484,
+    42.66,
+    42.508,
+    43.695,
+    44.178,
+    39.975,
+    42.023,
+    43.64,
+    42.332,
+    38.586,
+    40.625,
+    42.775,
+    44.625,
+    41.926
+   ],
+   "ndvi": [
+    0.3997,
+    0.3861,
+    0.3712,
+    0.3247,
+    0.3327,
+    0.3654,
+    0.3527,
+    0.3455,
+    0.3491,
+    0.3511,
+    0.3634,
+    0.358,
+    0.3631,
+    0.4056,
+    0.3916,
+    0.3717,
+    0.3571,
+    0.38,
+    0.3752,
+    0.3599,
+    0.3533,
+    0.365,
+    0.3483,
+    0.3356,
+    0.3184,
+    0.3205
+   ],
+   "isla": [
+    6.206,
+    5.524,
+    6.483,
+    5.736,
+    4.583,
+    5.992,
+    5.724,
+    5.401,
+    6.819,
+    7.89,
+    5.288,
+    5.749,
+    5.908,
+    10.333,
+    7.974,
+    5.725,
+    7.132,
+    5.638,
+    6.781,
+    7.97,
+    6.894,
+    6.198,
+    6.841,
+    7.338,
+    7.278,
+    7.942
+   ],
+   "pct_celdas_lst": [
+    100.0,
+    100.0,
+    100.0,
+    91.5,
+    100.0,
+    100.0,
+    100.0,
+    99.3,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "pct_celdas_ndvi": [
+    100.0,
+    100.0,
+    100.0,
+    91.5,
+    100.0,
+    100.0,
+    100.0,
+    99.3,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "lst_media": [
+    37.319,
+    39.472,
+    41.126,
+    42.154,
+    40.096,
+    38.973,
+    38.147,
+    39.871,
+    39.342,
+    43.863,
+    38.698,
+    39.78,
+    41.075,
+    41.504,
+    41.901,
+    43.163,
+    43.635,
+    39.288,
+    41.807,
+    42.773,
+    41.531,
+    38.176,
+    40.013,
+    41.985,
+    43.795,
+    40.952
+   ],
+   "ndvi_media": [
+    0.4432,
+    0.4259,
+    0.4201,
+    0.3573,
+    0.3775,
+    0.4256,
+    0.4139,
+    0.3942,
+    0.4087,
+    0.4049,
+    0.4172,
+    0.4111,
+    0.4019,
+    0.4457,
+    0.4322,
+    0.4081,
+    0.4045,
+    0.4417,
+    0.4328,
+    0.4253,
+    0.4139,
+    0.4356,
+    0.4173,
+    0.4002,
+    0.3731,
+    0.382
+   ],
+   "lst_nucleo_construido": [
+    39.198,
+    41.001,
+    42.86,
+    43.42,
+    41.602,
+    40.523,
+    39.886,
+    41.308,
+    41.063,
+    46.174,
+    39.749,
+    41.5,
+    42.57,
+    43.495,
+    44.023,
+    44.408,
+    45.113,
+    40.809,
+    42.785,
+    44.507,
+    43.202,
+    39.408,
+    41.745,
+    43.625,
+    45.569,
+    42.841
+   ],
+   "ndvi_nucleo_construido": [
+    0.3278,
+    0.3238,
+    0.3059,
+    0.2844,
+    0.28,
+    0.2987,
+    0.2861,
+    0.2929,
+    0.2977,
+    0.2959,
+    0.3077,
+    0.2971,
+    0.3032,
+    0.3475,
+    0.3272,
+    0.307,
+    0.2946,
+    0.3162,
+    0.309,
+    0.2951,
+    0.297,
+    0.3014,
+    0.2992,
+    0.2836,
+    0.2717,
+    0.2705
+   ],
+   "celdas_nucleo_construido": 849,
+   "tendencias": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.499,
+      "ic95_sen": [
+       -3.473,
+       2.264
+      ],
+      "mann_kendall_p": 0.6754,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -1.52,
+      "ic95_sen": [
+       -5.603,
+       1.633
+      ],
+      "mann_kendall_p": 0.3587,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.247,
+      "ic95_sen": [
+       -1.713,
+       4.027
+      ],
+      "mann_kendall_p": 0.3807,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.321,
+      "ic95_sen": [
+       0.258,
+       2.366
+      ],
+      "mann_kendall_p": 0.0196,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.071,
+      "ic95_sen": [
+       -1.943,
+       2.185
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.595,
+      "ic95_sen": [
+       -3.938,
+       2.016
+      ],
+      "mann_kendall_p": 0.5423,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.137,
+      "ic95_sen": [
+       -1.15,
+       1.85
+      ],
+      "mann_kendall_p": 0.9466,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.744,
+      "ic95_sen": [
+       0.168,
+       1.263
+      ],
+      "mann_kendall_p": 0.0131,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.064,
+      "ic95_sen": [
+       -0.079,
+       -0.041
+      ],
+      "mann_kendall_p": 0.0001,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.061,
+      "ic95_sen": [
+       -0.076,
+       -0.033
+      ],
+      "mann_kendall_p": 0.0016,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": true
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.019,
+      "ic95_sen": [
+       -0.053,
+       0.03
+      ],
+      "mann_kendall_p": 0.2496,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     }
+    }
+   },
+   "tendencias_variantes": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.499,
+        "ic95_sen": [
+         -3.473,
+         2.264
+        ],
+        "mann_kendall_p": 0.6754,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.538,
+        "ic95_sen": [
+         -3.264,
+         2.115
+        ],
+        "mann_kendall_p": 0.8577,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.494,
+        "ic95_sen": [
+         -3.095,
+         2.54
+        ],
+        "mann_kendall_p": 0.8577,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.538,
+       "sen_max": -0.494,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,54 y -0,49 °C/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -1.52,
+        "ic95_sen": [
+         -5.603,
+         1.633
+        ],
+        "mann_kendall_p": 0.3587,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -1.472,
+        "ic95_sen": [
+         -5.321,
+         2.115
+        ],
+        "mann_kendall_p": 0.5423,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -1.944,
+        "ic95_sen": [
+         -5.613,
+         2.085
+        ],
+        "mann_kendall_p": 0.4454,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -1.944,
+       "sen_max": -1.472,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -1,94 y -1,47 °C/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 1.247,
+        "ic95_sen": [
+         -1.713,
+         4.027
+        ],
+        "mann_kendall_p": 0.3807,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 1.378,
+        "ic95_sen": [
+         -1.496,
+         4.333
+        ],
+        "mann_kendall_p": 0.459,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 1.318,
+        "ic95_sen": [
+         -1.511,
+         3.925
+        ],
+        "mann_kendall_p": 0.3807,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 1.247,
+       "sen_max": 1.378,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +1,25 y +1,38 °C/década)."
+      }
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.064,
+        "ic95_sen": [
+         -0.079,
+         -0.041
+        ],
+        "mann_kendall_p": 0.0001,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.042,
+        "ic95_sen": [
+         -0.082,
+         -0.01
+        ],
+        "mann_kendall_p": 0.0216,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.051,
+        "ic95_sen": [
+         -0.064,
+         -0.029
+        ],
+        "mann_kendall_p": 0.0009,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.064,
+       "sen_max": -0.042,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,064 y -0,042 NDVI/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.061,
+        "ic95_sen": [
+         -0.076,
+         -0.033
+        ],
+        "mann_kendall_p": 0.0016,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.027,
+        "ic95_sen": [
+         -0.069,
+         0.013
+        ],
+        "mann_kendall_p": 0.2183,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.037,
+        "ic95_sen": [
+         -0.072,
+         -0.011
+        ],
+        "mann_kendall_p": 0.0264,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.061,
+       "sen_max": -0.027,
+       "variantes_significativas": [
+        "mediana",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": false,
+       "lectura": "Depende del método: 2 de 3 variantes significativas (mediana, nucleo_construido); Sen entre -0,061 y -0,027 NDVI/década. No es una conclusión robusta."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.019,
+        "ic95_sen": [
+         -0.053,
+         0.03
+        ],
+        "mann_kendall_p": 0.2496,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.022,
+        "ic95_sen": [
+         -0.043,
+         0.008
+        ],
+        "mann_kendall_p": 0.0629,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.008,
+        "ic95_sen": [
+         -0.035,
+         0.024
+        ],
+        "mann_kendall_p": 0.5452,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.022,
+       "sen_max": -0.008,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,022 y -0,008 NDVI/década)."
+      }
+     }
+    }
+   },
+   "lectura": "LST 2013-2025 (Landsat 8/9): Sen -0,50 °C/década (IC 95 % -3,47 a +2,26; Mann-Kendall p = 0,68): sin tendencia detectable. Diferencia con el campo: +0,07 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,32 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,54 y -0,49 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,064 y -0,042 NDVI/década)."
+  },
+  {
+   "id": "c3",
+   "nombre": "Comuna 3",
+   "lst": [
+    35.789,
+    37.93,
+    39.879,
+    39.901,
+    39.128,
+    37.338,
+    36.823,
+    38.298,
+    37.491,
+    41.027,
+    37.373,
+    37.955,
+    39.017,
+    39.35,
+    39.887,
+    42.119,
+    41.801,
+    38.759,
+    41.526,
+    41.242,
+    39.555,
+    36.572,
+    39.244,
+    40.516,
+    41.76,
+    39.727
+   ],
+   "ndvi": [
+    0.512,
+    0.4837,
+    0.4733,
+    0.4155,
+    0.4351,
+    0.4891,
+    0.4828,
+    0.4538,
+    0.4692,
+    0.4652,
+    0.4771,
+    0.4691,
+    0.4648,
+    0.5154,
+    0.4828,
+    0.459,
+    0.4592,
+    0.4889,
+    0.4557,
+    0.4399,
+    0.4119,
+    0.4373,
+    0.4047,
+    0.3967,
+    0.3664,
+    0.37
+   ],
+   "isla": [
+    3.917,
+    3.445,
+    4.496,
+    3.017,
+    3.236,
+    4.006,
+    3.794,
+    3.561,
+    4.383,
+    4.231,
+    3.686,
+    3.407,
+    3.441,
+    7.023,
+    5.353,
+    4.149,
+    4.755,
+    4.422,
+    6.285,
+    5.573,
+    4.117,
+    4.184,
+    5.46,
+    5.079,
+    4.413,
+    5.743
+   ],
+   "pct_celdas_lst": [
+    100.0,
+    100.0,
+    100.0,
+    55.0,
+    100.0,
+    100.0,
+    100.0,
+    93.7,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "pct_celdas_ndvi": [
+    100.0,
+    100.0,
+    100.0,
+    55.0,
+    100.0,
+    100.0,
+    100.0,
+    93.7,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "lst_media": [
+    35.931,
+    38.045,
+    39.785,
+    39.692,
+    39.291,
+    37.431,
+    36.937,
+    38.388,
+    37.283,
+    40.991,
+    37.224,
+    37.896,
+    38.979,
+    38.94,
+    39.72,
+    41.797,
+    41.405,
+    38.574,
+    41.306,
+    40.857,
+    39.338,
+    36.511,
+    38.944,
+    40.249,
+    41.638,
+    39.277
+   ],
+   "ndvi_media": [
+    0.5019,
+    0.4786,
+    0.4751,
+    0.4112,
+    0.4341,
+    0.4833,
+    0.48,
+    0.4561,
+    0.4746,
+    0.4769,
+    0.4813,
+    0.4793,
+    0.4681,
+    0.5158,
+    0.5,
+    0.4741,
+    0.4777,
+    0.5038,
+    0.4855,
+    0.4718,
+    0.4468,
+    0.4756,
+    0.4498,
+    0.4401,
+    0.4023,
+    0.4207
+   ],
+   "lst_nucleo_construido": [
+    36.876,
+    38.827,
+    40.777,
+    40.53,
+    40.005,
+    38.851,
+    38.114,
+    39.782,
+    38.86,
+    42.587,
+    38.53,
+    39.499,
+    40.042,
+    40.817,
+    41.205,
+    43.141,
+    42.783,
+    39.752,
+    42.824,
+    42.308,
+    40.75,
+    37.691,
+    40.536,
+    41.673,
+    42.83,
+    40.368
+   ],
+   "ndvi_nucleo_construido": [
+    0.3929,
+    0.3798,
+    0.3633,
+    0.322,
+    0.33,
+    0.3587,
+    0.3413,
+    0.3355,
+    0.3454,
+    0.3418,
+    0.3541,
+    0.3388,
+    0.342,
+    0.385,
+    0.3588,
+    0.3379,
+    0.3272,
+    0.3547,
+    0.336,
+    0.32,
+    0.3125,
+    0.33,
+    0.3114,
+    0.3007,
+    0.2893,
+    0.2888
+   ],
+   "celdas_nucleo_construido": 762,
+   "tendencias": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.476,
+      "ic95_sen": [
+       -2.84,
+       2.653
+      ],
+      "mann_kendall_p": 0.6754,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -1.815,
+      "ic95_sen": [
+       -4.736,
+       2.928
+      ],
+      "mann_kendall_p": 0.3587,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.202,
+      "ic95_sen": [
+       -2.138,
+       3.657
+      ],
+      "mann_kendall_p": 0.459,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.374,
+      "ic95_sen": [
+       0.344,
+       2.191
+      ],
+      "mann_kendall_p": 0.0099,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.341,
+      "ic95_sen": [
+       -2.32,
+       1.162
+      ],
+      "mann_kendall_p": 0.765,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -1.017,
+      "ic95_sen": [
+       -3.103,
+       1.365
+      ],
+      "mann_kendall_p": 0.5423,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.255,
+      "ic95_sen": [
+       -1.21,
+       0.562
+      ],
+      "mann_kendall_p": 0.459,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.601,
+      "ic95_sen": [
+       0.214,
+       1.026
+      ],
+      "mann_kendall_p": 0.0063,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.116,
+      "ic95_sen": [
+       -0.147,
+       -0.084
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.098,
+      "ic95_sen": [
+       -0.148,
+       -0.064
+      ],
+      "mann_kendall_p": 0.0001,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": true
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.022,
+      "ic95_sen": [
+       -0.05,
+       0.013
+      ],
+      "mann_kendall_p": 0.0863,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     }
+    }
+   },
+   "tendencias_variantes": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.476,
+        "ic95_sen": [
+         -2.84,
+         2.653
+        ],
+        "mann_kendall_p": 0.6754,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.449,
+        "ic95_sen": [
+         -3.036,
+         2.453
+        ],
+        "mann_kendall_p": 0.765,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.76,
+        "ic95_sen": [
+         -3.58,
+         2.206
+        ],
+        "mann_kendall_p": 0.5098,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.76,
+       "sen_max": -0.449,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,76 y -0,45 °C/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -1.815,
+        "ic95_sen": [
+         -4.736,
+         2.928
+        ],
+        "mann_kendall_p": 0.3587,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -1.637,
+        "ic95_sen": [
+         -4.584,
+         2.792
+        ],
+        "mann_kendall_p": 0.4454,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -1.583,
+        "ic95_sen": [
+         -5.02,
+         3.077
+        ],
+        "mann_kendall_p": 0.3587,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -1.815,
+       "sen_max": -1.583,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -1,81 y -1,58 °C/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 1.202,
+        "ic95_sen": [
+         -2.138,
+         3.657
+        ],
+        "mann_kendall_p": 0.459,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.812,
+        "ic95_sen": [
+         -2.099,
+         3.403
+        ],
+        "mann_kendall_p": 0.7373,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 1.092,
+        "ic95_sen": [
+         -1.42,
+         3.927
+        ],
+        "mann_kendall_p": 0.3108,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.812,
+       "sen_max": 1.202,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,81 y +1,20 °C/década)."
+      }
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.116,
+        "ic95_sen": [
+         -0.147,
+         -0.084
+        ],
+        "mann_kendall_p": 0.0,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.078,
+        "ic95_sen": [
+         -0.106,
+         -0.05
+        ],
+        "mann_kendall_p": 0.0003,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.066,
+        "ic95_sen": [
+         -0.09,
+         -0.046
+        ],
+        "mann_kendall_p": 0.0,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.116,
+       "sen_max": -0.066,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,116 y -0,066 NDVI/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.098,
+        "ic95_sen": [
+         -0.148,
+         -0.064
+        ],
+        "mann_kendall_p": 0.0001,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.067,
+        "ic95_sen": [
+         -0.106,
+         -0.03
+        ],
+        "mann_kendall_p": 0.0057,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.065,
+        "ic95_sen": [
+         -0.107,
+         -0.037
+        ],
+        "mann_kendall_p": 0.0003,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.098,
+       "sen_max": -0.065,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,098 y -0,065 NDVI/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.022,
+        "ic95_sen": [
+         -0.05,
+         0.013
+        ],
+        "mann_kendall_p": 0.0863,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.006,
+        "ic95_sen": [
+         -0.029,
+         0.012
+        ],
+        "mann_kendall_p": 0.5452,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.03,
+        "ic95_sen": [
+         -0.056,
+         0.002
+        ],
+        "mann_kendall_p": 0.116,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.03,
+       "sen_max": -0.006,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,030 y -0,006 NDVI/década)."
+      }
+     }
+    }
+   },
+   "lectura": "LST 2013-2025 (Landsat 8/9): Sen -0,48 °C/década (IC 95 % -2,84 a +2,65; Mann-Kendall p = 0,68): sin tendencia detectable. Diferencia con el campo: -0,34 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,37 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,76 y -0,45 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,116 y -0,066 NDVI/década)."
+  },
+  {
+   "id": "c4",
+   "nombre": "Comuna 4",
+   "lst": [
+    37.288,
+    39.291,
+    41.163,
+    43.382,
+    39.422,
+    39.486,
+    38.304,
+    39.678,
+    37.858,
+    43.768,
+    38.71,
+    39.363,
+    41.168,
+    40.593,
+    41.867,
+    44.396,
+    43.704,
+    39.588,
+    42.841,
+    43.944,
+    42.874,
+    39.026,
+    40.987,
+    43.063,
+    45.425,
+    41.935
+   ],
+   "ndvi": [
+    0.4137,
+    0.3954,
+    0.3861,
+    0.2776,
+    0.3679,
+    0.3839,
+    0.3601,
+    0.3406,
+    0.3295,
+    0.3205,
+    0.3373,
+    0.335,
+    0.3309,
+    0.3907,
+    0.3718,
+    0.3431,
+    0.3232,
+    0.3447,
+    0.3392,
+    0.3233,
+    0.3039,
+    0.3146,
+    0.3012,
+    0.2935,
+    0.2729,
+    0.2772
+   ],
+   "isla": [
+    5.416,
+    4.807,
+    5.779,
+    6.497,
+    3.53,
+    6.155,
+    5.274,
+    4.941,
+    4.75,
+    6.972,
+    5.022,
+    4.815,
+    5.593,
+    8.265,
+    7.333,
+    6.426,
+    6.658,
+    5.251,
+    7.599,
+    8.274,
+    7.436,
+    6.638,
+    7.203,
+    7.626,
+    8.077,
+    7.95
+   ],
+   "pct_celdas_lst": [
+    100.0,
+    100.0,
+    100.0,
+    71.0,
+    97.1,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "pct_celdas_ndvi": [
+    100.0,
+    100.0,
+    100.0,
+    71.0,
+    97.1,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "lst_media": [
+    36.815,
+    39.078,
+    40.889,
+    42.392,
+    39.236,
+    38.977,
+    38.145,
+    39.544,
+    37.967,
+    43.403,
+    38.313,
+    39.107,
+    40.786,
+    39.706,
+    41.318,
+    43.937,
+    43.174,
+    38.974,
+    42.334,
+    43.184,
+    42.188,
+    38.606,
+    40.448,
+    42.315,
+    44.553,
+    41.222
+   ],
+   "ndvi_media": [
+    0.4471,
+    0.4169,
+    0.4295,
+    0.3207,
+    0.3875,
+    0.4274,
+    0.4142,
+    0.3926,
+    0.3908,
+    0.3996,
+    0.4064,
+    0.4043,
+    0.384,
+    0.449,
+    0.4338,
+    0.4008,
+    0.4022,
+    0.4254,
+    0.4242,
+    0.4032,
+    0.3779,
+    0.3924,
+    0.3707,
+    0.3637,
+    0.3309,
+    0.3521
+   ],
+   "lst_nucleo_construido": [
+    39.788,
+    40.815,
+    43.557,
+    44.212,
+    41.1,
+    41.977,
+    40.909,
+    41.93,
+    40.973,
+    45.98,
+    40.362,
+    41.647,
+    42.86,
+    42.994,
+    43.871,
+    46.221,
+    45.659,
+    40.638,
+    44.007,
+    46.422,
+    44.069,
+    40.427,
+    43.089,
+    44.588,
+    46.664,
+    43.517
+   ],
+   "ndvi_nucleo_construido": [
+    0.2718,
+    0.2726,
+    0.2558,
+    0.2373,
+    0.249,
+    0.2552,
+    0.2424,
+    0.2436,
+    0.2509,
+    0.2452,
+    0.2565,
+    0.2491,
+    0.2544,
+    0.3091,
+    0.2895,
+    0.2701,
+    0.2553,
+    0.2763,
+    0.2697,
+    0.2573,
+    0.2563,
+    0.263,
+    0.261,
+    0.2452,
+    0.2365,
+    0.2344
+   ],
+   "celdas_nucleo_construido": 1695,
+   "tendencias": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.537,
+      "ic95_sen": [
+       -2.513,
+       4.307
+      ],
+      "mann_kendall_p": 0.6754,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.916,
+      "ic95_sen": [
+       -4.635,
+       4.496
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.907,
+      "ic95_sen": [
+       -1.974,
+       4.396
+      ],
+      "mann_kendall_p": 0.3108,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.892,
+      "ic95_sen": [
+       0.808,
+       3.083
+      ],
+      "mann_kendall_p": 0.0017,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.649,
+      "ic95_sen": [
+       -0.99,
+       2.02
+      ],
+      "mann_kendall_p": 0.3674,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.054,
+      "ic95_sen": [
+       -2.034,
+       2.32
+      ],
+      "mann_kendall_p": 0.8793,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.078,
+      "ic95_sen": [
+       -1.262,
+       1.815
+      ],
+      "mann_kendall_p": 0.9466,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.317,
+      "ic95_sen": [
+       0.715,
+       1.882
+      ],
+      "mann_kendall_p": 0.0002,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.086,
+      "ic95_sen": [
+       -0.103,
+       -0.066
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.087,
+      "ic95_sen": [
+       -0.112,
+       -0.05
+      ],
+      "mann_kendall_p": 0.0001,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": true
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.074,
+      "ic95_sen": [
+       -0.094,
+       -0.049
+      ],
+      "mann_kendall_p": 0.0001,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": true
+     }
+    }
+   },
+   "tendencias_variantes": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.537,
+        "ic95_sen": [
+         -2.513,
+         4.307
+        ],
+        "mann_kendall_p": 0.6754,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.228,
+        "ic95_sen": [
+         -2.715,
+         3.732
+        ],
+        "mann_kendall_p": 0.9524,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 0.388,
+        "ic95_sen": [
+         -4.283,
+         4.428
+        ],
+        "mann_kendall_p": 0.6754,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.228,
+       "sen_max": 0.537,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,23 y +0,54 °C/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.916,
+        "ic95_sen": [
+         -4.635,
+         4.496
+        ],
+        "mann_kendall_p": 1.0,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.92,
+        "ic95_sen": [
+         -4.715,
+         5.256
+        ],
+        "mann_kendall_p": 0.7612,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 0.106,
+        "ic95_sen": [
+         -4.92,
+         5.102
+        ],
+        "mann_kendall_p": 1.0,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.92,
+       "sen_max": 0.106,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,92 y +0,11 °C/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.907,
+        "ic95_sen": [
+         -1.974,
+         4.396
+        ],
+        "mann_kendall_p": 0.3108,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 1.233,
+        "ic95_sen": [
+         -1.587,
+         3.899
+        ],
+        "mann_kendall_p": 0.459,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 1.369,
+        "ic95_sen": [
+         -0.955,
+         3.28
+        ],
+        "mann_kendall_p": 0.3108,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.907,
+       "sen_max": 1.369,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,91 y +1,37 °C/década)."
+      }
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.086,
+        "ic95_sen": [
+         -0.103,
+         -0.066
+        ],
+        "mann_kendall_p": 0.0,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.08,
+        "ic95_sen": [
+         -0.108,
+         -0.053
+        ],
+        "mann_kendall_p": 0.0001,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.049,
+        "ic95_sen": [
+         -0.066,
+         -0.028
+        ],
+        "mann_kendall_p": 0.0003,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.086,
+       "sen_max": -0.049,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,086 y -0,049 NDVI/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.087,
+        "ic95_sen": [
+         -0.112,
+         -0.05
+        ],
+        "mann_kendall_p": 0.0001,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.071,
+        "ic95_sen": [
+         -0.109,
+         -0.043
+        ],
+        "mann_kendall_p": 0.0016,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.038,
+        "ic95_sen": [
+         -0.067,
+         -0.013
+        ],
+        "mann_kendall_p": 0.0099,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.087,
+       "sen_max": -0.038,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,087 y -0,038 NDVI/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.074,
+        "ic95_sen": [
+         -0.094,
+         -0.049
+        ],
+        "mann_kendall_p": 0.0001,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.038,
+        "ic95_sen": [
+         -0.055,
+         -0.005
+        ],
+        "mann_kendall_p": 0.0311,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.01,
+        "ic95_sen": [
+         -0.031,
+         0.008
+        ],
+        "mann_kendall_p": 0.3108,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.074,
+       "sen_max": -0.01,
+       "variantes_significativas": [
+        "mediana",
+        "media"
+       ],
+       "n_variantes": 3,
+       "robusta": false,
+       "lectura": "Depende del método: 2 de 3 variantes significativas (mediana, media); Sen entre -0,074 y -0,010 NDVI/década. No es una conclusión robusta."
+      }
+     }
+    }
+   },
+   "lectura": "LST 2013-2025 (Landsat 8/9): Sen +0,54 °C/década (IC 95 % -2,51 a +4,31; Mann-Kendall p = 0,68): sin tendencia detectable. Diferencia con el campo: +0,65 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,89 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,23 y +0,54 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,086 y -0,049 NDVI/década)."
+  },
+  {
+   "id": "c5",
+   "nombre": "Comuna 5",
+   "lst": [
+    39.927,
+    40.853,
+    43.569,
+    44.333,
+    39.036,
+    41.014,
+    41.545,
+    42.149,
+    42.055,
+    45.785,
+    41.349,
+    41.336,
+    43.244,
+    43.578,
+    43.018,
+    45.679,
+    45.728,
+    41.119,
+    42.884,
+    45.831,
+    43.345,
+    41.625,
+    42.801,
+    44.878,
+    46.216,
+    42.941
+   ],
+   "ndvi": [
+    0.2697,
+    0.2666,
+    0.2588,
+    0.236,
+    0.26,
+    0.258,
+    0.2656,
+    0.2803,
+    0.2742,
+    0.2812,
+    0.2833,
+    0.2744,
+    0.2734,
+    0.3254,
+    0.3129,
+    0.2925,
+    0.2842,
+    0.3075,
+    0.2974,
+    0.2819,
+    0.2843,
+    0.2889,
+    0.2849,
+    0.269,
+    0.2556,
+    0.2566
+   ],
+   "isla": [
+    8.055,
+    6.368,
+    8.185,
+    7.448,
+    3.144,
+    7.682,
+    8.515,
+    7.412,
+    8.947,
+    8.988,
+    7.661,
+    6.788,
+    7.668,
+    11.251,
+    8.484,
+    7.709,
+    8.682,
+    6.782,
+    7.643,
+    10.162,
+    7.907,
+    9.237,
+    9.017,
+    9.441,
+    8.869,
+    8.957
+   ],
+   "pct_celdas_lst": [
+    100.0,
+    100.0,
+    100.0,
+    70.5,
+    94.5,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "pct_celdas_ndvi": [
+    100.0,
+    100.0,
+    100.0,
+    70.5,
+    90.3,
+    100.0,
+    100.0,
+    100.0,
+    99.6,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "lst_media": [
+    38.748,
+    39.821,
+    42.324,
+    43.669,
+    38.93,
+    40.035,
+    40.783,
+    41.319,
+    40.963,
+    44.563,
+    40.142,
+    40.376,
+    42.057,
+    42.038,
+    41.958,
+    44.545,
+    44.515,
+    40.174,
+    42.658,
+    44.491,
+    42.364,
+    40.478,
+    41.239,
+    43.4,
+    44.86,
+    41.868
+   ],
+   "ndvi_media": [
+    0.3155,
+    0.3148,
+    0.3087,
+    0.2655,
+    0.2985,
+    0.3047,
+    0.3156,
+    0.3244,
+    0.3174,
+    0.3247,
+    0.3308,
+    0.3183,
+    0.3193,
+    0.3733,
+    0.3617,
+    0.3435,
+    0.3367,
+    0.3558,
+    0.3501,
+    0.3417,
+    0.3387,
+    0.346,
+    0.338,
+    0.3292,
+    0.3136,
+    0.3159
+   ],
+   "lst_nucleo_construido": [
+    40.277,
+    41.273,
+    43.92,
+    44.503,
+    39.735,
+    41.526,
+    42.045,
+    42.915,
+    42.656,
+    46.31,
+    41.663,
+    41.716,
+    43.567,
+    43.935,
+    43.517,
+    46.079,
+    46.092,
+    41.403,
+    43.591,
+    46.293,
+    43.613,
+    42.101,
+    43.134,
+    45.308,
+    46.653,
+    43.448
+   ],
+   "ndvi_nucleo_construido": [
+    0.2461,
+    0.2464,
+    0.2369,
+    0.2233,
+    0.2383,
+    0.2364,
+    0.2402,
+    0.2576,
+    0.2524,
+    0.2575,
+    0.2646,
+    0.254,
+    0.2534,
+    0.3024,
+    0.2875,
+    0.2662,
+    0.2587,
+    0.2812,
+    0.27,
+    0.2575,
+    0.2601,
+    0.2689,
+    0.2637,
+    0.2427,
+    0.2318,
+    0.2316
+   ],
+   "celdas_nucleo_construido": 799,
+   "tendencias": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.212,
+      "ic95_sen": [
+       -2.738,
+       3.364
+      ],
+      "mann_kendall_p": 0.9524,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.333,
+      "ic95_sen": [
+       -4.878,
+       3.988
+      ],
+      "mann_kendall_p": 0.7612,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 2.182,
+      "ic95_sen": [
+       -0.418,
+       5.31
+      ],
+      "mann_kendall_p": 0.116,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.43,
+      "ic95_sen": [
+       0.467,
+       2.601
+      ],
+      "mann_kendall_p": 0.0046,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.494,
+      "ic95_sen": [
+       -2.008,
+       2.165
+      ],
+      "mann_kendall_p": 0.59,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.99,
+      "ic95_sen": [
+       -2.517,
+       3.75
+      ],
+      "mann_kendall_p": 0.6481,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.466,
+      "ic95_sen": [
+       -1.49,
+       3.265
+      ],
+      "mann_kendall_p": 0.7373,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.658,
+      "ic95_sen": [
+       0.15,
+       1.268
+      ],
+      "mann_kendall_p": 0.0196,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.048,
+      "ic95_sen": [
+       -0.064,
+       -0.031
+      ],
+      "mann_kendall_p": 0.0009,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.045,
+      "ic95_sen": [
+       -0.064,
+       -0.011
+      ],
+      "mann_kendall_p": 0.0165,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": true
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.014,
+      "ic95_sen": [
+       -0.002,
+       0.028
+      ],
+      "mann_kendall_p": 0.0863,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     }
+    }
+   },
+   "tendencias_variantes": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.212,
+        "ic95_sen": [
+         -2.738,
+         3.364
+        ],
+        "mann_kendall_p": 0.9524,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.081,
+        "ic95_sen": [
+         -2.941,
+         2.902
+        ],
+        "mann_kendall_p": 0.9524,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 0.12,
+        "ic95_sen": [
+         -2.631,
+         3.434
+        ],
+        "mann_kendall_p": 0.9524,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.081,
+       "sen_max": 0.212,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,08 y +0,21 °C/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.333,
+        "ic95_sen": [
+         -4.878,
+         3.988
+        ],
+        "mann_kendall_p": 0.7612,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.8,
+        "ic95_sen": [
+         -5.378,
+         3.453
+        ],
+        "mann_kendall_p": 0.6481,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.479,
+        "ic95_sen": [
+         -4.932,
+         3.93
+        ],
+        "mann_kendall_p": 0.8793,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.8,
+       "sen_max": -0.333,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,80 y -0,33 °C/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 2.182,
+        "ic95_sen": [
+         -0.418,
+         5.31
+        ],
+        "mann_kendall_p": 0.116,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 2.049,
+        "ic95_sen": [
+         -0.267,
+         5.083
+        ],
+        "mann_kendall_p": 0.0629,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 2.388,
+        "ic95_sen": [
+         -0.658,
+         5.19
+        ],
+        "mann_kendall_p": 0.0863,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 2.049,
+       "sen_max": 2.388,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +2,05 y +2,39 °C/década)."
+      }
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.048,
+        "ic95_sen": [
+         -0.064,
+         -0.031
+        ],
+        "mann_kendall_p": 0.0009,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.041,
+        "ic95_sen": [
+         -0.057,
+         -0.023
+        ],
+        "mann_kendall_p": 0.0005,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.05,
+        "ic95_sen": [
+         -0.064,
+         -0.027
+        ],
+        "mann_kendall_p": 0.0009,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.05,
+       "sen_max": -0.041,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,050 y -0,041 NDVI/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.045,
+        "ic95_sen": [
+         -0.064,
+         -0.011
+        ],
+        "mann_kendall_p": 0.0165,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.032,
+        "ic95_sen": [
+         -0.053,
+         -0.01
+        ],
+        "mann_kendall_p": 0.0099,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.042,
+        "ic95_sen": [
+         -0.064,
+         -0.004
+        ],
+        "mann_kendall_p": 0.0264,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.045,
+       "sen_max": -0.032,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,045 y -0,032 NDVI/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.014,
+        "ic95_sen": [
+         -0.002,
+         0.028
+        ],
+        "mann_kendall_p": 0.0863,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.011,
+        "ic95_sen": [
+         0.002,
+         0.028
+        ],
+        "mann_kendall_p": 0.021,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 0.015,
+        "ic95_sen": [
+         0.0,
+         0.029
+        ],
+        "mann_kendall_p": 0.0629,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.011,
+       "sen_max": 0.015,
+       "variantes_significativas": [
+        "media"
+       ],
+       "n_variantes": 3,
+       "robusta": false,
+       "lectura": "Depende del método: 1 de 3 variantes significativas (media); Sen entre +0,011 y +0,015 NDVI/década. No es una conclusión robusta."
+      }
+     }
+    }
+   },
+   "lectura": "LST 2013-2025 (Landsat 8/9): Sen +0,21 °C/década (IC 95 % -2,74 a +3,36; Mann-Kendall p = 0,95): sin tendencia detectable. Diferencia con el campo: +0,49 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,43 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,08 y +0,21 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,050 y -0,041 NDVI/década)."
+  },
+  {
+   "id": "c6",
+   "nombre": "Comuna 6",
+   "lst": [
+    36.723,
+    38.49,
+    40.389,
+    42.034,
+    39.173,
+    38.508,
+    38.675,
+    39.842,
+    35.644,
+    43.297,
+    38.576,
+    38.429,
+    40.606,
+    40.286,
+    40.031,
+    43.218,
+    43.616,
+    38.476,
+    40.909,
+    43.259,
+    42.296,
+    39.257,
+    40.719,
+    42.061,
+    44.12,
+    41.072
+   ],
+   "ndvi": [
+    0.4638,
+    0.4392,
+    0.4313,
+    0.3738,
+    0.3713,
+    0.4083,
+    0.4127,
+    0.392,
+    0.3487,
+    0.4173,
+    0.4145,
+    0.409,
+    0.394,
+    0.4196,
+    0.4209,
+    0.4068,
+    0.39,
+    0.3981,
+    0.3957,
+    0.3743,
+    0.3677,
+    0.3724,
+    0.3442,
+    0.3357,
+    0.3227,
+    0.3231
+   ],
+   "isla": [
+    4.851,
+    4.005,
+    5.005,
+    5.149,
+    3.281,
+    5.177,
+    5.645,
+    5.105,
+    2.536,
+    6.501,
+    4.889,
+    3.881,
+    5.03,
+    7.959,
+    5.497,
+    5.248,
+    6.57,
+    4.139,
+    5.667,
+    7.59,
+    6.858,
+    6.869,
+    6.935,
+    6.623,
+    6.772,
+    7.088
+   ],
+   "pct_celdas_lst": [
+    100.0,
+    100.0,
+    100.0,
+    98.8,
+    100.0,
+    100.0,
+    100.0,
+    99.6,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "pct_celdas_ndvi": [
+    100.0,
+    100.0,
+    100.0,
+    98.8,
+    100.0,
+    100.0,
+    100.0,
+    99.6,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "lst_media": [
+    36.524,
+    37.964,
+    39.897,
+    41.377,
+    38.916,
+    38.177,
+    38.136,
+    39.26,
+    35.771,
+    42.602,
+    37.857,
+    37.786,
+    40.215,
+    39.497,
+    39.613,
+    42.597,
+    42.749,
+    37.987,
+    40.411,
+    42.355,
+    41.472,
+    38.688,
+    40.278,
+    41.545,
+    43.578,
+    40.64
+   ],
+   "ndvi_media": [
+    0.4693,
+    0.4542,
+    0.4573,
+    0.3821,
+    0.3938,
+    0.4447,
+    0.4473,
+    0.439,
+    0.4161,
+    0.4646,
+    0.466,
+    0.4552,
+    0.4311,
+    0.4733,
+    0.4706,
+    0.4434,
+    0.455,
+    0.4599,
+    0.4561,
+    0.4447,
+    0.4298,
+    0.4395,
+    0.4014,
+    0.3998,
+    0.3827,
+    0.3927
+   ],
+   "lst_nucleo_construido": [
+    39.273,
+    40.72,
+    42.854,
+    43.846,
+    40.998,
+    40.764,
+    41.151,
+    42.208,
+    39.51,
+    45.523,
+    40.991,
+    40.563,
+    42.966,
+    42.161,
+    42.509,
+    44.998,
+    45.347,
+    40.442,
+    42.585,
+    45.286,
+    44.008,
+    41.012,
+    42.785,
+    43.899,
+    45.758,
+    42.644
+   ],
+   "ndvi_nucleo_construido": [
+    0.3061,
+    0.2964,
+    0.2856,
+    0.2654,
+    0.2617,
+    0.2747,
+    0.2723,
+    0.277,
+    0.2762,
+    0.2864,
+    0.2926,
+    0.2861,
+    0.2927,
+    0.3302,
+    0.3166,
+    0.303,
+    0.2923,
+    0.3084,
+    0.304,
+    0.286,
+    0.2865,
+    0.2898,
+    0.2811,
+    0.2675,
+    0.2609,
+    0.2563
+   ],
+   "celdas_nucleo_construido": 1880,
+   "tendencias": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.903,
+      "ic95_sen": [
+       -2.55,
+       4.486
+      ],
+      "mann_kendall_p": 0.5098,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.102,
+      "ic95_sen": [
+       -4.525,
+       4.955
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.539,
+      "ic95_sen": [
+       -1.47,
+       4.456
+      ],
+      "mann_kendall_p": 0.459,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.695,
+      "ic95_sen": [
+       0.549,
+       2.779
+      ],
+      "mann_kendall_p": 0.0024,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.603,
+      "ic95_sen": [
+       -0.837,
+       2.268
+      ],
+      "mann_kendall_p": 0.2519,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.608,
+      "ic95_sen": [
+       -2.183,
+       3.22
+      ],
+      "mann_kendall_p": 0.4454,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.175,
+      "ic95_sen": [
+       -1.89,
+       2.186
+      ],
+      "mann_kendall_p": 0.7373,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.046,
+      "ic95_sen": [
+       0.573,
+       1.746
+      ],
+      "mann_kendall_p": 0.0002,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.087,
+      "ic95_sen": [
+       -0.103,
+       -0.07
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.081,
+      "ic95_sen": [
+       -0.101,
+       -0.059
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": true
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.041,
+      "ic95_sen": [
+       -0.079,
+       0.004
+      ],
+      "mann_kendall_p": 0.116,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     }
+    }
+   },
+   "tendencias_variantes": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.903,
+        "ic95_sen": [
+         -2.55,
+         4.486
+        ],
+        "mann_kendall_p": 0.5098,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 1.063,
+        "ic95_sen": [
+         -2.025,
+         4.582
+        ],
+        "mann_kendall_p": 0.4354,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 0.604,
+        "ic95_sen": [
+         -2.728,
+         4.08
+        ],
+        "mann_kendall_p": 0.4354,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.604,
+       "sen_max": 1.063,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,60 y +1,06 °C/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.102,
+        "ic95_sen": [
+         -4.525,
+         4.955
+        ],
+        "mann_kendall_p": 1.0,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.831,
+        "ic95_sen": [
+         -3.775,
+         4.763
+        ],
+        "mann_kendall_p": 0.8793,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 0.5,
+        "ic95_sen": [
+         -4.27,
+         5.208
+        ],
+        "mann_kendall_p": 0.7612,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.102,
+       "sen_max": 0.831,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,10 y +0,83 °C/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 1.539,
+        "ic95_sen": [
+         -1.47,
+         4.456
+        ],
+        "mann_kendall_p": 0.459,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.84,
+        "ic95_sen": [
+         -1.765,
+         3.909
+        ],
+        "mann_kendall_p": 0.7373,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 1.05,
+        "ic95_sen": [
+         -1.292,
+         4.033
+        ],
+        "mann_kendall_p": 0.3108,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.84,
+       "sen_max": 1.539,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,84 y +1,54 °C/década)."
+      }
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.087,
+        "ic95_sen": [
+         -0.103,
+         -0.07
+        ],
+        "mann_kendall_p": 0.0,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.072,
+        "ic95_sen": [
+         -0.1,
+         -0.042
+        ],
+        "mann_kendall_p": 0.0,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.055,
+        "ic95_sen": [
+         -0.068,
+         -0.043
+        ],
+        "mann_kendall_p": 0.0,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.087,
+       "sen_max": -0.055,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,087 y -0,055 NDVI/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.081,
+        "ic95_sen": [
+         -0.101,
+         -0.059
+        ],
+        "mann_kendall_p": 0.0,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.061,
+        "ic95_sen": [
+         -0.1,
+         -0.034
+        ],
+        "mann_kendall_p": 0.0008,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.05,
+        "ic95_sen": [
+         -0.073,
+         -0.027
+        ],
+        "mann_kendall_p": 0.0008,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.081,
+       "sen_max": -0.05,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,081 y -0,050 NDVI/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.041,
+        "ic95_sen": [
+         -0.079,
+         0.004
+        ],
+        "mann_kendall_p": 0.116,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.013,
+        "ic95_sen": [
+         -0.043,
+         0.037
+        ],
+        "mann_kendall_p": 0.6384,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 0.003,
+        "ic95_sen": [
+         -0.022,
+         0.035
+        ],
+        "mann_kendall_p": 0.7373,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.041,
+       "sen_max": 0.003,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,041 y +0,003 NDVI/década)."
+      }
+     }
+    }
+   },
+   "lectura": "LST 2013-2025 (Landsat 8/9): Sen +0,90 °C/década (IC 95 % -2,55 a +4,49; Mann-Kendall p = 0,51): sin tendencia detectable. Diferencia con el campo: +0,60 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,70 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,60 y +1,06 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,087 y -0,055 NDVI/década)."
+  },
+  {
+   "id": "c7",
+   "nombre": "Comuna 7",
+   "lst": [
+    33.71,
+    35.695,
+    37.29,
+    42.425,
+    39.501,
+    35.622,
+    35.691,
+    37.247,
+    33.772,
+    39.499,
+    36.787,
+    36.083,
+    38.742,
+    35.267,
+    36.42,
+    41.667,
+    40.085,
+    35.05,
+    37.455,
+    38.106,
+    39.124,
+    34.468,
+    36.188,
+    37.497,
+    41.629,
+    36.64
+   ],
+   "ndvi": [
+    0.6409,
+    0.5939,
+    0.6141,
+    0.3886,
+    0.5005,
+    0.6272,
+    0.6323,
+    0.641,
+    0.6025,
+    0.6399,
+    0.6276,
+    0.6541,
+    0.529,
+    0.6439,
+    0.612,
+    0.5876,
+    0.6536,
+    0.6849,
+    0.6766,
+    0.6519,
+    0.5759,
+    0.6712,
+    0.644,
+    0.64,
+    0.5408,
+    0.6391
+   ],
+   "isla": [
+    1.838,
+    1.21,
+    1.906,
+    5.54,
+    3.609,
+    2.29,
+    2.661,
+    2.511,
+    0.664,
+    2.703,
+    3.099,
+    1.535,
+    3.166,
+    2.939,
+    1.886,
+    3.697,
+    3.038,
+    0.713,
+    2.214,
+    2.437,
+    3.686,
+    2.08,
+    2.404,
+    2.06,
+    4.282,
+    2.656
+   ],
+   "pct_celdas_lst": [
+    100.0,
+    100.0,
+    100.0,
+    56.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "pct_celdas_ndvi": [
+    100.0,
+    100.0,
+    100.0,
+    56.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "lst_media": [
+    34.28,
+    36.193,
+    37.808,
+    42.267,
+    39.372,
+    36.137,
+    36.356,
+    37.588,
+    34.527,
+    40.196,
+    36.747,
+    36.692,
+    38.782,
+    35.607,
+    36.841,
+    41.499,
+    40.808,
+    35.365,
+    37.816,
+    39.046,
+    39.527,
+    35.221,
+    37.106,
+    38.273,
+    41.744,
+    37.386
+   ],
+   "ndvi_media": [
+    0.6,
+    0.5584,
+    0.5748,
+    0.396,
+    0.479,
+    0.5846,
+    0.5825,
+    0.5886,
+    0.5555,
+    0.5854,
+    0.5851,
+    0.6006,
+    0.5153,
+    0.5983,
+    0.5703,
+    0.5457,
+    0.5888,
+    0.6176,
+    0.6093,
+    0.5874,
+    0.5354,
+    0.5961,
+    0.5772,
+    0.5706,
+    0.5,
+    0.5734
+   ],
+   "lst_nucleo_construido": [
+    36.853,
+    38.795,
+    41.007,
+    43.335,
+    41.627,
+    38.75,
+    39.559,
+    40.462,
+    38.035,
+    43.972,
+    39.812,
+    40.093,
+    40.55,
+    39.067,
+    40.343,
+    44.181,
+    44.98,
+    38.275,
+    41.13,
+    43.387,
+    43.034,
+    39.101,
+    41.458,
+    42.599,
+    44.714,
+    41.917
+   ],
+   "ndvi_nucleo_construido": [
+    0.4195,
+    0.3987,
+    0.3853,
+    0.3064,
+    0.3196,
+    0.3845,
+    0.3599,
+    0.3737,
+    0.345,
+    0.3419,
+    0.3535,
+    0.3563,
+    0.3246,
+    0.366,
+    0.3431,
+    0.3153,
+    0.3103,
+    0.3333,
+    0.3271,
+    0.2998,
+    0.2907,
+    0.3047,
+    0.3006,
+    0.2899,
+    0.2709,
+    0.2817
+   ],
+   "celdas_nucleo_construido": 1837,
+   "tendencias": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.612,
+      "ic95_sen": [
+       -4.567,
+       5.51
+      ],
+      "mann_kendall_p": 0.8577,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.543,
+      "ic95_sen": [
+       -6.495,
+       5.51
+      ],
+      "mann_kendall_p": 0.8793,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.805,
+      "ic95_sen": [
+       -1.533,
+       5.085
+      ],
+      "mann_kendall_p": 0.3807,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.804,
+      "ic95_sen": [
+       -0.477,
+       2.157
+      ],
+      "mann_kendall_p": 0.2012,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     }
+    },
+    "isla": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.304,
+      "ic95_sen": [
+       -1.397,
+       2.23
+      ],
+      "mann_kendall_p": 0.8577,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.447,
+      "ic95_sen": [
+       -2.046,
+       1.62
+      ],
+      "mann_kendall_p": 0.5423,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.064,
+      "ic95_sen": [
+       -0.85,
+       1.778
+      ],
+      "mann_kendall_p": 0.1969,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.338,
+      "ic95_sen": [
+       -0.236,
+       0.931
+      ],
+      "mann_kendall_p": 0.2182,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.019,
+      "ic95_sen": [
+       -0.082,
+       0.051
+      ],
+      "mann_kendall_p": 0.3674,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.004,
+      "ic95_sen": [
+       -0.081,
+       0.096
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.021,
+      "ic95_sen": [
+       -0.059,
+       0.06
+      ],
+      "mann_kendall_p": 0.5452,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     }
+    }
+   },
+   "tendencias_variantes": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.612,
+        "ic95_sen": [
+         -4.567,
+         5.51
+        ],
+        "mann_kendall_p": 0.8577,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.924,
+        "ic95_sen": [
+         -4.032,
+         5.413
+        ],
+        "mann_kendall_p": 0.6754,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 1.749,
+        "ic95_sen": [
+         -2.294,
+         6.088
+        ],
+        "mann_kendall_p": 0.4354,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.612,
+       "sen_max": 1.749,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,61 y +1,75 °C/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.543,
+        "ic95_sen": [
+         -6.495,
+         5.51
+        ],
+        "mann_kendall_p": 0.8793,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.36,
+        "ic95_sen": [
+         -6.133,
+         5.6
+        ],
+        "mann_kendall_p": 1.0,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 1.394,
+        "ic95_sen": [
+         -4.865,
+         7.207
+        ],
+        "mann_kendall_p": 0.7612,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.543,
+       "sen_max": 1.394,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,54 y +1,39 °C/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 1.805,
+        "ic95_sen": [
+         -1.533,
+         5.085
+        ],
+        "mann_kendall_p": 0.3807,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 1.434,
+        "ic95_sen": [
+         -1.326,
+         5.004
+        ],
+        "mann_kendall_p": 0.2496,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 1.888,
+        "ic95_sen": [
+         -1.09,
+         4.69
+        ],
+        "mann_kendall_p": 0.2496,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 1.434,
+       "sen_max": 1.888,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +1,43 y +1,89 °C/década)."
+      }
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.019,
+        "ic95_sen": [
+         -0.082,
+         0.051
+        ],
+        "mann_kendall_p": 0.3674,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.027,
+        "ic95_sen": [
+         -0.081,
+         0.022
+        ],
+        "mann_kendall_p": 0.2044,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.061,
+        "ic95_sen": [
+         -0.078,
+         -0.035
+        ],
+        "mann_kendall_p": 0.0001,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.061,
+       "sen_max": -0.019,
+       "variantes_significativas": [
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": false,
+       "lectura": "Depende del método: 1 de 3 variantes significativas (nucleo_construido); Sen entre -0,061 y -0,019 NDVI/década. No es una conclusión robusta."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.004,
+        "ic95_sen": [
+         -0.081,
+         0.096
+        ],
+        "mann_kendall_p": 1.0,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.021,
+        "ic95_sen": [
+         -0.08,
+         0.045
+        ],
+        "mann_kendall_p": 0.5423,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.062,
+        "ic95_sen": [
+         -0.087,
+         -0.029
+        ],
+        "mann_kendall_p": 0.0016,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.062,
+       "sen_max": -0.004,
+       "variantes_significativas": [
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": false,
+       "lectura": "Depende del método: 1 de 3 variantes significativas (nucleo_construido); Sen entre -0,062 y -0,004 NDVI/década. No es una conclusión robusta."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.021,
+        "ic95_sen": [
+         -0.059,
+         0.06
+        ],
+        "mann_kendall_p": 0.5452,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.004,
+        "ic95_sen": [
+         -0.039,
+         0.042
+        ],
+        "mann_kendall_p": 0.7373,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.06,
+        "ic95_sen": [
+         -0.079,
+         -0.031
+        ],
+        "mann_kendall_p": 0.0088,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.06,
+       "sen_max": 0.021,
+       "variantes_significativas": [
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": false,
+       "lectura": "Depende del método: 1 de 3 variantes significativas (nucleo_construido); Sen entre -0,060 y +0,021 NDVI/década. No es una conclusión robusta."
+      }
+     }
+    }
+   },
+   "lectura": "LST 2013-2025 (Landsat 8/9): Sen +0,61 °C/década (IC 95 % -4,57 a +5,51; Mann-Kendall p = 0,86): sin tendencia detectable. Diferencia con el campo: +0,30 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +0,80 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,61 y +1,75 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Depende del método: 1 de 3 variantes significativas (nucleo_construido); Sen entre -0,061 y -0,019 NDVI/década. No es una conclusión robusta."
+  },
+  {
+   "id": "zaragoza",
+   "nombre": "Zaragoza (corregimiento)",
+   "lst": [
+    35.627,
+    37.296,
+    38.83,
+    null,
+    36.562,
+    36.321,
+    35.246,
+    37.782,
+    35.787,
+    40.19,
+    36.303,
+    38.574,
+    38.148,
+    34.142,
+    39.376,
+    41.936,
+    41.636,
+    37.527,
+    41.972,
+    39.662,
+    39.934,
+    35.862,
+    36.856,
+    40.075,
+    41.855,
+    39.316
+   ],
+   "ndvi": [
+    0.5575,
+    0.5183,
+    0.5396,
+    null,
+    0.4873,
+    0.5509,
+    0.534,
+    0.5208,
+    0.5352,
+    0.5298,
+    0.5342,
+    0.5072,
+    0.4946,
+    0.561,
+    0.547,
+    0.5051,
+    0.5167,
+    0.535,
+    0.5331,
+    0.4997,
+    0.4863,
+    0.5234,
+    0.4919,
+    0.4726,
+    0.444,
+    0.4589
+   ],
+   "isla": [
+    3.755,
+    2.811,
+    3.446,
+    null,
+    0.67,
+    2.99,
+    2.216,
+    3.045,
+    2.679,
+    3.394,
+    2.615,
+    4.026,
+    2.572,
+    1.815,
+    4.842,
+    3.966,
+    4.59,
+    3.19,
+    6.731,
+    3.993,
+    4.495,
+    3.474,
+    3.072,
+    4.638,
+    4.507,
+    5.331
+   ],
+   "pct_celdas_lst": [
+    100.0,
+    100.0,
+    100.0,
+    19.8,
+    100.0,
+    100.0,
+    100.0,
+    90.7,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    99.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "pct_celdas_ndvi": [
+    100.0,
+    100.0,
+    100.0,
+    19.8,
+    100.0,
+    100.0,
+    100.0,
+    90.7,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    98.3,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "lst_media": [
+    35.306,
+    37.133,
+    38.694,
+    null,
+    36.442,
+    36.25,
+    35.172,
+    37.756,
+    35.845,
+    40.169,
+    36.224,
+    38.554,
+    38.015,
+    34.064,
+    39.27,
+    41.826,
+    41.5,
+    37.563,
+    41.708,
+    39.537,
+    39.718,
+    35.665,
+    36.619,
+    39.864,
+    41.592,
+    38.963
+   ],
+   "ndvi_media": [
+    0.5481,
+    0.5138,
+    0.5294,
+    null,
+    0.4879,
+    0.5456,
+    0.5322,
+    0.525,
+    0.534,
+    0.526,
+    0.5276,
+    0.5083,
+    0.4959,
+    0.5561,
+    0.543,
+    0.5011,
+    0.511,
+    0.5298,
+    0.526,
+    0.4984,
+    0.4876,
+    0.5192,
+    0.4935,
+    0.4795,
+    0.4466,
+    0.4622
+   ],
+   "lst_nucleo_construido": [
+    36.679,
+    37.962,
+    39.917,
+    null,
+    37.489,
+    37.387,
+    36.284,
+    38.667,
+    36.644,
+    41.214,
+    37.454,
+    39.231,
+    39.092,
+    34.461,
+    40.317,
+    42.355,
+    42.137,
+    38.56,
+    42.64,
+    40.3,
+    40.389,
+    36.661,
+    37.379,
+    40.754,
+    42.356,
+    39.876
+   ],
+   "ndvi_nucleo_construido": [
+    0.4729,
+    0.4458,
+    0.4539,
+    null,
+    0.4206,
+    0.4628,
+    0.4485,
+    0.4362,
+    0.4462,
+    0.4332,
+    0.4364,
+    0.4169,
+    0.4175,
+    0.4772,
+    0.4487,
+    0.405,
+    0.4058,
+    0.4249,
+    0.4158,
+    0.4022,
+    0.3946,
+    0.4128,
+    0.3997,
+    0.3734,
+    0.3484,
+    0.3573
+   ],
+   "celdas_nucleo_construido": 373,
+   "tendencias": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.372,
+      "ic95_sen": [
+       -3.795,
+       6.183
+      ],
+      "mann_kendall_p": 0.8577,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.12,
+      "ic95_sen": [
+       -6.58,
+       8.023
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.333,
+      "ic95_sen": [
+       -2.096,
+       3.755
+      ],
+      "mann_kendall_p": 0.459,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.583,
+      "ic95_sen": [
+       0.211,
+       2.646
+      ],
+      "mann_kendall_p": 0.0223,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.767,
+      "ic95_sen": [
+       -1.31,
+       3.438
+      ],
+      "mann_kendall_p": 0.4354,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.067,
+      "ic95_sen": [
+       -2.53,
+       3.829
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.216,
+      "ic95_sen": [
+       -1.14,
+       1.745
+      ],
+      "mann_kendall_p": 0.7373,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.824,
+      "ic95_sen": [
+       0.302,
+       1.455
+      ],
+      "mann_kendall_p": 0.0054,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.078,
+      "ic95_sen": [
+       -0.107,
+       -0.041
+      ],
+      "mann_kendall_p": 0.0003,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.065,
+      "ic95_sen": [
+       -0.107,
+       -0.029
+      ],
+      "mann_kendall_p": 0.0057,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": true
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.029,
+      "ic95_sen": [
+       -0.054,
+       0.009
+      ],
+      "mann_kendall_p": 0.1526,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     }
+    }
+   },
+   "tendencias_variantes": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.372,
+        "ic95_sen": [
+         -3.795,
+         6.183
+        ],
+        "mann_kendall_p": 0.8577,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.301,
+        "ic95_sen": [
+         -4.216,
+         5.8
+        ],
+        "mann_kendall_p": 0.9524,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 0.197,
+        "ic95_sen": [
+         -3.949,
+         5.808
+        ],
+        "mann_kendall_p": 0.8577,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.197,
+       "sen_max": 0.372,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,20 y +0,37 °C/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.12,
+        "ic95_sen": [
+         -6.58,
+         8.023
+        ],
+        "mann_kendall_p": 1.0,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.393,
+        "ic95_sen": [
+         -6.543,
+         7.183
+        ],
+        "mann_kendall_p": 1.0,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.034,
+        "ic95_sen": [
+         -6.123,
+         6.293
+        ],
+        "mann_kendall_p": 1.0,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.393,
+       "sen_max": 0.12,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,39 y +0,12 °C/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 1.333,
+        "ic95_sen": [
+         -2.096,
+         3.755
+        ],
+        "mann_kendall_p": 0.459,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 1.655,
+        "ic95_sen": [
+         -1.84,
+         3.84
+        ],
+        "mann_kendall_p": 0.459,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 1.339,
+        "ic95_sen": [
+         -1.438,
+         4.05
+        ],
+        "mann_kendall_p": 0.459,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 1.333,
+       "sen_max": 1.655,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +1,33 y +1,66 °C/década)."
+      }
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.078,
+        "ic95_sen": [
+         -0.107,
+         -0.041
+        ],
+        "mann_kendall_p": 0.0003,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.072,
+        "ic95_sen": [
+         -0.1,
+         -0.039
+        ],
+        "mann_kendall_p": 0.0003,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.083,
+        "ic95_sen": [
+         -0.109,
+         -0.046
+        ],
+        "mann_kendall_p": 0.0003,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.083,
+       "sen_max": -0.072,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,083 y -0,072 NDVI/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.065,
+        "ic95_sen": [
+         -0.107,
+         -0.029
+        ],
+        "mann_kendall_p": 0.0057,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.059,
+        "ic95_sen": [
+         -0.096,
+         -0.027
+        ],
+        "mann_kendall_p": 0.0057,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.076,
+        "ic95_sen": [
+         -0.106,
+         -0.01
+        ],
+        "mann_kendall_p": 0.0057,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.076,
+       "sen_max": -0.059,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,076 y -0,059 NDVI/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.029,
+        "ic95_sen": [
+         -0.054,
+         0.009
+        ],
+        "mann_kendall_p": 0.1526,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.022,
+        "ic95_sen": [
+         -0.06,
+         0.009
+        ],
+        "mann_kendall_p": 0.1969,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.036,
+        "ic95_sen": [
+         -0.055,
+         -0.012
+        ],
+        "mann_kendall_p": 0.0138,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.036,
+       "sen_max": -0.022,
+       "variantes_significativas": [
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": false,
+       "lectura": "Depende del método: 1 de 3 variantes significativas (nucleo_construido); Sen entre -0,036 y -0,022 NDVI/década. No es una conclusión robusta."
+      }
+     }
+    }
+   },
+   "lectura": "LST 2013-2025 (Landsat 8/9): Sen +0,37 °C/década (IC 95 % -3,79 a +6,18; Mann-Kendall p = 0,86): sin tendencia detectable. Diferencia con el campo: +0,77 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,58 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,20 y +0,37 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,083 y -0,072 NDVI/década)."
+  },
+  {
+   "id": "cabecera",
+   "nombre": "Cabecera (Comunas 1–7 + Zaragoza)",
+   "lst": [
+    35.419,
+    37.444,
+    39.265,
+    42.287,
+    39.335,
+    36.954,
+    36.949,
+    38.41,
+    36.076,
+    41.395,
+    37.678,
+    37.83,
+    39.688,
+    37.922,
+    38.955,
+    42.706,
+    42.2,
+    37.612,
+    40.147,
+    41.031,
+    40.758,
+    36.848,
+    38.822,
+    40.473,
+    42.987,
+    39.712
+   ],
+   "ndvi": [
+    0.5395,
+    0.5026,
+    0.5107,
+    0.3614,
+    0.4337,
+    0.5181,
+    0.5091,
+    0.4951,
+    0.4709,
+    0.4997,
+    0.5057,
+    0.5076,
+    0.4628,
+    0.5293,
+    0.5155,
+    0.4753,
+    0.4946,
+    0.5161,
+    0.5048,
+    0.4773,
+    0.4453,
+    0.475,
+    0.4432,
+    0.4267,
+    0.3876,
+    0.4142
+   ],
+   "isla": [
+    3.547,
+    2.959,
+    3.881,
+    5.403,
+    3.444,
+    3.622,
+    3.92,
+    3.673,
+    2.968,
+    4.599,
+    3.991,
+    3.282,
+    4.112,
+    5.595,
+    4.421,
+    4.736,
+    5.154,
+    3.275,
+    4.906,
+    5.362,
+    5.319,
+    4.461,
+    5.038,
+    5.036,
+    5.64,
+    5.727
+   ],
+   "pct_celdas_lst": [
+    100.0,
+    100.0,
+    100.0,
+    63.1,
+    99.3,
+    100.0,
+    100.0,
+    99.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "pct_celdas_ndvi": [
+    100.0,
+    100.0,
+    100.0,
+    63.1,
+    99.1,
+    100.0,
+    100.0,
+    98.9,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    99.9,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "lst_media": [
+    35.765,
+    37.628,
+    39.411,
+    41.879,
+    39.187,
+    37.483,
+    37.47,
+    38.56,
+    36.363,
+    41.732,
+    37.588,
+    37.982,
+    39.724,
+    38.088,
+    39.09,
+    42.436,
+    42.105,
+    37.434,
+    39.998,
+    41.091,
+    40.618,
+    37.081,
+    38.792,
+    40.328,
+    42.836,
+    39.336
+   ],
+   "ndvi_media": [
+    0.5076,
+    0.4791,
+    0.487,
+    0.3714,
+    0.4232,
+    0.4913,
+    0.4869,
+    0.4819,
+    0.4672,
+    0.4884,
+    0.4917,
+    0.4931,
+    0.4502,
+    0.5146,
+    0.4967,
+    0.4711,
+    0.4903,
+    0.5141,
+    0.5067,
+    0.4892,
+    0.4585,
+    0.4923,
+    0.471,
+    0.4626,
+    0.419,
+    0.4562
+   ],
+   "lst_nucleo_construido": [
+    38.646,
+    40.24,
+    42.442,
+    43.644,
+    40.921,
+    40.327,
+    40.554,
+    41.06,
+    39.742,
+    45.045,
+    40.167,
+    40.911,
+    42.222,
+    41.835,
+    42.262,
+    44.735,
+    45.098,
+    40.133,
+    42.691,
+    44.496,
+    43.34,
+    39.865,
+    41.942,
+    43.483,
+    45.45,
+    42.437
+   ],
+   "ndvi_nucleo_construido": [
+    0.3239,
+    0.3161,
+    0.2998,
+    0.2699,
+    0.2773,
+    0.2988,
+    0.2899,
+    0.2923,
+    0.2899,
+    0.2912,
+    0.3012,
+    0.2922,
+    0.2914,
+    0.3367,
+    0.3192,
+    0.2992,
+    0.2879,
+    0.3107,
+    0.3017,
+    0.2837,
+    0.282,
+    0.2911,
+    0.2848,
+    0.2702,
+    0.2596,
+    0.2588
+   ],
+   "celdas_nucleo_construido": 9383,
+   "tendencias": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.67,
+      "ic95_sen": [
+       -3.01,
+       4.45
+      ],
+      "mann_kendall_p": 0.8577,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.95,
+      "ic95_sen": [
+       -4.477,
+       4.45
+      ],
+      "mann_kendall_p": 0.7612,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 1.565,
+      "ic95_sen": [
+       -1.71,
+       4.565
+      ],
+      "mann_kendall_p": 0.2496,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 1.451,
+      "ic95_sen": [
+       0.441,
+       2.551
+      ],
+      "mann_kendall_p": 0.0114,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "isla": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": 0.623,
+      "ic95_sen": [
+       -0.394,
+       1.565
+      ],
+      "mann_kendall_p": 0.1635,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": false
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": 0.057,
+      "ic95_sen": [
+       -1.24,
+       1.565
+      ],
+      "mann_kendall_p": 1.0,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": false
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": 0.457,
+      "ic95_sen": [
+       -0.416,
+       1.169
+      ],
+      "mann_kendall_p": 0.1526,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     },
+     "2000_2025_sin_armonizar": {
+      "sen_por_decada": 0.908,
+      "ic95_sen": [
+       0.641,
+       1.172
+      ],
+      "mann_kendall_p": 0.0,
+      "n_anios": 25,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "sen_por_decada": -0.101,
+      "ic95_sen": [
+       -0.138,
+       -0.062
+      ],
+      "mann_kendall_p": 0.0001,
+      "n_anios": 13,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "significativa": true
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "sen_por_decada": -0.097,
+      "ic95_sen": [
+       -0.138,
+       -0.046
+      ],
+      "mann_kendall_p": 0.0016,
+      "n_anios": 11,
+      "anios": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023
+      ],
+      "significativa": true
+     },
+     "2000_2012_landsat_5_7": {
+      "sen_por_decada": -0.023,
+      "ic95_sen": [
+       -0.065,
+       0.023
+      ],
+      "mann_kendall_p": 0.1969,
+      "n_anios": 12,
+      "anios": [
+       2000,
+       2001,
+       2002,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012
+      ],
+      "significativa": false
+     }
+    }
+   },
+   "tendencias_variantes": {
+    "lst": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 0.67,
+        "ic95_sen": [
+         -3.01,
+         4.45
+        ],
+        "mann_kendall_p": 0.8577,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.552,
+        "ic95_sen": [
+         -3.1,
+         4.002
+        ],
+        "mann_kendall_p": 0.8577,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 0.489,
+        "ic95_sen": [
+         -2.79,
+         3.63
+        ],
+        "mann_kendall_p": 0.6754,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.489,
+       "sen_max": 0.67,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,49 y +0,67 °C/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.95,
+        "ic95_sen": [
+         -4.477,
+         4.45
+        ],
+        "mann_kendall_p": 0.7612,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": -0.967,
+        "ic95_sen": [
+         -4.73,
+         4.002
+        ],
+        "mann_kendall_p": 0.7612,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.4,
+        "ic95_sen": [
+         -4.395,
+         4.27
+        ],
+        "mann_kendall_p": 1.0,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.967,
+       "sen_max": -0.4,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,97 y -0,40 °C/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": 1.565,
+        "ic95_sen": [
+         -1.71,
+         4.565
+        ],
+        "mann_kendall_p": 0.2496,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.928,
+        "ic95_sen": [
+         -1.702,
+         5.09
+        ],
+        "mann_kendall_p": 0.3807,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": 1.445,
+        "ic95_sen": [
+         -0.968,
+         3.665
+        ],
+        "mann_kendall_p": 0.3108,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": 0.928,
+       "sen_max": 1.565,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,93 y +1,56 °C/década)."
+      }
+     }
+    },
+    "ndvi": {
+     "2013_2025_landsat_8_9": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.101,
+        "ic95_sen": [
+         -0.138,
+         -0.062
+        ],
+        "mann_kendall_p": 0.0001,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.051,
+        "ic95_sen": [
+         -0.086,
+         -0.015
+        ],
+        "mann_kendall_p": 0.0027,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.055,
+        "ic95_sen": [
+         -0.07,
+         -0.035
+        ],
+        "mann_kendall_p": 0.0001,
+        "n_anios": 13,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023,
+         2024,
+         2025
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.101,
+       "sen_max": -0.051,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,101 y -0,051 NDVI/década)."
+      }
+     },
+     "2013_2023_sin_cambio_geos_it": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.097,
+        "ic95_sen": [
+         -0.138,
+         -0.046
+        ],
+        "mann_kendall_p": 0.0016,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "media": {
+        "sen_por_decada": -0.04,
+        "ic95_sen": [
+         -0.084,
+         0.0
+        ],
+        "mann_kendall_p": 0.0405,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.049,
+        "ic95_sen": [
+         -0.078,
+         -0.021
+        ],
+        "mann_kendall_p": 0.0031,
+        "n_anios": 11,
+        "anios": [
+         2013,
+         2014,
+         2015,
+         2016,
+         2017,
+         2018,
+         2019,
+         2020,
+         2021,
+         2022,
+         2023
+        ],
+        "significativa": true
+       }
+      },
+      "resumen": {
+       "sen_min": -0.097,
+       "sen_max": -0.04,
+       "variantes_significativas": [
+        "mediana",
+        "media",
+        "nucleo_construido"
+       ],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Disminución consistente: las 3 variantes son significativas (Sen entre -0,097 y -0,040 NDVI/década)."
+      }
+     },
+     "2000_2012_landsat_5_7": {
+      "variantes": {
+       "mediana": {
+        "sen_por_decada": -0.023,
+        "ic95_sen": [
+         -0.065,
+         0.023
+        ],
+        "mann_kendall_p": 0.1969,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "media": {
+        "sen_por_decada": 0.0,
+        "ic95_sen": [
+         -0.044,
+         0.016
+        ],
+        "mann_kendall_p": 1.0,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       },
+       "nucleo_construido": {
+        "sen_por_decada": -0.012,
+        "ic95_sen": [
+         -0.033,
+         0.004
+        ],
+        "mann_kendall_p": 0.1916,
+        "n_anios": 12,
+        "anios": [
+         2000,
+         2001,
+         2002,
+         2004,
+         2005,
+         2006,
+         2007,
+         2008,
+         2009,
+         2010,
+         2011,
+         2012
+        ],
+        "significativa": false
+       }
+      },
+      "resumen": {
+       "sen_min": -0.023,
+       "sen_max": 0.0,
+       "variantes_significativas": [],
+       "n_variantes": 3,
+       "robusta": true,
+       "lectura": "Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre -0,023 y 0,000 NDVI/década)."
+      }
+     }
+    }
+   },
+   "lectura": "LST 2013-2025 (Landsat 8/9): Sen +0,67 °C/década (IC 95 % -3,01 a +4,45; Mann-Kendall p = 0,86): sin tendencia detectable. Diferencia con el campo: +0,62 °C/década (no significativa). El tramo 2000-2025 sin armonizar da +1,45 °C/década, pero mezcla sensores y lo domina el salto de 2012-2013; no se usa para decidir. LST 2013-2025 entre variantes (mediana, media, núcleo construido): Sin tendencia detectable: ninguna de las 3 variantes es significativa (Sen entre +0,49 y +0,67 °C/década). NDVI Landsat 2013-2025 entre variantes (mediana, media, núcleo construido): Disminución consistente: las 3 variantes son significativas (Sen entre -0,101 y -0,051 NDVI/década)."
+  }
+ ],
+ "advertencias": [
+  "Cambio de sensor en 2013 (Landsat 5/7 → 8/9): los niveles antes y después no son comparables sin armonizar; el salto de 2012–2013 de la isla de calor no está explicado (ver datos/series/landsat.json).",
+  "Con 3 a 6 escenas por año, la mediana anual depende de los meses que quedaron despejados y de la hora de paso: la variación entre años no es solo climática.",
+  "Desde el 1-ene-2024 el producto ST del USGS usa GEOS-IT como dato atmosférico auxiliar (antes GEOS FP-IT): 2024–2025 pueden no ser homogéneos con los años anteriores; se publica la sensibilidad 2013–2023.",
+  "Las zonas son fijas en el tiempo (polígonos actuales): mezclan expansión urbana con cambios dentro del área ya construida.",
+  "El NDVI de esta serie es Landsat (no Sentinel-2) y cambia de sensor en 2013 (Roy et al. 2016).",
+  "Las zonas son heterogéneas (mezclan núcleo construido y suelo verde): su mediana espacial puede caer entre los dos modos y exagerar los cambios; por eso se publican la media y el núcleo construido (tendencias_variantes).",
+  "La caída del NDVI Landsat en los núcleos construidos, con el campo sin cambio, no está explicada ni contrastada con una fuente independiente (Sentinel-2 desde 2017 o fotointerpretación): no usar para decidir sin ese contraste.",
+  "2003 no es confiable (3 escenas en un trimestre) y queda fuera de las tendencias."
+ ],
+ "fecha_proceso": "2026-10-01"
+}

@@ -1,0 +1,980 @@
+{
+ "titulo": "Componentes de priorización por zona",
+ "descripcion": "Cinco componentes de 0 (menor prioridad relativa) a 1 (mayor) para comparar las zonas de Cartago, y un índice por defecto con pesos iguales. Es una herramienta para ordenar la discusión, no un diagnóstico: los pesos los decide quien usa la plataforma.",
+ "zonas": [
+  {
+   "id": "c1",
+   "nombre": "Comuna 1",
+   "poblacion": 22039.0
+  },
+  {
+   "id": "c2",
+   "nombre": "Comuna 2",
+   "poblacion": 14237.0
+  },
+  {
+   "id": "c3",
+   "nombre": "Comuna 3",
+   "poblacion": 14308.0
+  },
+  {
+   "id": "c4",
+   "nombre": "Comuna 4",
+   "poblacion": 21944.0
+  },
+  {
+   "id": "c5",
+   "nombre": "Comuna 5",
+   "poblacion": 4897.0
+  },
+  {
+   "id": "c6",
+   "nombre": "Comuna 6",
+   "poblacion": 26113.0
+  },
+  {
+   "id": "c7",
+   "nombre": "Comuna 7",
+   "poblacion": 31763.0
+  },
+  {
+   "id": "zaragoza",
+   "nombre": "Zaragoza (corregimiento)",
+   "poblacion": 4252.0
+  }
+ ],
+ "metodo": {
+  "normalizacion": "Min–max entre las 8 zonas en la dirección indicada (1 = zona más prioritaria). Para los componentes que son fracciones de población, el denominador es max(rango, 0,05): diferencias menores de 5 puntos porcentuales de población no se amplían a toda la escala (supuesto de diseño, para no convertir decenas de personas en una prioridad máxima). 'normalizado_minmax_puro' da la versión sin piso.",
+  "indice": "Promedio ponderado de los componentes normalizados; pesos por defecto iguales (0,2 cada uno).",
+  "relativo": "Los valores son relativos a estas 8 zonas: un 0 no significa ausencia del problema.",
+  "fracciones_y_conteos": "Los componentes usan la fracción de la población de cada zona (qué tan frecuente es la exposición). Cada componente publica también 'conteos_absolutos' (cuántas personas), y la variante 'conteos_absolutos' recalcula el índice con ellos.",
+  "inundacion": "Por defecto, registros oficiales del IDEAM (amenaza alta por creciente súbita ∪ áreas afectadas por La Niña). La susceptibilidad topográfica HAND se publica aparte como variante y nunca se mezcla con la amenaza oficial. La variante 'inundacion_ideam_sin_2011' excluye La Niña 2011, cuya parte urbana no es coherente con el relieve (datos/indicadores.json → coherencia_topografica_nina)."
+ },
+ "componentes": [
+  {
+   "id": "calor",
+   "nombre": "Calor extremo",
+   "valores_origen": {
+    "c1": 0.05,
+    "c2": 0.17,
+    "c3": 0.03,
+    "c4": 0.342,
+    "c5": 0.344,
+    "c6": 0.339,
+    "c7": 0.118,
+    "zaragoza": 0.0
+   },
+   "direccion": "+",
+   "unidad_origen": "fracción de la población (0–1)",
+   "piso": 0.05,
+   "conteos_absolutos": {
+    "c1": 1111.0,
+    "c2": 2423.0,
+    "c3": 429.0,
+    "c4": 7500.0,
+    "c5": 1686.0,
+    "c6": 8860.0,
+    "c7": 3759.0,
+    "zaragoza": 0.0
+   },
+   "conteo_cabecera": 25768.0,
+   "formula": "habitantes en celdas con LST ≥ 42,85 °C (p90 de la cabecera) / habitantes de la zona",
+   "normalizado": {
+    "c1": 0.1453,
+    "c2": 0.4942,
+    "c3": 0.0872,
+    "c4": 0.9942,
+    "c5": 1.0,
+    "c6": 0.9855,
+    "c7": 0.343,
+    "zaragoza": 0.0
+   },
+   "normalizado_minmax_puro": {
+    "c1": 0.1453,
+    "c2": 0.4942,
+    "c3": 0.0872,
+    "c4": 0.9942,
+    "c5": 1.0,
+    "c6": 0.9855,
+    "c7": 0.343,
+    "zaragoza": 0.0
+   }
+  },
+  {
+   "id": "deficit_verde",
+   "nombre": "Déficit de verde",
+   "valores_origen": null,
+   "direccion": "+",
+   "unidad_origen": "índice 0–1 (promedio de dos subcomponentes normalizados)",
+   "piso": null,
+   "conteos_absolutos": {
+    "c1": 16600.0,
+    "c2": 14193.0,
+    "c3": 14210.0,
+    "c4": 10784.0,
+    "c5": 489.0,
+    "c6": 10652.0,
+    "c7": 21794.0,
+    "zaragoza": 2364.0
+   },
+   "conteo_cabecera": 91084.0,
+   "conteo_descripcion": "habitantes a más de 300 m de verde público ≥ 0,5 ha",
+   "formula": "0,5·n(fracción de población a > 300 m de verde público ≥ 0,5 ha) + 0,5·n(−arbolado ponderado por población)",
+   "subcomponentes": {
+    "sin_verde_300m": {
+     "valores_origen": {
+      "c1": 0.753,
+      "c2": 0.997,
+      "c3": 0.993,
+      "c4": 0.491,
+      "c5": 0.1,
+      "c6": 0.408,
+      "c7": 0.686,
+      "zaragoza": 0.556
+     },
+     "unidad": "fracción de la población",
+     "direccion": "+",
+     "normalizado": {
+      "c1": 0.728,
+      "c2": 1.0,
+      "c3": 0.9955,
+      "c4": 0.4359,
+      "c5": 0.0,
+      "c6": 0.3434,
+      "c7": 0.6533,
+      "zaragoza": 0.5084
+     }
+    },
+    "arbolado_pob": {
+     "valores_origen": {
+      "c1": 0.057,
+      "c2": 0.049,
+      "c3": 0.087,
+      "c4": 0.025,
+      "c5": 0.034,
+      "c6": 0.046,
+      "c7": 0.056,
+      "zaragoza": 0.149
+     },
+     "unidad": "fracción del área arbolada, ponderada por población",
+     "direccion": "−",
+     "normalizado": {
+      "c1": 0.7419,
+      "c2": 0.8065,
+      "c3": 0.5,
+      "c4": 1.0,
+      "c5": 0.9274,
+      "c6": 0.8306,
+      "c7": 0.75,
+      "zaragoza": 0.0
+     }
+    }
+   },
+   "normalizado": {
+    "c1": 0.7349,
+    "c2": 0.9032,
+    "c3": 0.7478,
+    "c4": 0.7179,
+    "c5": 0.4637,
+    "c6": 0.587,
+    "c7": 0.7016,
+    "zaragoza": 0.2542
+   },
+   "normalizado_minmax_puro": {
+    "c1": 0.7349,
+    "c2": 0.9032,
+    "c3": 0.7478,
+    "c4": 0.7179,
+    "c5": 0.4637,
+    "c6": 0.587,
+    "c7": 0.7016,
+    "zaragoza": 0.2542
+   },
+   "advertencia": "El acceso a verde depende del verde mapeado en OSM y de suponer público todo polígono sin etiqueta de acceso; su orden entre comunas no es robusto (datos/series/verdes.json → sensibilidad)."
+  },
+  {
+   "id": "inundacion",
+   "nombre": "Inundación: registros oficiales del IDEAM",
+   "valores_origen": {
+    "c1": 0.1451,
+    "c2": 0.0,
+    "c3": 0.0006,
+    "c4": 0.0592,
+    "c5": 0.0004,
+    "c6": 0.0728,
+    "c7": 0.3012,
+    "zaragoza": 0.1357
+   },
+   "direccion": "+",
+   "unidad_origen": "fracción de la población (0–1)",
+   "piso": 0.05,
+   "conteos_absolutos": {
+    "c1": 3199.0,
+    "c2": 0.0,
+    "c3": 8.0,
+    "c4": 1299.0,
+    "c5": 2.0,
+    "c6": 1901.0,
+    "c7": 9567.0,
+    "zaragoza": 577.0
+   },
+   "conteo_cabecera": 16553.0,
+   "formula": "habitantes en (amenaza ALTA por creciente súbita TR 50 años del IDEAM ∪ áreas afectadas por inundación en eventos La Niña 1988–2022 del IDEAM) / habitantes de la zona",
+   "normalizado": {
+    "c1": 0.4817,
+    "c2": 0.0,
+    "c3": 0.002,
+    "c4": 0.1965,
+    "c5": 0.0013,
+    "c6": 0.2417,
+    "c7": 1.0,
+    "zaragoza": 0.4505
+   },
+   "normalizado_minmax_puro": {
+    "c1": 0.4817,
+    "c2": 0.0,
+    "c3": 0.002,
+    "c4": 0.1965,
+    "c5": 0.0013,
+    "c6": 0.2417,
+    "c7": 1.0,
+    "zaragoza": 0.4505
+   },
+   "advertencia": "Registros oficiales del IDEAM, no susceptibilidad topográfica: la amenaza por creciente súbita (TR 50 años) solo cubre las corrientes de la cuenca directa del río La Vieja y las áreas afectadas por La Niña son manchas de escala no declarada (bordes gruesos; ver variantes 'inundacion_ideam_borde_*'). La parte urbana de La Niña 2011 no es coherente con el relieve y puede sobrestimar: ver la variante 'inundacion_ideam_sin_2011' antes de usar las cifras de las zonas que dependen de ella. Decisión de diseño de este producto: la tarea pedía la población en susceptibilidad alta (HAND), pero esa clase solo tiene 172 hab en la cabecera y con ella el ranking es idéntico al que se obtiene quitando la inundación; se conserva como variante 'inundacion_hand_alta' (y 'inundacion_alta_o_media')."
+  },
+  {
+   "id": "trafico",
+   "nombre": "Tráfico",
+   "valores_origen": {
+    "c1": 0.177,
+    "c2": 0.071,
+    "c3": 0.024,
+    "c4": 0.042,
+    "c5": 0.158,
+    "c6": 0.02,
+    "c7": 0.021,
+    "zaragoza": 0.061
+   },
+   "direccion": "+",
+   "unidad_origen": "fracción de la población (0–1)",
+   "piso": 0.05,
+   "conteos_absolutos": {
+    "c1": 3901.0,
+    "c2": 1012.0,
+    "c3": 345.0,
+    "c4": 913.0,
+    "c5": 773.0,
+    "c6": 519.0,
+    "c7": 653.0,
+    "zaragoza": 259.0
+   },
+   "conteo_cabecera": 8374.0,
+   "formula": "habitantes en celdas con índice de tráfico ≥ 60 / habitantes de la zona",
+   "normalizado": {
+    "c1": 1.0,
+    "c2": 0.3248,
+    "c3": 0.0255,
+    "c4": 0.1401,
+    "c5": 0.879,
+    "c6": 0.0,
+    "c7": 0.0064,
+    "zaragoza": 0.2611
+   },
+   "normalizado_minmax_puro": {
+    "c1": 1.0,
+    "c2": 0.3248,
+    "c3": 0.0255,
+    "c4": 0.1401,
+    "c5": 0.879,
+    "c6": 0.0,
+    "c7": 0.0064,
+    "zaragoza": 0.2611
+   }
+  },
+  {
+   "id": "densidad",
+   "nombre": "Densidad de población",
+   "valores_origen": {
+    "c1": 17050.0,
+    "c2": 14542.0,
+    "c3": 12197.0,
+    "c4": 10266.0,
+    "c5": 6407.0,
+    "c6": 10394.0,
+    "c7": 4979.0,
+    "zaragoza": 5899.0
+   },
+   "direccion": "+",
+   "unidad_origen": "hab/km²",
+   "piso": null,
+   "conteos_absolutos": {
+    "c1": 22039.0,
+    "c2": 14237.0,
+    "c3": 14308.0,
+    "c4": 21944.0,
+    "c5": 4897.0,
+    "c6": 26113.0,
+    "c7": 31763.0,
+    "zaragoza": 4252.0
+   },
+   "conteo_cabecera": 139554.0,
+   "conteo_descripcion": "habitantes de la zona",
+   "formula": "habitantes / área de la zona (km²)",
+   "normalizado": {
+    "c1": 1.0,
+    "c2": 0.7922,
+    "c3": 0.598,
+    "c4": 0.438,
+    "c5": 0.1183,
+    "c6": 0.4486,
+    "c7": 0.0,
+    "zaragoza": 0.0762
+   },
+   "normalizado_minmax_puro": {
+    "c1": 1.0,
+    "c2": 0.7922,
+    "c3": 0.598,
+    "c4": 0.438,
+    "c5": 0.1183,
+    "c6": 0.4486,
+    "c7": 0.0,
+    "zaragoza": 0.0762
+   },
+   "advertencia": "Zaragoza es una huella construida y las comunas son polígonos administrativos con suelo no construido: la densidad bruta favorece a Zaragoza frente a la Comuna 7. Variante: 'densidad_sobre_area_construida'."
+  }
+ ],
+ "variantes_componentes": {
+  "inundacion_hand_alta": {
+   "nombre": "Susceptibilidad topográfica a inundación (HAND), clase alta",
+   "formula": "habitantes en clase 3 (alta) de susceptibilidad_inundacion / habitantes (componente literal de la tarea)",
+   "valores_origen": {
+    "c1": 0.0074,
+    "c2": 0.0,
+    "c3": 0.0,
+    "c4": 0.0,
+    "c5": 0.0,
+    "c6": 0.00034,
+    "c7": 0.0,
+    "zaragoza": 0.0
+   },
+   "conteos_absolutos": {
+    "c1": 163.0,
+    "c2": 0.0,
+    "c3": 0.0,
+    "c4": 0.0,
+    "c5": 0.0,
+    "c6": 9.0,
+    "c7": 0.0,
+    "zaragoza": 0.0
+   },
+   "normalizado": {
+    "c1": 0.1479,
+    "c2": 0.0,
+    "c3": 0.0,
+    "c4": 0.0,
+    "c5": 0.0,
+    "c6": 0.0069,
+    "c7": 0.0,
+    "zaragoza": 0.0
+   },
+   "advertencia": "Casi nulo: solo Comuna 1 y Comuna 6 tienen población en clase alta (172 hab). Susceptibilidad topográfica, no amenaza oficial."
+  },
+  "inundacion_alta_o_media": {
+   "nombre": "Susceptibilidad topográfica a inundación (HAND), clases alta o media",
+   "formula": "habitantes en clases 2 o 3 / habitantes",
+   "valores_origen": {
+    "c1": 0.15631,
+    "c2": 0.38716,
+    "c3": 0.0448,
+    "c4": 0.28112,
+    "c5": 0.14397,
+    "c6": 0.46038,
+    "c7": 0.15408,
+    "zaragoza": 0.34384
+   },
+   "conteos_absolutos": {
+    "c1": 3445.0,
+    "c2": 5512.0,
+    "c3": 641.0,
+    "c4": 6169.0,
+    "c5": 705.0,
+    "c6": 12022.0,
+    "c7": 4894.0,
+    "zaragoza": 1462.0
+   },
+   "normalizado": {
+    "c1": 0.2683,
+    "c2": 0.8238,
+    "c3": 0.0,
+    "c4": 0.5687,
+    "c5": 0.2386,
+    "c6": 1.0,
+    "c7": 0.263,
+    "zaragoza": 0.7196
+   },
+   "advertencia": "Susceptibilidad topográfica, no amenaza oficial. Clase media: ≤ 6 m sobre el cauce más cercano (incluidos arroyos y canales de drenaje), ≤ 3 m sobre La Vieja/Cauca a más de 1,5 km, o franja de ≤ 100 m junto a La Vieja/Cauca (regla de piso). Mezcla poca altura sobre cauces menores, la franja junto a los ríos mayores y depresiones del modelo de superficie."
+  },
+  "inundacion_ideam_alta": {
+   "nombre": "Amenaza ALTA por creciente súbita TR 50 años (IDEAM)",
+   "formula": "habitantes en la mancha de amenaza ALTA por creciente súbita TR 50 años del IDEAM (corrientes de la cuenca directa del río La Vieja) / habitantes",
+   "valores_origen": {
+    "c1": 0.14515,
+    "c2": 0.0,
+    "c3": 0.00056,
+    "c4": 0.0,
+    "c5": 0.00041,
+    "c6": 0.00559,
+    "c7": 0.0,
+    "zaragoza": 0.1357
+   },
+   "conteos_absolutos": {
+    "c1": 3199.0,
+    "c2": 0.0,
+    "c3": 8.0,
+    "c4": 0.0,
+    "c5": 2.0,
+    "c6": 146.0,
+    "c7": 0.0,
+    "zaragoza": 577.0
+   },
+   "normalizado": {
+    "c1": 1.0,
+    "c2": 0.0,
+    "c3": 0.0039,
+    "c4": 0.0,
+    "c5": 0.0028,
+    "c6": 0.0385,
+    "c7": 0.0,
+    "zaragoza": 0.9349
+   },
+   "advertencia": "Solo cubre la creciente súbita (TR 50 años) de las corrientes de la cuenca directa del río La Vieja: la capa del IDEAM atribuye sus 4 polígonos de amenaza ALTA a la corriente «Río La Vieja» (cuenca «Directos Río La Vieja»), pero 3 de ellos están a 2,5–5,4 km del eje del río: corresponden a corrientes menores de su cuenca directa. No cubre la inundación lenta del Cauca ni las áreas afectadas por La Niña."
+  },
+  "inundacion_ideam_nina_observada": {
+   "nombre": "Áreas afectadas por inundación en eventos La Niña 1988–2022 (IDEAM)",
+   "formula": "habitantes en la unión de las áreas afectadas por La Niña (IDEAM) / habitantes",
+   "valores_origen": {
+    "c1": 0.00513,
+    "c2": 0.0,
+    "c3": 0.0,
+    "c4": 0.0592,
+    "c5": 0.0,
+    "c6": 0.06905,
+    "c7": 0.3012,
+    "zaragoza": 0.0
+   },
+   "conteos_absolutos": {
+    "c1": 113.0,
+    "c2": 0.0,
+    "c3": 0.0,
+    "c4": 1299.0,
+    "c5": 0.0,
+    "c6": 1803.0,
+    "c7": 9567.0,
+    "zaragoza": 0.0
+   },
+   "normalizado": {
+    "c1": 0.017,
+    "c2": 0.0,
+    "c3": 0.0,
+    "c4": 0.1965,
+    "c5": 0.0,
+    "c6": 0.2292,
+    "c7": 1.0,
+    "zaragoza": 0.0
+   },
+   "advertencia": "Manchas de escala no declarada (bordes gruesos, eventos posiblemente incompletos, no validadas por el IDEAM según datos.gov.co); registro histórico, no zonificación de amenaza. La parte urbana de La Niña 2011 no es coherente con el relieve (ver 'inundacion_ideam_sin_2011')."
+  },
+  "inundacion_ideam_borde_reducida_55m": {
+   "nombre": "Registros IDEAM con la mancha La Niña reducida ≈ 55 m",
+   "formula": "como el componente por defecto, con la mancha La Niña reducida 2 celdas",
+   "valores_origen": {
+    "c1": 0.14515,
+    "c2": 0.0,
+    "c3": 0.00056,
+    "c4": 0.0324,
+    "c5": 0.00041,
+    "c6": 0.03611,
+    "c7": 0.19469,
+    "zaragoza": 0.1357
+   },
+   "conteos_absolutos": {
+    "c1": 3199.0,
+    "c2": 0.0,
+    "c3": 8.0,
+    "c4": 711.0,
+    "c5": 2.0,
+    "c6": 943.0,
+    "c7": 6184.0,
+    "zaragoza": 577.0
+   },
+   "normalizado": {
+    "c1": 0.7455,
+    "c2": 0.0,
+    "c3": 0.0029,
+    "c4": 0.1664,
+    "c5": 0.0021,
+    "c6": 0.1855,
+    "c7": 1.0,
+    "zaragoza": 0.697
+   },
+   "advertencia": "Sensibilidad a los bordes gruesos de las manchas La Niña (escala no declarada)."
+  },
+  "inundacion_ideam_borde_ampliada_55m": {
+   "nombre": "Registros IDEAM con la mancha La Niña ampliada ≈ 55 m",
+   "formula": "como el componente por defecto, con la mancha La Niña ampliada 2 celdas",
+   "valores_origen": {
+    "c1": 0.14933,
+    "c2": 0.0,
+    "c3": 0.00056,
+    "c4": 0.11434,
+    "c5": 0.02716,
+    "c6": 0.14261,
+    "c7": 0.43623,
+    "zaragoza": 0.1357
+   },
+   "conteos_absolutos": {
+    "c1": 3291.0,
+    "c2": 0.0,
+    "c3": 8.0,
+    "c4": 2509.0,
+    "c5": 133.0,
+    "c6": 3724.0,
+    "c7": 13856.0,
+    "zaragoza": 577.0
+   },
+   "normalizado": {
+    "c1": 0.3423,
+    "c2": 0.0,
+    "c3": 0.0013,
+    "c4": 0.2621,
+    "c5": 0.0623,
+    "c6": 0.3269,
+    "c7": 1.0,
+    "zaragoza": 0.3111
+   },
+   "advertencia": "Sensibilidad a los bordes gruesos de las manchas La Niña (escala no declarada)."
+  },
+  "inundacion_ideam_sin_2011": {
+   "nombre": "Registros IDEAM sin La Niña 2011",
+   "formula": "habitantes en (amenaza ALTA por creciente súbita TR 50 ∪ áreas afectadas por La Niña 1988, 2000, 2012, 2016, 2020–2022) / habitantes: el componente por defecto sin las capas La Niña 2011 (8 y 22)",
+   "valores_origen": {
+    "c1": 0.14515,
+    "c2": 0.0,
+    "c3": 0.00056,
+    "c4": 0.01312,
+    "c5": 0.00041,
+    "c6": 0.0131,
+    "c7": 0.19293,
+    "zaragoza": 0.1357
+   },
+   "conteos_absolutos": {
+    "c1": 3199.0,
+    "c2": 0.0,
+    "c3": 8.0,
+    "c4": 288.0,
+    "c5": 2.0,
+    "c6": 342.0,
+    "c7": 6128.0,
+    "zaragoza": 577.0
+   },
+   "normalizado": {
+    "c1": 0.7524,
+    "c2": 0.0,
+    "c3": 0.0029,
+    "c4": 0.068,
+    "c5": 0.0021,
+    "c6": 0.0679,
+    "c7": 1.0,
+    "zaragoza": 0.7034
+   },
+   "advertencia": "La parte urbana de la mancha de 2011 no está más baja sobre el drenaje que la ciudad no inundada (indicadores.json → coherencia_topografica_nina); puede sobrestimar y esta variante la excluye. Tampoco es definitiva: el área de 2011 pudo inundarse por lluvia o alcantarillado. Contrastar con los registros municipales de gestión del riesgo (alcaldía de Cartago) o el consolidado anual de emergencias de la UNGRD (serie desde 1998 en el repositorio institucional de la UNGRD, que no respondió desde aquí el 2026-10-01; en datos.gov.co los conjuntos de emergencias de la UNGRD empiezan en 2019, p. ej. wwkg-r6te, así que no cubren 2010–2011)."
+  },
+  "densidad_sobre_area_construida": {
+   "nombre": "Densidad sobre el área construida",
+   "formula": "habitantes / km² clasificados como construidos (WorldCover)",
+   "valores_origen": {
+    "c1": 22219.0,
+    "c2": 20046.0,
+    "c3": 20221.0,
+    "c4": 15611.0,
+    "c5": 7614.0,
+    "c6": 16130.0,
+    "c7": 18222.0,
+    "zaragoza": 10605.0
+   },
+   "normalizado": {
+    "c1": 1.0,
+    "c2": 0.8512,
+    "c3": 0.8632,
+    "c4": 0.5476,
+    "c5": 0.0,
+    "c6": 0.5831,
+    "c7": 0.7263,
+    "zaragoza": 0.2048
+   }
+  },
+  "deficit_verde_umbral_025ha": {
+   "nombre": "Déficit de verde con verde ≥ 0,25 ha",
+   "formula": "como deficit_verde pero con verde ≥ 0,25 ha",
+   "normalizado": {
+    "c1": 0.7388,
+    "c2": 0.672,
+    "c3": 0.75,
+    "c4": 0.7211,
+    "c5": 0.4637,
+    "c6": 0.5133,
+    "c7": 0.6858,
+    "zaragoza": 0.2576
+   }
+  },
+  "conteos_absolutos": {
+   "nombre": "Personas expuestas (conteos absolutos)",
+   "formula": "calor, déficit de verde (solo personas a > 300 m de verde ≥ 0,5 ha), inundación y tráfico normalizados min–max con el número de habitantes expuestos de cada zona, no con su fracción; densidad sin cambio",
+   "normalizado_por_componente": {
+    "calor": {
+     "c1": 0.1254,
+     "c2": 0.2735,
+     "c3": 0.0484,
+     "c4": 0.8465,
+     "c5": 0.1903,
+     "c6": 1.0,
+     "c7": 0.4243,
+     "zaragoza": 0.0
+    },
+    "deficit_verde": {
+     "c1": 0.7562,
+     "c2": 0.6432,
+     "c3": 0.644,
+     "c4": 0.4832,
+     "c5": 0.0,
+     "c6": 0.477,
+     "c7": 1.0,
+     "zaragoza": 0.088
+    },
+    "inundacion": {
+     "c1": 0.3344,
+     "c2": 0.0,
+     "c3": 0.0008,
+     "c4": 0.1358,
+     "c5": 0.0002,
+     "c6": 0.1987,
+     "c7": 1.0,
+     "zaragoza": 0.0603
+    },
+    "trafico": {
+     "c1": 1.0,
+     "c2": 0.2068,
+     "c3": 0.0236,
+     "c4": 0.1796,
+     "c5": 0.1411,
+     "c6": 0.0714,
+     "c7": 0.1082,
+     "zaragoza": 0.0
+    }
+   },
+   "advertencia": "Favorece a las zonas grandes (Comunas 6 y 7): responde a «dónde hay más personas expuestas», no a «dónde es más frecuente la exposición»."
+  }
+ },
+ "indice_por_defecto": {
+  "pesos": {
+   "calor": 0.2,
+   "deficit_verde": 0.2,
+   "inundacion": 0.2,
+   "trafico": 0.2,
+   "densidad": 0.2
+  },
+  "valores": {
+   "c1": 0.6724,
+   "c2": 0.5029,
+   "c3": 0.2921,
+   "c4": 0.4973,
+   "c5": 0.4925,
+   "c6": 0.4526,
+   "c7": 0.4102,
+   "zaragoza": 0.2084
+  },
+  "ranking": [
+   "c1",
+   "c2",
+   "c4",
+   "c5",
+   "c6",
+   "c7",
+   "c3",
+   "zaragoza"
+  ],
+  "puesto": {
+   "c1": 1,
+   "c2": 2,
+   "c3": 7,
+   "c4": 3,
+   "c5": 4,
+   "c6": 5,
+   "c7": 6,
+   "zaragoza": 8
+  },
+  "ranking_nombres": [
+   "Comuna 1",
+   "Comuna 2",
+   "Comuna 4",
+   "Comuna 5",
+   "Comuna 6",
+   "Comuna 7",
+   "Comuna 3",
+   "Zaragoza (corregimiento)"
+  ]
+ },
+ "indice_con_inundacion_hand_alta": {
+  "valores": {
+   "c1": 0.6056,
+   "c2": 0.5029,
+   "c3": 0.2917,
+   "c4": 0.458,
+   "c5": 0.4922,
+   "c6": 0.4056,
+   "c7": 0.2102,
+   "zaragoza": 0.1183
+  },
+  "ranking": [
+   "c1",
+   "c2",
+   "c5",
+   "c4",
+   "c6",
+   "c3",
+   "c7",
+   "zaragoza"
+  ],
+  "nota": "Índice con el componente literal de la tarea (susceptibilidad HAND alta), solo como referencia."
+ },
+ "sensibilidad_ranking": {
+  "puestos": {
+   "por_defecto": {
+    "c1": 1,
+    "c2": 2,
+    "c3": 7,
+    "c4": 3,
+    "c5": 4,
+    "c6": 5,
+    "c7": 6,
+    "zaragoza": 8
+   },
+   "minmax_puro_sin_piso": {
+    "c1": 1,
+    "c2": 2,
+    "c3": 7,
+    "c4": 3,
+    "c5": 4,
+    "c6": 5,
+    "c7": 6,
+    "zaragoza": 8
+   },
+   "inundacion_hand_alta": {
+    "c1": 1,
+    "c2": 2,
+    "c3": 6,
+    "c4": 4,
+    "c5": 3,
+    "c6": 5,
+    "c7": 7,
+    "zaragoza": 8
+   },
+   "inundacion_alta_o_media": {
+    "c1": 2,
+    "c2": 1,
+    "c3": 6,
+    "c4": 4,
+    "c5": 5,
+    "c6": 3,
+    "c7": 7,
+    "zaragoza": 8
+   },
+   "inundacion_ideam_alta": {
+    "c1": 1,
+    "c2": 2,
+    "c3": 7,
+    "c4": 4,
+    "c5": 3,
+    "c6": 5,
+    "c7": 8,
+    "zaragoza": 6
+   },
+   "inundacion_ideam_nina_observada": {
+    "c1": 1,
+    "c2": 2,
+    "c3": 7,
+    "c4": 3,
+    "c5": 4,
+    "c6": 5,
+    "c7": 6,
+    "zaragoza": 8
+   },
+   "inundacion_ideam_borde_reducida_55m": {
+    "c1": 1,
+    "c2": 2,
+    "c3": 7,
+    "c4": 4,
+    "c5": 3,
+    "c6": 5,
+    "c7": 6,
+    "zaragoza": 8
+   },
+   "inundacion_ideam_borde_ampliada_55m": {
+    "c1": 1,
+    "c2": 4,
+    "c3": 7,
+    "c4": 2,
+    "c5": 3,
+    "c6": 5,
+    "c7": 6,
+    "zaragoza": 8
+   },
+   "inundacion_ideam_sin_2011": {
+    "c1": 1,
+    "c2": 2,
+    "c3": 7,
+    "c4": 4,
+    "c5": 3,
+    "c6": 5,
+    "c7": 6,
+    "zaragoza": 8
+   },
+   "densidad_sobre_area_construida": {
+    "c1": 1,
+    "c2": 4,
+    "c3": 7,
+    "c4": 3,
+    "c5": 6,
+    "c6": 5,
+    "c7": 2,
+    "zaragoza": 8
+   },
+   "deficit_verde_umbral_025ha": {
+    "c1": 1,
+    "c2": 4,
+    "c3": 7,
+    "c4": 2,
+    "c5": 3,
+    "c6": 5,
+    "c7": 6,
+    "zaragoza": 8
+   },
+   "conteos_absolutos": {
+    "c1": 1,
+    "c2": 5,
+    "c3": 6,
+    "c4": 4,
+    "c5": 7,
+    "c6": 3,
+    "c7": 2,
+    "zaragoza": 8
+   },
+   "sin_calor": {
+    "c1": 1,
+    "c2": 2,
+    "c3": 6,
+    "c4": 4,
+    "c5": 5,
+    "c6": 7,
+    "c7": 3,
+    "zaragoza": 8
+   },
+   "sin_deficit_verde": {
+    "c1": 1,
+    "c2": 5,
+    "c3": 8,
+    "c4": 3,
+    "c5": 2,
+    "c6": 4,
+    "c7": 6,
+    "zaragoza": 7
+   },
+   "sin_inundacion": {
+    "c1": 1,
+    "c2": 2,
+    "c3": 6,
+    "c4": 4,
+    "c5": 3,
+    "c6": 5,
+    "c7": 7,
+    "zaragoza": 8
+   },
+   "sin_trafico": {
+    "c1": 1,
+    "c2": 4,
+    "c3": 7,
+    "c4": 2,
+    "c5": 6,
+    "c6": 3,
+    "c7": 5,
+    "zaragoza": 8
+   },
+   "sin_densidad": {
+    "c1": 1,
+    "c2": 6,
+    "c3": 8,
+    "c4": 4,
+    "c5": 2,
+    "c6": 5,
+    "c7": 3,
+    "zaragoza": 7
+   }
+  },
+  "rango_de_puesto_por_zona": {
+   "c1": [
+    1,
+    2
+   ],
+   "c2": [
+    1,
+    6
+   ],
+   "c3": [
+    6,
+    8
+   ],
+   "c4": [
+    2,
+    4
+   ],
+   "c5": [
+    2,
+    7
+   ],
+   "c6": [
+    3,
+    7
+   ],
+   "c7": [
+    2,
+    8
+   ],
+   "zaragoza": [
+    6,
+    8
+   ]
+  },
+  "escenarios": 17,
+  "nota": "Puesto de cada zona (1 = más prioritaria) con variantes de componentes, conteos absolutos, sin piso de rango y quitando un componente a la vez (los otros cuatro con peso 0,25)."
+ },
+ "limitaciones": [
+  "Índice compuesto con pesos iguales: el resultado depende de los pesos, de la normalización y de qué componentes se incluyen (ver sensibilidad_ranking).",
+  "Los componentes heredan las limitaciones de sus capas (ver datos/indicadores.json → limitaciones), en especial: registros de inundación del IDEAM de escala no declarada o limitados a la cuenca directa del La Vieja, susceptibilidad HAND que no coincide con ellos, verde OSM incompleto y tráfico como índice relativo (no NO₂).",
+  "La normalización min–max es relativa a estas 8 zonas: al añadir o quitar zonas cambian todos los valores.",
+  "Fracciones frente a conteos: con fracciones una zona pequeña con exposición frecuente sube por encima de zonas con más personas expuestas; ver 'conteos_absolutos'.",
+  "Densidad bruta: las comunas incluyen suelo no construido y Zaragoza es una huella construida.",
+  "La parte urbana de la mancha La Niña 2011 del IDEAM no es coherente con el relieve y puede sobrestimar el área inundada. HAND mediano de la parte urbana de La Niña 2011: 9,6 m dentro frente a 9,3 m fuera (P = 0,51); en celdas abiertas, 10,6 m dentro frente a 7,0 m fuera (P = 0,41). En el campo, la misma mancha sí está en el fondo del valle: 2,1 m dentro frente a 18,7 m fuera (P = 0,81); la de 1988 en la ciudad, 6,7 m dentro frente a 9,3 m fuera (P = 0,65). P = probabilidad de que una celda de la mancha esté más baja que una de fuera (0,5 = sin diferencia). Puede ser un error de comisión o de generalización, un encharcamiento no fluvial o un error del HAND. El IDEAM advierte en datos.gov.co que estas capas no han sido validadas. De ella depende el 36 % de la cifra por defecto de la cabecera: 6.009 hab de la cabecera solo están en la mancha de 2011 (Comuna 7 3.439, Comuna 6 1.559, Comuna 4 1.011). Registros oficiales con La Niña 2011, 16.553 hab de la cabecera (11,9 %); sin ella, 10.545 hab (7,6 %); por zona: Comuna 7 30,1 → 19,3 %; Comuna 6 7,3 → 1,3 %; Comuna 4 5,9 → 1,3 % (variante 'inundacion_ideam_sin_2011'). Antes de usar las cifras de Comuna 7, Comuna 6, Comuna 4, contrastar con los registros municipales de gestión del riesgo (alcaldía de Cartago) o el consolidado anual de emergencias de la UNGRD (serie desde 1998 en el repositorio institucional de la UNGRD, que no respondió desde aquí el 2026-10-01; en datos.gov.co los conjuntos de emergencias de la UNGRD empiezan en 2019, p. ej. wwkg-r6te, así que no cubren 2010–2011) sobre los barrios afectados en 2010–2011. La parte urbana de La Niña 2000 también es dudosa (falla con celdas abiertas), pero ningún habitante depende únicamente de ella."
+ ],
+ "fuentes": "Las de datos/indicadores.json",
+ "script": "scripts/indicadores.py",
+ "fecha_proceso": "2026-10-01",
+ "hallazgos": [
+  "Calor (población en celdas con LST ≥ 42,85 °C, p90 de la cabecera). Mayor proporción: Comuna 5 34,4 % (1.686 hab); Comuna 4 34,2 % (7.500 hab); Comuna 6 33,9 % (8.860 hab). Más personas: Comuna 6 8.860 hab (33,9 %); Comuna 4 7.500 hab (34,2 %); Comuna 7 3.759 hab (11,8 %). En la cabecera, el 10 % del área más caliente aloja al 18,5 % de la población (25.768 hab); la LST media ponderada por población es 41,10 °C frente a 38,73 °C por área.",
+  "Déficit de verde (índice 0–1): Comuna 2 0,90 (99,7 % de la población a más de 300 m de verde ≥ 0,5 ha; arbolado ponderado por población 4,9 %; 0,21 m² de verde público/hab); Comuna 3 0,75 (99,3 % de la población a más de 300 m de verde ≥ 0,5 ha; arbolado ponderado por población 8,7 %; 0,00 m² de verde público/hab); Comuna 1 0,73 (75,3 % de la población a más de 300 m de verde ≥ 0,5 ha; arbolado ponderado por población 5,7 %; 0,24 m² de verde público/hab). Más personas a más de 300 m: Comuna 7 21.794 hab; Comuna 1 16.600 hab; Comuna 3 14.210 hab. Cabecera: 1,67 m²/hab de verde público OSM frente al mínimo de 15 m²/hab de espacio público efectivo del Decreto 1504 de 1998 (conceptos no idénticos) y al promedio nacional de 3,3 m²/hab del CONPES 3718.",
+  "Inundación según los registros oficiales del IDEAM (amenaza ALTA por creciente súbita TR 50 en las corrientes de la cuenca directa del La Vieja ∪ áreas afectadas por La Niña 1988–2022): Comuna 7 30,1 % (9.567 hab); Comuna 1 14,5 % (3.199 hab); Zaragoza (corregimiento) 13,6 % (577 hab); cabecera 16.553 hab (11,9 %). La parte urbana de la mancha de La Niña 2011 no está más baja sobre el drenaje que la ciudad no inundada y puede sobrestimar: sin ella, la cabecera queda en 10.545 hab (7,6 %) y Comuna 7 pasa de 30,1 % a 19,3 %; Comuna 6 pasa de 7,3 % a 1,3 %; Comuna 4 pasa de 5,9 % a 1,3 %; el orden del índice pasa a Comuna 1, Comuna 2, Comuna 5, Comuna 4, Comuna 6, Comuna 7, Comuna 3, Zaragoza (corregimiento). Contrastar con registros municipales o de la UNGRD de 2010–2011 antes de usar las cifras de Comuna 7, Comuna 6, Comuna 4. Habitantes actuales (2026) dentro de las manchas La Niña (no son los afectados de cada evento): Comuna 7 9.567 hab (30,1 %; dentro de la mancha de 1988: 6.128, 2011: 3.504; con el borde ± 55 m entre 6.184 y 13.856); Comuna 6 1.803 hab (6,9 %; dentro de la mancha de 1988: 202, 2000: 202, 2011: 1.761, 2012: 202, 2020–2022: 64; con el borde ± 55 m entre 816 y 3.664); Comuna 4 1.299 hab (5,9 %; dentro de la mancha de 1988: 278, 2000: 40, 2011: 1.157; con el borde ± 55 m entre 711 y 2.509). Creciente súbita TR 50, amenaza ALTA: Comuna 1 3.199 hab (junto al La Vieja, mediana 80 m del eje); Zaragoza (corregimiento) 577 hab (a 6,1 km del eje del La Vieja: corrientes menores de su cuenca directa); Comuna 6 146 hab (junto al La Vieja, mediana 440 m del eje); Comuna 3 8 hab (a 2,6 km del eje del La Vieja: corrientes menores de su cuenca directa); Comuna 5 2 hab (junto al La Vieja, mediana 30 m del eje). La susceptibilidad topográfica HAND alta suma 172 hab en la cabecera y no coincide con esos registros: de la población de la cabecera en áreas afectadas por La Niña, el 0,5 % está en clase alta HAND, el 18,7 % en media y el 80,8 % en baja o HAND > 15 m (que no descartan amenaza). La mayor población con registro de inundación está en la Comuna 7 (áreas afectadas por La Niña, que la capa de creciente súbita no cubre). Las manchas La Niña no dicen qué cauce desbordó.",
+  "Tráfico (población con índice ≥ 60). Mayor proporción: Comuna 1 17,7 % (3.901 hab); Comuna 5 15,8 % (773 hab); Comuna 2 7,1 % (1.012 hab). Más personas: Comuna 1 3.901 hab; Comuna 2 1.012 hab; Comuna 4 913 hab. En la cabecera, 6,0 %; el índice medio ponderado por población es 32,9 frente a 25,7 por área. Es un índice de proximidad a vías, no NO₂.",
+  "Densidad bruta: Comuna 1 17.050 hab/km²; Comuna 2 14.542 hab/km²; Comuna 3 12.197 hab/km². Cabecera 8.744 hab/km².",
+  "Índice por defecto (pesos iguales; inundación con registros del IDEAM): 1.º Comuna 1 (0,672), 2.º Comuna 2 (0,503), 3.º Comuna 4 (0,497), 4.º Comuna 5 (0,492), 5.º Comuna 6 (0,453), 6.º Comuna 7 (0,410), 7.º Comuna 3 (0,292), 8.º Zaragoza (corregimiento) (0,208); empate práctico (diferencia < 0,01) entre Comuna 2 y Comuna 4, Comuna 4 y Comuna 5. Rango de puesto en 17 escenarios: Comuna 1 1–2; Comuna 2 1–6; Comuna 4 2–4; Comuna 5 2–7; Comuna 6 3–7; Comuna 7 2–8; Comuna 3 6–8; Zaragoza (corregimiento) 6–8. Con el componente literal de la tarea (HAND alta) el orden es Comuna 1, Comuna 2, Comuna 5, Comuna 4, Comuna 6, Comuna 3, Comuna 7, Zaragoza (corregimiento); ese orden es idéntico al de quitar la inundación. Con conteos absolutos: Comuna 1, Comuna 7, Comuna 6, Comuna 4, Comuna 2, Comuna 3, Comuna 5, Zaragoza (corregimiento). Sin La Niña 2011 en el componente de inundación: Comuna 1, Comuna 2, Comuna 5, Comuna 4, Comuna 6, Comuna 7, Comuna 3, Zaragoza (corregimiento)."
+ ],
+ "problemas": []
+}

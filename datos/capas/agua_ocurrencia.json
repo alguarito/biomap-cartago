@@ -1,0 +1,77 @@
+{
+ "titulo": "Agua superficial histórica (ocurrencia 1984–2024)",
+ "descripcion": "Porcentaje de las observaciones Landsat entre 1984 y 2024 en que se vio agua en cada lugar. Muestra el cauce y las zonas que el río ha ocupado.",
+ "unidad": "% del tiempo con agua",
+ "fuente": {
+  "nombre": "JRC Global Surface Water v1.5 (1984–2024), capa occurrence — EC JRC / Google",
+  "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/occurrence/occurrence_80W_10N_v1_5_2024.tif",
+  "licencia": "Programa Copernicus: libre y gratuita, sin restricción de uso, con cita obligatoria",
+  "cita": "Pekel, J.-F., Cottam, A., Gorelick, N., Belward, A. S. (2016). High-resolution mapping of global surface water and its long-term changes. Nature 540, 418–422. doi:10.1038/nature20584. Source: EC JRC/Google"
+ },
+ "periodo": "1984/2024",
+ "resolucion_original_m": 30,
+ "procesamiento": [
+  "Lectura por /vsicurl/ de la ventana de la rejilla común en el COG del JRC (tesela 80W_10N, v1.5).",
+  "La malla de GSW (0,00025°, origen −80° O, 10° N) coincide celda a celda con la rejilla común: sin remuestreo.",
+  "255 (sin dato) → sin dato; 0 = nunca se detectó agua; 1–100 = % de observaciones válidas con agua."
+ ],
+ "limitaciones": [
+  "Landsat (30 m) no ve cauces estrechos ni agua bajo los árboles, y la nubosidad reduce las observaciones válidas.",
+  "En esta rejilla la ocurrencia mediana sobre el eje OSM del río La Vieja es 0 % (cauce estrecho y con orillas arboladas) y sobre el del Cauca 36 %: la capa representa sobre todo al Cauca.",
+  "Los cauces se desplazan: hay celdas con agua frecuente que el DEM (2011–2015) muestra como orilla, y viceversa.",
+  "Es frecuencia de agua observada, no extensión de crecientes extremas: una inundación de pocos días casi no cambia el porcentaje.",
+  "Precisión de posición de ± 1 píxel (≈ 28 m): el agua frecuente (ocurrencia ≥ 50 %) cae sobre terreno más bajo del DEM si se mueve una celda al norte y una celda al este (altura relativa media -3,31 m frente a -2,54 m sin mover), lo que sugiere que GSW está desplazada ≈ 1 celda hacia el suroeste respecto al DEM. No es concluyente (geolocalización de Landsat o migración del cauce) y la capa no se mueve."
+ ],
+ "rango_visual": [
+  0,
+  100
+ ],
+ "paleta": [
+  "#ffffff",
+  "#c6dbef",
+  "#6baed6",
+  "#2171b5",
+  "#08306b"
+ ],
+ "interpretacion": "Sin umbrales normativos. 100 % = agua permanente (cauce); valores bajos = agua ocasional (playas, orillas, cauces abandonados).",
+ "avisos_legales": [
+  "Source: EC JRC/Google",
+  "Pekel, J.-F., Cottam, A., Gorelick, N., Belward, A. S. (2016). High-resolution mapping of global surface water and its long-term changes. Nature 540, 418–422. doi:10.1038/nature20584. Source: EC JRC/Google"
+ ],
+ "nombre": "agua_ocurrencia",
+ "escala": 0.01,
+ "desplazamiento": 0,
+ "codificacion": "RGBA 16 bits: v=R*256+G; v=0 sin dato; valor=(v-1)*escala+desplazamiento",
+ "rejilla": {
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res": 0.00025,
+  "ancho": 520,
+  "alto": 428,
+  "crs": "EPSG:4326"
+ },
+ "estadisticas": {
+  "extension": {
+   "min": 0.0,
+   "p10": 0.0,
+   "media": 0.2909,
+   "p50": 0.0,
+   "p90": 0.0,
+   "max": 93.0,
+   "celdas": 222560
+  },
+  "cabecera_urbana": {
+   "min": 0.0,
+   "p10": 0.0,
+   "media": 0.0109,
+   "p50": 0.0,
+   "p90": 0.0,
+   "max": 18.0,
+   "celdas": 19878
+  }
+ },
+ "cobertura_pct": 100.0,
+ "fecha_proceso": "2026-10-01"
+}

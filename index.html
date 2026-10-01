@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BioMap Cartago</title>
+  <meta name="description" content="Plataforma geoambiental de datos abiertos de Cartago, Valle del Cauca: islas de calor, vegetación, exposición al tráfico, riesgo hidrológico, prioridades por comuna, simulador de intervenciones y copiloto IA.">
+  <meta name="theme-color" content="#064e3b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23064e3b'/%3E%3Cpath d='M16 6c-4.4 0-8 3.4-8 7.7C8 19.5 16 26 16 26s8-6.5 8-12.3C24 9.4 20.4 6 16 6z' fill='%2334d399'/%3E%3Ccircle cx='16' cy='13.5' r='3' fill='%23064e3b'/%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="vendor/fuentes/fuentes.css">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="css/app.css?v=6">
+</head>
+<body>
+  <div id="app" class="app">
+
+    <!-- ===== Panel lateral ===== -->
+    <aside id="panel" class="panel" aria-label="Panel de BioMap Cartago">
+      <header class="panel-cab">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <h1 class="marca">BioMap <span>Cartago</span></h1>
+            <p class="submarca">Observatorio geoambiental · datos abiertos · Valle del Cauca</p>
+          </div>
+          <button type="button" class="insignia insignia-ok" data-ir="tab-datos" data-ancla="metodologia" title="Fuentes, método y limitaciones">
+            Datos abiertos
+          </button>
+        </div>
+        <nav class="pestanas" role="tablist" aria-label="Secciones">
+          <button role="tab" id="t-capas" aria-controls="tab-capas" aria-selected="true"><span aria-hidden="true">🗺️</span>Capas y Telemetría</button>
+          <button role="tab" id="t-sim" aria-controls="tab-sim" aria-selected="false" tabindex="-1"><span aria-hidden="true">🧪</span>Simulador</button>
+          <button role="tab" id="t-ia" aria-controls="tab-ia" aria-selected="false" tabindex="-1"><span aria-hidden="true">🤖</span>Copiloto IA</button>
+          <button role="tab" id="t-datos" aria-controls="tab-datos" aria-selected="false" tabindex="-1"><span aria-hidden="true">📊</span>Datos Abiertos</button>
+        </nav>
+      </header>
+
+      <div class="panel-cuerpo" id="panel-cuerpo">
+
+        <!-- ===== 1. Capas y telemetría ===== -->
+        <section id="tab-capas" role="tabpanel" aria-labelledby="t-capas" class="seccion">
+          <div class="bloque" id="resumen-ciudad"></div>
+
+          <div class="bloque">
+            <h2 class="rotulo">Ir a</h2>
+            <div class="chips" id="hitos"></div>
+          </div>
+
+          <div class="bloque">
+            <h2 class="rotulo">Capas geoambientales</h2>
+            <div class="capas" id="capas"></div>
+          </div>
+
+          <div class="bloque">
+            <div class="flex items-baseline justify-between">
+              <h2 class="rotulo">Inspección puntual</h2>
+              <button type="button" id="limpiar-punto" class="enlace" hidden>Quitar marcador</button>
+            </div>
+            <div id="inspeccion" class="tarjeta vacia">
+              <p><strong>Haz clic en cualquier punto del mapa</strong> para leer su temperatura superficial, vegetación, riesgo hidrológico, tráfico y acceso a parques.</p>
+            </div>
+          </div>
+
+          <div class="bloque" id="tendencias">
+            <h2 class="rotulo">Tendencias</h2>
+            <div class="tarjeta">
+              <div class="grid gap-2 mb-3">
+                <select id="serie-var" class="selector" aria-label="Serie"></select>
+                <select id="serie-zona" class="selector" aria-label="Zona" hidden></select>
+              </div>
+              <p class="dato-clave" id="serie-clave"></p>
+              <div class="grafico"><canvas id="grafico-serie" aria-label="Serie histórica"></canvas></div>
+              <p class="nota mt-2" id="serie-nota"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 2. Simulador y prioridades ===== -->
+        <section id="tab-sim" role="tabpanel" aria-labelledby="t-sim" class="seccion" hidden>
+          <div class="bloque">
+            <h2 class="rotulo">¿Dónde intervenir primero?</h2>
+            <p class="intro">Ordena las zonas según lo que más pese en la decisión. Cada criterio sale de los datos de la plataforma; ajusta su peso.</p>
+            <div id="prioridades" class="mt-3"></div>
+          </div>
+
+          <div class="bloque">
+            <h2 class="rotulo">Simular una intervención</h2>
+            <div class="grid gap-3">
+              <label class="campo"><span>1 · Zona objetivo</span><select id="sim-comuna" class="selector"></select></label>
+              <fieldset><legend class="campo-leyenda">2 · Tipo de proyecto</legend><div class="opciones" id="sim-tipos"></div></fieldset>
+              <div>
+                <div class="flex items-baseline justify-between">
+                  <label class="campo-leyenda" for="sim-int">3 · Intensidad</label>
+                  <output id="sim-int-val" class="cifra-mini">30 %</output>
+                </div>
+                <input type="range" id="sim-int" min="10" max="60" step="5" value="30" class="deslizador">
+                <p class="nota" id="sim-int-ayuda"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bloque">
+            <h2 class="rotulo">Impacto estimado</h2>
+            <div class="kpis" id="sim-kpis"></div>
+            <div class="tarjeta mt-3">
+              <p class="nota mb-2" id="sim-nota"></p>
+              <div class="grafico"><canvas id="grafico-sim" aria-label="Proyección de temperatura superficial"></canvas></div>
+            </div>
+            <details class="plegable mt-3" open>
+              <summary>De dónde salen estas cifras</summary>
+              <div id="sim-supuestos" class="prosa"></div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ===== 3. Copiloto IA ===== -->
+        <section id="tab-ia" role="tabpanel" aria-labelledby="t-ia" class="seccion seccion-chat" hidden>
+          <details class="plegable" id="ia-config">
+            <summary>Conexión con Gemini <span id="ia-estado" class="insignia">Sin clave</span></summary>
+            <div class="grid gap-3 pt-3">
+              <label class="campo">
+                <span>Clave de API de Google AI Studio</span>
+                <input type="password" id="ia-clave" autocomplete="off" spellcheck="false" placeholder="Pega aquí tu clave">
+              </label>
+              <label class="campo">
+                <span>Modelo</span>
+                <input type="text" id="ia-modelo" spellcheck="false">
+              </label>
+              <label class="casilla"><input type="checkbox" id="ia-recordar"> Recordar en este navegador</label>
+              <div class="flex gap-2">
+                <button type="button" class="boton" id="ia-guardar">Guardar</button>
+                <button type="button" class="boton boton-sec" id="ia-olvidar">Olvidar clave</button>
+              </div>
+              <p class="nota">La clave va directo de tu navegador a Google; BioMap no la recibe. Consíguela en <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>.</p>
+            </div>
+          </details>
+
+          <div class="chips mt-3" id="ia-sugeridas"></div>
+
+          <div id="chat" class="chat" aria-live="polite">
+            <div class="msg msg-ia">
+              <div class="prosa"><p>Hola. Respondo con los datos abiertos de la plataforma: temperatura superficial (Landsat), vegetación (Sentinel-2), arbolado (ESA), población (DANE), riesgo hidrológico, tráfico, parques y el clima de 1950 a hoy. Elige una pregunta o escribe la tuya.</p></div>
+            </div>
+          </div>
+
+          <form id="ia-form" class="chat-entrada">
+            <label class="casilla nota"><input type="checkbox" id="ia-punto" checked> Incluir el último punto inspeccionado</label>
+            <div class="flex gap-2">
+              <textarea id="ia-texto" rows="2" placeholder="Pregunta sobre calor, arbolado, aire, inundaciones o prioridades…" aria-label="Tu pregunta"></textarea>
+              <button type="submit" class="boton" id="ia-enviar">Enviar</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- ===== 4. Datos abiertos ===== -->
+        <section id="tab-datos" role="tabpanel" aria-labelledby="t-datos" class="seccion" hidden>
+          <div class="bloque">
+            <div class="flex items-baseline justify-between gap-2">
+              <h2 class="rotulo">Indicadores por zona</h2>
+              <select id="tabla-grupo" class="selector-mini" aria-label="Grupo de indicadores"></select>
+            </div>
+            <div class="tabla-marco">
+              <table class="tabla" id="tabla"><thead></thead><tbody></tbody></table>
+            </div>
+            <p class="nota mt-2" id="tabla-nota">Toca una fila para verla en el mapa. Toca un encabezado para ordenar.</p>
+          </div>
+
+          <div class="bloque">
+            <h2 class="rotulo">Descargas</h2>
+            <div class="descargas" id="descargas"></div>
+            <p class="nota mt-2" id="descargas-nota"></p>
+          </div>
+
+          <div class="bloque" id="metodologia">
+            <h2 class="rotulo">Fuentes, método y limitaciones</h2>
+            <div class="prosa tarjeta mb-3" id="metodo-general"></div>
+            <div id="fichas" class="grid gap-2"></div>
+          </div>
+        </section>
+      </div>
+    </aside>
+
+    <!-- ===== Mapa ===== -->
+    <main class="mapa-marco" aria-label="Mapa">
+      <div id="mapa" role="application" aria-label="Mapa interactivo de Cartago"></div>
+
+      <button type="button" id="plegar" class="flotante plegar" aria-controls="panel" aria-expanded="true" title="Ocultar panel">
+        <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="flotante bases" role="group" aria-label="Mapa base">
+        <button type="button" data-base="calle" aria-pressed="true">🗺️ Callejero</button>
+        <button type="button" data-base="satelite" aria-pressed="false">🛰️ Satelital</button>
+        <button type="button" data-base="oscuro" aria-pressed="false">🌙 Oscuro</button>
+      </div>
+
+      <div class="flotante leyenda" id="leyenda" aria-live="polite"></div>
+      <div class="flotante cursor" id="cursor" aria-hidden="true"></div>
+      <div class="cargando" id="cargando"><span>Cargando datos…</span></div>
+    </main>
+  </div>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="vendor/chart.umd.min.js"></script>
+  <script src="vendor/marked.min.js"></script>
+  <script src="vendor/purify.min.js"></script>
+  <script src="js/datos-osm.js?v=2"></script>
+  <script src="js/geo.js?v=3"></script>
+  <script src="js/datos.js?v=2"></script>
+  <script src="js/solar.js?v=1"></script>
+  <script src="js/app.js?v=5"></script>
+  <script src="js/graficos.js?v=3"></script>
+  <script src="js/decision.js?v=5"></script>
+  <script src="js/abiertos.js?v=3"></script>
+  <script src="js/copiloto.js?v=3"></script>
+</body>
+</html>

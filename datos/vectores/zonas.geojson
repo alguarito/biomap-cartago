@@ -1,0 +1,2010 @@
+{
+ "type": "FeatureCollection",
+ "name": "zonas",
+ "metadatos": {
+  "titulo": "Zonas de análisis de Cartago con sus indicadores",
+  "descripcion": "Comunas 1–7 (OpenStreetMap) y Zaragoza (huella ESA WorldCover 2021) con los indicadores principales; el detalle está en datos/indicadores.json.",
+  "crs": "EPSG:4326",
+  "umbral_calor_extremo_c": 42.85,
+  "campos": {
+   "poblacion_evidencia_inundacion_ideam, pct_poblacion_evidencia_inundacion_ideam": "hab y % de la zona con registro oficial del IDEAM (amenaza ALTA TR 50 ∪ La Niña 1988–2022); componente de inundación por defecto",
+   "*_sin_2011": "lo mismo sin las capas La Niña 2011, cuya parte urbana no es coherente con el relieve",
+   "pct_poblacion_susceptibilidad_media": "% de la población en la clase media de susceptibilidad topográfica (HAND); no es amenaza oficial",
+   "tendencia_lst_c_decada": "°C/década, Sen 2013–2025 de la mediana anual de LST (Landsat 8/9)",
+   "tendencia_lst_significativa": "true si Mann-Kendall p < 0,05 y el IC 95 % de Sen excluye 0",
+   "tendencia_lst_ic95": "IC 95 % de la pendiente de Sen (°C/década)"
+  },
+  "fuente": {
+   "nombre": "Geometría: OpenStreetMap (comunas) y ESA WorldCover 2021 (Zaragoza). Atributos: DANE y Meta/CIESIN HRSL (población), USGS Landsat (LST), Copernicus Sentinel-2 (NDVI), ESA WorldCover (coberturas), Copernicus DEM GLO-30 (susceptibilidad HAND), OpenStreetMap (verde, tráfico, equipamientos) e IDEAM (registros de inundación); indicadores de BioMap Cartago",
+   "licencia": "Geometría: ODbL 1.0 (OSM) y CC BY 4.0 (WorldCover). Atributos: DANE (uso citando la fuente), HRSL CC BY 4.0, USGS dominio público, Copernicus Sentinel acceso libre y abierto, Copernicus WorldDEM-30 (libre con atribución y exención), ODbL 1.0 (OSM). IDEAM: El servicio ArcGIS Amenaza_Ambiental no declara licencia (copyrightText vacío en el servicio y en sus capas). Las áreas afectadas por La Niña 1988, 2000, 2011 y 2012 las publica también el IDEAM en datos.gov.co con licencia CC BY-SA 4.0 (conjuntos khg6-9h39, 5p6w-58v3, 6eu7-pzc5 y nufr-59j5; licencia verificada en el catálogo de datos.gov.co el 2026-10-01) y la advertencia, verificada en 6eu7-pzc5 (La Niña 2011), de que «no han sido validados por el IDEAM». La amenaza por creciente súbita TR 50 y La Niña 2016 y 2020–2022 no aparecieron en la búsqueda del catálogo de datos.gov.co (2026-10-01). No se copian polígonos del IDEAM: solo se publican estadísticas derivadas, con atribución al IDEAM; las que derivan de las capas CC BY-SA (ideam_nina_observada, ideam_evidencia_oficial y sus variantes) se comparten con la misma licencia CC BY-SA 4.0 (criterio prudente del proyecto).",
+   "cita": [
+    "Landsat 8-9 OLI/TIRS Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey. doi:10.5066/P9OGBGM6",
+    "Contiene datos modificados de Copernicus Sentinel [2024–2025], procesados por BioMap Cartago",
+    "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221",
+    "Fuente: Departamento Administrativo Nacional de Estadística: www.dane.gov.co. Meta and Center for International Earth Science Information Network - CIESIN - Columbia University. 2022. High Resolution Settlement Layer (HRSL). Source imagery for HRSL © 2016 Maxar. Consultado en https://registry.opendata.aws/dataforgood-fb-hrsl el 2026-10-01. Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221. © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium.",
+    "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65. Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0. Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., et al. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. Remote Sensing of Environment 300, 113888. doi:10.1016/j.rse.2023.113888",
+    "© colaboradores de OpenStreetMap, ODbL 1.0. Instantánea Overpass 2026-10-01T01:50:59Z (UTC). Índice derivado por BioMap Cartago.",
+    "© colaboradores de OpenStreetMap, ODbL 1.0 (https://www.openstreetmap.org/copyright)",
+    "© colaboradores de OpenStreetMap; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+    "© colaboradores de OpenStreetMap",
+    "IDEAM – Instituto de Hidrología, Meteorología y Estudios Ambientales, servicio Amenaza_Ambiental (consulta 2026-09-30)",
+    "Landsat Collection 2 Level-2 Science Products courtesy of the U.S. Geological Survey"
+   ]
+  },
+  "limitaciones": [
+   "La LST es temperatura de SUPERFICIE a media mañana (10:19 hora local) en días despejados, no temperatura del aire ni la máxima del día.",
+   "El umbral de calor extremo es relativo (p90 de la propia cabecera): por construcción ≈ 10 % del área de la cabecera queda en calor extremo; no indica riesgo sanitario.",
+   "Arbolado = área que ESA WorldCover 2021 clasifica como árboles (≥ 10 % de cobertura por píxel de 10 m), no fracción de copa; subestima el arbolado de calle absorbido por la clase construida.",
+   "Inundación: la susceptibilidad topográfica (HAND) y los registros oficiales del IDEAM no coinciden del todo dentro de la ciudad. De la amenaza ALTA por creciente súbita del IDEAM, la clase alta HAND cubre el 39,1 % del área en toda la rejilla y el 5,1 % dentro de la cabecera (512 celdas IDEAM ALTA), donde el 28,1 % cae en las clases HAND baja o > 15 m, que no descartan amenaza (junto al La Vieja, el 6,0 % de 25,8 ha; en las corrientes menores de Comuna 3 y Zaragoza (corregimiento), el 70,5 % de 13,5 ha). De la población de la cabecera en áreas afectadas por La Niña, el 0,5 % está en clase alta HAND y el 18,7 % en media. El desacuerdo puede venir de los dos lados: del HAND (DSM con edificios, red de drenaje) y de los registros (bordes gruesos, escala no declarada; la parte urbana de La Niña 2011 no es coherente con el relieve, ver la limitación sobre La Niña 2011). Poca población en clase alta HAND NO significa ausencia de amenaza: por eso el componente de inundación por defecto usa los registros del IDEAM. Consúltense además el POT y la CVC.",
+   "Registros del IDEAM: la amenaza por creciente súbita (TR 50 años) solo cubre las corrientes de la cuenca directa del río La Vieja junto a la cabecera (la capa del IDEAM atribuye sus 4 polígonos de amenaza ALTA a la corriente «Río La Vieja» (cuenca «Directos Río La Vieja»), pero 3 de ellos están a 2,5–5,4 km del eje del río: corresponden a corrientes menores de su cuenca directa), no la inundación lenta del Cauca; las áreas afectadas por La Niña son manchas de escala no declarada (bordes gruesos, eventos posiblemente incompletos, sin profundidad ni duración), el IDEAM advierte en datos.gov.co que no las ha validado y no son una zonificación de amenaza. Con la mancha reducida o ampliada ≈ 55 m la población expuesta cambia mucho (ver 'sensibilidad_borde_55m'). La población dentro de cada mancha es la de 2026, no la afectada en el evento: la inundación de 1988 se registró sobre una ciudad distinta de la actual.",
+   "La parte urbana de la mancha La Niña 2011 del IDEAM no es coherente con el relieve y puede sobrestimar el área inundada. HAND mediano de la parte urbana de La Niña 2011: 9,6 m dentro frente a 9,3 m fuera (P = 0,51); en celdas abiertas, 10,6 m dentro frente a 7,0 m fuera (P = 0,41). En el campo, la misma mancha sí está en el fondo del valle: 2,1 m dentro frente a 18,7 m fuera (P = 0,81); la de 1988 en la ciudad, 6,7 m dentro frente a 9,3 m fuera (P = 0,65). P = probabilidad de que una celda de la mancha esté más baja que una de fuera (0,5 = sin diferencia). Puede ser un error de comisión o de generalización, un encharcamiento no fluvial o un error del HAND. El IDEAM advierte en datos.gov.co que estas capas no han sido validadas. De ella depende el 36 % de la cifra por defecto de la cabecera: 6.009 hab de la cabecera solo están en la mancha de 2011 (Comuna 7 3.439, Comuna 6 1.559, Comuna 4 1.011). Registros oficiales con La Niña 2011, 16.553 hab de la cabecera (11,9 %); sin ella, 10.545 hab (7,6 %); por zona: Comuna 7 30,1 → 19,3 %; Comuna 6 7,3 → 1,3 %; Comuna 4 5,9 → 1,3 % (variante 'inundacion_ideam_sin_2011'). Antes de usar las cifras de Comuna 7, Comuna 6, Comuna 4, contrastar con los registros municipales de gestión del riesgo (alcaldía de Cartago) o el consolidado anual de emergencias de la UNGRD (serie desde 1998 en el repositorio institucional de la UNGRD, que no respondió desde aquí el 2026-10-01; en datos.gov.co los conjuntos de emergencias de la UNGRD empiezan en 2019, p. ej. wwkg-r6te, así que no cubren 2010–2011) sobre los barrios afectados en 2010–2011. La parte urbana de La Niña 2000 también es dudosa (falla con celdas abiertas), pero ningún habitante depende únicamente de ella.",
+   "Tráfico: índice relativo de proximidad a vías ponderadas por categoría OSM; no es concentración de NO₂ ni aforo.",
+   "Zaragoza es la huella construida de WorldCover (0,73 km²) y las comunas son polígonos administrativos con suelo no construido (la Comuna 7 incluye el aeródromo): las densidades y los promedios por área no son del todo comparables entre ambos tipos de zona.",
+   "Población: proyección DANE 2026 repartida con el censo 2018 por manzana; las urbanizaciones habitadas después de 2018 no aparecen.",
+   "Tendencias de LST por zona: el tramo 2000–2025 sin armonizar está dominado por el salto de 2012–2013 y no debe usarse para decidir. En 2024–2025 cambió el dato atmosférico auxiliar del producto ST del USGS (GEOS-IT). Tramo 2013–2025 (mediana): ninguna pendiente por zona es significativa; ver 'tendencia_lst_significativa' y 'tendencia_lst_ic95' en cada zona."
+  ],
+  "fecha_proceso": "2026-10-01"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -75.90742,
+       4.7519
+      ],
+      [
+       -75.90558,
+       4.75221
+      ],
+      [
+       -75.90517,
+       4.75239
+      ],
+      [
+       -75.90419,
+       4.754
+      ],
+      [
+       -75.90337,
+       4.75487
+      ],
+      [
+       -75.90209,
+       4.75584
+      ],
+      [
+       -75.90156,
+       4.75608
+      ],
+      [
+       -75.90057,
+       4.75688
+      ],
+      [
+       -75.89974,
+       4.75739
+      ],
+      [
+       -75.89876,
+       4.7582
+      ],
+      [
+       -75.89819,
+       4.75844
+      ],
+      [
+       -75.89758,
+       4.75848
+      ],
+      [
+       -75.89619,
+       4.75801
+      ],
+      [
+       -75.89658,
+       4.75713
+      ],
+      [
+       -75.89727,
+       4.75681
+      ],
+      [
+       -75.89752,
+       4.7564
+      ],
+      [
+       -75.89725,
+       4.75559
+      ],
+      [
+       -75.89747,
+       4.75554
+      ],
+      [
+       -75.8977,
+       4.75518
+      ],
+      [
+       -75.89772,
+       4.75495
+      ],
+      [
+       -75.89659,
+       4.75472
+      ],
+      [
+       -75.89658,
+       4.7545
+      ],
+      [
+       -75.89865,
+       4.74839
+      ],
+      [
+       -75.90015,
+       4.74751
+      ],
+      [
+       -75.90188,
+       4.74413
+      ],
+      [
+       -75.90163,
+       4.74151
+      ],
+      [
+       -75.90289,
+       4.74146
+      ],
+      [
+       -75.90393,
+       4.74225
+      ],
+      [
+       -75.90414,
+       4.7426
+      ],
+      [
+       -75.90556,
+       4.74287
+      ],
+      [
+       -75.90811,
+       4.74313
+      ],
+      [
+       -75.90659,
+       4.74669
+      ],
+      [
+       -75.90638,
+       4.74753
+      ],
+      [
+       -75.90642,
+       4.7486
+      ],
+      [
+       -75.90729,
+       4.74855
+      ],
+      [
+       -75.90742,
+       4.7519
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "c1",
+    "nombre": "Comuna 1",
+    "fuente_geometria": "OpenStreetMap",
+    "area_km2": 1.293,
+    "poblacion": 22039.0,
+    "densidad_hab_km2": 17050.0,
+    "lst_media": 40.02,
+    "lst_p90": 42.61,
+    "lst_anomalia": 1.29,
+    "lst_media_pob": 40.89,
+    "pct_area_calor_extremo": 5.5,
+    "poblacion_calor_extremo": 1111.0,
+    "pct_poblacion_calor_extremo": 5.0,
+    "ndvi_medio": 0.259,
+    "arbolado_pct": 15.5,
+    "construido_pct": 76.7,
+    "m2_arbolado_por_hab": 9.1,
+    "m2_verde_publico_por_hab": 0.24,
+    "pct_poblacion_sin_verde_300m": 75.3,
+    "poblacion_susceptibilidad_alta": 163.0,
+    "poblacion_susceptibilidad_media": 3282.0,
+    "pct_area_susceptibilidad_alta": 1.07,
+    "pct_poblacion_susceptibilidad_media": 14.9,
+    "trafico_medio": 40.5,
+    "trafico_medio_pob": 36.5,
+    "poblacion_trafico_alto": 3901.0,
+    "pct_poblacion_trafico_alto": 17.7,
+    "tendencia_lst_c_decada": 0.004,
+    "tendencia_lst_significativa": false,
+    "tendencia_lst_ic95": [
+     -3.427,
+     2.977
+    ],
+    "poblacion_evidencia_inundacion_ideam": 3199.0,
+    "pct_poblacion_evidencia_inundacion_ideam": 14.51,
+    "poblacion_evidencia_inundacion_ideam_sin_2011": 3199.0,
+    "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 14.51,
+    "poblacion_amenaza_alta_ideam": 3199.0,
+    "poblacion_area_afectada_nina_ideam": 113.0,
+    "pct_poblacion_area_afectada_nina_ideam": 0.51,
+    "equipamientos_total": 5
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -75.90383,
+       4.73343
+      ],
+      [
+       -75.90433,
+       4.73365
+      ],
+      [
+       -75.90441,
+       4.73328
+      ],
+      [
+       -75.90462,
+       4.73287
+      ],
+      [
+       -75.90509,
+       4.73264
+      ],
+      [
+       -75.90819,
+       4.73231
+      ],
+      [
+       -75.90911,
+       4.73243
+      ],
+      [
+       -75.91041,
+       4.73243
+      ],
+      [
+       -75.9115,
+       4.73253
+      ],
+      [
+       -75.91168,
+       4.73268
+      ],
+      [
+       -75.91166,
+       4.73295
+      ],
+      [
+       -75.90986,
+       4.73553
+      ],
+      [
+       -75.9095,
+       4.73637
+      ],
+      [
+       -75.90938,
+       4.73714
+      ],
+      [
+       -75.90941,
+       4.73778
+      ],
+      [
+       -75.90995,
+       4.73964
+      ],
+      [
+       -75.90873,
+       4.74208
+      ],
+      [
+       -75.90811,
+       4.74313
+      ],
+      [
+       -75.90556,
+       4.74287
+      ],
+      [
+       -75.90414,
+       4.7426
+      ],
+      [
+       -75.90393,
+       4.74225
+      ],
+      [
+       -75.90289,
+       4.74146
+      ],
+      [
+       -75.90163,
+       4.74151
+      ],
+      [
+       -75.90155,
+       4.73872
+      ],
+      [
+       -75.90228,
+       4.73231
+      ],
+      [
+       -75.90383,
+       4.73343
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "c2",
+    "nombre": "Comuna 2",
+    "fuente_geometria": "OpenStreetMap",
+    "area_km2": 0.979,
+    "poblacion": 14237.0,
+    "densidad_hab_km2": 14542.0,
+    "lst_media": 39.97,
+    "lst_p90": 42.84,
+    "lst_anomalia": 1.24,
+    "lst_media_pob": 41.48,
+    "pct_area_calor_extremo": 9.9,
+    "poblacion_calor_extremo": 2423.0,
+    "pct_poblacion_calor_extremo": 17.0,
+    "ndvi_medio": 0.318,
+    "arbolado_pct": 14.9,
+    "construido_pct": 72.5,
+    "m2_arbolado_por_hab": 10.3,
+    "m2_verde_publico_por_hab": 0.21,
+    "pct_poblacion_sin_verde_300m": 99.7,
+    "poblacion_susceptibilidad_alta": 0.0,
+    "poblacion_susceptibilidad_media": 5512.0,
+    "pct_area_susceptibilidad_alta": 0.0,
+    "pct_poblacion_susceptibilidad_media": 38.7,
+    "trafico_medio": 35.4,
+    "trafico_medio_pob": 31.9,
+    "poblacion_trafico_alto": 1012.0,
+    "pct_poblacion_trafico_alto": 7.1,
+    "tendencia_lst_c_decada": -0.499,
+    "tendencia_lst_significativa": false,
+    "tendencia_lst_ic95": [
+     -3.473,
+     2.264
+    ],
+    "poblacion_evidencia_inundacion_ideam": 0.0,
+    "pct_poblacion_evidencia_inundacion_ideam": 0.0,
+    "poblacion_evidencia_inundacion_ideam_sin_2011": 0.0,
+    "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 0.0,
+    "poblacion_amenaza_alta_ideam": 0.0,
+    "poblacion_area_afectada_nina_ideam": 0.0,
+    "pct_poblacion_area_afectada_nina_ideam": 0.0,
+    "equipamientos_total": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -75.91572,
+       4.73476
+      ],
+      [
+       -75.91506,
+       4.73533
+      ],
+      [
+       -75.91088,
+       4.73823
+      ],
+      [
+       -75.91059,
+       4.73849
+      ],
+      [
+       -75.90995,
+       4.73964
+      ],
+      [
+       -75.90941,
+       4.73778
+      ],
+      [
+       -75.90942,
+       4.73668
+      ],
+      [
+       -75.90986,
+       4.73553
+      ],
+      [
+       -75.91166,
+       4.73295
+      ],
+      [
+       -75.9117,
+       4.73276
+      ],
+      [
+       -75.91157,
+       4.73255
+      ],
+      [
+       -75.91041,
+       4.73243
+      ],
+      [
+       -75.90911,
+       4.73243
+      ],
+      [
+       -75.90819,
+       4.73231
+      ],
+      [
+       -75.90509,
+       4.73264
+      ],
+      [
+       -75.90462,
+       4.73287
+      ],
+      [
+       -75.90441,
+       4.73328
+      ],
+      [
+       -75.90433,
+       4.73365
+      ],
+      [
+       -75.90383,
+       4.73343
+      ],
+      [
+       -75.90243,
+       4.73243
+      ],
+      [
+       -75.90185,
+       4.73175
+      ],
+      [
+       -75.90187,
+       4.73135
+      ],
+      [
+       -75.90226,
+       4.73138
+      ],
+      [
+       -75.9033,
+       4.73124
+      ],
+      [
+       -75.90438,
+       4.72939
+      ],
+      [
+       -75.90499,
+       4.72814
+      ],
+      [
+       -75.90571,
+       4.72549
+      ],
+      [
+       -75.90573,
+       4.72539
+      ],
+      [
+       -75.90533,
+       4.72548
+      ],
+      [
+       -75.9047,
+       4.7255
+      ],
+      [
+       -75.90432,
+       4.72499
+      ],
+      [
+       -75.90328,
+       4.72408
+      ],
+      [
+       -75.90379,
+       4.72338
+      ],
+      [
+       -75.90398,
+       4.72235
+      ],
+      [
+       -75.90498,
+       4.72263
+      ],
+      [
+       -75.90752,
+       4.72394
+      ],
+      [
+       -75.90749,
+       4.72547
+      ],
+      [
+       -75.90785,
+       4.72612
+      ],
+      [
+       -75.90815,
+       4.7265
+      ],
+      [
+       -75.90832,
+       4.72758
+      ],
+      [
+       -75.91215,
+       4.72845
+      ],
+      [
+       -75.91378,
+       4.72907
+      ],
+      [
+       -75.91761,
+       4.73072
+      ],
+      [
+       -75.91572,
+       4.73476
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "c3",
+    "nombre": "Comuna 3",
+    "fuente_geometria": "OpenStreetMap",
+    "area_km2": 1.173,
+    "poblacion": 14308.0,
+    "densidad_hab_km2": 12197.0,
+    "lst_media": 38.45,
+    "lst_p90": 41.34,
+    "lst_anomalia": -0.28,
+    "lst_media_pob": 39.33,
+    "pct_area_calor_extremo": 2.0,
+    "poblacion_calor_extremo": 429.0,
+    "pct_poblacion_calor_extremo": 3.0,
+    "ndvi_medio": 0.354,
+    "arbolado_pct": 29.6,
+    "construido_pct": 60.3,
+    "m2_arbolado_por_hab": 24.3,
+    "m2_verde_publico_por_hab": 0.0,
+    "pct_poblacion_sin_verde_300m": 99.3,
+    "poblacion_susceptibilidad_alta": 0.0,
+    "poblacion_susceptibilidad_media": 641.0,
+    "pct_area_susceptibilidad_alta": 0.0,
+    "pct_poblacion_susceptibilidad_media": 4.5,
+    "trafico_medio": 27.9,
+    "trafico_medio_pob": 28.0,
+    "poblacion_trafico_alto": 345.0,
+    "pct_poblacion_trafico_alto": 2.4,
+    "tendencia_lst_c_decada": -0.476,
+    "tendencia_lst_significativa": false,
+    "tendencia_lst_ic95": [
+     -2.84,
+     2.653
+    ],
+    "poblacion_evidencia_inundacion_ideam": 8.0,
+    "pct_poblacion_evidencia_inundacion_ideam": 0.06,
+    "poblacion_evidencia_inundacion_ideam_sin_2011": 8.0,
+    "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 0.06,
+    "poblacion_amenaza_alta_ideam": 8.0,
+    "poblacion_area_afectada_nina_ideam": 0.0,
+    "pct_poblacion_area_afectada_nina_ideam": 0.0,
+    "equipamientos_total": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -75.91835,
+       4.74787
+      ],
+      [
+       -75.91481,
+       4.748
+      ],
+      [
+       -75.91482,
+       4.74715
+      ],
+      [
+       -75.91349,
+       4.74708
+      ],
+      [
+       -75.91146,
+       4.7472
+      ],
+      [
+       -75.91148,
+       4.74823
+      ],
+      [
+       -75.90642,
+       4.7486
+      ],
+      [
+       -75.90638,
+       4.74753
+      ],
+      [
+       -75.90659,
+       4.74669
+      ],
+      [
+       -75.90811,
+       4.74313
+      ],
+      [
+       -75.90873,
+       4.74208
+      ],
+      [
+       -75.90917,
+       4.74111
+      ],
+      [
+       -75.91059,
+       4.73849
+      ],
+      [
+       -75.91506,
+       4.73533
+      ],
+      [
+       -75.91572,
+       4.73476
+      ],
+      [
+       -75.91761,
+       4.73072
+      ],
+      [
+       -75.91883,
+       4.7315
+      ],
+      [
+       -75.91977,
+       4.73249
+      ],
+      [
+       -75.92114,
+       4.73415
+      ],
+      [
+       -75.925,
+       4.73824
+      ],
+      [
+       -75.92192,
+       4.74218
+      ],
+      [
+       -75.91988,
+       4.74425
+      ],
+      [
+       -75.91986,
+       4.74473
+      ],
+      [
+       -75.91945,
+       4.74645
+      ],
+      [
+       -75.91868,
+       4.74715
+      ],
+      [
+       -75.91839,
+       4.74724
+      ],
+      [
+       -75.91835,
+       4.74787
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "c4",
+    "nombre": "Comuna 4",
+    "fuente_geometria": "OpenStreetMap",
+    "area_km2": 2.138,
+    "poblacion": 21944.0,
+    "densidad_hab_km2": 10266.0,
+    "lst_media": 40.3,
+    "lst_p90": 43.44,
+    "lst_anomalia": 1.57,
+    "lst_media_pob": 41.91,
+    "pct_area_calor_extremo": 24.2,
+    "poblacion_calor_extremo": 7500.0,
+    "pct_poblacion_calor_extremo": 34.2,
+    "ndvi_medio": 0.298,
+    "arbolado_pct": 13.5,
+    "construido_pct": 65.8,
+    "m2_arbolado_por_hab": 13.1,
+    "m2_verde_publico_por_hab": 2.68,
+    "pct_poblacion_sin_verde_300m": 49.1,
+    "poblacion_susceptibilidad_alta": 0.0,
+    "poblacion_susceptibilidad_media": 6169.0,
+    "pct_area_susceptibilidad_alta": 0.0,
+    "pct_poblacion_susceptibilidad_media": 28.1,
+    "trafico_medio": 26.4,
+    "trafico_medio_pob": 31.9,
+    "poblacion_trafico_alto": 913.0,
+    "pct_poblacion_trafico_alto": 4.2,
+    "tendencia_lst_c_decada": 0.537,
+    "tendencia_lst_significativa": false,
+    "tendencia_lst_ic95": [
+     -2.513,
+     4.307
+    ],
+    "poblacion_evidencia_inundacion_ideam": 1299.0,
+    "pct_poblacion_evidencia_inundacion_ideam": 5.92,
+    "poblacion_evidencia_inundacion_ideam_sin_2011": 288.0,
+    "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 1.31,
+    "poblacion_amenaza_alta_ideam": 0.0,
+    "poblacion_area_afectada_nina_ideam": 1299.0,
+    "pct_poblacion_area_afectada_nina_ideam": 5.92,
+    "equipamientos_total": 4
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -75.91817,
+       4.75124
+      ],
+      [
+       -75.91654,
+       4.75592
+      ],
+      [
+       -75.91619,
+       4.75565
+      ],
+      [
+       -75.91518,
+       4.7551
+      ],
+      [
+       -75.91372,
+       4.75456
+      ],
+      [
+       -75.91164,
+       4.75333
+      ],
+      [
+       -75.90817,
+       4.75192
+      ],
+      [
+       -75.90742,
+       4.7519
+      ],
+      [
+       -75.90729,
+       4.74855
+      ],
+      [
+       -75.91148,
+       4.74823
+      ],
+      [
+       -75.91146,
+       4.7472
+      ],
+      [
+       -75.9126,
+       4.74711
+      ],
+      [
+       -75.91349,
+       4.74708
+      ],
+      [
+       -75.91482,
+       4.74715
+      ],
+      [
+       -75.91481,
+       4.748
+      ],
+      [
+       -75.91835,
+       4.74787
+      ],
+      [
+       -75.91817,
+       4.75124
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "c5",
+    "nombre": "Comuna 5",
+    "fuente_geometria": "OpenStreetMap",
+    "area_km2": 0.764,
+    "poblacion": 4897.0,
+    "densidad_hab_km2": 6407.0,
+    "lst_media": 41.1,
+    "lst_p90": 43.7,
+    "lst_anomalia": 2.37,
+    "lst_media_pob": 41.98,
+    "pct_area_calor_extremo": 35.9,
+    "poblacion_calor_extremo": 1686.0,
+    "pct_poblacion_calor_extremo": 34.4,
+    "ndvi_medio": 0.252,
+    "arbolado_pct": 15.6,
+    "construido_pct": 84.1,
+    "m2_arbolado_por_hab": 24.3,
+    "m2_verde_publico_por_hab": 18.22,
+    "pct_poblacion_sin_verde_300m": 10.0,
+    "poblacion_susceptibilidad_alta": 0.0,
+    "poblacion_susceptibilidad_media": 705.0,
+    "pct_area_susceptibilidad_alta": 0.2,
+    "pct_poblacion_susceptibilidad_media": 14.4,
+    "trafico_medio": 46.0,
+    "trafico_medio_pob": 42.3,
+    "poblacion_trafico_alto": 773.0,
+    "pct_poblacion_trafico_alto": 15.8,
+    "tendencia_lst_c_decada": 0.212,
+    "tendencia_lst_significativa": false,
+    "tendencia_lst_ic95": [
+     -2.738,
+     3.364
+    ],
+    "poblacion_evidencia_inundacion_ideam": 2.0,
+    "pct_poblacion_evidencia_inundacion_ideam": 0.04,
+    "poblacion_evidencia_inundacion_ideam_sin_2011": 2.0,
+    "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 0.04,
+    "poblacion_amenaza_alta_ideam": 2.0,
+    "poblacion_area_afectada_nina_ideam": 0.0,
+    "pct_poblacion_area_afectada_nina_ideam": 0.0,
+    "equipamientos_total": 5
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -75.91868,
+       4.74715
+      ],
+      [
+       -75.91945,
+       4.74645
+      ],
+      [
+       -75.91986,
+       4.74473
+      ],
+      [
+       -75.91988,
+       4.74425
+      ],
+      [
+       -75.92192,
+       4.74218
+      ],
+      [
+       -75.925,
+       4.73824
+      ],
+      [
+       -75.92704,
+       4.74215
+      ],
+      [
+       -75.92747,
+       4.74348
+      ],
+      [
+       -75.92815,
+       4.74503
+      ],
+      [
+       -75.92854,
+       4.7456
+      ],
+      [
+       -75.92915,
+       4.74611
+      ],
+      [
+       -75.93011,
+       4.74668
+      ],
+      [
+       -75.92835,
+       4.75155
+      ],
+      [
+       -75.92763,
+       4.75136
+      ],
+      [
+       -75.92745,
+       4.75287
+      ],
+      [
+       -75.92678,
+       4.75429
+      ],
+      [
+       -75.92828,
+       4.75561
+      ],
+      [
+       -75.92883,
+       4.75631
+      ],
+      [
+       -75.92763,
+       4.7574
+      ],
+      [
+       -75.92812,
+       4.75803
+      ],
+      [
+       -75.92835,
+       4.7586
+      ],
+      [
+       -75.92862,
+       4.76047
+      ],
+      [
+       -75.92795,
+       4.76064
+      ],
+      [
+       -75.92784,
+       4.76138
+      ],
+      [
+       -75.92761,
+       4.76212
+      ],
+      [
+       -75.92657,
+       4.76304
+      ],
+      [
+       -75.92628,
+       4.76312
+      ],
+      [
+       -75.92586,
+       4.76309
+      ],
+      [
+       -75.92539,
+       4.76281
+      ],
+      [
+       -75.92441,
+       4.76177
+      ],
+      [
+       -75.92401,
+       4.76119
+      ],
+      [
+       -75.92371,
+       4.76044
+      ],
+      [
+       -75.92341,
+       4.76007
+      ],
+      [
+       -75.92276,
+       4.7596
+      ],
+      [
+       -75.9225,
+       4.75951
+      ],
+      [
+       -75.92182,
+       4.75948
+      ],
+      [
+       -75.92084,
+       4.7596
+      ],
+      [
+       -75.92018,
+       4.7599
+      ],
+      [
+       -75.91928,
+       4.76038
+      ],
+      [
+       -75.91783,
+       4.76142
+      ],
+      [
+       -75.91707,
+       4.7621
+      ],
+      [
+       -75.91512,
+       4.76122
+      ],
+      [
+       -75.91652,
+       4.75847
+      ],
+      [
+       -75.91724,
+       4.75684
+      ],
+      [
+       -75.91705,
+       4.7565
+      ],
+      [
+       -75.91668,
+       4.75618
+      ],
+      [
+       -75.91654,
+       4.75592
+      ],
+      [
+       -75.91817,
+       4.75124
+      ],
+      [
+       -75.91839,
+       4.74724
+      ],
+      [
+       -75.91868,
+       4.74715
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "c6",
+    "nombre": "Comuna 6",
+    "fuente_geometria": "OpenStreetMap",
+    "area_km2": 2.512,
+    "poblacion": 26113.0,
+    "densidad_hab_km2": 10394.0,
+    "lst_media": 39.99,
+    "lst_p90": 43.47,
+    "lst_anomalia": 1.26,
+    "lst_media_pob": 41.77,
+    "pct_area_calor_extremo": 19.0,
+    "poblacion_calor_extremo": 8860.0,
+    "pct_poblacion_calor_extremo": 33.9,
+    "ndvi_medio": 0.33,
+    "arbolado_pct": 21.9,
+    "construido_pct": 64.4,
+    "m2_arbolado_por_hab": 21.1,
+    "m2_verde_publico_por_hab": 1.72,
+    "pct_poblacion_sin_verde_300m": 40.8,
+    "poblacion_susceptibilidad_alta": 9.0,
+    "poblacion_susceptibilidad_media": 12013.0,
+    "pct_area_susceptibilidad_alta": 0.73,
+    "pct_poblacion_susceptibilidad_media": 46.0,
+    "trafico_medio": 27.2,
+    "trafico_medio_pob": 31.7,
+    "poblacion_trafico_alto": 519.0,
+    "pct_poblacion_trafico_alto": 2.0,
+    "tendencia_lst_c_decada": 0.903,
+    "tendencia_lst_significativa": false,
+    "tendencia_lst_ic95": [
+     -2.55,
+     4.486
+    ],
+    "poblacion_evidencia_inundacion_ideam": 1901.0,
+    "pct_poblacion_evidencia_inundacion_ideam": 7.28,
+    "poblacion_evidencia_inundacion_ideam_sin_2011": 342.0,
+    "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 1.31,
+    "poblacion_amenaza_alta_ideam": 146.0,
+    "poblacion_area_afectada_nina_ideam": 1803.0,
+    "pct_poblacion_area_afectada_nina_ideam": 6.91,
+    "equipamientos_total": 11
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -75.92835,
+       4.7586
+      ],
+      [
+       -75.92812,
+       4.75803
+      ],
+      [
+       -75.92763,
+       4.7574
+      ],
+      [
+       -75.92883,
+       4.75631
+      ],
+      [
+       -75.92828,
+       4.75561
+      ],
+      [
+       -75.92678,
+       4.75429
+      ],
+      [
+       -75.92745,
+       4.75287
+      ],
+      [
+       -75.92763,
+       4.75136
+      ],
+      [
+       -75.92835,
+       4.75155
+      ],
+      [
+       -75.93011,
+       4.74668
+      ],
+      [
+       -75.93083,
+       4.7471
+      ],
+      [
+       -75.93166,
+       4.74746
+      ],
+      [
+       -75.93306,
+       4.74778
+      ],
+      [
+       -75.93441,
+       4.74789
+      ],
+      [
+       -75.93658,
+       4.74836
+      ],
+      [
+       -75.93739,
+       4.74842
+      ],
+      [
+       -75.93829,
+       4.74866
+      ],
+      [
+       -75.93866,
+       4.74892
+      ],
+      [
+       -75.93882,
+       4.74924
+      ],
+      [
+       -75.93919,
+       4.74971
+      ],
+      [
+       -75.9404,
+       4.75035
+      ],
+      [
+       -75.94102,
+       4.75051
+      ],
+      [
+       -75.94281,
+       4.7506
+      ],
+      [
+       -75.94385,
+       4.7508
+      ],
+      [
+       -75.94501,
+       4.75123
+      ],
+      [
+       -75.94587,
+       4.75142
+      ],
+      [
+       -75.94677,
+       4.75135
+      ],
+      [
+       -75.94761,
+       4.75105
+      ],
+      [
+       -75.94921,
+       4.75071
+      ],
+      [
+       -75.95018,
+       4.75067
+      ],
+      [
+       -75.9514,
+       4.75031
+      ],
+      [
+       -75.9528,
+       4.74943
+      ],
+      [
+       -75.95454,
+       4.74804
+      ],
+      [
+       -75.95548,
+       4.748
+      ],
+      [
+       -75.95651,
+       4.74778
+      ],
+      [
+       -75.95784,
+       4.74785
+      ],
+      [
+       -75.95591,
+       4.76981
+      ],
+      [
+       -75.9549,
+       4.76876
+      ],
+      [
+       -75.95323,
+       4.77068
+      ],
+      [
+       -75.95265,
+       4.77084
+      ],
+      [
+       -75.95195,
+       4.77186
+      ],
+      [
+       -75.95269,
+       4.77328
+      ],
+      [
+       -75.95253,
+       4.77337
+      ],
+      [
+       -75.95232,
+       4.773
+      ],
+      [
+       -75.95209,
+       4.77316
+      ],
+      [
+       -75.95183,
+       4.77276
+      ],
+      [
+       -75.95174,
+       4.77282
+      ],
+      [
+       -75.95152,
+       4.77252
+      ],
+      [
+       -75.95141,
+       4.7722
+      ],
+      [
+       -75.95107,
+       4.77186
+      ],
+      [
+       -75.95065,
+       4.77176
+      ],
+      [
+       -75.94891,
+       4.77074
+      ],
+      [
+       -75.9495,
+       4.76959
+      ],
+      [
+       -75.94866,
+       4.76848
+      ],
+      [
+       -75.94802,
+       4.76801
+      ],
+      [
+       -75.94666,
+       4.76741
+      ],
+      [
+       -75.94611,
+       4.76697
+      ],
+      [
+       -75.94316,
+       4.76555
+      ],
+      [
+       -75.9428,
+       4.76618
+      ],
+      [
+       -75.93952,
+       4.76503
+      ],
+      [
+       -75.9387,
+       4.76549
+      ],
+      [
+       -75.93801,
+       4.76537
+      ],
+      [
+       -75.93571,
+       4.76735
+      ],
+      [
+       -75.93539,
+       4.7671
+      ],
+      [
+       -75.93301,
+       4.76726
+      ],
+      [
+       -75.9332,
+       4.76598
+      ],
+      [
+       -75.93098,
+       4.76552
+      ],
+      [
+       -75.92659,
+       4.76377
+      ],
+      [
+       -75.92796,
+       4.7631
+      ],
+      [
+       -75.92844,
+       4.76276
+      ],
+      [
+       -75.92859,
+       4.76248
+      ],
+      [
+       -75.92869,
+       4.76199
+      ],
+      [
+       -75.92871,
+       4.76116
+      ],
+      [
+       -75.92862,
+       4.76047
+      ],
+      [
+       -75.92835,
+       4.7586
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "c7",
+    "nombre": "Comuna 7",
+    "fuente_geometria": "OpenStreetMap",
+    "area_km2": 6.379,
+    "poblacion": 31763.0,
+    "densidad_hab_km2": 4979.0,
+    "lst_media": 37.14,
+    "lst_p90": 41.53,
+    "lst_anomalia": -1.59,
+    "lst_media_pob": 40.98,
+    "pct_area_calor_extremo": 2.1,
+    "poblacion_calor_extremo": 3759.0,
+    "pct_poblacion_calor_extremo": 11.8,
+    "ndvi_medio": 0.533,
+    "arbolado_pct": 25.0,
+    "construido_pct": 27.3,
+    "m2_arbolado_por_hab": 50.2,
+    "m2_verde_publico_por_hab": 0.78,
+    "pct_poblacion_sin_verde_300m": 68.6,
+    "poblacion_susceptibilidad_alta": 0.0,
+    "poblacion_susceptibilidad_media": 4894.0,
+    "pct_area_susceptibilidad_alta": 0.04,
+    "pct_poblacion_susceptibilidad_media": 15.4,
+    "trafico_medio": 16.7,
+    "trafico_medio_pob": 33.7,
+    "poblacion_trafico_alto": 653.0,
+    "pct_poblacion_trafico_alto": 2.1,
+    "tendencia_lst_c_decada": 0.612,
+    "tendencia_lst_significativa": false,
+    "tendencia_lst_ic95": [
+     -4.567,
+     5.51
+    ],
+    "poblacion_evidencia_inundacion_ideam": 9567.0,
+    "pct_poblacion_evidencia_inundacion_ideam": 30.12,
+    "poblacion_evidencia_inundacion_ideam_sin_2011": 6128.0,
+    "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 19.29,
+    "poblacion_amenaza_alta_ideam": 0.0,
+    "poblacion_area_afectada_nina_ideam": 9567.0,
+    "pct_poblacion_area_afectada_nina_ideam": 30.12,
+    "equipamientos_total": 6
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -75.932269,
+       4.699807
+      ],
+      [
+       -75.932225,
+       4.700151
+      ],
+      [
+       -75.931877,
+       4.700489
+      ],
+      [
+       -75.931437,
+       4.700604
+      ],
+      [
+       -75.931417,
+       4.700937
+      ],
+      [
+       -75.931219,
+       4.701099
+      ],
+      [
+       -75.9306,
+       4.700976
+      ],
+      [
+       -75.930396,
+       4.700521
+      ],
+      [
+       -75.930142,
+       4.700442
+      ],
+      [
+       -75.929805,
+       4.699938
+      ],
+      [
+       -75.929389,
+       4.699855
+      ],
+      [
+       -75.929249,
+       4.699855
+      ],
+      [
+       -75.928579,
+       4.700676
+      ],
+      [
+       -75.928289,
+       4.700656
+      ],
+      [
+       -75.927996,
+       4.700343
+      ],
+      [
+       -75.927527,
+       4.700603
+      ],
+      [
+       -75.926936,
+       4.700477
+      ],
+      [
+       -75.926838,
+       4.700793
+      ],
+      [
+       -75.926272,
+       4.701
+      ],
+      [
+       -75.926961,
+       4.701011
+      ],
+      [
+       -75.927167,
+       4.701229
+      ],
+      [
+       -75.927195,
+       4.701562
+      ],
+      [
+       -75.928058,
+       4.701933
+      ],
+      [
+       -75.92827,
+       4.702667
+      ],
+      [
+       -75.928042,
+       4.703589
+      ],
+      [
+       -75.927603,
+       4.70368
+      ],
+      [
+       -75.927354,
+       4.704084
+      ],
+      [
+       -75.926719,
+       4.704349
+      ],
+      [
+       -75.926313,
+       4.704334
+      ],
+      [
+       -75.926147,
+       4.70411
+      ],
+      [
+       -75.926214,
+       4.702737
+      ],
+      [
+       -75.925896,
+       4.702751
+      ],
+      [
+       -75.925432,
+       4.702385
+      ],
+      [
+       -75.925078,
+       4.702801
+      ],
+      [
+       -75.925099,
+       4.70322
+      ],
+      [
+       -75.924854,
+       4.703612
+      ],
+      [
+       -75.924709,
+       4.704339
+      ],
+      [
+       -75.924352,
+       4.704447
+      ],
+      [
+       -75.924225,
+       4.704984
+      ],
+      [
+       -75.923895,
+       4.705146
+      ],
+      [
+       -75.92365,
+       4.705476
+      ],
+      [
+       -75.923142,
+       4.705442
+      ],
+      [
+       -75.923075,
+       4.704505
+      ],
+      [
+       -75.923442,
+       4.703683
+      ],
+      [
+       -75.923896,
+       4.703221
+      ],
+      [
+       -75.923917,
+       4.702813
+      ],
+      [
+       -75.924192,
+       4.702485
+      ],
+      [
+       -75.923735,
+       4.70172
+      ],
+      [
+       -75.923896,
+       4.701112
+      ],
+      [
+       -75.923541,
+       4.700839
+      ],
+      [
+       -75.92348,
+       4.700583
+      ],
+      [
+       -75.92373,
+       4.700249
+      ],
+      [
+       -75.923658,
+       4.699421
+      ],
+      [
+       -75.924204,
+       4.6985
+      ],
+      [
+       -75.923908,
+       4.698162
+      ],
+      [
+       -75.92373,
+       4.696751
+      ],
+      [
+       -75.923333,
+       4.696021
+      ],
+      [
+       -75.923313,
+       4.695612
+      ],
+      [
+       -75.923083,
+       4.695437
+      ],
+      [
+       -75.92298,
+       4.694862
+      ],
+      [
+       -75.922412,
+       4.694626
+      ],
+      [
+       -75.922063,
+       4.694083
+      ],
+      [
+       -75.922313,
+       4.693749
+      ],
+      [
+       -75.92298,
+       4.693729
+      ],
+      [
+       -75.922985,
+       4.69253
+      ],
+      [
+       -75.923559,
+       4.691225
+      ],
+      [
+       -75.923969,
+       4.691151
+      ],
+      [
+       -75.924175,
+       4.691338
+      ],
+      [
+       -75.924175,
+       4.691829
+      ],
+      [
+       -75.92377,
+       4.692696
+      ],
+      [
+       -75.92377,
+       4.693304
+      ],
+      [
+       -75.924209,
+       4.693578
+      ],
+      [
+       -75.924278,
+       4.693979
+      ],
+      [
+       -75.924496,
+       4.693991
+      ],
+      [
+       -75.925005,
+       4.693657
+      ],
+      [
+       -75.92561,
+       4.693563
+      ],
+      [
+       -75.925875,
+       4.69391
+      ],
+      [
+       -75.926088,
+       4.69374
+      ],
+      [
+       -75.926469,
+       4.693734
+      ],
+      [
+       -75.929025,
+       4.694475
+      ],
+      [
+       -75.929182,
+       4.694886
+      ],
+      [
+       -75.928877,
+       4.695406
+      ],
+      [
+       -75.928197,
+       4.695599
+      ],
+      [
+       -75.92773,
+       4.695501
+      ],
+      [
+       -75.926937,
+       4.69506
+      ],
+      [
+       -75.926858,
+       4.695359
+      ],
+      [
+       -75.926561,
+       4.695437
+      ],
+      [
+       -75.926603,
+       4.695692
+      ],
+      [
+       -75.926956,
+       4.695344
+      ],
+      [
+       -75.927294,
+       4.695344
+      ],
+      [
+       -75.927592,
+       4.695838
+      ],
+      [
+       -75.927578,
+       4.696199
+      ],
+      [
+       -75.927814,
+       4.696273
+      ],
+      [
+       -75.927825,
+       4.695921
+      ],
+      [
+       -75.927995,
+       4.695707
+      ],
+      [
+       -75.928567,
+       4.695691
+      ],
+      [
+       -75.929015,
+       4.69628
+      ],
+      [
+       -75.929015,
+       4.69697
+      ],
+      [
+       -75.928803,
+       4.697183
+      ],
+      [
+       -75.929838,
+       4.697457
+      ],
+      [
+       -75.930009,
+       4.697671
+      ],
+      [
+       -75.929974,
+       4.697985
+      ],
+      [
+       -75.930611,
+       4.698645
+      ],
+      [
+       -75.930842,
+       4.698711
+      ],
+      [
+       -75.931167,
+       4.698395
+      ],
+      [
+       -75.931817,
+       4.698608
+      ],
+      [
+       -75.931937,
+       4.699
+      ],
+      [
+       -75.931803,
+       4.699234
+      ],
+      [
+       -75.932269,
+       4.699807
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "zaragoza",
+    "nombre": "Zaragoza (corregimiento)",
+    "fuente_geometria": "ESA WorldCover 2021: área construida conectada al centro poblado (nodo OSM)",
+    "area_km2": 0.721,
+    "poblacion": 4252.0,
+    "densidad_hab_km2": 5899.0,
+    "lst_media": 37.79,
+    "lst_p90": 39.76,
+    "lst_anomalia": -0.94,
+    "lst_media_pob": 38.51,
+    "pct_area_calor_extremo": 0.0,
+    "poblacion_calor_extremo": 0.0,
+    "pct_poblacion_calor_extremo": 0.0,
+    "ndvi_medio": 0.387,
+    "arbolado_pct": 26.8,
+    "construido_pct": 55.6,
+    "m2_arbolado_por_hab": 45.5,
+    "m2_verde_publico_por_hab": 1.48,
+    "pct_poblacion_sin_verde_300m": 55.6,
+    "poblacion_susceptibilidad_alta": 0.0,
+    "poblacion_susceptibilidad_media": 1462.0,
+    "pct_area_susceptibilidad_alta": 0.0,
+    "pct_poblacion_susceptibilidad_media": 34.4,
+    "trafico_medio": 34.2,
+    "trafico_medio_pob": 29.0,
+    "poblacion_trafico_alto": 259.0,
+    "pct_poblacion_trafico_alto": 6.1,
+    "tendencia_lst_c_decada": 0.372,
+    "tendencia_lst_significativa": false,
+    "tendencia_lst_ic95": [
+     -3.795,
+     6.183
+    ],
+    "poblacion_evidencia_inundacion_ideam": 577.0,
+    "pct_poblacion_evidencia_inundacion_ideam": 13.57,
+    "poblacion_evidencia_inundacion_ideam_sin_2011": 577.0,
+    "pct_poblacion_evidencia_inundacion_ideam_sin_2011": 13.57,
+    "poblacion_amenaza_alta_ideam": 577.0,
+    "poblacion_area_afectada_nina_ideam": 0.0,
+    "pct_poblacion_area_afectada_nina_ideam": 0.0,
+    "equipamientos_total": 0
+   }
+  }
+ ]
+}

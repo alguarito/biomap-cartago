@@ -1,0 +1,16 @@
+BioMap Cartago — Álvaro Cárdenas Orozco
+
+Código y contenido propio (index.html, css/, js/ salvo js/datos-osm.js, scripts/ y textos):
+Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)
+https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es
+
+Los datos de datos/ y js/datos-osm.js NO están bajo esta licencia: cada archivo conserva la licencia
+de su fuente, indicada en sus metadatos y en README.md. En particular:
+- Los productos derivados de OpenStreetMap (comunas, cabecera, ríos, vías, parques, equipamientos,
+  índice de tráfico y distancia a verde) se publican bajo la Open Database License (ODbL) 1.0,
+  © colaboradores de OpenStreetMap — https://opendatacommons.org/licenses/odbl/
+- Landsat (USGS): dominio público. ESA WorldCover, Meta/WRI CHM, Open-Meteo, CHIRPS: CC BY 4.0.
+  Copernicus (Sentinel-2, DEM, ERA5, CAMS, JRC GSW): licencias Copernicus con atribución. DANE e IDEAM:
+  información pública con atribución.
+
+Las librerías y la tipografía de vendor/ tienen sus propias licencias (vendor/LEEME.md).

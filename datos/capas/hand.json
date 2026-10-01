@@ -1,0 +1,105 @@
+{
+ "titulo": "Altura sobre el drenaje más cercano (HAND)",
+ "descripcion": "Cuántos metros está cada lugar por encima del río o cauce al que escurre su agua. Cuanto más bajo, más fácil que el agua lo alcance en una creciente; un valor alto no descarta inundación.",
+ "unidad": "m",
+ "fuente": {
+  "nombre": "Copernicus DEM GLO-30 (WorldDEM-30), ESA / Unión Europea",
+  "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+  "licencia": "Licence for the use of the Copernicus WorldDEM-30 (libre y gratuita, con atribución y exención de responsabilidad)",
+  "cita": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30. DOI: 10.5270/ESA-c5d3d65. Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0. Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., et al. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. Remote Sensing of Environment 300, 113888. doi:10.1016/j.rse.2023.113888"
+ },
+ "periodo": "Topografía 2011–2015 (TanDEM-X); dosel Meta/WRI CHM v1 (imágenes 2014–2018); cauces OSM descargados en 2026",
+ "resolucion_original_m": 30,
+ "procesamiento": [
+  "Lectura por ventanas de las teselas COG N04W076 y N04W077 del Copernicus DEM GLO-30 (dominio −76,08/−75,76 E, 4,60/4,88 N).",
+  "DEM a UTM 18N (EPSG:32618) a 30 m con remuestreo bilineal; dominio 1179×1027 celdas (35,4 × 30,8 km).",
+  "Corrección del dosel: altura del dosel de Meta/WRI CHM v1 (1 m; imágenes de 2014–2018 en la rejilla) promediada a 30 m y convertida en exceso del DSM con una curva calibrada en Cartago: en terreno llano fuera de la ciudad, mediana de (altura de la celda − media de las celdas sin dosel en 11×11 celdas) por intervalos de CHM (2,71 m → 1 m; 4,81 m → 2,25 m; 6,85 m → 3,89 m; 8,81 m → 6,61 m; 10,76 m → 7,36 m; 12,96 m → 9,29 m; por encima, 0,717 × CHM; control en celdas sin dosel: -0,026 m). El HAND usa este DEM corregido; la capa 'altitud' sigue siendo el DSM.",
+  "Quema de cauces: ejes OSM de los ríos La Vieja y Cauca (rasterizados tocando celdas), polígonos de agua fluvial OSM de La Vieja, Cauca y Consota y ejes de los demás ríos OSM bajados 20 m; arroyos OSM (83 vías, incluidas las alcantarillas) y canales OSM que pasan la prueba de drenaje bajados 10 m. Solo dirige el flujo; las alturas del HAND no usan el DEM quemado.",
+  "Prueba de drenaje de cada canal OSM: cada 30 m, el mínimo 3×3 del eje frente a la mediana de los flancos a 60–150 m a cada lado; se acepta si en ≥ 60 % de los puntos el eje queda a ≤ 0,5 m del flanco más bajo o por debajo (corre por lo bajo). Aceptados: 14 vías; rechazados (a media ladera o en terraplén, como un canal de riego): 3 vías (755307241, 755307242, 755307243).",
+  "Relleno de depresiones Priority-Flood + ε (Barnes et al. 2014) y dirección de flujo D8 por máxima pendiente.",
+  "Red de drenaje = ríos OSM ∪ arroyos y canales de drenaje OSM ∪ celdas con área drenada ≥ 5 km² (5556 celdas de 30 m; criterio técnico) fuera de la red mapeada: los cauces derivados a ≤ 90 m de un cauce OSM se sustituyen por él (177 celdas) y los tramos derivados sobre celdas que el relleno elevó más de 0,5 m se excluyen (2036 celdas); quedan 3860 celdas derivadas.",
+  "Cota del cauce: en los ríos OSM, mínimo 5×5 (±60 m) del DSM sin corregir, para tomar la lámina de agua y no la orilla arbolada; en arroyos y canales OSM, mínimo 3×3 del DEM corregido (absorbe el desfase del eje); en los derivados, la propia celda del DEM corregido. Perfil no creciente aguas abajo solo dentro de cada tipo de cauce; un cauce menor no queda por debajo del nivel del río mayor al que entrega.",
+  "HAND = altura de la celda (DEM corregido, sin quemar ni rellenar) − cota del cauce al que drena siguiendo el D8. Valores negativos (depresiones del DSM) → 0.",
+  "Remuestreo bilineal de UTM a la rejilla común; recorte a 0–60 m para la publicación."
+ ],
+ "limitaciones": [
+  "El Copernicus DEM es un modelo de SUPERFICIE: incluye edificios y copas de árboles. Para el HAND se resta una estimación del exceso del dosel (Meta/WRI CHM v1, curva calibrada en Cartago); la corrección es parcial: a 30–90 m de La Vieja o del Cauca, el HAND respecto al río pasa de 17,92 a 8,46 m bajo dosel alto (CHM ≥ 10 m), frente a 4,54 m sin dosel, y los edificios no se corrigen (en la ciudad las alturas siguen por encima del suelo y el HAND tiende a quedar alto). La lámina de agua de los ríos se toma del mínimo local del DSM (±60 m).",
+  "No es la amenaza oficial por inundación: esa está en el POT de Cartago, en los estudios de la CVC y en la zonificación del IDEAM, que modelan caudales, periodos de retorno, diques y obras. Un HAND alto NO descarta amenaza.",
+  "HAND solo mide posición del terreno respecto al cauce; no considera caudales, lluvias, diques, jarillones, alcantarillado ni remanso del Cauca sobre La Vieja.",
+  "La red menor combina los arroyos y canales de drenaje de OpenStreetMap (83 arroyos y 14 tramos de canal aceptados) con cauces derivados del DEM (área drenada ≥ 5 km², criterio técnico) donde OSM no mapea nada. OSM no es exhaustivo: los cauces menores que la amenaza ALTA del IDEAM señala al sur de la cabecera y en Zaragoza no están en OSM, y allí el HAND se mide respecto a cauces lejanos (susceptibilidad subestimada). Algunos cauces derivados pueden no corresponder a cauces reales. La función de los canales OSM (drenaje o riego) no está etiquetada: se decide con una prueba topográfica que puede equivocarse en terreno llano.",
+  "Resultado sensible al umbral de área drenada (como se ha documentado en otros estudios, p. ej. Alabbad 2026, Water 18(13):1598). HAND mediano de la cabecera: 4,89 m con 1 km²; 5,97 m con 2 km²; 8,99 m con 5 km²; 9 m con 10 km²; 9 m sin red derivada (solo cauces OSM). Detalle en datos/series/inundacion.json (clave 'sensibilidad_red_menor').",
+  "Los tramos derivados que cruzan depresiones rellenadas del DSM (relleno > 0,5 m) se excluyen de la red: allí el D8 traza rectas sin cauce real. Las celdas que drenaban a ellos miden su HAND respecto al siguiente cauce aguas abajo; las que quedan por debajo de él (depresiones del DSM) toman HAND 0: 8689 de 189421 celdas UTM de la rejilla (4,6 %), con profundidad mediana 0,46 m (p90 1,92 m). En un modelo de superficie muchas de esas depresiones son artefactos (campos rodeados de árboles o edificios) y allí el HAND 0 puede exagerar la susceptibilidad; el área por zona está en 'resumen.zonas[].area_depresion_dsm_ha' de datos/series/inundacion.json.",
+  "Los ejes de OSM pueden estar desplazados decenas de metros del cauce actual; los ríos migran.",
+  "Resolución de 30 m: no resuelve bordillos, muros ni diferencias de 1–2 m entre calles vecinas.",
+  "El CHM v1 de Meta/WRI se infiere de imágenes ópticas (2014–2018 en la rejilla; fecha codificada como año − 2000, supuesto por el rango de valores) y el DSM es de 2011–2015: los árboles talados o plantados entre ambas fechas quedan mal corregidos. El CHM subestima doseles altos y densos; la curva de corrección se calibró con doseles de 2–15 m de altura media.",
+  "Valores > 60 m se guardan como 60 m (recorte de la capa publicada)."
+ ],
+ "rango_visual": [
+  0,
+  30
+ ],
+ "paleta": [
+  "#08306b",
+  "#2171b5",
+  "#6baed6",
+  "#c6dbef",
+  "#f7fbff"
+ ],
+ "interpretacion": "Referencias: Nobre et al. (2011, J. Hydrology 404:13–29) calibraron en Amazonia 5,3 m (suelos encharcados/ecotono) y 15 m (tierras altas) con SRTM 90 m. En el mapa de clases, 6 m y 15 m son los cortes de esta capa (≤ 6 m media, 6–15 m baja, > 15 m 'HAND > 15 m'); el corte de 3 m de la clase alta se aplica a la capa 'hand_rio_mayor', no a esta. Los cortes 3 y 6 m son criterio técnico no calibrado con inundaciones observadas en Cartago; los valores dependen del umbral de la red menor. Las clases baja y 'HAND > 15 m' no descartan amenaza: la referencia oficial es la zonificación del IDEAM, la CVC y el POT.",
+ "parametros": {
+  "umbral_drenaje_km2": 5.0,
+  "umbral_relleno_m": 0.5,
+  "profundidad_quema_m": 20.0,
+  "profundidad_quema_cauces_osm_menores_m": 10.0,
+  "sustitucion_derivados_cerca_de_osm_m": 90.0,
+  "correccion_dosel": true,
+  "dominio": [
+   -76.08,
+   4.6,
+   -75.76,
+   4.88
+  ]
+ },
+ "avisos_legales": [
+  "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved",
+  "The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30",
+  "Ríos, arroyos y canales: © colaboradores de OpenStreetMap, ODbL 1.0",
+  "Meta and World Resources Institute (WRI) - 2024. High Resolution Canopy Height Maps (CHM). Source imagery © 2016 Maxar. Licencia CC BY 4.0 (https://registry.opendata.aws/dataforgood-fb-forests/)"
+ ],
+ "nombre": "hand",
+ "escala": 0.01,
+ "desplazamiento": -10,
+ "codificacion": "RGBA 16 bits: v=R*256+G; v=0 sin dato; valor=(v-1)*escala+desplazamiento",
+ "rejilla": {
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res": 0.00025,
+  "ancho": 520,
+  "alto": 428,
+  "crs": "EPSG:4326"
+ },
+ "estadisticas": {
+  "extension": {
+   "min": 0.0,
+   "p10": 0.7019,
+   "media": 21.9036,
+   "p50": 9.1151,
+   "p90": 60.0,
+   "max": 60.0,
+   "celdas": 222560
+  },
+  "cabecera_urbana": {
+   "min": 0.0,
+   "p10": 3.908,
+   "media": 10.7887,
+   "p50": 8.995,
+   "p90": 19.8197,
+   "max": 60.0,
+   "celdas": 19878
+  }
+ },
+ "cobertura_pct": 100.0,
+ "fecha_proceso": "2026-10-01"
+}

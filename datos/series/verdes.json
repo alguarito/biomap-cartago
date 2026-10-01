@@ -1,0 +1,1905 @@
+{
+ "titulo": "Espacio verde público y equipamientos sensibles mapeados en OpenStreetMap (Cartago)",
+ "descripcion": "Área de verde público, acceso a menos de 300 m según la OMS con su sensibilidad, canchas, equipamientos sensibles mapeados y vacíos de datos detectados en OpenStreetMap.",
+ "fuente_osm": {
+  "nombre": "OpenStreetMap",
+  "licencia": "ODbL 1.0",
+  "cita": "© colaboradores de OpenStreetMap, ODbL 1.0 (https://www.openstreetmap.org/copyright)",
+  "extraccion": "2026-10-01T01:50:59Z en UTC (2026-09-30 20:50 hora de Colombia, UTC−5)",
+  "consulta_overpass": "[out:json][timeout:170];(nwr[\"leisure\"~\"^(park|garden|pitch|playground|nature_reserve|recreation_ground)$\"](4.688,-75.985,4.795,-75.855);nwr[\"landuse\"~\"^(grass|recreation_ground|forest|meadow|village_green|cemetery)$\"](4.688,-75.985,4.795,-75.855);nwr[\"natural\"~\"^(wood|wetland|water|scrub|tree_row)$\"](4.688,-75.985,4.795,-75.855);nwr[\"amenity\"~\"^(school|kindergarten|college|university|hospital|clinic|doctors|nursing_home|social_facility|fire_station|police|townhall)$\"](4.688,-75.985,4.795,-75.855););out geom;",
+  "consulta_archivo": "fuentes/verdes/osm-verdes-equipamientos.overpassql"
+ },
+ "referencias": [
+  {
+   "cita": "WHO Regional Office for Europe (2016). Urban green spaces and health. A review of evidence. Copenhague.",
+   "url": "https://www.who.int/europe/publications/i/item/WHO-EURO-2016-3352-43111-60341",
+   "uso": "Criterio de 300 m en línea recta al borde de verde público ≥ 0,5 ha (secciones 3.6.2 y 4.4); 1 ha como indicador adicional; 200 y 500 m como análisis complementarios (sección 4.3.2, p. 36); tamaños de 0,25 a 5 ha probados en los casos de estudio (sección 4.1, p. 32); unidad mínima de 0,25 ha y definición de Urban Atlas 14100 (recuadro 4.1, p. 33)."
+  },
+  {
+   "cita": "Decreto 1504 de 1998, arts. 12 y 14 (Decreto 1077 de 2015, arts. 2.2.3.2.5 y 2.2.3.2.7)",
+   "url": "https://normas.cra.gov.co/gestor/docs/decreto_1504_1998.htm",
+   "uso": "Índice mínimo de espacio público efectivo de 15 m²/hab (parques, plazas, plazoletas y zonas verdes). Solo como referencia: el verde de OSM no equivale al espacio público efectivo."
+  },
+  {
+   "cita": "Findeter (2022). Cartago, ciudad emblemática. Documento de diagnóstico, versión final, diciembre de 2022",
+   "url": "https://www.findeter.gov.co/system/files/internas/Diagnostico-PDA-Cartago.pdf",
+   "uso": "p. 58 (según el diagnóstico del POT, 224.800 m² de espacio público efectivo en la zona urbana, con la plaza Simón Bolívar, el parque de la Isleta y el Parque Lineal Los Samanes); p. 60 (1,68 m²/hab al cierre de 2021 con 133.400 habitantes urbanos proyectados por el DANE)"
+  },
+  {
+   "cita": "Secretaría de Educación Municipal de Cartago, Boletín Estadístico Sector Educación – Año 2023 (marzo de 2024, código MMDS.600.18.F.125)",
+   "url": "https://municipio.cartago.gov.co/wp-content/uploads/2024/04/BOLETIN_ESTADISTICO-SEM_2024-FINAL.pdf",
+   "uso": "p. 16 (tabla: 12 IE oficiales con 29 sedes + 12 principales, 26 no oficiales, 5 CDI, 6 universidades, 1 SENA, 29 ETDH); p. 18 (41 sedes oficiales); p. 19 (29 sedes oficiales urbanas y 12 rurales); p. 27 (25 no oficiales, 24 urbanos). El propio boletín da 26 no oficiales en la tabla y 25 en el texto."
+  }
+ ],
+ "cabecera_usada": "DANE, Marco Geoestadístico Nacional 2018, zona urbana clase 1 (cabecera de Cartago). Es un solo polígono que llega hasta el área urbana de Zaragoza, así que los totales de la cabecera incluyen a Zaragoza",
+ "cabecera_incluye_zaragoza": {
+  "nota": "Según el MGN 2018 del DANE, la cabecera (clase 1) es un solo polígono que incluye el área urbana de Zaragoza. Los totales de 'cabecera DANE' (área verde, población 139.614 hab, m²/hab y acceso) incluyen a Zaragoza; en 'por_zona' Zaragoza aparece aparte.",
+  "celdas_zaragoza": 940,
+  "celdas_zaragoza_dentro_de_la_cabecera_dane": 883,
+  "poblacion_capa_zaragoza_dentro_de_la_cabecera_dane": 4165,
+  "area_verde_publica_zaragoza_dentro_de_la_cabecera_dane_m2": 6303
+ },
+ "limitaciones": [
+  "Todas las cifras de verde y equipamientos son 'mapeadas en OpenStreetMap' a la fecha de la descarga, no un inventario oficial; ver cobertura_frente_a_registros_oficiales y vacios_osm.",
+  "El acceso a ≤ 300 m de la cabecera va de 13,4 % a 70,9 % de la población según el umbral de tamaño (0,25–1 ha) y el verde sin mapear o no incluido (escenarios a, b y c); el orden de las comunas puede invertirse (ver 'sensibilidad').",
+  "Antes de usar estas cifras para priorizar inversión, contrastarlas con el inventario municipal de espacio público (diagnóstico del POT; Findeter 2022 reporta 224.800 m² de espacio público efectivo urbano).",
+  "La cabecera DANE (MGN 2018, clase 1) incluye el área urbana de Zaragoza; sus totales también.",
+  "El indicador ponderado por población usa la capa 'poblacion' de BioMap (modelada a partir del censo 2018 y anclada a DANE 2026), no un conteo por vivienda.",
+  "Se asume público el verde sin etiqueta 'access'; las exclusiones (institucionales, con tarifa, separadores viales) son reglas propias documentadas.",
+  "Distancia en línea recta, sin barreras; no mide calidad ni seguridad del verde.",
+  "m²/hab del verde de OSM no es comparable directamente con el índice de espacio público efectivo (15 m²/hab, Decreto 1504 de 1998), que incluye plazas y plazoletas.",
+  "Los equipamientos son puntos (centroide), no linderos; la consulta no incluyó healthcare=*.",
+  "Las cifras por zona dependen de las capas 'poblacion' y WorldCover de otros scripts; si se regeneran, conviene volver a ejecutar este script."
+ ],
+ "espacio_verde": {
+  "poligonos_candidatos": 66,
+  "poligonos_publicos": 53,
+  "poligonos_excluidos": [
+   {
+    "osm_id": "way/575720057",
+    "nombre": null,
+    "area_m2": 12279.5,
+    "acceso": "separador o franja vial (ancho medio ≈ 5.7 m; 100 % del borde a ≤ 10 m de vías principales); no es espacio recreativo"
+   },
+   {
+    "osm_id": "way/575720059",
+    "nombre": null,
+    "area_m2": 3587.7,
+    "acceso": "separador o franja vial (ancho medio ≈ 3.8 m; 100 % del borde a ≤ 10 m de vías principales); no es espacio recreativo"
+   },
+   {
+    "osm_id": "way/575720060",
+    "nombre": null,
+    "area_m2": 1262.8,
+    "acceso": "separador o franja vial (ancho medio ≈ 2.7 m; 100 % del borde a ≤ 10 m de vías principales); no es espacio recreativo"
+   },
+   {
+    "osm_id": "way/575720061",
+    "nombre": null,
+    "area_m2": 1928.9,
+    "acceso": "separador o franja vial (ancho medio ≈ 3.1 m; 100 % del borde a ≤ 10 m de vías principales); no es espacio recreativo"
+   },
+   {
+    "osm_id": "way/576495584",
+    "nombre": null,
+    "area_m2": 235.5,
+    "acceso": "separador o franja vial (ancho medio ≈ 1.9 m; 100 % del borde a ≤ 10 m de vías principales); no es espacio recreativo"
+   },
+   {
+    "osm_id": "way/1305319659",
+    "nombre": "Centro Recreacional Villa Sol",
+    "area_m2": 35308.2,
+    "acceso": "con tarifa (centro recreacional de caja de compensación)"
+   },
+   {
+    "osm_id": "way/1318891866",
+    "nombre": "Mister Mojarra",
+    "area_m2": 33795.4,
+    "acceso": "con tarifa (establecimiento comercial)"
+   },
+   {
+    "osm_id": "way/1425389262",
+    "nombre": null,
+    "area_m2": 653.4,
+    "acceso": "institucional (dentro de Corporación de estudios Tecnológicos del Norte del Valle, relation/10817733)"
+   },
+   {
+    "osm_id": "way/1425921963",
+    "nombre": null,
+    "area_m2": 660.3,
+    "acceso": "institucional (dentro de Hermanitas de los pobre \"Mi casa\", way/1425868658)"
+   },
+   {
+    "osm_id": "way/1425921964",
+    "nombre": null,
+    "area_m2": 317.6,
+    "acceso": "institucional (dentro de Hermanitas de los pobre \"Mi casa\", way/1425868658)"
+   },
+   {
+    "osm_id": "way/1425925930",
+    "nombre": null,
+    "area_m2": 428.8,
+    "acceso": "institucional (dentro de Hermanitas de los pobre \"Mi casa\", way/1425868658)"
+   },
+   {
+    "osm_id": "way/1426928057",
+    "nombre": null,
+    "area_m2": 6969.4,
+    "acceso": "institucional (dentro de Colegio María Auxiliadora, relation/10817767)"
+   },
+   {
+    "osm_id": "relation/17868037",
+    "nombre": null,
+    "area_m2": 843.7,
+    "acceso": "separador o franja vial (ancho medio ≈ 6.1 m; 100 % del borde a ≤ 10 m de vías principales); no es espacio recreativo"
+   }
+  ],
+  "componentes_publicos": 45,
+  "componentes_ge_025ha": 17,
+  "componentes_ge_05ha": 12,
+  "componentes_ge_1ha": 3,
+  "componentes_menores_de_100m2": 4,
+  "areas_de_los_5_componentes_mas_pequenos_m2": [
+   13,
+   46,
+   47,
+   50,
+   168
+  ],
+  "componentes_ge_05ha_detalle": [
+   {
+    "id": 12,
+    "nombres": [
+     "Parque de la Isleta"
+    ],
+    "area_ha": 6.01,
+    "n_poligonos": 5
+   },
+   {
+    "id": 22,
+    "nombres": [
+     "Parque de la Salud"
+    ],
+    "area_ha": 4.78,
+    "n_poligonos": 1
+   },
+   {
+    "id": 28,
+    "nombres": [
+     "Parque Lineal"
+    ],
+    "area_ha": 1.42,
+    "n_poligonos": 2
+   },
+   {
+    "id": 24,
+    "nombres": [],
+    "area_ha": 0.97,
+    "n_poligonos": 2
+   },
+   {
+    "id": 23,
+    "nombres": [
+     "Parque Bolívar"
+    ],
+    "area_ha": 0.97,
+    "n_poligonos": 1
+   },
+   {
+    "id": 45,
+    "nombres": [
+     "Parque Santa Ana"
+    ],
+    "area_ha": 0.82,
+    "n_poligonos": 1
+   },
+   {
+    "id": 26,
+    "nombres": [
+     "Parque de Villa Helena"
+    ],
+    "area_ha": 0.74,
+    "n_poligonos": 1
+   },
+   {
+    "id": 33,
+    "nombres": [],
+    "area_ha": 0.71,
+    "n_poligonos": 1
+   },
+   {
+    "id": 40,
+    "nombres": [],
+    "area_ha": 0.64,
+    "n_poligonos": 1
+   },
+   {
+    "id": 35,
+    "nombres": [
+     "Parque Zaragoza"
+    ],
+    "area_ha": 0.63,
+    "n_poligonos": 1
+   },
+   {
+    "id": 11,
+    "nombres": [
+     "Parque Jorge Eliecer Gaitan"
+    ],
+    "area_ha": 0.57,
+    "n_poligonos": 1
+   },
+   {
+    "id": 37,
+    "nombres": [],
+    "area_ha": 0.56,
+    "n_poligonos": 1
+   }
+  ],
+  "area_verde_publica_cabecera_dane_m2": 232913,
+  "area_verde_publica_cabecera_osm_m2": 226065,
+  "area_en_componentes_ge_05ha_cabecera_dane_m2": 188181,
+  "area_de_canchas_dentro_del_verde_publico_cabecera_m2": 2475,
+  "area_separadores_viales_excluidos_cabecera_m2": 4271,
+  "poblacion_cabecera_dane": {
+   "anio": 2026,
+   "hab": 139614,
+   "fuente": "DANE, PPED serie municipal por área 2018-2042 (actualizada 30-jul-2025)",
+   "nota": "la cabecera DANE incluye Zaragoza"
+  },
+  "m2_verde_publico_por_hab_cabecera": 1.67,
+  "contraste_inventario_municipal": {
+   "fuente": "Findeter (2022). Cartago, ciudad emblemática. Documento de diagnóstico, versión final, diciembre de 2022",
+   "url": "https://www.findeter.gov.co/system/files/internas/Diagnostico-PDA-Cartago.pdf",
+   "paginas": "p. 58 (según el diagnóstico del POT, 224.800 m² de espacio público efectivo en la zona urbana, con la plaza Simón Bolívar, el parque de la Isleta y el Parque Lineal Los Samanes); p. 60 (1,68 m²/hab al cierre de 2021 con 133.400 habitantes urbanos proyectados por el DANE)",
+   "espacio_publico_efectivo_urbano_m2": 224800,
+   "m2_hab_2021": 1.68,
+   "nota": "Concepto distinto (el espacio público efectivo incluye plazas y plazoletas; el verde de OSM incluye zonas de juego y jardines) y sin geometría disponible aquí: solo sirve para ver que el orden de magnitud del total coincide. No permite validar la distribución por comuna."
+  },
+  "referencia_15m2_hab_espacio_publico_efectivo": "no comparable directamente (ver referencias)",
+  "puntos_sin_area": [
+   {
+    "osm_id": "node/1240450505",
+    "tipo": "leisure=playground",
+    "nombre": "Bolos",
+    "lat": 4.751368,
+    "lon": -75.913308,
+    "etiquetas": {
+     "leisure": "playground",
+     "sport": "9pin"
+    }
+   }
+  ]
+ },
+ "acceso_oms": {
+  "cabecera_dane": {
+   "200m_0.25ha": {
+    "celdas_pct": 17.8,
+    "poblacion_pct": 26.0,
+    "poblacion_hab": 36161,
+    "poblacion_total_hab": 139267
+   },
+   "300m_0.25ha": {
+    "celdas_pct": 29.1,
+    "poblacion_pct": 42.5,
+    "poblacion_hab": 59230,
+    "poblacion_total_hab": 139267
+   },
+   "500m_0.25ha": {
+    "celdas_pct": 51.8,
+    "poblacion_pct": 72.0,
+    "poblacion_hab": 100213,
+    "poblacion_total_hab": 139267
+   },
+   "200m_0.5ha": {
+    "celdas_pct": 14.5,
+    "poblacion_pct": 20.6,
+    "poblacion_hab": 28678,
+    "poblacion_total_hab": 139267
+   },
+   "300m_0.5ha": {
+    "celdas_pct": 23.9,
+    "poblacion_pct": 34.8,
+    "poblacion_hab": 48487,
+    "poblacion_total_hab": 139267
+   },
+   "500m_0.5ha": {
+    "celdas_pct": 42.6,
+    "poblacion_pct": 62.3,
+    "poblacion_hab": 86697,
+    "poblacion_total_hab": 139267
+   },
+   "200m_1ha": {
+    "celdas_pct": 5.5,
+    "poblacion_pct": 7.9,
+    "poblacion_hab": 11057,
+    "poblacion_total_hab": 139267
+   },
+   "300m_1ha": {
+    "celdas_pct": 9.2,
+    "poblacion_pct": 13.4,
+    "poblacion_hab": 18714,
+    "poblacion_total_hab": 139267
+   },
+   "500m_1ha": {
+    "celdas_pct": 18.5,
+    "poblacion_pct": 30.2,
+    "poblacion_hab": 42071,
+    "poblacion_total_hab": 139267
+   },
+   "200m_cualquieraha": {
+    "celdas_pct": 26.5,
+    "poblacion_pct": 40.6,
+    "poblacion_hab": 56517,
+    "poblacion_total_hab": 139267
+   },
+   "300m_cualquieraha": {
+    "celdas_pct": 40.3,
+    "poblacion_pct": 62.5,
+    "poblacion_hab": 86975,
+    "poblacion_total_hab": 139267
+   },
+   "500m_cualquieraha": {
+    "celdas_pct": 61.5,
+    "poblacion_pct": 83.7,
+    "poblacion_hab": 116582,
+    "poblacion_total_hab": 139267
+   }
+  }
+ },
+ "sensibilidad": {
+  "indicador": "población a ≤ 300 m en línea recta, % (capa 'poblacion')",
+  "cabecera_dane": {
+   "base_05ha": {
+    "descripcion": "Verde público de OSM, componentes ≥ 0,5 ha (capa publicada)",
+    "celdas_pct": 23.9,
+    "poblacion_pct": 34.8,
+    "poblacion_hab": 48487,
+    "poblacion_total_hab": 139267
+   },
+   "umbral_025ha": {
+    "descripcion": "Componentes ≥ 0,25 ha (unidad mínima de Urban Atlas)",
+    "celdas_pct": 29.1,
+    "poblacion_pct": 42.5,
+    "poblacion_hab": 59230,
+    "poblacion_total_hab": 139267
+   },
+   "umbral_1ha": {
+    "descripcion": "Componentes ≥ 1 ha (indicador adicional de la OMS)",
+    "celdas_pct": 9.2,
+    "poblacion_pct": 13.4,
+    "poblacion_hab": 18714,
+    "poblacion_total_hab": 139267
+   },
+   "sin_umbral": {
+    "descripcion": "Cualquier tamaño (incluye jardineras de decenas de m²)",
+    "celdas_pct": 40.3,
+    "poblacion_pct": 62.5,
+    "poblacion_hab": 86975,
+    "poblacion_total_hab": 139267
+   },
+   "minimo_500m2": {
+    "descripcion": "Componentes ≥ 500 m²",
+    "celdas_pct": 36.7,
+    "poblacion_pct": 59.5,
+    "poblacion_hab": 82873,
+    "poblacion_total_hab": 139267
+   },
+   "minimo_1000m2": {
+    "descripcion": "Componentes ≥ 1000 m²",
+    "celdas_pct": 34.8,
+    "poblacion_pct": 55.9,
+    "poblacion_hab": 77840,
+    "poblacion_total_hab": 139267
+   },
+   "a_manchas_worldcover": {
+    "descripcion": "(a) Base + 11 manchas de vegetación intraurbana de WorldCover sin mapear, como si fueran parques públicos (cota superior: la OMS excluye vegetación sin manejo como área verde urbana)",
+    "celdas_pct": 34.8,
+    "poblacion_pct": 57.4,
+    "poblacion_hab": 79945,
+    "poblacion_total_hab": 139267
+   },
+   "b_bosques_osm": {
+    "descripcion": "(b) Base + 22 polígonos OSM natural=wood/scrub o landuse=forest ≥ 0,5 ha que tocan la cabecera (la OMS los incluye solo si lindan con ciudad por dos lados y tienen uso recreativo; no verificado)",
+    "celdas_pct": 52.3,
+    "poblacion_pct": 48.3,
+    "poblacion_hab": 67305,
+    "poblacion_total_hab": 139267
+   },
+   "c_con_tarifa": {
+    "descripcion": "(c) Verde público + centros recreativos con tarifa (Villasol y Mister Mojarra), ≥ 0,5 ha",
+    "celdas_pct": 28.4,
+    "poblacion_pct": 36.9,
+    "poblacion_hab": 51333,
+    "poblacion_total_hab": 139267
+   },
+   "abc_juntos": {
+    "descripcion": "(a+b+c) Los tres escenarios juntos (cota superior)",
+    "celdas_pct": 64.3,
+    "poblacion_pct": 70.9,
+    "poblacion_hab": 98755,
+    "poblacion_total_hab": 139267
+   }
+  },
+  "rango_cabecera_pct": [
+   13.4,
+   70.9
+  ],
+  "escenarios_en_el_rango": [
+   "base_05ha",
+   "umbral_025ha",
+   "umbral_1ha",
+   "a_manchas_worldcover",
+   "b_bosques_osm",
+   "c_con_tarifa",
+   "abc_juntos"
+  ],
+  "orden_de_las_zonas": {
+   "base_05ha": [
+    "Comuna 5",
+    "Comuna 6",
+    "Comuna 4",
+    "Zaragoza (corregimiento)",
+    "Comuna 7",
+    "Comuna 1",
+    "Comuna 3",
+    "Comuna 2"
+   ],
+   "umbral_025ha": [
+    "Comuna 5",
+    "Comuna 6",
+    "Comuna 4",
+    "Zaragoza (corregimiento)",
+    "Comuna 2",
+    "Comuna 7",
+    "Comuna 1",
+    "Comuna 3"
+   ],
+   "umbral_1ha": [
+    "Comuna 5",
+    "Comuna 4",
+    "Comuna 6",
+    "Comuna 1",
+    "Comuna 3",
+    "Comuna 2",
+    "Comuna 7",
+    "Zaragoza (corregimiento)"
+   ],
+   "sin_umbral": [
+    "Comuna 5",
+    "Comuna 6",
+    "Comuna 1",
+    "Comuna 4",
+    "Comuna 2",
+    "Zaragoza (corregimiento)",
+    "Comuna 7",
+    "Comuna 3"
+   ],
+   "minimo_500m2": [
+    "Comuna 5",
+    "Comuna 6",
+    "Comuna 1",
+    "Comuna 4",
+    "Comuna 2",
+    "Zaragoza (corregimiento)",
+    "Comuna 7",
+    "Comuna 3"
+   ],
+   "minimo_1000m2": [
+    "Comuna 5",
+    "Comuna 6",
+    "Comuna 4",
+    "Comuna 1",
+    "Comuna 2",
+    "Zaragoza (corregimiento)",
+    "Comuna 7",
+    "Comuna 3"
+   ],
+   "a_manchas_worldcover": [
+    "Comuna 5",
+    "Zaragoza (corregimiento)",
+    "Comuna 4",
+    "Comuna 6",
+    "Comuna 1",
+    "Comuna 7",
+    "Comuna 2",
+    "Comuna 3"
+   ],
+   "b_bosques_osm": [
+    "Comuna 5",
+    "Comuna 6",
+    "Comuna 1",
+    "Comuna 4",
+    "Comuna 7",
+    "Zaragoza (corregimiento)",
+    "Comuna 3",
+    "Comuna 2"
+   ],
+   "c_con_tarifa": [
+    "Comuna 5",
+    "Comuna 6",
+    "Comuna 4",
+    "Zaragoza (corregimiento)",
+    "Comuna 7",
+    "Comuna 1",
+    "Comuna 3",
+    "Comuna 2"
+   ],
+   "abc_juntos": [
+    "Comuna 5",
+    "Comuna 1",
+    "Comuna 6",
+    "Comuna 7",
+    "Zaragoza (corregimiento)",
+    "Comuna 4",
+    "Comuna 2",
+    "Comuna 3"
+   ]
+  },
+  "orden_cambia_respecto_a_la_base": {
+   "base_05ha": false,
+   "umbral_025ha": true,
+   "umbral_1ha": true,
+   "a_manchas_worldcover": true,
+   "b_bosques_osm": true,
+   "c_con_tarifa": false,
+   "abc_juntos": true
+  },
+  "bosques_osm_usados_en_b": [
+   {
+    "osm_id": "way/1305423653",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 14.47
+   },
+   {
+    "osm_id": "way/1364862754",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 11.33
+   },
+   {
+    "osm_id": "way/1303330603",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 10.63
+   },
+   {
+    "osm_id": "way/1305319654",
+    "etiqueta": "natural=scrub",
+    "nombre": null,
+    "area_ha": 6.31
+   },
+   {
+    "osm_id": "way/1304488344",
+    "etiqueta": "natural=scrub",
+    "nombre": null,
+    "area_ha": 6.22
+   },
+   {
+    "osm_id": "way/1303565268",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 6.22
+   },
+   {
+    "osm_id": "way/1303565269",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 6.12
+   },
+   {
+    "osm_id": "way/1304488346",
+    "etiqueta": "natural=scrub",
+    "nombre": null,
+    "area_ha": 5.01
+   },
+   {
+    "osm_id": "way/1303160604",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 4.47
+   },
+   {
+    "osm_id": "way/1304683699",
+    "etiqueta": "natural=scrub",
+    "nombre": null,
+    "area_ha": 2.56
+   },
+   {
+    "osm_id": "way/1304488343",
+    "etiqueta": "natural=scrub",
+    "nombre": null,
+    "area_ha": 2.19
+   },
+   {
+    "osm_id": "way/1303566138",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 1.68
+   },
+   {
+    "osm_id": "way/1305319657",
+    "etiqueta": "natural=scrub",
+    "nombre": null,
+    "area_ha": 1.29
+   },
+   {
+    "osm_id": "way/1303332275",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 1.25
+   },
+   {
+    "osm_id": "way/1305319656",
+    "etiqueta": "natural=scrub",
+    "nombre": null,
+    "area_ha": 1.18
+   },
+   {
+    "osm_id": "way/1303154997",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 1.12
+   },
+   {
+    "osm_id": "way/1303566139",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 1.03
+   },
+   {
+    "osm_id": "way/1305319655",
+    "etiqueta": "natural=scrub",
+    "nombre": null,
+    "area_ha": 1.01
+   },
+   {
+    "osm_id": "way/1303159842",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 0.77
+   },
+   {
+    "osm_id": "way/1303154993",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 0.74
+   },
+   {
+    "osm_id": "way/1303154994",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 0.68
+   },
+   {
+    "osm_id": "way/1431378571",
+    "etiqueta": "natural=wood",
+    "nombre": null,
+    "area_ha": 0.66
+   }
+  ],
+  "nota": "Los escenarios (a) y (b) son cotas superiores: suponen que esa vegetación es verde público utilizable, lo que no está verificado. 'sin_umbral' y los mínimos en m² no entran en el rango porque cuentan jardineras."
+ },
+ "por_zona": [
+  {
+   "id": "c1",
+   "nombre": "Comuna 1",
+   "area_verde_publica_m2": 5213,
+   "parques_ge_05ha_que_tocan": 0,
+   "distancia_mediana_celdas_m": 595,
+   "distancia_p90_celdas_m": 1055,
+   "distancia_mediana_poblacion_m": 453,
+   "acceso_300m_05ha": {
+    "celdas_pct": 18.5,
+    "poblacion_pct": 24.7,
+    "poblacion_hab": 5440,
+    "poblacion_total_hab": 22034
+   },
+   "canchas": 1,
+   "equipamientos_osm": {
+    "educacion": 2,
+    "salud": 2,
+    "emergencia_gobierno": 1
+   },
+   "poblacion_capa_hab": 22034,
+   "m2_verde_publico_por_hab": 0.24,
+   "sensibilidad_300m_poblacion_pct": {
+    "base_05ha": 24.7,
+    "umbral_025ha": 24.7,
+    "umbral_1ha": 6.1,
+    "sin_umbral": 80.8,
+    "minimo_500m2": 72.5,
+    "minimo_1000m2": 62.8,
+    "a_manchas_worldcover": 54.1,
+    "b_bosques_osm": 62.6,
+    "c_con_tarifa": 24.7,
+    "abc_juntos": 89.8
+   },
+   "sensibilidad_rango_pct": [
+    6.1,
+    89.8
+   ],
+   "posicion_base": 6,
+   "posicion_min_max_escenarios": [
+    2,
+    7
+   ]
+  },
+  {
+   "id": "c2",
+   "nombre": "Comuna 2",
+   "area_verde_publica_m2": 2967,
+   "parques_ge_05ha_que_tocan": 0,
+   "distancia_mediana_celdas_m": 742,
+   "distancia_p90_celdas_m": 1080,
+   "distancia_mediana_poblacion_m": 671,
+   "acceso_300m_05ha": {
+    "celdas_pct": 0.7,
+    "poblacion_pct": 0.4,
+    "poblacion_hab": 63,
+    "poblacion_total_hab": 14238
+   },
+   "canchas": 1,
+   "equipamientos_osm": {
+    "educacion": 1,
+    "emergencia_gobierno": 1
+   },
+   "poblacion_capa_hab": 14238,
+   "m2_verde_publico_por_hab": 0.21,
+   "sensibilidad_300m_poblacion_pct": {
+    "base_05ha": 0.4,
+    "umbral_025ha": 42.6,
+    "umbral_1ha": 0.3,
+    "sin_umbral": 61.0,
+    "minimo_500m2": 61.0,
+    "minimo_1000m2": 61.0,
+    "a_manchas_worldcover": 47.9,
+    "b_bosques_osm": 0.5,
+    "c_con_tarifa": 0.4,
+    "abc_juntos": 47.9
+   },
+   "sensibilidad_rango_pct": [
+    0.3,
+    47.9
+   ],
+   "posicion_base": 8,
+   "posicion_min_max_escenarios": [
+    5,
+    8
+   ]
+  },
+  {
+   "id": "c3",
+   "nombre": "Comuna 3",
+   "area_verde_publica_m2": 0,
+   "parques_ge_05ha_que_tocan": 0,
+   "distancia_mediana_celdas_m": 1025,
+   "distancia_p90_celdas_m": 1643,
+   "distancia_mediana_poblacion_m": 1224,
+   "acceso_300m_05ha": {
+    "celdas_pct": 3.1,
+    "poblacion_pct": 0.7,
+    "poblacion_hab": 98,
+    "poblacion_total_hab": 14328
+   },
+   "canchas": 1,
+   "equipamientos_osm": {
+    "educacion": 1
+   },
+   "poblacion_capa_hab": 14328,
+   "m2_verde_publico_por_hab": 0.0,
+   "sensibilidad_300m_poblacion_pct": {
+    "base_05ha": 0.7,
+    "umbral_025ha": 1.1,
+    "umbral_1ha": 0.7,
+    "sin_umbral": 1.6,
+    "minimo_500m2": 1.6,
+    "minimo_1000m2": 1.6,
+    "a_manchas_worldcover": 35.8,
+    "b_bosques_osm": 8.2,
+    "c_con_tarifa": 10.1,
+    "abc_juntos": 37.7
+   },
+   "sensibilidad_rango_pct": [
+    0.7,
+    37.7
+   ],
+   "posicion_base": 7,
+   "posicion_min_max_escenarios": [
+    5,
+    8
+   ]
+  },
+  {
+   "id": "c4",
+   "nombre": "Comuna 4",
+   "area_verde_publica_m2": 58905,
+   "parques_ge_05ha_que_tocan": 2,
+   "distancia_mediana_celdas_m": 338,
+   "distancia_p90_celdas_m": 748,
+   "distancia_mediana_poblacion_m": 298,
+   "acceso_300m_05ha": {
+    "celdas_pct": 43.0,
+    "poblacion_pct": 50.7,
+    "poblacion_hab": 11185,
+    "poblacion_total_hab": 22046
+   },
+   "canchas": 2,
+   "equipamientos_osm": {
+    "educacion": 3,
+    "emergencia_gobierno": 1
+   },
+   "poblacion_capa_hab": 22046,
+   "m2_verde_publico_por_hab": 2.67,
+   "sensibilidad_300m_poblacion_pct": {
+    "base_05ha": 50.7,
+    "umbral_025ha": 50.7,
+    "umbral_1ha": 38.6,
+    "sin_umbral": 71.2,
+    "minimo_500m2": 70.8,
+    "minimo_1000m2": 69.4,
+    "a_manchas_worldcover": 69.0,
+    "b_bosques_osm": 50.7,
+    "c_con_tarifa": 50.7,
+    "abc_juntos": 69.0
+   },
+   "sensibilidad_rango_pct": [
+    38.6,
+    69.0
+   ],
+   "posicion_base": 3,
+   "posicion_min_max_escenarios": [
+    2,
+    6
+   ]
+  },
+  {
+   "id": "c5",
+   "nombre": "Comuna 5",
+   "area_verde_publica_m2": 89231,
+   "parques_ge_05ha_que_tocan": 3,
+   "distancia_mediana_celdas_m": 144,
+   "distancia_p90_celdas_m": 289,
+   "distancia_mediana_poblacion_m": 173,
+   "acceso_300m_05ha": {
+    "celdas_pct": 91.8,
+    "poblacion_pct": 90.0,
+    "poblacion_hab": 4409,
+    "poblacion_total_hab": 4897
+   },
+   "canchas": 2,
+   "equipamientos_osm": {
+    "educacion": 3,
+    "emergencia_gobierno": 1,
+    "salud": 1
+   },
+   "poblacion_capa_hab": 4897,
+   "m2_verde_publico_por_hab": 18.22,
+   "sensibilidad_300m_poblacion_pct": {
+    "base_05ha": 90.0,
+    "umbral_025ha": 90.4,
+    "umbral_1ha": 63.0,
+    "sin_umbral": 100.0,
+    "minimo_500m2": 100.0,
+    "minimo_1000m2": 100.0,
+    "a_manchas_worldcover": 90.0,
+    "b_bosques_osm": 90.0,
+    "c_con_tarifa": 90.0,
+    "abc_juntos": 90.0
+   },
+   "sensibilidad_rango_pct": [
+    63.0,
+    90.4
+   ],
+   "posicion_base": 1,
+   "posicion_min_max_escenarios": [
+    1,
+    1
+   ]
+  },
+  {
+   "id": "c6",
+   "nombre": "Comuna 6",
+   "area_verde_publica_m2": 44965,
+   "parques_ge_05ha_que_tocan": 5,
+   "distancia_mediana_celdas_m": 271,
+   "distancia_p90_celdas_m": 621,
+   "distancia_mediana_poblacion_m": 251,
+   "acceso_300m_05ha": {
+    "celdas_pct": 54.9,
+    "poblacion_pct": 59.6,
+    "poblacion_hab": 15425,
+    "poblacion_total_hab": 25871
+   },
+   "canchas": 8,
+   "equipamientos_osm": {
+    "educacion": 8,
+    "salud": 3
+   },
+   "poblacion_capa_hab": 25871,
+   "m2_verde_publico_por_hab": 1.74,
+   "sensibilidad_300m_poblacion_pct": {
+    "base_05ha": 59.6,
+    "umbral_025ha": 73.4,
+    "umbral_1ha": 21.7,
+    "sin_umbral": 94.4,
+    "minimo_500m2": 86.2,
+    "minimo_1000m2": 84.8,
+    "a_manchas_worldcover": 62.8,
+    "b_bosques_osm": 74.0,
+    "c_con_tarifa": 59.6,
+    "abc_juntos": 76.4
+   },
+   "sensibilidad_rango_pct": [
+    21.7,
+    76.4
+   ],
+   "posicion_base": 2,
+   "posicion_min_max_escenarios": [
+    2,
+    4
+   ]
+  },
+  {
+   "id": "c7",
+   "nombre": "Comuna 7",
+   "area_verde_publica_m2": 24784,
+   "parques_ge_05ha_que_tocan": 2,
+   "distancia_mediana_celdas_m": 658,
+   "distancia_p90_celdas_m": 1200,
+   "distancia_mediana_poblacion_m": 445,
+   "acceso_300m_05ha": {
+    "celdas_pct": 13.6,
+    "poblacion_pct": 31.4,
+    "poblacion_hab": 9977,
+    "poblacion_total_hab": 31758
+   },
+   "canchas": 6,
+   "equipamientos_osm": {
+    "cuidado": 1,
+    "educacion": 4,
+    "salud": 1
+   },
+   "poblacion_capa_hab": 31758,
+   "m2_verde_publico_por_hab": 0.78,
+   "sensibilidad_300m_poblacion_pct": {
+    "base_05ha": 31.4,
+    "umbral_025ha": 34.9,
+    "umbral_1ha": 0.0,
+    "sin_umbral": 42.1,
+    "minimo_500m2": 41.8,
+    "minimo_1000m2": 34.9,
+    "a_manchas_worldcover": 54.1,
+    "b_bosques_osm": 48.6,
+    "c_con_tarifa": 36.1,
+    "abc_juntos": 76.0
+   },
+   "sensibilidad_rango_pct": [
+    0.0,
+    76.0
+   ],
+   "posicion_base": 5,
+   "posicion_min_max_escenarios": [
+    4,
+    7
+   ]
+  },
+  {
+   "id": "zaragoza",
+   "nombre": "Zaragoza (corregimiento)",
+   "area_verde_publica_m2": 6303,
+   "parques_ge_05ha_que_tocan": 1,
+   "distancia_mediana_celdas_m": 353,
+   "distancia_p90_celdas_m": 586,
+   "distancia_mediana_poblacion_m": 323,
+   "acceso_300m_05ha": {
+    "celdas_pct": 39.7,
+    "poblacion_pct": 44.7,
+    "poblacion_hab": 1899,
+    "poblacion_total_hab": 4247
+   },
+   "canchas": 1,
+   "equipamientos_osm": {},
+   "poblacion_capa_hab": 4247,
+   "m2_verde_publico_por_hab": 1.48,
+   "sensibilidad_300m_poblacion_pct": {
+    "base_05ha": 44.7,
+    "umbral_025ha": 44.7,
+    "umbral_1ha": 0.0,
+    "sin_umbral": 44.7,
+    "minimo_500m2": 44.7,
+    "minimo_1000m2": 44.7,
+    "a_manchas_worldcover": 70.5,
+    "b_bosques_osm": 44.7,
+    "c_con_tarifa": 44.7,
+    "abc_juntos": 70.5
+   },
+   "sensibilidad_rango_pct": [
+    0.0,
+    70.5
+   ],
+   "posicion_base": 4,
+   "posicion_min_max_escenarios": [
+    2,
+    8
+   ]
+  }
+ ],
+ "canchas": {
+  "n": 26,
+  "n_en_cabecera": 23,
+  "n_municipio_cartago": 23,
+  "area_total_m2": 52810,
+  "n_privadas": 3,
+  "n_dentro_de_verde_publico": 5,
+  "por_deporte": {
+   "sin dato": 14,
+   "multi": 3,
+   "futsal": 1,
+   "tennis": 2,
+   "soccer": 5,
+   "basketball": 1
+  },
+  "detalle": [
+   {
+    "osm_id": "way/126115885",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 7331,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/297669030",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 5280,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/577319929",
+    "nombre": null,
+    "deporte": "multi",
+    "access": "private",
+    "area_m2": 420,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/577319930",
+    "nombre": null,
+    "deporte": "multi",
+    "access": "private",
+    "area_m2": 376,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/654403876",
+    "nombre": "Polideportivo San Pablo",
+    "deporte": "futsal",
+    "access": "yes",
+    "area_m2": 579,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/654745393",
+    "nombre": null,
+    "deporte": "multi",
+    "access": null,
+    "area_m2": 463,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/712320807",
+    "nombre": "Club Campestre Cartago",
+    "deporte": "tennis",
+    "access": null,
+    "area_m2": 6851,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": "Club Campestre de Cartago: club social (S.A.) con planes de socios y pasadía pagado para no socios (https://co.fitfit.fitness/es/i/3586-club-campestre-cartago/)"
+   },
+   {
+    "osm_id": "way/732994874",
+    "nombre": null,
+    "deporte": "soccer",
+    "access": null,
+    "area_m2": 546,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/845314183",
+    "nombre": null,
+    "deporte": "soccer",
+    "access": null,
+    "area_m2": 456,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/866790356",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 432,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": true,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/866790357",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 406,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": true,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/866794925",
+    "nombre": null,
+    "deporte": "soccer",
+    "access": null,
+    "area_m2": 486,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1273134107",
+    "nombre": "Cancha Puerto Caldas",
+    "deporte": "soccer",
+    "access": "yes",
+    "area_m2": 6509,
+    "en_cabecera": false,
+    "dentro_de_verde_publico": false,
+    "municipio": "otro municipio",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1273139578",
+    "nombre": "Cancha  Los Almendros",
+    "deporte": null,
+    "access": null,
+    "area_m2": 4235,
+    "en_cabecera": false,
+    "dentro_de_verde_publico": false,
+    "municipio": "otro municipio",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1304488348",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 1915,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1305319658",
+    "nombre": null,
+    "deporte": "soccer",
+    "access": null,
+    "area_m2": 7002,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1361158579",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 602,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": true,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1364862755",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 821,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1367399053",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 406,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1372059984",
+    "nombre": null,
+    "deporte": "tennis",
+    "access": "private",
+    "area_m2": 590,
+    "en_cabecera": false,
+    "dentro_de_verde_publico": false,
+    "municipio": "otro municipio",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1425307265",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 605,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1425823317",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 406,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1425929939",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 222,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": true,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1444034661",
+    "nombre": "Polideportivo San Jeronimo",
+    "deporte": null,
+    "access": null,
+    "area_m2": 951,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "way/1449504201",
+    "nombre": null,
+    "deporte": null,
+    "access": null,
+    "area_m2": 4108,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": false,
+    "municipio": "Cartago",
+    "nota": null
+   },
+   {
+    "osm_id": "relation/10817736",
+    "nombre": null,
+    "deporte": "basketball",
+    "access": null,
+    "area_m2": 812,
+    "en_cabecera": true,
+    "dentro_de_verde_publico": true,
+    "municipio": "Cartago",
+    "nota": null
+   }
+  ]
+ },
+ "otras_coberturas_no_incluidas": {
+  "landuse=cemetery": {
+   "n": 4,
+   "area_total_m2": 75637,
+   "area_en_cabecera_m2": 75637
+  },
+  "landuse=forest": {
+   "n": 4,
+   "area_total_m2": 208791,
+   "area_en_cabecera_m2": 3075
+  },
+  "landuse=grass": {
+   "n": 8,
+   "area_total_m2": 519433,
+   "area_en_cabecera_m2": 519367
+  },
+  "landuse=meadow": {
+   "n": 1,
+   "area_total_m2": 73517,
+   "area_en_cabecera_m2": 73517
+  },
+  "natural=scrub": {
+   "n": 26,
+   "area_total_m2": 430264,
+   "area_en_cabecera_m2": 201577
+  },
+  "natural=wetland": {
+   "n": 1,
+   "area_total_m2": 34930,
+   "area_en_cabecera_m2": 0
+  },
+  "natural=wood": {
+   "n": 49,
+   "area_total_m2": 7719656,
+   "area_en_cabecera_m2": 343540
+  }
+ },
+ "equipamientos": {
+  "nota": "Conteos de equipamientos MAPEADOS EN OSM; OSM está muy incompleto (ver cobertura_frente_a_registros_oficiales).",
+  "elementos_osm": 53,
+  "tras_deduplicar": 41,
+  "por_categoria_extension": {
+   "educacion": 26,
+   "cuidado": 1,
+   "salud": 8,
+   "emergencia_gobierno": 6
+  },
+  "por_categoria_municipio_cartago": {
+   "educacion": 22,
+   "cuidado": 1,
+   "salud": 7,
+   "emergencia_gobierno": 4
+  },
+  "por_subtipo_extension": {
+   "cuidado/nursing_home": 1,
+   "educacion/college": 2,
+   "educacion/school": 21,
+   "educacion/university": 3,
+   "emergencia_gobierno/fire_station": 2,
+   "emergencia_gobierno/police": 3,
+   "emergencia_gobierno/townhall": 1,
+   "salud/clinic": 5,
+   "salud/hospital": 3
+  },
+  "por_subtipo_cabecera_dane": {
+   "cuidado/nursing_home": 1,
+   "educacion/college": 2,
+   "educacion/school": 17,
+   "educacion/university": 3,
+   "emergencia_gobierno/fire_station": 1,
+   "emergencia_gobierno/police": 2,
+   "emergencia_gobierno/townhall": 1,
+   "salud/clinic": 5,
+   "salud/hospital": 2
+  },
+  "cobertura_frente_a_registros_oficiales": {
+   "nota": "Conteos de OSM (municipio de Cartago, tras deduplicar) frente a registros oficiales. Un punto de OSM no equivale siempre a una sede: la razón es una estimación gruesa de cobertura, no un cruce uno a uno.",
+   "educacion_men": {
+    "fuente": "MEN, MEN_ESTABLECIMIENTOS_EDUCATIVOS_PREESCOLAR_BÁSICA_Y_MEDIA (datos.gov.co cfw5-qzt5, CC BY-SA 4.0)",
+    "consulta": "https://www.datos.gov.co/resource/cfw5-qzt5.json?%24select=a_o%2Csector%2Ccount%28%2A%29+AS+establecimientos%2Csum%28cantidad_sedes%29+AS+sedes&%24where=cod_dane_municipio%3D%2776147%27&%24group=a_o%2Csector&%24order=a_o",
+    "fecha_consulta": "2026-09-30",
+    "anio": 2025,
+    "por_sector": {
+     "NO_OFICIAL": {
+      "establecimientos": 23,
+      "sedes": 23
+     },
+     "OFICIAL": {
+      "establecimientos": 12,
+      "sedes": 42
+     }
+    },
+    "sedes_total_municipio": 65,
+    "osm_colegios_y_jardines_municipio": 17,
+    "cobertura_osm_pct": 26
+   },
+   "educacion_boletin_municipal": {
+    "fuente": "Secretaría de Educación Municipal de Cartago, Boletín Estadístico Sector Educación – Año 2023 (marzo de 2024, código MMDS.600.18.F.125)",
+    "url": "https://municipio.cartago.gov.co/wp-content/uploads/2024/04/BOLETIN_ESTADISTICO-SEM_2024-FINAL.pdf",
+    "paginas": "p. 16 (tabla: 12 IE oficiales con 29 sedes + 12 principales, 26 no oficiales, 5 CDI, 6 universidades, 1 SENA, 29 ETDH); p. 18 (41 sedes oficiales); p. 19 (29 sedes oficiales urbanas y 12 rurales); p. 27 (25 no oficiales, 24 urbanos). El propio boletín da 26 no oficiales en la tabla y 25 en el texto.",
+    "sedes_urbanas_oficiales": 29,
+    "establecimientos_urbanos_no_oficiales": 24,
+    "total_urbano": 53,
+    "osm_colegios_y_jardines_en_cabecera": 17,
+    "cobertura_osm_pct": 32,
+    "educacion_superior": {
+     "boletin_universidades": 6,
+     "boletin_sena": 1,
+     "osm_university_y_college": 5
+    },
+    "centros_desarrollo_infantil_boletin": 5
+   },
+   "salud_reps": {
+    "fuente": "MinSalud, Registro Especial de Prestadores y Sedes de Servicios de Salud (datos.gov.co c36g-9fc2, CC BY-SA 4.0)",
+    "consulta": "https://www.datos.gov.co/resource/c36g-9fc2.json?%24select=claseprestador%2Cnaturalezajuridica%2Cfecha_corte_reps%2Ccount%28%2A%29+AS+sedes&%24where=municipiosede%3D%2776147%27&%24group=claseprestador%2Cnaturalezajuridica%2Cfecha_corte_reps",
+    "fecha_consulta": "2026-09-30",
+    "corte": [
+     "Fecha corte REPS: Mar 12 2026  3:11PM"
+    ],
+    "sedes_por_clase": {
+     "Instituciones Prestadoras de Servicios de Salud - IPS": 63,
+     "Objeto Social Diferente a la Prestación de Servicios de Salud": 6,
+     "Profesional Independiente": 198,
+     "Transporte Especial de Pacientes": 8
+    },
+    "sedes_ips_publicas_ese": 11,
+    "osm_salud_municipio": 7,
+    "osm_consultorios_municipio": 0,
+    "cobertura_osm_ips_pct": 11,
+    "profesionales_independientes": 198
+   }
+  },
+  "duplicados_fusionados": [
+   {
+    "conserva": "way/1425868658",
+    "nombre": "Hermanitas de los pobre \"Mi casa\"",
+    "fusiona": [
+     "way/1432134950",
+     "way/1425921960",
+     "way/1425921961",
+     "way/1432134948",
+     "way/1425921962",
+     "way/1432134949",
+     "way/1425921965"
+    ],
+    "motivo": "way/1432134950 dentro del área; way/1425921960 dentro del área; way/1425921961 dentro del área; way/1432134948 dentro del área; way/1425921962 dentro del área; way/1432134949 dentro del área; way/1425921965 dentro del área"
+   },
+   {
+    "conserva": "way/1303302303",
+    "nombre": "I.E Indalecio Penilla",
+    "fusiona": [
+     "node/6517447986"
+    ],
+    "motivo": "node/6517447986 dentro del área"
+   },
+   {
+    "conserva": "relation/17538285",
+    "nombre": "Institución Educativa Carlos Castro Saavedra",
+    "fusiona": [
+     "way/1274952376"
+    ],
+    "motivo": "way/1274952376 dentro del área"
+   },
+   {
+    "conserva": "relation/10817821",
+    "nombre": "Clínica Comfandi Cartago",
+    "fusiona": [
+     "way/1304699066"
+    ],
+    "motivo": "way/1304699066 dentro del área"
+   },
+   {
+    "conserva": "relation/10670599",
+    "nombre": "Centro Administrativo Municipal Cartago",
+    "fusiona": [
+     "node/7184699023"
+    ],
+    "motivo": "node/7184699023 dentro del área"
+   },
+   {
+    "conserva": "way/1319630361",
+    "nombre": "Estación de Policia Puerto Caldas",
+    "fusiona": [
+     "node/4417728218"
+    ],
+    "motivo": "node/4417728218 dentro del área"
+   }
+  ],
+  "sin_nombre": [
+   "way/1304701491"
+  ],
+  "educacion_a_300m_de_verde_05ha": {
+   "municipio_cartago": "13 de 22",
+   "extension_de_la_rejilla": "13 de 26",
+   "nota": "La extensión incluye sedes de Puerto Caldas (Pereira) y la escuela de aviación del aeropuerto."
+  },
+  "cuidado_a_300m_de_verde_05ha": "0 de 1"
+ },
+ "vacios_osm": [
+  {
+   "tema": "Verde público sin nombre",
+   "evidencia": "33 de 49 polígonos de verde público de la cabecera no tienen 'name'",
+   "ids": [
+    "way/108230745",
+    "way/108231081",
+    "way/575720064",
+    "way/575720065",
+    "way/575720076",
+    "way/575720077",
+    "way/575720078",
+    "way/575720079",
+    "way/576105421",
+    "way/576105422",
+    "way/576105423",
+    "way/576495600",
+    "way/577319901",
+    "way/654745378",
+    "way/654745392",
+    "way/677335408",
+    "way/866781288",
+    "way/866790358",
+    "way/1303298072",
+    "way/1303302304",
+    "way/1303337382",
+    "way/1331455448",
+    "way/1425389260",
+    "way/1425389261",
+    "way/1425389263",
+    "way/1425927730",
+    "way/1425927731",
+    "way/1425929938",
+    "relation/10817769",
+    "relation/10817805",
+    "relation/10817806",
+    "relation/10843182",
+    "relation/17902441"
+   ]
+  },
+  {
+   "tema": "Separadores viales etiquetados como verde (leisure=garden/park)",
+   "evidencia": "6 polígonos, 20138 m² en total (4271 m² en la cabecera): way/575720057 (12280 m², ancho medio 5.7 m, junto a Vía Cerritos Cartago); way/575720059 (3588 m², ancho medio 3.8 m, junto a Vía Cerritos Cartago); way/575720061 (1929 m², ancho medio 3.1 m, junto a 25, Carrera 4A, Carrera 5, Variante Cartago); way/575720060 (1263 m², ancho medio 2.7 m, junto a 25, Variante Cartago); relation/17868037 (844 m², ancho medio 6.1 m, junto a Avenida del Río, Calle 10, Calle 9, Carrera 3); way/576495584 (235 m², ancho medio 1.9 m, junto a Calle 16)",
+   "nota": "Se excluyen del indicador y del área verde pública; en OSM convendría etiquetarlos como landuse=grass o area:highway, no como jardín."
+  },
+  {
+   "tema": "Acceso no declarado",
+   "evidencia": "53 de 53 polígonos públicos no tienen etiqueta 'access' (se asumieron públicos)"
+  },
+  {
+   "tema": "Verde solo como punto",
+   "evidencia": "1 elemento(s) de verde mapeado(s) como nodo, sin área",
+   "detalle": [
+    {
+     "osm_id": "node/1240450505",
+     "tipo": "leisure=playground",
+     "nombre": "Bolos",
+     "lat": 4.751368,
+     "lon": -75.913308,
+     "etiquetas": {
+      "leisure": "playground",
+      "sport": "9pin"
+     }
+    }
+   ]
+  },
+  {
+   "tema": "Zonas sin ningún verde público ≥ 0,5 ha mapeado",
+   "evidencia": "Comuna 1, Comuna 2, Comuna 3",
+   "nota": "Puede ser un déficit real o parques sin mapear; requiere verificación en campo o con el inventario municipal de espacio público (ver 'sensibilidad')."
+  },
+  {
+   "tema": "Escenarios deportivos con nombre fuera de cualquier parque mapeado",
+   "evidencia": "En Cartago, 2 escenarios públicos: Polideportivo San Pablo (way/654403876); Polideportivo San Jeronimo (way/1444034661). Además, 1 club con entrada paga: Club Campestre Cartago (way/712320807). Fuera del municipio, 2: Cancha Puerto Caldas (way/1273134107); Cancha  Los Almendros (way/1273139578)"
+  },
+  {
+   "tema": "Colegios sin nombre",
+   "evidencia": "1 de 22 sedes educativas mapeadas en Cartago sin 'name' (1 de 26 en toda la extensión)",
+   "ids": [
+    "way/1304701491"
+   ]
+  },
+  {
+   "tema": "Equipamientos sin mapear (cobertura frente a registros oficiales)",
+   "evidencia": "Educación: OSM tiene 17 colegios o jardines en el municipio de Cartago frente a 65 sedes de preescolar, básica y media del MEN (2025), una cobertura de ≈ 26 %. En la cabecera, 17 frente a 53 sedes urbanas (29 oficiales y 24 no oficiales, Boletín Estadístico municipal 2023): ≈ 32 %. Salud: OSM tiene 7 puntos de salud en Cartago frente a 63 sedes de IPS habilitadas en el REPS (corte 12-mar-2026), ≈ 11 %, más 198 profesionales independientes (OSM: 0 consultorios).",
+   "detalle": {
+    "nota": "Conteos de OSM (municipio de Cartago, tras deduplicar) frente a registros oficiales. Un punto de OSM no equivale siempre a una sede: la razón es una estimación gruesa de cobertura, no un cruce uno a uno.",
+    "educacion_men": {
+     "fuente": "MEN, MEN_ESTABLECIMIENTOS_EDUCATIVOS_PREESCOLAR_BÁSICA_Y_MEDIA (datos.gov.co cfw5-qzt5, CC BY-SA 4.0)",
+     "consulta": "https://www.datos.gov.co/resource/cfw5-qzt5.json?%24select=a_o%2Csector%2Ccount%28%2A%29+AS+establecimientos%2Csum%28cantidad_sedes%29+AS+sedes&%24where=cod_dane_municipio%3D%2776147%27&%24group=a_o%2Csector&%24order=a_o",
+     "fecha_consulta": "2026-09-30",
+     "anio": 2025,
+     "por_sector": {
+      "NO_OFICIAL": {
+       "establecimientos": 23,
+       "sedes": 23
+      },
+      "OFICIAL": {
+       "establecimientos": 12,
+       "sedes": 42
+      }
+     },
+     "sedes_total_municipio": 65,
+     "osm_colegios_y_jardines_municipio": 17,
+     "cobertura_osm_pct": 26
+    },
+    "educacion_boletin_municipal": {
+     "fuente": "Secretaría de Educación Municipal de Cartago, Boletín Estadístico Sector Educación – Año 2023 (marzo de 2024, código MMDS.600.18.F.125)",
+     "url": "https://municipio.cartago.gov.co/wp-content/uploads/2024/04/BOLETIN_ESTADISTICO-SEM_2024-FINAL.pdf",
+     "paginas": "p. 16 (tabla: 12 IE oficiales con 29 sedes + 12 principales, 26 no oficiales, 5 CDI, 6 universidades, 1 SENA, 29 ETDH); p. 18 (41 sedes oficiales); p. 19 (29 sedes oficiales urbanas y 12 rurales); p. 27 (25 no oficiales, 24 urbanos). El propio boletín da 26 no oficiales en la tabla y 25 en el texto.",
+     "sedes_urbanas_oficiales": 29,
+     "establecimientos_urbanos_no_oficiales": 24,
+     "total_urbano": 53,
+     "osm_colegios_y_jardines_en_cabecera": 17,
+     "cobertura_osm_pct": 32,
+     "educacion_superior": {
+      "boletin_universidades": 6,
+      "boletin_sena": 1,
+      "osm_university_y_college": 5
+     },
+     "centros_desarrollo_infantil_boletin": 5
+    },
+    "salud_reps": {
+     "fuente": "MinSalud, Registro Especial de Prestadores y Sedes de Servicios de Salud (datos.gov.co c36g-9fc2, CC BY-SA 4.0)",
+     "consulta": "https://www.datos.gov.co/resource/c36g-9fc2.json?%24select=claseprestador%2Cnaturalezajuridica%2Cfecha_corte_reps%2Ccount%28%2A%29+AS+sedes&%24where=municipiosede%3D%2776147%27&%24group=claseprestador%2Cnaturalezajuridica%2Cfecha_corte_reps",
+     "fecha_consulta": "2026-09-30",
+     "corte": [
+      "Fecha corte REPS: Mar 12 2026  3:11PM"
+     ],
+     "sedes_por_clase": {
+      "Instituciones Prestadoras de Servicios de Salud - IPS": 63,
+      "Objeto Social Diferente a la Prestación de Servicios de Salud": 6,
+      "Profesional Independiente": 198,
+      "Transporte Especial de Pacientes": 8
+     },
+     "sedes_ips_publicas_ese": 11,
+     "osm_salud_municipio": 7,
+     "osm_consultorios_municipio": 0,
+     "cobertura_osm_ips_pct": 11,
+     "profesionales_independientes": 198
+    }
+   }
+  },
+  {
+   "tema": "Zonas verdes sin uso declarado (landuse=grass)",
+   "evidencia": "8 polígonos landuse=grass: 3 dentro del aeródromo (49.0 ha, no son espacio público) y 5 en el resto (29347 m²). Estos últimos pueden ser separadores, lotes o zonas verdes públicas no etiquetadas como parque.",
+   "ids_fuera_del_aerodromo": [
+    {
+     "osm_id": "way/1367342815",
+     "area_m2": 1336,
+     "comuna": "Comuna 5"
+    },
+    {
+     "osm_id": "way/1367399052",
+     "area_m2": 9127,
+     "comuna": "Comuna 4"
+    },
+    {
+     "osm_id": "way/1367399054",
+     "area_m2": 15352,
+     "comuna": "Comuna 4"
+    },
+    {
+     "osm_id": "relation/10843673",
+     "area_m2": 2855,
+     "comuna": "Comuna 2"
+    },
+    {
+     "osm_id": "relation/17902429",
+     "area_m2": 676,
+     "comuna": "Comuna 5"
+    }
+   ]
+  },
+  {
+   "tema": "Etiquetado dudoso",
+   "evidencia": [
+    "node/1240450505 'Bolos' etiquetado leisure=playground con sport=9pin (parece una cancha de bolo)",
+    "way/1170413417 'Puesto de Salud Puerto Caldas' etiquetado como hospital: por su nombre es un puesto de salud",
+    "node/8474141918 'The flying cockpits' etiquetado amenity=school: parece una escuela de aviación",
+    "way/1273139580 nombre con errata: 'Parqure los Almendros'"
+   ]
+  },
+  {
+   "tema": "Equipamiento nombrado en las vías pero ausente o con otro nombre",
+   "evidencia": "la vía way/1302349097 'Urgencias Hospital San Juan de Dios' nombra una institución que no existe con ese nombre en la descarga; el equipamiento más cercano es way/575720026 'Hospital Sagrado Corazón de Jesús' (hospital) a 0 m",
+   "detalle": [
+    {
+     "via": "way/1302349097",
+     "nombre_via": "Urgencias Hospital San Juan de Dios",
+     "institucion_nombrada": "Hospital San Juan de Dios",
+     "equipamiento_mas_cercano": {
+      "osm_id": "way/575720026",
+      "nombre": "Hospital Sagrado Corazón de Jesús",
+      "subtipo": "hospital",
+      "distancia_m": 0
+     }
+    }
+   ],
+   "nota": "Para el caso del hospital: un directorio web (Waze) ubica el 'Hospital de San Juan de Dios' en la Carrera 3ª B # 1-80, junto a la dirección OSM de la IPS Municipal (Carrera 3 Bis # 1-40); 'Sagrado Corazón de Jesús' es el nombre con que El Tiempo (26-dic-1996) reseña la conversión del hospital de Cartago en empresa del Estado. Probable nombre desactualizado en OSM; no verificado en campo. Fuentes: https://www.waze.com/live-map/directions/hospital-de-san-juan-de-dios-carrera-3a-b-1-80-cartago?to=place.w.186187824.1861878235.1454888 ; https://www.eltiempo.com/archivo/documento/MAM-667482"
+  },
+  {
+   "tema": "Vegetación intraurbana sin ningún polígono OSM (pista de zonas verdes sin mapear)",
+   "evidencia": "11 manchas de 0,5–5 ha dentro de la cabecera, rodeadas de construcción (≥ 70 % construido en un anillo de ≈ 80 m) y con ≥ 50 % de árboles + pasto según ESA WorldCover 2021, que no tocan ningún polígono de la descarga OSM; suman 15.6 ha",
+   "nota": "No prueba que sean parques: pueden ser lotes, patios o predios privados (la OMS excluye la vegetación sin manejo rodeada de ciudad). Sirve para priorizar la revisión en campo o en el inventario municipal de espacio público. Su efecto en el indicador está en 'sensibilidad' (a).",
+   "manchas": [
+    {
+     "lat": 4.73693,
+     "lon": -75.91167,
+     "area_ha": 4.14,
+     "construido_alrededor_pct": 88,
+     "comuna": "Comuna 3",
+     "dist_verde_publico_05ha_m": 172
+    },
+    {
+     "lat": 4.75235,
+     "lon": -75.92363,
+     "area_ha": 2.68,
+     "construido_alrededor_pct": 81,
+     "comuna": "Comuna 6",
+     "dist_verde_publico_05ha_m": 40
+    },
+    {
+     "lat": 4.76148,
+     "lon": -75.93595,
+     "area_ha": 1.61,
+     "construido_alrededor_pct": 93,
+     "comuna": "Comuna 7",
+     "dist_verde_publico_05ha_m": 185
+    },
+    {
+     "lat": 4.74255,
+     "lon": -75.91448,
+     "area_ha": 1.23,
+     "construido_alrededor_pct": 91,
+     "comuna": "Comuna 4",
+     "dist_verde_publico_05ha_m": 42
+    },
+    {
+     "lat": 4.73378,
+     "lon": -75.91522,
+     "area_ha": 1.15,
+     "construido_alrededor_pct": 78,
+     "comuna": "Comuna 3",
+     "dist_verde_publico_05ha_m": 497
+    },
+    {
+     "lat": 4.76021,
+     "lon": -75.93369,
+     "area_ha": 0.92,
+     "construido_alrededor_pct": 93,
+     "comuna": "Comuna 7",
+     "dist_verde_publico_05ha_m": 227
+    },
+    {
+     "lat": 4.74804,
+     "lon": -75.90225,
+     "area_ha": 0.92,
+     "construido_alrededor_pct": 94,
+     "comuna": "Comuna 1",
+     "dist_verde_publico_05ha_m": 499
+    },
+    {
+     "lat": 4.73853,
+     "lon": -75.91033,
+     "area_ha": 0.84,
+     "construido_alrededor_pct": 82,
+     "comuna": "Comuna 3",
+     "dist_verde_publico_05ha_m": 218
+    },
+    {
+     "lat": 4.73675,
+     "lon": -75.91445,
+     "area_ha": 0.77,
+     "construido_alrededor_pct": 90,
+     "comuna": "Comuna 4",
+     "dist_verde_publico_05ha_m": 174
+    },
+    {
+     "lat": 4.69847,
+     "lon": -75.92792,
+     "area_ha": 0.77,
+     "construido_alrededor_pct": 90,
+     "comuna": "Zaragoza (corregimiento)",
+     "dist_verde_publico_05ha_m": 233
+    },
+    {
+     "lat": 4.73994,
+     "lon": -75.909,
+     "area_ha": 0.61,
+     "construido_alrededor_pct": 82,
+     "comuna": "Comuna 2",
+     "dist_verde_publico_05ha_m": 324
+    }
+   ]
+  }
+ ],
+ "verificacion": {
+  "puntos_control": {
+   "Parque Bolívar (centro)": {
+    "lat": 4.7497,
+    "lon": -75.9132,
+    "distancia_verde_m": 0.0,
+    "distancia_verde_025ha_m": 0.0,
+    "distancia_verde_todos_m": 0.0
+   },
+   "Aeropuerto Santa Ana": {
+    "lat": 4.7601,
+    "lon": -75.9545,
+    "distancia_verde_m": 556.064697265625,
+    "distancia_verde_025ha_m": 556.064697265625,
+    "distancia_verde_todos_m": 556.064697265625
+   },
+   "Rural suroccidente": {
+    "lat": 4.7,
+    "lon": -75.975,
+    "distancia_verde_m": 5476.33984375,
+    "distancia_verde_025ha_m": 5476.33984375,
+    "distancia_verde_todos_m": 5476.33984375
+   },
+   "Rural nororiente (otra orilla del La Vieja)": {
+    "lat": 4.79,
+    "lon": -75.87,
+    "distancia_verde_m": 5913.56005859375,
+    "distancia_verde_025ha_m": 5913.56005859375,
+    "distancia_verde_todos_m": 556.5633544921875
+   },
+   "Río La Vieja (10 puntos del eje)": {
+    "min_m": 294.83837890625,
+    "mediana_m": 2040.9340209960938,
+    "max_m": 6241.89599609375
+   },
+   "Río La Vieja frente al Parque de la Isleta": {
+    "lat": 4.75306,
+    "lon": -75.91036,
+    "distancia_verde_m": 27.846981048583984,
+    "distancia_eje_rio_a_parque_m": 13
+   }
+  },
+  "comprobaciones": [
+   "Consulta Overpass vs archivo: 267 de 267 elementos cumplen algún filtro de la consulta y 267 tocan la caja (4.688, -75.985, 4.795, -75.855) → OK",
+   "Orientación: 12 de 12 componentes ≥0,5 ha caen en celdas con distancia ≤ 20 m; con las filas invertidas, 0. Más al sur: Parque Zaragoza (4.6989, fila 384); más al norte: sin nombre (4.7633, fila 126) → OK",
+   "PNG decodificada (v=R*256+G; valor=(v-1)*1+0) vs .npy: diferencia máxima 0.500 m frente al valor continuo y 0 m frente a round(.npy) → OK; celdas sin dato 0; B única [0], A única [255]",
+   "Rango distancia_verde: 0–7801 m; 0,25 ha 0–7643 m; todos 0–7643 m; todos ≤ 0,25 ha ≤ 0,5 ha ≤ 1 ha en todas las celdas: True",
+   "Celdas con distancia 0 (dentro de parques ≥0,5 ha): 248, ≈ 19.0 ha; área vectorial de esos componentes 18.8 ha",
+   "Colores del visor (misma interpolación que js/datos.js): 100 m #77c361, 250 m #e1f2a3, 299 m #feffbe, 300 m #ffffbf, 301 m #fffebe, 400 m #fec980, 450 m #fdae61, 600 m #d73027: el centro neutro cae en 300 m",
+   "Celda (364,331) lat 4.70388 lon -75.90212: capa 2561.8 m, cálculo directo 2561.8 m",
+   "Celda (218,140) lat 4.74038 lon -75.94988: capa 2388.8 m, cálculo directo 2388.8 m",
+   "Celda (131,21) lat 4.76213 lon -75.97962: capa 3311.9 m, cálculo directo 3311.9 m",
+   "Población de la capa 'poblacion' en las celdas de la cabecera DANE: 139,267 hab (DANE 2026: 139,614 hab; la diferencia viene de celdas del borde, ver anclaje en datos/series/poblacion.json)"
+  ],
+  "estadisticas_capa": {
+   "extension": {
+    "min": 0.0,
+    "p10": 812.1376,
+    "media": 3101.3621,
+    "p50": 2980.3612,
+    "p90": 5594.5073,
+    "max": 7800.9409,
+    "celdas": 222560
+   },
+   "cabecera_urbana": {
+    "min": 0.0,
+    "p10": 132.4126,
+    "media": 580.879,
+    "p50": 522.777,
+    "p90": 1120.7725,
+    "max": 2075.7668,
+    "celdas": 19878
+   }
+  }
+ },
+ "problemas": [],
+ "fecha_proceso": "2026-09-30"
+}

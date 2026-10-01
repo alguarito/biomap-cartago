@@ -1,0 +1,587 @@
+{
+ "titulo": "Vegetación (NDVI) en meses de temporada seca 2024–2025",
+ "descripcion": "Verdor típico de la vegetación en los meses de temporada seca del calendario (diciembre–febrero y junio–agosto) de 2024 y 2025. En esos dos años casi no se diferencia de la capa anual (varios de esos meses llovieron más de lo normal y el verdor responde a la lluvia con uno o dos meses de retraso), así que no sirve para señalar zonas que pierden verdor por falta de lluvia.",
+ "unidad": "NDVI (adimensional, −1 a 1)",
+ "fuente": {
+  "nombre": "Copernicus Sentinel-2 L2A (ESA/UE), COG de Element 84 en AWS Open Data (Earth Search)",
+  "url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a",
+  "licencia": "Datos Copernicus Sentinel: acceso libre y abierto (Aviso legal de uso de datos Sentinel de Copernicus; Reglamento Delegado (UE) 1159/2013)",
+  "cita": "Contiene datos modificados de Copernicus Sentinel [2024–2025], procesados por BioMap Cartago"
+ },
+ "periodo": "meses 12, 1, 2, 6, 7 y 8 entre 2024-01-01 y 2025-12-31 (74 adquisiciones)",
+ "resolucion_original_m": 10,
+ "procesamiento": [
+  "Catálogo STAC de Earth Search (colección sentinel-2-l2a), 2024-01-01/2025-12-31, sin filtro de nubes en la consulta: 684 items de las teselas MGRS 18NUL y 18NVL. Se consideran los 476 con nubosidad de tesela < 90 % (eo:cloud_cover se calcula sobre la tesela de 110 km, de la que la zona es ≈ 1,4 %); la selección real la hace la SCL local. Lista de IDs versionada en scripts/sentinel2_items.json.",
+  "Mosaico por adquisición de las dos teselas y de los datastrips de una misma tesela, con 18NUL primero y, dentro de cada tesela, el item que más cubre la zona: 264 adquisiciones (plataforma+fecha+órbita) con dato en la zona. Cuando una tesela tiene dos items el mismo día (_0 y _1/_2) son datastrips distintos de la misma pasada (distinto datastrip_id y hora de inicio), no reprocesos; en la zona se solapan con 95–99 % de acuerdo en la SCL, y tomar el que más cubre evita costuras entre dos corridas de Sen2Cor.",
+  "Máscara SCL (20 m, ampliada a 10 m): válidas las clases [4, 5, 6] (vegetación, no vegetado, agua); se descartan 0–3 y 8–11. La clase 7 (sin clasificar, «clouds low probability / unclassified» en la documentación de Copernicus) también se descarta: es el 0.74 % de las observaciones (clases 1–11) de las adquisiciones usadas, así que la decisión casi no cambia el resultado.",
+  "Además se descartan los píxeles a menos de 40 m de nube, sombra de nube o cirro (clases 3, 8, 9, 10), porque los bordes de nube suelen escapar a la SCL (criterio propio).",
+  "Se usan todas las adquisiciones cuya parte de la zona cubierta tenga ≥ 50 % de píxeles válidos: 132 de 264; 132 descargadas por completo y usadas. Fechas por mes calendario (2024+2025): {1: 20, 2: 6, 3: 11, 4: 11, 5: 7, 6: 6, 7: 15, 8: 11, 9: 12, 10: 9, 11: 8, 12: 16}.",
+  "Solo se descargaron los bloques internos del COG (1024×1024 px) con al menos 2000 píxeles válidos en la zona (red lenta); los demás píxeles de esas escenas no se usan. 132 items aportaron píxeles, de 267 items en las adquisiciones usadas (el resto solo cubre zonas nubladas o ya cubiertas por el otro item de la misma pasada).",
+  "Reflectancia = DN × 0,0001. Los productos son baseline 05.10/05.11 (BOA_ADD_OFFSET = −1000 en sus metadatos de ESA), pero Earth Search ya restó ese offset a los DN de los COG (propiedad earthsearch:boa_offset_applied = true), aunque 'raster:bands' sigue declarando offset −0,1: aplicarlo restaría dos veces. Se verificó por item (DN del rojo en vegetación) y contra Planetary Computer; si un COG conservara los DN originales se usaría DN × 0,0001 − 0,1. Ver 'evidencia_offset'.",
+  "Los COG de Earth Search recortan a DN = 1 las reflectancias que tras el offset serían ≤ 0 (comparación con Planetary Computer: DN 931 → 1). DN ≤ 1 en B04 o B08 se trata como dato censurado y se descarta: 0.33 % de los píxeles válidos por SCL, 3.9 % de los de agua (SCL 6).",
+  "NDVI = (B08 − B04)/(B08 + B04) por escena a 10 m; se descartan píxeles con reflectancia ≤ 0 en alguna banda.",
+  "Bruma: se calcula el AOT de Sen2Cor (asset 'aot', 550 nm; el COG es de 60 m aunque el STAC declare 20 m, y se lee con su propia georreferenciación) mediano de cada fecha (rango 0.084–0.379). Ninguna fecha supera Q3 + 1,5·IQR (0.466; criterio propio), así que no se excluye ninguna escena por bruma. El AOT no explica bien las fechas de NDVI bajo (r = -0.268 con el NDVI rural por fecha).",
+  "Solo adquisiciones de diciembre–febrero y junio–agosto: aproximación por meses calendario de las dos temporadas secas del valle del río Cauca (16 dic–15 feb y 16 jun–26 ago según Cortés y Barrios, Cenicaña, Carta Trimestral 3-4/2010; 14 estaciones del valle cañero; se asume válido para Cartago).",
+  "Mediana por píxel de 10 m; se exige N ≥ 3 observaciones.",
+  "Promedio ponderado por área (GDAL «average») a la rejilla común de 0,00025° (≈ 27,7 m)."
+ ],
+ "limitaciones": [
+  "Mediana de reflectancia de superficie Sen2Cor sin corrección BRDF ni armonización entre S2A, S2B y S2C; NDVI mide verdor, no es lo mismo que cobertura arbórea.",
+  "La máscara SCL de Sen2Cor puede dejar pasar bruma y sombras finas; la mediana y el margen de 40 m reducen, pero no eliminan, ese efecto. El AOT de Sen2Cor no detecta toda la bruma o el humo (p. ej., de quemas).",
+  "Cada celda de ≈ 27,7 m promedia ≈ 7,7 píxeles de 10 m: en el cauce del río y en calles arboladas se mezclan agua, vegetación y techos.",
+  "El número de observaciones no es uniforme (capa ndvi_n): baja de oeste a este (N mediano 114 al occidente de −75,93° y 43 al oriente de −75,88°) porque el borde de la franja de barrido de la órbita relativa 068 cruza la zona y solo las pasadas de la órbita 025 la cubren entera; también es menor en el agua (reflectancias censuradas) y junto a techos muy brillantes confundidos con nube.",
+  "Los meses lluviosos aportan menos fechas despejadas: en el píxel típico el 56 % de las observaciones son de meses de temporada seca (dic–feb, jun–ago, que son la mitad del año); la mediana pesa algo más esas épocas.",
+  "En el agua se descartan las observaciones con reflectancia censurada (DN ≤ 1, 4 % de las de SCL 6, casi todas por el NIR: 14492 de 14497): las que quedan tienen NIR algo mayor, así que el NDVI del agua queda sesgado hacia valores menos negativos. En tierra (SCL 4–5) el rojo está censurado en el 0.31 % de las observaciones (vegetación muy oscura); descartarlas baja muy poco el NDVI de esas zonas.",
+  "Menos observaciones que la capa anual (resumen en 'n_obs_celda_seco'); 2024 y 2025 no fueron años climáticamente idénticos.",
+  "No muestra contraste estacional en 2024–2025: frente a la capa anual la diferencia mediana es +0.010 fuera de la cabecera y +0.003 en ella; solo el 1.7 % de las celdas rurales baja más de 0,05 y el 6.6 % sube más de 0,05. No es una capa de estrés hídrico.",
+  "La capa anual ya está cargada hacia los meses secos (en el píxel típico el 56 % de sus observaciones son de esos meses), lo que reduce el contraste.",
+  "Meses calendario sin desfase, aunque el verdor responde con retraso a la lluvia: con CHIRPS v3 (producto 'clima'), el NDVI rural mensual de 2024–2025 se correlaciona r = 0.2 con la lluvia del mismo mes, r = 0.569 con la del mes anterior y r = 0.673 con la acumulada de los dos meses previos (24 meses; indicativo). Ver 'diagnostico_lluvia_chirps'.",
+  "Además, en 2024–2025 varios meses de la ventana seca llovieron más que su normal 1991–2020 (CHIRPS): 2024-06 191 mm (normal 122), 2024-12 183 mm (normal 108), 2025-02 214 mm (normal 100), 2025-06 171 mm (normal 122), 2025-08 182 mm (normal 98)."
+ ],
+ "rango_visual": [
+  0.0,
+  0.9
+ ],
+ "paleta": [
+  "#8c6d31",
+  "#d6c27c",
+  "#c3df8f",
+  "#5aa95a",
+  "#1b5e20"
+ ],
+ "interpretacion": "Umbrales orientativos del USGS («NDVI, the Foundation for Remote Sensing Phenology»): ≤ 0,1 roca, arena o superficies sin vegetación (en la ciudad: techos, pavimento, agua); ≈ 0,2–0,5 vegetación dispersa, pastos o cultivos en senescencia; ≈ 0,6–0,9 vegetación densa (bosques, cultivos en pleno desarrollo). Son rangos generales, no calibrados para Cartago.",
+ "evidencia_offset": {
+  "dn_rojo_vegetacion_scl4": {
+   "p01": 80.0,
+   "p50": 516.0,
+   "p99": 1406.0,
+   "frac_menor_1000": 0.92033,
+   "muestras": 1415949
+  },
+  "dn_nir_agua_scl6_sin_censurados": {
+   "p01": 16.0,
+   "p50": 415.0,
+   "p99": 2810.52001953125,
+   "frac_menor_1000": 0.86846,
+   "muestras": 160275
+  },
+  "censura_dn_1": {
+   "validos_scl": 161933507,
+   "censurados": 531034,
+   "validos_agua_scl6": 369113,
+   "censurados_agua_scl6": 14497,
+   "censurados_agua_nir": 14492,
+   "validos_tierra_scl4_5": 161564394,
+   "censurados_tierra_rojo": 496675,
+   "frac_censurados": 0.00328,
+   "frac_censurados_agua": 0.0393,
+   "frac_rojo_censurado_tierra": 0.00307
+  },
+  "prueba_fisica_por_item": {
+   "criterio": "fracción de píxeles SCL 4 (vegetación) con DN rojo < 1000: > 0,5 ⇒ offset ya restado en el COG; < 0,02 ⇒ DN originales de ESA (+1000)",
+   "items": 132,
+   "coinciden_con_bandera": 127,
+   "contradicen_bandera": [
+    {
+     "item": "S2C_18NUL_20241216_1_L2A",
+     "boa_offset_applied": false,
+     "frac_dn_rojo_veg_menor_1000": 0.9538,
+     "pixeles_veg": 912857,
+     "veredicto_fisico": true,
+     "offset_restado_en_cog": true,
+     "coincide": false
+    },
+    {
+     "item": "S2C_18NUL_20250122_0_L2A",
+     "boa_offset_applied": false,
+     "frac_dn_rojo_veg_menor_1000": 0.9354,
+     "pixeles_veg": 1411368,
+     "veredicto_fisico": true,
+     "offset_restado_en_cog": true,
+     "coincide": false
+    },
+    {
+     "item": "S2C_18NUL_20250125_0_L2A",
+     "boa_offset_applied": false,
+     "frac_dn_rojo_veg_menor_1000": 0.9725,
+     "pixeles_veg": 949320,
+     "veredicto_fisico": true,
+     "offset_restado_en_cog": true,
+     "coincide": false
+    },
+    {
+     "item": "S2B_18NUL_20250219_0_L2A",
+     "boa_offset_applied": false,
+     "frac_dn_rojo_veg_menor_1000": 0.9659,
+     "pixeles_veg": 609080,
+     "veredicto_fisico": true,
+     "offset_restado_en_cog": true,
+     "coincide": false
+    },
+    {
+     "item": "S2B_18NUL_20250308_0_L2A",
+     "boa_offset_applied": false,
+     "frac_dn_rojo_veg_menor_1000": 0.8968,
+     "pixeles_veg": 920196,
+     "veredicto_fisico": true,
+     "offset_restado_en_cog": true,
+     "coincide": false
+    }
+   ],
+   "sin_veredicto": [],
+   "bandera_false": [
+    {
+     "item": "S2C_18NUL_20241216_1_L2A",
+     "boa_offset_applied": false,
+     "frac_dn_rojo_veg_menor_1000": 0.9538,
+     "pixeles_veg": 912857,
+     "veredicto_fisico": true,
+     "offset_restado_en_cog": true,
+     "coincide": false
+    },
+    {
+     "item": "S2C_18NUL_20250122_0_L2A",
+     "boa_offset_applied": false,
+     "frac_dn_rojo_veg_menor_1000": 0.9354,
+     "pixeles_veg": 1411368,
+     "veredicto_fisico": true,
+     "offset_restado_en_cog": true,
+     "coincide": false
+    },
+    {
+     "item": "S2C_18NUL_20250125_0_L2A",
+     "boa_offset_applied": false,
+     "frac_dn_rojo_veg_menor_1000": 0.9725,
+     "pixeles_veg": 949320,
+     "veredicto_fisico": true,
+     "offset_restado_en_cog": true,
+     "coincide": false
+    },
+    {
+     "item": "S2B_18NUL_20250219_0_L2A",
+     "boa_offset_applied": false,
+     "frac_dn_rojo_veg_menor_1000": 0.9659,
+     "pixeles_veg": 609080,
+     "veredicto_fisico": true,
+     "offset_restado_en_cog": true,
+     "coincide": false
+    },
+    {
+     "item": "S2B_18NUL_20250308_0_L2A",
+     "boa_offset_applied": false,
+     "frac_dn_rojo_veg_menor_1000": 0.8968,
+     "pixeles_veg": 920196,
+     "veredicto_fisico": true,
+     "offset_restado_en_cog": true,
+     "coincide": false
+    }
+   ]
+  },
+  "comparacion_planetary_computer": [
+   {
+    "item_earth_search": "S2B_18NUL_20240830_0_L2A",
+    "item_planetary_computer": "S2B_MSIL2A_20240830T152659_R025_T18NUL_20240830T210844",
+    "banda": "B04",
+    "pixeles": 27232,
+    "dn_es_p50": 698.0,
+    "dn_pc_p50": 1698.0,
+    "diferencia_es_menos_pc": {
+     "min": -1000,
+     "p50": -1000.0,
+     "max": -1000
+    },
+    "baseline": "05.11",
+    "baseline_pc": "05.11",
+    "producto_es": "S2B_MSIL2A_20240830T152659_N0511_R025_T18NUL_20240830T210844.SAFE",
+    "producto_pc": "S2B_MSIL2A_20240830T152659_N0511_R025_T18NUL_20240830T210844.SAFE",
+    "earthsearch:boa_offset_applied": true,
+    "raster_bands_es": [
+     {
+      "nodata": 0,
+      "data_type": "uint16",
+      "bits_per_sample": 15,
+      "spatial_resolution": 10,
+      "scale": 0.0001,
+      "offset": -0.1
+     }
+    ]
+   },
+   {
+    "item_earth_search": "S2C_18NVL_20250125_0_L2A",
+    "item_planetary_computer": "S2C_MSIL2A_20250125T153651_R068_T18NVL_20250125T184711",
+    "banda": "B04",
+    "pixeles": 34142,
+    "dn_es_p50": 317.0,
+    "dn_pc_p50": 1317.0,
+    "diferencia_es_menos_pc": {
+     "min": -1000,
+     "p50": -1000.0,
+     "max": -930
+    },
+    "baseline": "05.11",
+    "baseline_pc": "05.11",
+    "producto_es": "S2C_MSIL2A_20250125T153651_N0511_R068_T18NVL_20250125T184711.SAFE",
+    "producto_pc": "S2C_MSIL2A_20250125T153651_N0511_R068_T18NVL_20250125T184711.SAFE",
+    "earthsearch:boa_offset_applied": false,
+    "raster_bands_es": [
+     {
+      "nodata": 0,
+      "data_type": "uint16",
+      "spatial_resolution": 10,
+      "scale": 0.0001,
+      "offset": -0.1
+     }
+    ]
+   },
+   {
+    "item_earth_search": "S2A_18NUL_20240108_0_L2A",
+    "item_planetary_computer": "S2A_MSIL2A_20240108T152651_R025_T18NUL_20240108T213417",
+    "banda": "B04",
+    "pixeles": 27232,
+    "dn_es_p50": 734.0,
+    "dn_pc_p50": 1749.0,
+    "diferencia_es_menos_pc": {
+     "min": -1188,
+     "p50": -1017.0,
+     "max": -500
+    },
+    "baseline": "05.10",
+    "baseline_pc": "05.10",
+    "producto_es": "S2A_MSIL2A_20240108T152651_N0510_R025_T18NUL_20240108T202847.SAFE",
+    "producto_pc": "S2A_MSIL2A_20240108T152651_N0510_R025_T18NUL_20240108T213417.SAFE",
+    "earthsearch:boa_offset_applied": true,
+    "raster_bands_es": [
+     {
+      "nodata": 0,
+      "data_type": "uint16",
+      "bits_per_sample": 15,
+      "spatial_resolution": 10,
+      "scale": 0.0001,
+      "offset": -0.1
+     }
+    ]
+   },
+   {
+    "item_earth_search": "S2B_18NUL_20250219_0_L2A",
+    "item_planetary_computer": "S2B_MSIL2A_20250219T153629_R068_T18NUL_20250219T205917",
+    "banda": "B04",
+    "pixeles": 27232,
+    "dn_es_p50": 624.0,
+    "dn_pc_p50": 1624.0,
+    "diferencia_es_menos_pc": {
+     "min": -1000,
+     "p50": -1000.0,
+     "max": -1000
+    },
+    "baseline": "05.11",
+    "baseline_pc": "05.11",
+    "producto_es": "S2B_MSIL2A_20250219T153629_N0511_R068_T18NUL_20250219T205917.SAFE",
+    "producto_pc": "S2B_MSIL2A_20250219T153629_N0511_R068_T18NUL_20250219T205917.SAFE",
+    "earthsearch:boa_offset_applied": false,
+    "raster_bands_es": [
+     {
+      "nodata": 0,
+      "data_type": "uint16",
+      "spatial_resolution": 10,
+      "scale": 0.0001,
+      "offset": -0.1
+     }
+    ]
+   },
+   {
+    "item_earth_search": "S2C_18NUL_20241216_1_L2A",
+    "error": "no está en Planetary Computer: S2C_MSIL2A_20241216T153651_R068_T18NUL_20260420T155812"
+   }
+  ]
+ },
+ "clase_7": {
+  "pct_observaciones_usadas": 0.74,
+  "pct_observaciones_consideradas": 1.06,
+  "nota": "porcentajes sobre las observaciones (clases 1–11), sin la clase 0 (sin dato o fuera de la pasada)",
+  "decision": "excluida"
+ },
+ "clases_scl_pct_observaciones": {
+  "adquisiciones_usadas": {
+   "por_clase": {
+    "2": 0.11,
+    "3": 5.54,
+    "4": 69.94,
+    "5": 14.98,
+    "6": 0.19,
+    "7": 0.74,
+    "8": 4.15,
+    "9": 2.84,
+    "10": 1.5
+   },
+   "observaciones": 194589702,
+   "sin_dato_clase0": 30541182,
+   "validas_4_6": 85.11,
+   "nubes_8_10": 8.5,
+   "sombra_nube_3": 5.54,
+   "sin_clasificar_7": 0.74
+  },
+  "adquisiciones_consideradas": {
+   "por_clase": {
+    "2": 0.06,
+    "3": 4.7,
+    "4": 46.05,
+    "5": 10.39,
+    "6": 0.12,
+    "7": 1.06,
+    "8": 13.95,
+    "9": 13.66,
+    "10": 10.01
+   },
+   "observaciones": 349967462,
+   "sin_dato_clase0": 100294306,
+   "validas_4_6": 56.56,
+   "nubes_8_10": 37.62,
+   "sombra_nube_3": 4.7,
+   "sin_clasificar_7": 1.06
+  }
+ },
+ "aot": {
+  "aot_por_fecha": {
+   "min": 0.084,
+   "p25": 0.182,
+   "mediana": 0.237,
+   "p75": 0.296,
+   "max": 0.379,
+   "fechas": 132
+  },
+  "limite_atipico": 0.466,
+  "criterio": "AOT mediano de la zona > Q3 + 1,5·IQR de las fechas (regla de Tukey; criterio propio)",
+  "fechas_atipicas": [],
+  "correlacion_ndvi_rural_vs_aot": {
+   "r": -0.268,
+   "fechas": 131
+  },
+  "correlacion_ndvi_rural_vs_frac_veg_rojo_menor_0_1": {
+   "r": 0.774,
+   "fechas": 131
+  },
+  "correlacion_aot_vs_frac_veg_rojo_menor_0_1": {
+   "r": -0.492,
+   "fechas": 132
+  }
+ },
+ "sensibilidad_aot": {
+  "escenas_excluidas": 0,
+  "dif_ndvi_10m_sin_menos_con": {
+   "p01": 0.0,
+   "mediana": 0.0,
+   "p99": 0.0,
+   "frac_abs_mayor_0_02": 0.0
+  }
+ },
+ "fechas_por_mes": {
+  "1": 20,
+  "2": 6,
+  "3": 11,
+  "4": 11,
+  "5": 7,
+  "6": 6,
+  "7": 15,
+  "8": 11,
+  "9": 12,
+  "10": 9,
+  "11": 8,
+  "12": 16
+ },
+ "items_stac": {
+  "catalogo": 684,
+  "considerados": 476,
+  "en_adquisiciones_usadas": 267,
+  "con_datos_usados": 132,
+  "manifiesto": "scripts/sentinel2_items.json"
+ },
+ "seleccion": {
+  "nubes_max_tesela": 90,
+  "por_mes": 0,
+  "frac_min": 0.5,
+  "umbral_bloque": 2000,
+  "items_catalogo": 684,
+  "items_considerados": 476,
+  "disponibles": 264,
+  "seleccionadas": 132,
+  "completas": 132,
+  "meses_con_datos": 24,
+  "meses_sin_adquisicion_util": {}
+ },
+ "diferencia_con_anual": {
+  "cabecera": {
+   "p10": -0.005,
+   "mediana": 0.003,
+   "p90": 0.017,
+   "frac_menor_-0_05": 0.001,
+   "frac_mayor_0_05": 0.0137
+  },
+  "fuera_de_la_cabecera": {
+   "p10": -0.009,
+   "mediana": 0.01,
+   "p90": 0.038,
+   "frac_menor_-0_05": 0.0166,
+   "frac_mayor_0_05": 0.0663
+  }
+ },
+ "diagnostico_lluvia_chirps": {
+  "fuente": {
+   "nombre": "CHIRPS v3.0 mensual (Climate Hazards Center, UCSB), media sobre la huella urbana; tomado del producto 'clima' de BioMap Cartago (datos/series/clima.json)",
+   "url": "https://www.chc.ucsb.edu/data/chirps3",
+   "licencia": "CC BY 4.0",
+   "cita": "Funk, C., Peterson, P., Harrison, L. et al. (2026). The Climate Hazards Center Infrared Precipitation with Stations, Version 3. Scientific Data 13, 718. doi:10.1038/s41597-026-07096-4"
+  },
+  "correlacion_ndvi_rural_mensual_vs_lluvia": {
+   "lluvia_mes_menos_0": 0.2,
+   "lluvia_mes_menos_1": 0.569,
+   "lluvia_mes_menos_2": 0.491,
+   "lluvia_mes_menos_3": 0.102,
+   "lluvia_acumulada_meses_menos_1_y_2": 0.673,
+   "meses": 24,
+   "nota": "NDVI rural = mediana de las fechas de cada año-mes; 24 meses: indicativo"
+  },
+  "lluvia_media_mensual_2024_2025_mm": {
+   "meses_secos_calendario": 110.2,
+   "otros_meses": 167.0
+  },
+  "lluvia_media_mensual_normal_1991_2020_mm": {
+   "meses_secos_calendario": 102.5,
+   "otros_meses": 182.7
+  },
+  "meses_secos_calendario_mas_lluviosos_que_su_normal": [
+   {
+    "mes": "2024-06",
+    "lluvia_mm": 190.9,
+    "normal_1991_2020_mm": 122.2
+   },
+   {
+    "mes": "2024-12",
+    "lluvia_mm": 182.8,
+    "normal_1991_2020_mm": 108.3
+   },
+   {
+    "mes": "2025-02",
+    "lluvia_mm": 214.3,
+    "normal_1991_2020_mm": 99.7
+   },
+   {
+    "mes": "2025-06",
+    "lluvia_mm": 171.0,
+    "normal_1991_2020_mm": 122.2
+   },
+   {
+    "mes": "2025-08",
+    "lluvia_mm": 181.8,
+    "normal_1991_2020_mm": 98.3
+   }
+  ],
+  "tras_lluvia_baja": {
+   "criterio": "meses cuya lluvia acumulada de los 2 meses previos ≤ 229 mm (tercil inferior de 2024–2025; criterio propio)",
+   "meses": [
+    "2024-01",
+    "2024-02",
+    "2024-03",
+    "2024-04",
+    "2024-09",
+    "2024-10",
+    "2025-08",
+    "2025-09"
+   ],
+   "adquisiciones": 52,
+   "cobertura_pct": 100.0,
+   "diferencia_con_anual": {
+    "cabecera": {
+     "p10": -0.109,
+     "mediana": -0.013,
+     "p90": 0.003,
+     "frac_menor_-0_05": 0.236,
+     "frac_mayor_0_05": 0.0112
+    },
+    "fuera_de_la_cabecera": {
+     "p10": -0.135,
+     "mediana": -0.038,
+     "p90": 0.004,
+     "frac_menor_-0_05": 0.4061,
+     "frac_mayor_0_05": 0.0091
+    }
+   },
+   "uso": "diagnóstico exploratorio; no se publica como capa"
+  }
+ },
+ "ventana_posterior_seca": {
+  "meses": [
+   2,
+   3,
+   8,
+   9
+  ],
+  "adquisiciones": 40,
+  "fundamento": "transiciones tras las temporadas secas: 16 feb–25 mar y 27 ago–5 oct (Cenicaña 2010); aproximadas por meses calendario",
+  "diferencia_con_anual": {
+   "cabecera": {
+    "p10": -0.05,
+    "mediana": -0.008,
+    "p90": 0.005,
+    "frac_menor_-0_05": 0.1017,
+    "frac_mayor_0_05": 0.0107
+   },
+   "fuera_de_la_cabecera": {
+    "p10": -0.121,
+    "mediana": -0.027,
+    "p90": 0.01,
+    "frac_menor_-0_05": 0.3034,
+    "frac_mayor_0_05": 0.0137
+   }
+  },
+  "uso": "diagnóstico exploratorio; no se publica como capa"
+ },
+ "n_obs_celda_seco": {
+  "min": 3.0,
+  "p5": 18.4,
+  "mediana": 59.0,
+  "max": 74.0,
+  "celdas_menor_10": 140,
+  "celdas_menor_20": 14851
+ },
+ "fraccion_pixeles_aportan": {
+  "mediana": 1.0,
+  "min": 0.129
+ },
+ "cobertura_real_pct": 100.0,
+ "nombre": "ndvi_seco",
+ "escala": 0.0001,
+ "desplazamiento": -1,
+ "codificacion": "RGBA 16 bits: v=R*256+G; v=0 sin dato; valor=(v-1)*escala+desplazamiento",
+ "rejilla": {
+  "oeste": -75.985,
+  "este": -75.855,
+  "sur": 4.688,
+  "norte": 4.795,
+  "res": 0.00025,
+  "ancho": 520,
+  "alto": 428,
+  "crs": "EPSG:4326"
+ },
+ "estadisticas": {
+  "extension": {
+   "min": -0.5403,
+   "p10": 0.426,
+   "media": 0.671,
+   "p50": 0.7184,
+   "p90": 0.8401,
+   "max": 0.9416,
+   "celdas": 222560
+  },
+  "cabecera_urbana": {
+   "min": -0.0658,
+   "p10": 0.0896,
+   "media": 0.4077,
+   "p50": 0.345,
+   "p90": 0.7952,
+   "max": 0.9194,
+   "celdas": 19878
+  }
+ },
+ "cobertura_pct": 100.0,
+ "fecha_proceso": "2026-09-30"
+}
