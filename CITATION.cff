@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Si usa este trabajo, cítelo así."
+type: software
+title: "BioMap Cartago"
+abstract: "Plataforma geoambiental de datos abiertos para Cartago, Valle del Cauca, hecha con estudiantes de grado 11."
+authors:
+  - family-names: "Cardenas Orozco"
+    given-names: "Alvaro"
+    orcid: "https://orcid.org/0000-0003-1820-301X"
+license: CC-BY-NC-SA-4.0
+repository-code: "https://github.com/alguarito/biomap-cartago"
+url: "https://alguarito.github.io/biomap-cartago/"

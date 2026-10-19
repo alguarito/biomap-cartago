@@ -97,3 +97,19 @@ Cada usuario pega su clave de Google AI Studio en la pestaña Copiloto; la clave
 - Librerías y tipografía incluidas en `vendor/`: Leaflet (BSD-2), Chart.js y marked (MIT), DOMPurify (Apache-2.0 o MPL-2.0) y Plus Jakarta Sans (OFL 1.1). Sus avisos están en `vendor/LEEME.md` y `vendor/licencias/`.
 - Mapas base: OpenStreetMap (callejero), Esri World Imagery en su versión del 2026-06-30 (satelital, elegida porque la vigente tiene nubes sobre Cartago), con sus propias condiciones de uso.
 - El mapa muestra la atribución de cada fuente mientras su capa está activa.
+
+## Licencia
+
+Ver `LICENSE`: código y contenido propio bajo CC BY-NC-SA 4.0; cada fuente de datos conserva su licencia.
+
+## Cómo citar
+
+Cardenas Orozco, A. (2026). *BioMap Cartago* [Software]. https://github.com/alguarito/biomap-cartago
+
+El archivo `CITATION.cff` trae la cita lista para Zotero, Mendeley y GitHub («Cite this repository»).
+
+## Autor
+
+**Alvaro Cardenas Orozco**, PhD en Ciencias de la Educación e ingeniero de sistemas · [alvarocardenasorozco.com](https://alvarocardenasorozco.com) · ORCID [0000-0003-1820-301X](https://orcid.org/0000-0003-1820-301X)
+
+¿Quiere algo así para su institución? Vea el [programa de currículo STEM+](https://alvarocardenasorozco.com/educacion-stem-steam.html) o [agende un diagnóstico gratuito de 30 minutos](https://calendly.com/alvaro-cardenas-orozco/diagnostico-institucional-30-min).
