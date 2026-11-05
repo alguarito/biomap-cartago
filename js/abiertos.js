@@ -220,15 +220,16 @@
   function resumenCiudad() {
     const cab = BM.cabeceraIndicadores();
     if (!cab) return;
-    const t = BM.SERIES && BM.SERIES.clima && BM.SERIES.clima.tendencias && BM.SERIES.clima.tendencias.periodos['1991-2025'];
+    // Mismo periodo y mismas cifras que el informe de hallazgos (1950–2025; 18,5 % y 65,3 %), 5-11-2026.
+    const t = BM.SERIES && BM.SERIES.clima && BM.SERIES.clima.tendencias && BM.SERIES.clima.tendencias.periodos['1950-2025'];
     const kpis = [
-      cab.poblacion_calor_extremo !== undefined && [`${fmt(cab.poblacion_calor_extremo, 0)}`, `personas viven en las superficies más calientes (${fmt(cab.pct_poblacion_calor_extremo, 0)} %)`],
-      cab.pct_poblacion_sin_verde_300m !== undefined && [`${fmt(cab.pct_poblacion_sin_verde_300m, 0)} %`, 'de la población vive a más de 300 m de un parque'],
+      cab.poblacion_calor_extremo !== undefined && [`${fmt(cab.poblacion_calor_extremo, 0)}`, `personas viven en el 10 % de la ciudad con la superficie más caliente (${fmt(cab.pct_poblacion_calor_extremo, 1)} %)`],
+      cab.pct_poblacion_sin_verde_300m !== undefined && [`${fmt(cab.pct_poblacion_sin_verde_300m, 1)} %`, 'de la población vive a más de 300 m de un parque'],
       t && t.tmedia && (() => {
         const r = BM.SERIES.clima.tendencias.rango_entre_reanalisis_tmedia_c_por_decada;
-        const r91 = r && r['1991-2025'];
-        const a = r91 ? Math.min(r91.era5land, r91.era5) : t.tmedia.ols_por_decada, b = r91 ? Math.max(r91.era5land, r91.era5) : a;
-        return [a === b ? `+${fmt(a, 2)} °C` : `+${fmt(a, 1)} a +${fmt(b, 1)} °C`, 'por década sube la temperatura del aire desde 1991 (según reanálisis)'];
+        const r50 = r && r['1950-2025'];
+        const a = r50 ? Math.min(r50.era5land, r50.era5) : t.tmedia.ols_por_decada, b = r50 ? Math.max(r50.era5land, r50.era5) : a;
+        return [a === b ? `+${fmt(a, 2)} °C` : `+${fmt(a, 2)} a +${fmt(b, 2)} °C`, 'por década sube la temperatura del aire desde 1950 (según dos registros reconstruidos)'];
       })(),
     ].filter(Boolean);
     // los hallazgos en lenguaje claro los pinta resultados.js en #resumen-hallazgos; el detalle técnico va en Datos Abiertos
