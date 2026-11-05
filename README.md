@@ -104,12 +104,13 @@ Ver `LICENSE`: código y contenido propio bajo CC BY-NC-SA 4.0; cada fuente de d
 
 ## Cómo citar
 
-Cardenas Orozco, A. (2026). *BioMap Cartago* [Software]. https://github.com/alguarito/biomap-cartago
+Mosquera Cadavid, J. S., Mejia Ortiz, J. E. y Cardenas Orozco, A. (2026). *BioMap Cartago* [Software]. https://github.com/alguarito/biomap-cartago
 
 El archivo `CITATION.cff` trae la cita lista para Zotero, Mendeley y GitHub («Cite this repository»).
 
-## Autor
+## Autores
 
-**Alvaro Cardenas Orozco**, PhD en Ciencias de la Educación e ingeniero de sistemas · [alvarocardenasorozco.com](https://alvarocardenasorozco.com) · ORCID [0000-0003-1820-301X](https://orcid.org/0000-0003-1820-301X)
+- **Jhoan Sebastián Mosquera Cadavid** y **Jhoan Esneider Mejia Ortiz**, estudiantes responsables (grado 11-3, jornada de la tarde, I.E. Sor María Juliana).
+- **Alvaro Cardenas Orozco**, docente mentor, PhD en Ciencias de la Educación e ingeniero de sistemas · [alvarocardenasorozco.com](https://alvarocardenasorozco.com) · ORCID [0000-0003-1820-301X](https://orcid.org/0000-0003-1820-301X)
 
 ¿Quiere algo así para su institución? Vea el [programa de currículo STEM+](https://alvarocardenasorozco.com/educacion-stem-steam.html) o [agende un diagnóstico gratuito de 30 minutos](https://calendly.com/alvaro-cardenas-orozco/diagnostico-institucional-30-min).

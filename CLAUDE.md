@@ -1,6 +1,6 @@
 # BioMap Cartago — contexto para Claude
 
-Proyecto escolar de la I.E. Sor María Juliana: estudiantes responsables Jhoan Sebastián Mosquera Cadavid y Jhoan Esneider Mejia Ortiz (11-3, jornada de la tarde); docente mentor Alvaro Cardenas Orozco, PhD. Los créditos viven en `informe/creditos.json` (informe y resultados.json) y en el bloque «Créditos» de `index.html`; si cambian, actualizar los dos.
+Proyecto escolar de la I.E. Sor María Juliana: estudiantes responsables Jhoan Sebastián Mosquera Cadavid y Jhoan Esneider Mejia Ortiz (11-3, jornada de la tarde); docente mentor Alvaro Cardenas Orozco, PhD. Los créditos viven en `informe/creditos.json` (informe y resultados.json), en el bloque «Créditos» de `index.html`, en `CITATION.cff` y en las secciones «Cómo citar» y «Autores» del README; si cambian, actualizarlos todos. Los estudiantes van con nombre completo y como coautores (decisión de Alvaro, 5-11-2026).
 
 - Producto para decisiones municipales con **datos abiertos reales**. Nunca introducir valores sintéticos, de relleno o inventados; si un dato falta, la interfaz lo dice.
 - Página estática sin compilación. Librerías locales en `vendor/` (no volver a CDN: la red del autor es inestable). No introducir npm, bundlers ni frameworks sin que el autor lo pida.
